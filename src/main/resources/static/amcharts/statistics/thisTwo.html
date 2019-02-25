@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>amCharts examples</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <script src="../amcharts/amcharts.js" type="text/javascript"></script>
+        <script src="../amcharts/serial.js" type="text/javascript"></script>
+        <script src="../amcharts/pie.js" type="text/javascript"></script>
+        <!-- theme files. you only need to include the theme you use.
+             feel free to modify themes and create your own themes -->
+        <script src="../amcharts/themes/light.js" type="text/javascript"></script>
+        <script src="../amcharts/themes/dark.js" type="text/javascript"></script>
+        <script src="../amcharts/themes/chalk.js" type="text/javascript"></script>
+        <script src="../amcharts/themes/patterns.js" type="text/javascript"></script>
+        <script src="../../js/utils.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        // in order to set theme for a chart, all you need to include theme file
+        // located in amcharts/themes folder and set theme property for the chart.
+        var data = JSON.parse(getCookie('parameter'));;
+        //alert(getCookie('parameter'));
+        var chart1;
+        var chart2;
+        makeCharts("light", "#FFFFFF","");
+        // Theme can only be applied when creating chart instance - this means
+        // that if you need to change theme at run time, youhave to create whole
+        // chart object once again.
+        function makeCharts(theme, bgColor, bgImage){
+            if(chart1){
+                chart1.clear();
+            }
+            if(chart2){
+                chart2.clear();
+            }
+            // background
+            if(document.body){
+                document.body.style.backgroundColor = bgColor;
+                document.body.style.backgroundImage = "url(" + bgImage + ")";
+            }
+            /*var showData = [{
+                    "year": '',
+                    "income": 0,
+                    "expenses":  0
+                }, {
+                    "year":'',
+                        "income": 0,
+                        "expenses": 0
+                }, {
+                    "year":'',
+                        "income": 0,
+                        "expenses":0
+                }, {
+                    "year":'',
+                        "income": 0,
+                        "expenses": 0
+                }, {
+                    "year":'',
+                        "income":0,
+                        "expenses":0
+                }, {
+                    "year":'',
+                        "income": 19,
+                        "expenses": 19
+                }, {
+                    "year":'',
+                        "income": 25,
+                        "expenses": 25
+                },];*/
+            var gross = data.gross;
+            var mean = gross/7;
+            var arr = [3,2,5,1,5,7,3,2],
+            symbol = ["+","+","-","+","+","-","+","-",],
+            showData = [],
+            time = [],
+            date = getTime("year");
+            for(var i=0; i<7;i++){
+        		var minusDay = getMinusTime(date,(i+1),"year");
+        		//chartData[i].country = minusDay;
+        		//time[i] = minusDay ;
+        		var item = {};
+        		item.year = minusDay;
+        		if(symbol[i] === "+"){
+        			item.income = mean + arr[i];
+        			item.expenses = mean + arr[i];
+        		}else if(symbol[i] === "-"){
+        			item.income = mean - arr[i];
+        			item.expenses = mean - arr[i];
+        		};
+        		showData[i] = item;
+        	};
+            // column chart
+            chart1 = AmCharts.makeChart("chartdiv1", {
+                type: "serial",
+                theme:theme,
+                dataProvider:showData,
+                categoryField: "year",
+                startDuration: 1,
+
+                categoryAxis: {
+                    gridPosition: "start"
+                },
+                valueAxes: [{
+                    title: data.name+"收集量",
+                }],
+                graphs: [{
+                    type: "column",
+                    title: "收集量",
+                    valueField: "income",
+                    lineAlpha: 0,
+                    fillAlphas: 0.8,
+                    balloonText: "[[category]] [[title]] :<b>[[value]]</b>"
+                }, {
+                    type: "line",
+                    title: "收集量",
+                    valueField: "expenses",
+                    lineThickness: 2,
+                    fillAlphas: 0,
+                    bullet: "round",
+                    balloonText: "[[category]] [[title]]:<b>[[value]]</b>"
+                }],
+                legend: {
+                    useGraphSettings: true
+                }
+
+            });
+			var  other = data.amount-gross;
+			var pieData = [{
+                    "country": "其他","litres": other,
+                }, {
+                    "country": data.name,"litres": gross,
+                },];
+			
+            // pie chart
+            chart2 = AmCharts.makeChart("chartdiv2", {
+                type: "pie",
+                theme: theme,
+                dataProvider: pieData,
+                titleField: "country",
+                valueField: "litres",
+                balloonText: "[[title]]<br><b>[[value]]</b> ([[percents]]%)",
+                legend: {
+                    align: "center",
+                    markerType: "circle"
+                }
+            });
+
+        }
+
+
+        </script>
+    </head>
+
+    <body style="font-size:15px;">
+        <!--Select theme:
+        <a href="#" onclick="makeCharts('light', '#ffffff');">Light</a> |
+        <a href="#" onclick="makeCharts('dark', '#282828')">Dark</a> |
+        <a href="#" onclick="makeCharts('patterns', '#ffffff')">Patterns</a> |
+        <a href="#" onclick="makeCharts('chalk', '#282828', 'images/board.jpg')">Chalk</a>-->
+       <!-- <p style="float: left;margin-left: 20px;">
+    		其他类型: 
+		    <a href="javascript:void(0);" onclick="makeCharts('light', '#ffffff');">垃圾桶数量</a> |
+		    <a href="javascript:void(0);" onclick="makeCharts('dark', '#282828')"></a> |
+		    <a href="javascript:void(0);" onclick="makeCharts('patterns', '#ffffff')"></a> |
+		    <a href="javascript:void(0);" onclick="makeCharts('chalk', '#282828', 'images/board.jpg')"></a>
+    	</p>-->
+        <p style="float: right;margin-right: 20px;">
+		        展示主题:
+		        <a href="javascript:void(0);" onclick="makeCharts('light', '#ffffff');">Light</a> |
+		        <a href="javascript:void(0);" onclick="makeCharts('dark', '#282828')">Dark</a> |
+		        <a href="javascript:void(0);" onclick="makeCharts('patterns', '#ffffff')">Patterns</a> |
+		        <a href="javascript:void(0);" onclick="makeCharts('chalk', '#282828', 'images/board.jpg')">Chalk</a>
+	        </p>
+    	</div><br/><br/>
+        <p style="text-align: center;">收集量柱状折线图 </p>
+        <div id="chartdiv1" style="width: 100%;min-height: 500px;"></div>
+        <p style="text-align: center;">收集量扇形图 </p>
+        <div id="chartdiv2" style="width: 100%;min-height: 500px;"></div>
+    </body>
+
+</html>

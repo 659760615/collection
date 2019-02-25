@@ -1,0 +1,606 @@
+.ch_see_new .clearfix::before,
+.ch_see_new .clearfix::after{
+	content:'';
+	display: block;
+	line-height: 0;
+	height: 0;
+	visibility: hidden;
+	clear: both;
+}
+.ch_see_new .fl {
+    float: left
+}
+
+.ch_see_new .fr {
+    float: right
+}
+
+.ch_see_new{
+	position:absolute;
+	width:100px;
+	color:#FFFFFF;
+	font-size:15px;
+	text-align: center;
+	border-radius:25px;
+	background: rgba(0,0,0,0.5);
+	height:25px;
+	line-height: 25px;	
+	left: 25%;
+	top:37px;
+	cursor: pointer;
+}
+.ch_new_modal>div{
+	width:1300px;
+	
+}
+.ch_new_modal>div>div{
+	width:1300px;
+	background:rgba(0,0,0,1);
+	color:#FFFFFF;
+	height:1190px;
+	border:none;
+	
+}
+/*modal 内部样式 my_new_css*/
+.my_new_css{
+	margin:0;
+	padding:0;
+	overflow: hidden;
+}
+.my_new_css .top_header{
+	height:145px;
+	background: #1557df;
+	margin:0;	
+}
+.my_new_css .top_header .down_select{
+	width:300px;
+	padding-top:35px;
+}
+.my_new_css .top_header .down_select p{
+	width:250px;
+	height:60px;
+	margin:0 auto;	
+	font-size:31px;
+	text-align: center;
+	line-height:60px;
+	cursor:pointer;
+}
+.my_new_css .top_header .work_message{
+	width:860px;
+	/* border: red; */
+	/* padding-left: 20px; */
+	padding-top:40px;
+}
+.my_new_css .top_header .work_message .top_num{
+	width:100%;
+	padding: 0;
+	margin: 0;
+	list-style: none;	
+}
+.my_new_css .top_header .work_message .top_num:last-child{
+	margin-top: 22px;	
+}
+.my_new_css .top_header .work_message .top_num>li{
+	width:170px;
+	height: 18px;
+	float: left;
+	line-height: 18px;
+	font-size: 18px;
+	padding-left: 15px;
+	border-left: 1px solid #2d68e2;
+}
+.my_new_css .top_header .work_message .top_num>li:first-child{
+	border-left: none;
+}
+.my_new_css .work_message .top_num>li span:first-child{
+	display: inline-block;
+	width: 85px;
+}
+.my_new_css .work_message .top_num>li span:last-child{
+	display: inline-block;
+	height:50px;
+	padding-top: 0;
+	/* margin-left: 52px; */
+	color: rgba(255, 255, 255, 0.8);
+}
+.my_new_css .top_header .go_back{
+	width:60px;
+	height:145px;
+	padding-top: 30px;
+	padding-left:70px;
+}
+.my_new_css .top_header .go_back_images{
+	width:44px;
+	height: 44px;
+	background: url('../images/see_btn_03.png');
+	background-size: 100% 100%;
+	cursor:pointer;
+}
+.my_new_css .top_header .go_back_images:hover{
+	width:44px;
+	height:44px;
+	background: url('../images/back42.png');
+	background-size: 100% 100%;
+	cursor:pointer;
+}
+/* tap切换 */
+.my_new_css .my_tap_change{
+	width:1300px;
+	height:38px;
+	background: rgba(14,57,145,1);
+}
+.my_new_css .my_tap_change>div{
+	width:720px;
+	margin: 0 auto;
+}
+.my_new_css .my_tap_change>div .tap_find{
+	width: 240px;
+	text-align:center;
+	font-size:15px;
+	line-height: 38px;
+	cursor:pointer;
+}
+
+/*  */
+.check_out_num {
+    float: right;
+    display: block;
+    width: 100px;
+    height: 38px;
+    line-height: 38px;
+    padding-left: 65px;
+    font-size: 13px;
+    margin-right: 30px;
+    background: url(../images/check_out_num.png) center center no-repeat;
+    cursor: pointer;
+}
+#time_num{
+	width: 244px;
+    background-color: transparent;
+    border: 0;
+    background-position: center left;
+    color: #fff;
+    padding-left: 30px;
+    margin-top: 2px;
+    outline: none;
+    margin-left: 40px;
+}
+
+.my_new_css .my_tap_change>div> .mo_ren{
+	color:#010101;
+	background:#ffffff;
+}
+.left_kong{
+	width: 100px;
+	background:#000;
+	position: absolute; 
+	display: inline-block;
+	height: 50px;
+	left: 0;
+	z-index: 99;
+}
+.my_new_css .company_list_name{
+	width:1280px;
+	height:35px;
+	background: rgba(10, 10, 11, 0.55);
+	padding-left:90px;
+	left: 0;
+	position: relative;
+	transition-property:left;
+	transition-duration:1s;
+}
+.my_new_css .company_list_name>ul{
+	min-width:1230px;
+}
+.my_new_css .company_list_name>ul>li{
+	float: left;
+	width:11.3%;
+	padding:0 10px;
+	/*width: 100px;*/
+	height: 35px;
+	text-align:center;
+	line-height: 35px;
+	font-size: 13px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.my_new_css .company_list_name>ul>li:first-child{
+	color: #FFAE00;
+}
+.my_new_css .tu_biao_kuang{
+	height:720px;
+	background:rgba(16,16,16,0.55);
+	overflow: hidden;
+	padding-top: 20px 
+}
+.my_new_css .biao_kuang>div{
+	height:922px;	 
+}
+.my_new_css .tu_biao_kuang>div>div {
+	height:80px;
+}
+.my_new_css .biao_kuang>div>div .one_day{
+	width: 90px;
+	height:80px;
+	text-align: center;
+	line-height:80px;
+	position: absolute;
+	background:#000000;
+	z-index: 9999; 	 
+}
+.my_new_css .biao_kuang>div>div .one_day_number{
+	min-width:1290px;
+	height: 80px;
+	padding-left: 90px;
+	left: 0; 
+	position: relative;
+	transition-property:left;
+	transition-duration:1s;
+}
+.my_new_css .biao_kuang>div>div .one_day_number li{
+	width:11.6%;
+	/*width:100px;*/
+	height:80px;
+	float:left;	 
+}
+/*出勤率*/
+.my_new_css  .one_day_number>ul>li>div{
+	width:80px;
+	height:80px;
+	margin:0 auto;	 
+}
+/*考核*/
+.my_new_css  .one_day_number li .cherk_zhu{
+	width:40px;
+	height:80px;
+	/*background:rgba(0,200,255,0.2);*/
+	background: #B3B3B3;
+	color: #f00;
+	/*font-weight: 900;*/
+	margin:0 auto;
+	position:relative;
+}
+.my_new_css  .one_day_number li .cherk_num{
+	position: absolute;
+	width:40px;
+	/*height:40px;*/
+	/*background:#00c8ff;	*/
+	/*background: #0158DC;*/
+	background: #fff;
+	bottom:0px;
+}
+.my_new_css  .one_day_number li:first-child .cherk_zhu:first-child{
+	/*background:rgba(255,174,0,0.2);*/
+	/*background: rgba(0,200,255,0.2);*/
+	background:#B3B3B3;
+	color: #f00;
+}
+.my_new_css  .one_day_number li:first-child .cherk_num{
+	/*background:#ffae00;	*/
+	/*background: #00c8ff;*/
+	/*background: #0158DC;*/
+	background: #fff;
+}
+.my_new_css  .one_day_number li .cherk_zhu span{
+	position:absolute;
+
+	text-align:center;
+	/*top:58px;*/
+	bottom: 0;
+	z-index: 999;
+	display: inline-block;
+	width: 100%;
+	font-size: 14px;
+}
+.my_new_css .day_number{
+	margin-top:20px;
+	position: relative;
+}
+.my_new_css .footer{
+	width:100%
+	height:30px;
+	background:rgba(14,27,40,0.1);
+}
+.my_new_css .foot_dian{
+	text-align:center;
+}
+.my_new_css .foot_dian .prev,
+.my_new_css .foot_dian .next{
+	font-size: 15px;
+	color:rgba(255,255,255,0.5);
+	cursor: pointer;
+	float:left;
+	margin-left:15px;
+}
+.my_new_css .foot_dian ul{
+	height: 30px;
+	display: inline-block;
+}
+.my_new_css .foot_dian .dot{
+	width:8px;
+	height:8px;
+	background:rgba(255,255,255,0.5);
+	border-radius: 50%;
+	float:left;
+	margin-left:15px;
+	margin-top:6px;
+	cursor: pointer;
+}
+.my_new_css .foot_dian li.active{
+	background:rgba(255,255,255,1);
+}
+/*异常*/
+.my_new_css .one_day_number>ul>li>.unusual_tu {
+	width:75px;
+	height:80px;
+	position:relative;
+	background: linear-gradient(#2a2e33, transparent);
+}
+.my_new_css .one_day_number li .unusual_tu div{
+	border:none;
+	width:19px;
+	position:absolute;
+	bottom: 0px;
+}
+.my_new_css .yi_chang1{
+	background:#f0f4c1;
+}
+.my_new_css .yi_chang2{
+	left:19px;
+	background:#f9c134;
+}
+.my_new_css .yi_chang3{
+	left:38px;
+	background:#f78500;
+}
+.my_new_css .yi_chang4{
+	left:57px;
+	background:#dd4e00;
+}
+.my_new_css .yi_chang5{
+	left:60px;
+	background:#da1515;
+}
+
+/*异常悬浮框*/
+.my_new_css .e_massage>li{
+	position: relative;
+}
+.my_new_css .e_massage>li>.xuan_fu{
+	width:125px;
+	height:90px;
+	background: rgba(225,225,225,0.9);
+	position:absolute;
+	z-index:50;
+	left:96px;
+	top:-6px;
+	padding:5px 10px;
+	display:none;
+	color:#000000;
+}
+.my_new_css .e_massage>li:hover .xuan_fu{
+	display: block;
+}
+.my_new_css .e_massage>li>.xuan_fu>.all_massage{
+	width:100%;
+	height:20px;
+	font-size:13px;
+	line-height:20px;
+}
+.my_new_css .e_massage>li>.xuan_fu>.all_massage>.yi_cha{
+	margin-left:5px;
+}
+.my_new_css .e_massage>li>.xuan_fu>.all_massage>.num_people{
+	float:right;
+	margin-right:0px;
+}
+.my_new_css .e_massage>li>.xuan_fu>.all_massage>div{
+	width:10px;
+	height:10px;
+	border-radius:50%;
+	display: inline-block;
+}
+.my_new_css .e_massage>li>.xuan_fu>.san_j{
+	width:0;
+	height:0;
+    border-top: 10px solid transparent;
+    border-right: 6px solid rgba(225,225,225,0.9);
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    left: -5px;
+    top: 40px;
+}
+
+/*右下角*/
+.my_new_css .footer .foot_right{
+	width:400px;
+	height:30px;
+	position: absolute;
+	bottom:0px;
+	right:0px;
+}
+.my_new_css .footer .foot_right>li{
+	width:100px;
+	height:30px;
+	float:left;
+}
+.my_new_css .footer .foot_right>li div{
+	width:10px;
+	height:10px;
+	border-radius: 50%;
+	display: inline-block;
+}
+.my_new_css  .foot_right_dian1{
+	background:#f0f4c1;
+}
+.my_new_css  .foot_right_dian2{
+	background:#f9c134;
+}
+.my_new_css  .foot_right_dian3{
+	background:#f78500;
+}
+.my_new_css  .foot_right_dian4{
+	background:#dd4e00;
+}
+.my_new_css  .foot_right_dian5{
+	background:#da1515;
+}
+
+/*下拉框*/
+.my_new_css .down_select,.down_select{
+	position:relative;
+}
+.my_new_css .down_select .my_select,.down_select .my_select{
+	position:absolute;
+	left:70px;
+	cursor:pointer;
+}
+.my_new_css .down_select .gong_si>ul>li,.down_select .gong_si>ul>li {
+	width: 200px;
+	height: 30px;
+	font-size: 13px;
+	text-align:center;
+	line-height: 30px;
+	background:#fff;
+	color:rgba(51,51,51,0.8);
+	position:relative;
+	cursor:pointer;
+}
+.my_new_css .down_select .pian_qu,.down_select .pian_qu{
+	width: 160px;
+	border-radius:5px;
+	position:absolute;
+	left:200px;
+	top:0px;
+	display:none;
+	color:rgba(51,51,51,0.8);
+	border-radius:5px !important;
+}
+.my_new_css .down_select .pian_qu>li,.down_select .pian_qu>li {
+	width: 160px;
+	height: 30px;
+	font-size: 13px;
+	text-align:center;
+	line-height: 30px;
+	background:#fff;
+	position:relative;
+	cursor:pointer;
+}
+.my_new_css .down_select .xiao_zu,.down_select .xiao_zu{
+	width:150px;
+	left:160px;
+	top:0px;
+	display:none;
+	color:rgba(51,51,51,0.8);
+	position:absolute;
+}
+.my_new_css .down_select .xiao_zu>li,.down_select .xiao_zu>li {
+	width: 150px;
+	height: 30px;
+	font-size: 13px;
+	text-align:center;
+	line-height: 30px;
+	background:#fff;
+}
+.my_new_css .down_select .pian_qu>li>div,.down_select .pian_qu>li>div{
+	position:absolute;
+	right:5px;
+	top:-2px;
+}
+.my_new_css .down_select .gong_si>ul>li>div,.down_select .gong_si>ul>li>div{
+	position:absolute;
+	right:15px;
+	top:-2px;
+}
+.my_new_css .down_select .xiao_zu>li:first-child,.down_select .xiao_zu>li:first-child{
+	border-radius:5px 5px 0px 0px;
+}
+.my_new_css .down_select .xiao_zu>li:last-child,.down_select .xiao_zu>li:last-child{
+	border-radius:0px 0px 5px 5px;
+}
+.my_new_css .down_select .pian_qu>li:first-child,.down_select .pian_qu>li:first-child{
+	border-radius:5px 5px 0px 0px;
+}
+.my_new_css .down_select .pian_qu>li:last-child,.down_select .pian_qu>li:last-child{
+	border-radius:0px 0px 5px 5px;
+	
+}
+.my_new_css .down_select .gong_si>ul>li:first-child,.down_select .gong_si>ul>li:first-child{
+	border-radius:5px 5px 0px 0px;
+}
+.my_new_css .down_select .gong_si>ul>li:last-child,.down_select .gong_si>ul>li:last-child{
+	border-radius:0px 0px 5px 5px;
+}
+.my_new_css .down_select .gong_si li:hover,.down_select .gong_si li:hover{
+	background:#f7f7f7;
+}
+.my_new_css .down_select .gong_si>ul>li:hover .pian_qu,.down_select .gong_si>ul>li:hover .pian_qu{
+	display: block;
+}
+.my_new_css .down_select .pian_qu>li:hover .xiao_zu,.down_select .pian_qu>li:hover .xiao_zu{
+	display: block;
+}
+
+
+/*wnag*/
+.chu_qin{
+	overflow: auto;
+}
+.chu_qin::-webkit-scrollbar{     
+    width: 5px;     
+    height: 10px; 
+    border-radius: 50px;       
+    background-color: #888;   
+}    
+.chu_qin::-webkit-scrollbar-track{     
+    -webkit-box-shadow: inset 0 0 6px #fff;     
+    border-radius: 100px;      
+    background-color: #fff; 
+}    
+.chu_qin::-webkit-scrollbar-thumb{     
+    width: 5px;      
+    height: 10px;     
+    border-radius: 50px;    
+    -webkit-box-shadow: inset 0 0 6px #aaa;    
+    background-color: #aaa;  
+}
+
+/*修改内容*/
+.my_new_css .my_tap_change.change_time .three_tap {
+	width: 100%; 
+}
+.my_new_css .my_tap_change.change_time .tap_find:not(.active){
+	width: 80px;
+	float: right;
+}
+
+
+/*颜色修改*/
+.left_kong {
+	background:#fff;
+}
+.my_new_css .company_list_name{
+	background:#fff;
+}
+.ch_new_modal>div>div{
+	background:#fff;
+}
+.my_new_css .biao_kuang>div>div .one_day{
+	background:#fff;
+	color: #000;
+	font-size: 14px;
+}
+.my_new_css .company_list_name>ul>li{
+	color: #000;
+	font-size: 14px;
+}
+.my_new_css  .one_day_number li .cherk_num{
+	background: #B3B3B3
+}
+.my_new_css  .one_day_number li .cherk_zhu{
+	background: #f7f7f7;
+}
+.my_new_css  .one_day_number li:first-child .cherk_num{
+	background: #B3B3B3;
+}

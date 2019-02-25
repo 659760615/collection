@@ -1,0 +1,656 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>amCharts examples</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="../../datepicker/datepicker.css">
+        <!--<link rel="stylesheet" href="../../css/manage_common.css">-->
+        <script src="../amcharts/amcharts.js" type="text/javascript"></script>
+        <script src="../amcharts/serial.js" type="text/javascript"></script>
+        <script src="../amcharts/pie.js" type="text/javascript"></script>
+        <!-- theme files. you only need to include the theme you use.
+             feel free to modify themes and create your own themes -->
+        <script src="../amcharts/themes/light.js" type="text/javascript"></script>
+        <script src="../amcharts/themes/dark.js" type="text/javascript"></script>
+        <script src="../amcharts/themes/chalk.js" type="text/javascript"></script>
+        <script src="../amcharts/themes/patterns.js" type="text/javascript"></script>
+        <script src="../../echarts/echarts.min.js" type="text/javascript"></script>
+        <script src="../../js/utils.js" type="text/javascript"></script>
+        <style>
+    		.search_box{
+			    background-color: #f9f9f9;
+			    font-size: 14px;
+			    color: #555;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    line-height: 1.42857143;
+			    margin-right: 15px;
+			    margin: 0;
+			    padding: 0;
+			}
+			.selectType{
+				margin-right: 0;
+				border-radius: 4px;
+				background-color: #f9f9f9;
+				font-size: 14px;
+				color: #555;
+				border: solid 1px #fff;
+				margin: 0;
+				padding: 0;
+			}
+			select {
+			    appearance: none;
+			    -moz-appearance: none;
+			    -webkit-appearance: none;
+			    outline: none;
+			    cursor: pointer;
+			    border: solid 1px #F0F0F0;
+			    line-height: 32px;
+			    padding: 0;
+			    padding-left: 20px;
+			    padding-right: 20px;
+			    background-image: url(../../images/drop.png);
+			    background-repeat: no-repeat;
+			    background-position: center right;
+			}
+			.selectType2{
+				margin-right: 0;
+				border-radius: 4px;
+				background-color: #f9f9f9;
+				font-size: 14px;
+				color: #555;
+				margin: 0;
+				border-top-right-radius:0px;
+				border-bottom-right-radius: 0px;
+			}
+			.time_select_box>div{
+				border:none;
+				padding: 0px 10px;
+			}
+			.input_search2{
+				border: none;
+				border-left: 1px solid #ccc;
+				border-radius: 0px;
+				margin-right: 0px;
+			}
+			.J-datepicker-range-betweenMonth{
+				margin-left: 15px;
+			}
+			.form-group {
+			    margin-bottom: 5px;
+			}
+    		#selectType{
+    			background-color: #f9f9f9;
+				font-size: 14px;
+				color: #555;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				line-height:32px;
+				margin-right: 0;
+				background-color: #f9f9f9;
+				-webkit-appearance: none;
+    			outline: none;
+    			cursor: pointer;
+    			background-image: url(../../images/drop.png);
+			    background-repeat: no-repeat;
+			    background-position: center right;
+				margin: 0;
+				padding: 0;
+    			padding-left: 20px;
+    			padding-right: 20px;
+			}
+    	</style>
+        <script type="text/javascript">
+	        var data = JSON.parse(getCookie('parameter')),chart1,chart2,
+	        types='collection',thisTheme = 'light',thisBgColor = '#FFFFFF',thisBgImage = '';
+	        //
+	        function makeCharts(theme, bgColor, bgImage){
+	        	thisTheme = theme;
+	        	thisBgColor = bgColor;
+	        	thisBgImage = bgImage;
+	            if(chart1){
+	                chart1.clear();
+	            }
+	            if(chart2){
+	                chart2.clear();
+	            }
+	            // background
+	            if(document.body){
+	                document.body.style.backgroundColor = bgColor;
+	                document.body.style.backgroundImage = "url(" + bgImage + ")";
+	            }
+	            // column chart
+	            var showDataOne = [],showDataTwo = [];
+	            if(data.dataList!=undefined && data.dataList.length>0){
+	            	var datas = data.dataList;
+	            	for(var i=0; i<datas.length;i++){
+	            		showDataOne[i] = { year:datas[i].name,income:datas[i].gross,expenses:datas[i].gross,};
+	            		showDataTwo[i] = { country:datas[i].name,litres:datas[i].gross};
+	            	}
+	            }else{
+	            	return ;
+	            }
+	            /*var time = [],date =getTime("year");
+	            for(var i=0; i<7;i++){
+	        		var minusDay = getMinusTime(date,(i+1),"year");
+	        		//chartData[i].country = minusDay;
+	        		//time[i] = minusDay ;
+	        		showData[i].year = minusDay;
+	        	};*/
+	            chart1 = AmCharts.makeChart("chartdiv1", {
+	                type: "serial",
+	                theme:theme,
+	                dataProvider:showDataOne ,
+	                categoryField: "year",
+	                startDuration: 1,
+	                categoryAxis: {
+	                    gridPosition: "start"
+	                },
+	                valueAxes: [{
+	                    title: "收集量"
+	                }],
+	                graphs: [{
+	                    type: "column",
+	                    title: "收集量",
+	                    valueField: "income",
+	                    lineAlpha: 0,
+	                    fillAlphas: 0.8,
+	                    balloonText: "[[category]] 总[[title]]:<b>[[value]]</b>"
+	                }, /*{
+	                    type: "line",
+	                    title: "收集次数",
+	                    valueField: "expenses",
+	                    lineThickness: 2,
+	                    fillAlphas: 0,
+	                    bullet: "round",
+	                    balloonText: "[[category]] 总[[title]]:<b>[[value]]</b>"
+	                }*/],
+	                legend: {
+	                    useGraphSettings: true
+	                }
+	
+	            });
+	            // pie chart
+	            chart2 = AmCharts.makeChart("chartdiv2", {
+	                type: "pie",
+	                theme: theme,
+	                dataProvider: showDataTwo,
+	                titleField: "country",
+	                valueField: "litres",
+	                balloonText: "[[title]] 收集量 <b>[[value]]</b> ([[percents]]%)",
+	                legend: {
+	                    align: "center",
+	                    markerType: "circle"
+	                }
+	            });
+	        };
+	        
+	        //切换统计类型
+	        function changeType(types){
+	        	/*<option value="collection">收集量</option>
+				<option value="dispose">处理量</option>
+				<option value="collectionNum">收集次数</option>
+				<option value="unitNum">单位数量</option>
+				<option value="trashNum">垃圾桶数量</option>
+				<option value="meanHG">平均含固率</option>*/
+				
+				if(chart1){
+	                chart1.clear();
+	            }
+	            if(chart2){
+	                chart2.clear();
+	            }
+	            // background
+	            if(document.body){
+	                document.body.style.backgroundColor = thisBgColor;
+	                document.body.style.backgroundImage = "url(" + thisBgImage + ")";
+	            };
+				 // column chart
+	            var showDataOne = [],showDataTwo = [],valueAxesTitile = '',graphsTitle = ''
+	            if(data.dataList!=undefined && data.dataList.length>0){
+	            	var datas = data.dataList;
+	            	for(var i=0; i<datas.length;i++){
+	            		if(types === "collection"){
+	            			valueAxesTitile = '收集量';
+	            			graphsTitle = '收集量';
+	        				showDataOne[i] = { year:datas[i].name,income:datas[i].gross,expenses:datas[i].gross,};
+	            			showDataTwo[i] = { country:datas[i].name,litres:datas[i].gross};
+			        	}else if(types === "dispose"){
+			        		valueAxesTitile = '处理量';
+	            			graphsTitle = '处理量';
+			        		showDataOne[i] = { year:datas[i].name,income:datas[i].dispose,expenses:datas[i].dispose,};
+	            			showDataTwo[i] = { country:datas[i].name,litres:datas[i].dispose};
+			        	}else if(types === "collectionNum"){
+			        		valueAxesTitile = '收集次数';
+	            			graphsTitle = '收集次数';
+			        		showDataOne[i] = { year:datas[i].name,income:datas[i].num,expenses:datas[i].num,};
+	            			showDataTwo[i] = { country:datas[i].name,litres:datas[i].num};
+			        	}else if(types === "unitNum"){
+			        		valueAxesTitile = '单位数量';
+	            			graphsTitle = '单位数量';
+			        		showDataOne[i] = { year:datas[i].name,income:datas[i].unitNum,expenses:datas[i].unitNum,};
+	            			showDataTwo[i] = { country:datas[i].name,litres:datas[i].unitNum};
+			        	}else if(types === "trashNum"){
+			        		valueAxesTitile = '垃圾桶数量';
+	            			graphsTitle = '垃圾桶数量';
+			        		showDataOne[i] = { year:datas[i].name,income:datas[i].trash,expenses:datas[i].trash,};
+	            			showDataTwo[i] = { country:datas[i].name,litres:datas[i].trash};
+			        	}else if(types === "meanHG"){
+			        		valueAxesTitile = '平均含固率';
+	            			graphsTitle = '平均含固率';
+			        		showDataOne[i] = { year:datas[i].name,income:datas[i].meanHG,expenses:datas[i].meanHG,};
+	            			showDataTwo[i] = { country:datas[i].name,litres:datas[i].meanHG};
+			        	}else{
+			        		alert("错误！");
+			        		return;
+			        	};
+	            	};
+	            }else{
+	            	alert("错误！");
+	            	return ;
+	            };
+	        	chart1 = AmCharts.makeChart("chartdiv1", {
+	                type: "serial",
+	                theme:thisTheme,
+	                dataProvider:showDataOne ,
+	                categoryField: "year",
+	                startDuration: 1,
+	                categoryAxis: {
+	                    gridPosition: "start"
+	                },
+	                valueAxes: [{
+	                    title: valueAxesTitile,
+	                }],
+	                graphs: [{
+	                    type: "column",
+	                    title: graphsTitle,
+	                    valueField: "income",
+	                    lineAlpha: 0,
+	                    fillAlphas: 0.8,
+	                    balloonText: "[[category]] 总[[title]]:<b>[[value]]</b>"
+	                }, /*{
+	                    type: "line",
+	                    title: "收集次数",
+	                    valueField: "expenses",
+	                    lineThickness: 2,
+	                    fillAlphas: 0,
+	                    bullet: "round",
+	                    balloonText: "[[category]] 总[[title]]:<b>[[value]]</b>"
+	                }*/],
+	                legend: {
+	                    useGraphSettings: true
+	                }
+	
+	            });
+	            // pie chart
+	            chart2 = AmCharts.makeChart("chartdiv2", {
+	                type: "pie",
+	                theme: thisTheme,
+	                dataProvider: showDataTwo,
+	                titleField: "country",
+	                valueField: "litres",
+	                balloonText: "[[title]] "+valueAxesTitile+" <b>[[value]]</b> ([[percents]]%)",
+	                legend: {
+	                    align: "center",
+	                    markerType: "circle"
+	                }
+	            });
+        	};
+        </script>
+    </head>
+    <body style="font-size:15px;">
+    	<!--Select theme:
+        <a href="#" onclick="makeCharts('light', '#ffffff');">Light</a> |
+        <a href="#" onclick="makeCharts('dark', '#282828')">Dark</a> |
+        <a href="#" onclick="makeCharts('patterns', '#ffffff')">Patterns</a> |
+        <a href="#" onclick="makeCharts('chalk', '#282828', 'images/board.jpg')">Chalk</a>-->
+       <!--<p style="float: left;margin-left: 20px;">
+    		其他类型: 
+		    <a href="javascript:void(0);" onclick="makeCharts('light', '#ffffff');"></a> |
+		    <a href="javascript:void(0);" onclick="makeCharts('dark', '#282828')"></a> |
+		    <a href="javascript:void(0);" onclick="makeCharts('patterns', '#ffffff')"></a> |
+		    <a href="javascript:void(0);" onclick="makeCharts('chalk', '#282828', 'images/board.jpg')"></a>
+    	</p>-->
+    	<div style="float: left;margin-left: 20px;">
+    		<span class="type_one ">统计类型:</span>
+    		<div class="search_box type_one" style="display: inline-block;">
+    			<select onchange="forEachTag();" class="selectType1" id="selectType3" style="border: none;"><!-- border-right:1px solid #ccc; -->
+	    			<option value="1">总统计</option>
+	    			<option value="2">多区域</option>
+	    			<!--<option value="3">单区域</option>-->
+	    		</select>
+    		</div>
+    		<span class="type_two ">统计数据:</span>
+    		<div class="search_box type_two" style="display: inline-block;">
+    			<select class="selectType1" id="selectType1" style="border: none;"><!-- border-right:1px solid #ccc; -->
+	    			<option value="collection">收集量</option>
+	    			<option value="dispose">处理量</option>
+	    			<option value="collectionNum">收集次数</option>
+	    			<option value="unitNum">单位数量</option>
+	    			<!--<option value="trashNum">垃圾桶数量</option>
+	    			<option value="meanHG">平均含固率</option>-->
+	    		</select>
+    		</div>
+    		<span style="margin-left: 5px;" class="type_three">时间类型:</span>
+    		<div class="search_box time_select_box type_three" style="display: inline-block;">
+	    		<select class="selectType2" id="selectType2" style="border: none;border-right:1px solid #ccc;">
+	    			<option value="day">单日统计</option>
+	    			<option value="days">多天统计</option>
+	    			<option value="month">按月统计</option>
+	    			<option value="year">按年统计</option>
+	    		</select>
+	    		<!-- 单天选择 -->
+			    <div class="c-datepicker-date-editor c-datepicker-single-editor J-datepicker-day mt10" id="day">
+		          <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+		          <input type="text" readonly="readonly" autocomplete="off" name="" id="select_day_input" placeholder="选择日期" class=" c-datepicker-data-input" value=""><!-- only-date -->
+		        </div>
+		        
+	    		<!-- 多天统计 -->
+	    		<div class="c-datepicker-date-editor J-datepicker-range-betweenDay mt10" style="display: none;" id="days">
+			        <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+			        <input placeholder="开始日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+			        <span class="c-datepicker-range-separator">-</span>
+					<input placeholder="结束日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+				</div>
+				
+				<!-- 月份 -->
+				<!--<div class="c-datepicker-date-editor J-datepicker-range-betweenMonth mt10" style="display: none;">
+			        <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+			        <input placeholder="开始日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+			        <span class="c-datepicker-range-separator">-</span>
+					<input placeholder="结束日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+				</div>-->
+				<div class="c-datepicker-date-editor c-datepicker-single-editor J-yearMonthPicker-single mt10" style="display: none;" id="month">
+		          <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+		          <input type="text" autocomplete="off" name="" placeholder="选择年月" class=" c-datepicker-data-input" value="">
+		        </div>
+				<!-- 年份 -->
+				<!--<div class="c-datepicker-date-editor J-datepicker-range-betweenYear mt10" style="display: none;">
+			        <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+			        <input placeholder="开始日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+			        <span class="c-datepicker-range-separator">-</span>
+					<input placeholder="结束日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+				</div>-->
+				<div class="c-datepicker-date-editor c-datepicker-single-editor J-yearPicker-single mt10" style="display: none;" id="year">
+		          <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+		          <input type="text" autocomplete="off" name="" placeholder="选择年份" class=" c-datepicker-data-input" value="">
+		        </div>
+		   </div>
+    	</div>
+        <p style="float: right;margin-right: 20px;" class="this_pillar1 ">
+		        展示主题:
+		        <a href="javascript:void(0);" onclick="makeCharts('light', '#ffffff');">Light</a> |
+		        <a href="javascript:void(0);" onclick="makeCharts('dark', '#282828')">Dark</a> |
+		        <a href="javascript:void(0);" onclick="makeCharts('patterns', '#ffffff')">Patterns</a> |
+		        <a href="javascript:void(0);" onclick="makeCharts('chalk', '#282828', 'images/board.jpg')">Chalk</a>
+	        </p>
+    	</div><br/><br/>
+        <p class="this_pillar1 " style="text-align: center;">柱状图 </p><!-- /折线 -->
+        <div id="chartdiv1" class="this_pillar1 " style="min-width: 100%;width: 100%;min-height: 500px;"></div>
+        <!-- 总统计  -->
+        <div id="chartdiv3" class="this_pillar2 " style="min-width: 100%;width: 100%;min-height: 500px;margin-top: 20px;"></div>
+        <p style="text-align: center;" class=" this_pie ">扇形图 </p>
+        <div id="chartdiv2" class=" this_pie " style="width: 100%;min-height: 500px;"></div>
+    </body>
+	<script src="../../js/jquery.min.js"></script>
+	<script src="../../datepicker/moment.min.js"></script>
+    <script src="../../datepicker/datepicker.all.js"></script>
+    <script type="text/javascript">
+    	/* 统计类型遍历处理 */
+    	function forEachTag(){
+    		var select_value = $("#selectType3").val();
+    		//alert(select_value);
+			if(select_value === "1"){
+        		$(".this_pillar1").hide();
+        		$(".this_pillar2").show();
+        		
+				$(".type_one").show();
+        		$(".type_two").hide();
+        		
+        		$(".type_three").show();
+        		$(".this_pie").hide();
+        		
+        		delTimeSelectOption("day");
+			}else if(select_value === "2"){
+        		$(".this_pillar2").hide();
+        		$(".this_pillar1").show();
+        		
+				$(".type_one").show();
+        		$(".type_two").show();
+        		
+        		$(".type_three").show();
+        		$(".this_pie").show();
+        		
+        		addTimeSelectOption("day");
+        		makeCharts("light", "#FFFFFF","");
+			}else if(select_value === "3"){
+				
+        		addTimeSelectOption("day");
+			};
+			
+    	};
+    	/* 删除日期选择的选项 */
+    	function delTimeSelectOption(deleteTag){
+    		$("#selectType2>option").each(function(){
+    			var value = $(this).val();
+    			if(deleteTag != undefined && value === deleteTag){
+    				$(this).hide();
+    				//$("#"+deleteTag).hide();
+    				$("#selectType2>option[value*='"+deleteTag+"']").prop("selected",true);
+    				//alert($("#selectType2>option[value*='"+deleteTag+"']").val());
+    				$(".time_select_box>div").hide();
+    				$("#"+$("#selectType2").val()).show();
+    				//break;
+    			};
+    		});
+    	};
+    	/* 添加日期选择选项 */
+    	function addTimeSelectOption(deleteTag){
+    		//var $obj = $("#selectType2>option[value*='"+deleteTag+"']");
+    		//$obj.show();
+    		//$("#selectType2>option").prop("selected",false);
+    		//$obj.prop("selected",true);
+    		//$("#selectType2>option[value*='"+deleteTag+"']").prop("selected",true);
+    		//console.log($obj);
+    		//console.log("deleteTag:"+deleteTag+"this:"+$("#selectType2").val());
+    		//alert($("#selectType2>option[value*='"+deleteTag+"']").val());
+    		$("#selectType2>option").each(function(){
+    			var value = $(this).val();
+    			if(deleteTag != undefined && value === deleteTag){
+    				$(this).show();
+    				//$("#"+deleteTag).hide();
+    				//break;
+    				$(this).prop("selected",true);
+    				$(".time_select_box>div").hide();
+    				$("#"+$("#selectType2").val()).show();
+    			}else{
+    				$(this).prop("selected",false);
+    			};
+    		});
+    	};
+    	forEachTag();
+    	showTotal();
+    	//
+    	function showTotal(){
+    		// 基于准备好的dom，初始化echarts实例
+	        var myChart = echarts.init(document.getElementById('chartdiv3'));
+	        var times = [],
+	        date =getTime("year"),
+	        itemData = [],//收集量
+	        putNum = [],//收集次数
+	        unitNum = [],//收集单位
+	        dispose = [],//处理量 
+	        call = [];//称重量 
+            for(var i=0; i<7;i++){
+        		times[i] = getMinusTime(date,(i+1),"year");
+        		//chartData[i].country = minusDay;
+        		//time[i] = minusDay ;
+        		itemData[i] = getRandomCount(data.dataList[0].gross,getRandom(0,100));
+        		putNum[i] = getRandomCount(data.dataList[0].num,getRandom(0,100));
+        		unitNum[i] = getRandomCount(data.dataList[0].unitNum,getRandom(0,5));
+        		dispose[i] = getRandomCount(data.dataList[0].dispose,getRandom(0,50));
+        		call[i] = getRandomCount(itemData[i],getRandom(0,50));
+        	};
+        	var thisItem1 = {name:'收集单位',type:'line',data:unitNum},//stack: '总量'
+        	thisItem2 = {name:'收集次数',type:'line',data:putNum},
+        	thisItem3 = {name:'收集量',type:'line',data:itemData},
+        	thisItem4 = {name:'处理量',type:'line',data:dispose},
+        	thisItem5 = {name:'进场量',type:'line',data:call};
+        	console.log("thisItem1:"+JSON.stringify(thisItem1));
+        	console.log("thisItem2:"+JSON.stringify(thisItem2));
+        	console.log("thisItem3:"+JSON.stringify(thisItem3));
+        	console.log("thisItem4:"+JSON.stringify(thisItem4));
+        	console.log("thisItem5:"+JSON.stringify(thisItem5));
+	        // 指定图表的配置项和数据
+	        var option = {
+	            title: {text: '绵阳市各数据折线图'},
+			    tooltip: {trigger: 'axis'},
+			    legend: {data:['收集单位','收集次数','收集量','进场量','处理量',]},
+			    grid: {
+			    	left: '1%',
+			        right: '1%',
+			        bottom: '1%',
+			        containLabel: true
+			    },
+			    toolbox: {
+			        feature: {
+			            saveAsImage: {}
+			        }
+			    },
+			    xAxis: {
+			        type: 'category',
+			        boundaryGap: false,
+			        data: times,
+			    },
+			    yAxis: {
+			        type: 'value'
+			    },
+			    series: [thisItem1,thisItem2,thisItem3,thisItem5,thisItem4,],
+	        };
+	        // 使用刚指定的配置项和数据显示图表。
+	        myChart.setOption(option);
+    	};
+    	
+    	
+    	$(document).ready(function() {
+    		var relStart = getTime("year"),minTime = getMinusTime(relStart,30,"year");
+	        //单天选则
+	        $("#select_day_input").val(relStart);
+        	$('.J-datepicker-day').datePicker({
+	            hasShortcut: true,
+	            max: relStart,
+	            format:'YYYY-MM-DD',
+	            shortcutOptions: [{
+	              name: '今天',
+	              day: '0'
+	            }, {
+	              name: '昨天',
+	              day: '-1'
+	            }, {
+	              name: '一周前',
+	              day: '-7'
+	            }]
+          	});
+      		//十分秒年月日范围，包含最大最小值  多天统计，最多只可选则30天
+      		//alert(relStart+":"+minTime);
+	        $('.J-datepicker-range-betweenDay').datePicker({
+	            hasShortcut: true,
+	            format: 'YYYY-MM-DD',
+	            min: minTime,
+	            max: relStart,
+	            isRange: true,
+	            shortcutOptions: [{
+	              name: '昨天',
+	              day: '-1,-1',
+	              time: '00:00:00,23:59:59'
+	            },{
+	              name: '最近一周',
+	              day: '-7,0',
+	              time:'00:00:00,'
+	            }, {
+	              name: '最近一个月',
+	              day: '-30,0',
+	              time: '00:00:00,'
+	            }, {
+	              name: '最近一个年',
+	              day: '-365,0',
+	              time: '00:00:00,'
+	            }],
+	            hide: function () {
+	            	//history.go(0);
+	            	//$("#showDate").show();
+	            	console.info(this.$input.eq(0).val(), this.$input.eq(1).val());
+	            	showTotal();
+	            }
+	        });
+	        
+	        var endTime = getMinusTime(relStart,1,"year");
+	        var startTime = getMinusTime(endTime,7,"year");
+	        $(".J-datepicker-range-betweenDay>input:eq(0)").val(startTime);
+	        $(".J-datepicker-range-betweenDay>input:eq(1)").val(endTime);
+	        //
+	       	//选则月
+	       	$('.J-yearMonthPicker-single').datePicker({
+	            format: 'YYYY-MM',
+	            min: '2017-01',
+	            max: endTime
+          	});
+	        
+	        //选择年
+	        $('.J-yearPicker-single').datePicker({
+	            format: 'YYYY',
+	            min: '2018',
+	            max: '2020'
+	        });
+	        //统计类型
+	        /*$("#selectType3").change(function(){
+	        	forEachTag();
+			});*/
+			
+			//统计数据
+	        $("#selectType1").change(function(){
+	        	var value = $("#selectType1").val();
+	        	changeType(value);
+	        	
+	        	/*if(value === "day"){
+	        		$(".time_select_box>div").hide();
+		     		//$(".c-datepicker-date-editor").hide();
+	        		$(".J-datepicker-day").show();
+	        	}else if(value === "days"){
+	        		$(".time_select_box>div").hide();
+		     		$(".J-datepicker-range-betweenDay").show();
+	        	}else if(value === "month"){
+	        		$(".time_select_box>div").hide();
+		     		$(".J-yearMonthPicker-single").show();
+	        	}else if(value === "year"){
+	        		$(".time_select_box>div").hide();
+		     		$(".J-yearPicker-single").show();
+	        	};*/	
+			});
+			
+	        //时间类型
+	        $("#selectType2").change(function(){
+	        	var value = $("#selectType2").val();
+	        	if(value === "day"){
+	        		$(".time_select_box>div").hide();
+		     		//$(".c-datepicker-date-editor").hide();
+	        		$(".J-datepicker-day").show();
+	        	}else if(value === "days"){
+	        		$(".time_select_box>div").hide();
+		     		$(".J-datepicker-range-betweenDay").show();
+	        	}else if(value === "month"){
+	        		$(".time_select_box>div").hide();
+		     		$(".J-yearMonthPicker-single").show();
+	        	}else if(value === "year"){
+	        		$(".time_select_box>div").hide();
+		     		$(".J-yearPicker-single").show();
+	        	};	
+			});
+			
+	        
+	        
+    	});
+    </script>
+</html>

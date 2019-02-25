@@ -1,0 +1,2990 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)/manage/commond.html -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<title>智链云数</title>
+		<link href="../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/manage_common.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/ch_see_new.css">
+		<link type="text/css" rel="stylesheet" href="../css/bdmapStyle.css">
+		<script src="../js/jquery.min.js "></script>
+		<script src="../js/bootstrap.min.js "></script>
+		<script src="../js/bootbox.min.js "></script>
+		<!--百度地图api-->
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LD93KDmWIlxj1MPIxmHs6qpNLv9dSNEU"></script>
+		<script type="text/javascript" src="../js/jquery.bdmap.js"></script><!--百度地图API模块化成函数供前台调用-->
+		<script src="../js/common.js "></script>
+		<style>
+			#vehicle_info_big_box{
+				margin: 0;
+				width: 500px;
+				padding: 10px;
+			}
+			.vehicle_info_location{
+				
+			}
+			#vehicle_info_box{
+				padding: 0;margin: 0;
+				display: flex;
+				width: 500px;
+				align-items:center;
+				font-size: 14px;
+				line-height: 20px;
+				padding: 10px;
+			}
+			.vehicle_info_img_box{
+				padding: 0;
+				margin: 0;
+				height: 120px;
+				width: 120px;
+			}
+			.vehicle_info_img_box>img{
+				height: 120px;
+				width: 120px;
+			}
+			.vehicle_info_box{
+				margin-left: 10px;
+			}
+			.vehicle_info_min_box{
+				display: flex;
+				justify-content: space-between;
+			}
+			.vehicle_info_min_one{
+				width: 160px;
+			}
+			.vehicle_info_win_All{
+				width: 100%;
+			}
+			.vehicle_info_min_two{
+				width: 160px;
+			}
+			.map_info,.name{
+				text-align: center;
+			    color: #2774C1;
+			    font-weight: 900;
+			    height: 30px;
+			    line-height: 30px;
+			}
+			
+			.alertor_big_box{
+				border-bottom: 1px solid #ccc;
+				border-top: 1px solid #ccc;
+				padding: 5px 0px 5px 0px;
+			}
+			.alertor_box{
+				display: flex;
+			}
+			.alertor_one{
+				margin: 0px 10px 0px 10px ;	
+			}
+			.alertor_two{
+				margin-top: 1.5px;
+				line-height: 20px;
+				color: red;
+			}
+		</style>
+		<script>
+			$(document).click(function(event) {
+				
+			});
+		</script>
+		<link rel="stylesheet" href="./../css/laydate.css" id="layuicss-laydate">
+	</head>
+
+	<body style="">
+		<nav class=" navbar-static-top">
+			<div class="container" style="width: 1536px; padding: 0px; height: 100px;">
+				<div class="logo">
+					<a class="navbar-brand" href="commond.html">
+						<img src="../images/logo.png">
+					</a>
+				</div>
+				<ul class="nav_h">
+					<li class="active"><a href="commond.html">指挥中心</a></li>
+					<li class=""><a href="check.html">考核中心</a></li>
+					<li class=""><a href="unusual.html">预警中心</a></li>
+					<li class=""><a href="paibanG.html">系统管理</a></li>
+					<li class=""><a href="examine.html">监控中心</a></li>
+					<li class=""><a href="tongjiindex.html">统计中心</a></li>
+				</ul>
+				<div class="head_setting">
+					<!-- <div class=" see " data-toggle="modal" data-target="#tan_see_new">222</div> -->
+					<div class=" see admin_see" data-toggle="modal" data-target="#tan_see_new">
+						<a href="javascript:void(0);"></a>
+					</div>
+					<div class=" see usual_see" style="display: none;">
+						<a href="/manage/see.html" target="_blank"></a>
+					</div>
+
+					<div class="notice">
+						<span class=" dropdown-toggle " data-toggle="dropdown">
+                    	<span class="num" style="display: block;">20</span>
+						</span>
+						<div class="notice_list  dropdown-menu ">
+							<p class="top"></p>
+							<ul class="scroll" id="notice_list">
+								<li class="warning">川BTEST1<span class="role">(转运车)</span> 异常停留</li>
+								<li class="warning">川BTEST5<span class="role">(收运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST3<span class="role">(收运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST9<span class="role">(收运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST12<span class="role">(收运车)</span>	异常停留</li>
+								<li class="warning">川BTEST12<span class="role">(收运车)</span> 超出区域行驶</li>
+								<li class="warning">川BTEST4<span class="role">(收运车)</span> 设备连接异常</li>
+								<li class="warning">川BTEST7<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST3<span class="role">(收运车)</span> 超出区域行驶</li>
+								<li class="warning">川BTEST8<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST9<span class="role">(收运车)</span> 超出区域行驶</li>
+								<li class="warning">川BTEST3<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST6<span class="role">(收运车)</span> 设备连接异常</li>
+								<li class="warning">川BTEST7<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST2<span class="role">(转运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST4<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST5<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST6<span class="role">(收运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST2<span class="role">(转运车)</span> 设备连接异常</li>
+								<li class="warning">川BTEST3<span class="role">(收运车)</span> 超速行驶</li>
+							</ul>
+						</div>
+					</div>
+					<div class="inform">
+						<span class=" dropdown-toggle " data-toggle="dropdown">
+                    	<span class="num" style="display: block;">1</span>
+						</span>
+						<div class="notice_list  dropdown-menu ">
+							<p class="top"></p>
+							<ul class="scroll" id="notice_list">
+								<li class=" " >由于暴雨部分地区暂停回收工作</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="user ">
+						<span class=" dropdown-toggle " data-toggle="dropdown">
+                    <img class="user_img" src="../images/B1477.png">
+                    <!-- <span class="text-over" style="max-width: 55px;" title="环卫处管理员">环卫处管理员</span>
+						<span class="caret"></span>-->
+						</span>
+
+						<div class="user_list dropdown-menu">
+							<p class="top"></p>
+							<ul class="">
+								<li>
+									<a href="JavaScript:" data-toggle="modal" data-target="#ziliao_change" class="tan_chuang">
+										个人资料
+									</a>
+								</li>
+								<li>
+									<a href="login.html">退出</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	<script>
+			// 通知
+			var noticeLoading = false;
+			var noticePage = 1;
+			$('.notice').click(function(event) {
+			});
+	</script>
+		<span data-toggle="modal" data-target="#sos" id="addSos"></span>
+		<!-- sos -->
+		<div class="modal fade" id="sos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="sos_head">
+						<span class="sos_title">张三SOS求救</span>
+						<ul>
+							<li>联系方式：1234566</li>
+							<li>求救时间：2017/01/09 13:09:09</li>
+							<li>当前位置：合肥市政务区潜山路123号</li>
+						</ul>
+						<span class="sos_state">已施救 </span>
+					</div>
+					<div class="sos_map">
+						<div id="map" style="width:100%;height:400px;">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			function alert_sos(event) {
+				$('#addSos').click();
+			}
+		</script>
+		<!--看板-->
+		<link href="./../css/manage_see.css" rel="stylesheet" type="text/css">
+		<script src="./../js/highcharts.js "></script>
+		<!--<script src="./../js/echarts.common.min.js "></script>-->
+		<!-- 新看板模态 -->
+		<div class="modal fade ch_new_modal" id="tan_see_new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog " role="document">
+				<div class="modal-content">
+					<div class="modal-body my_new_css">
+						<div class="top_header clearfix">
+							<div class="down_select fl">
+								<p class="top_name">绵阳市</p>
+							</div>
+							<!-- 头部 -->
+							<div class="work_message fl">
+								<ul class="top_num clearfix"></ul>
+							</div>
+							<div class="go_back fl">
+								<!-- go_back -->
+								<div class="go_back_images " data-dismiss="modal"></div>
+							</div>
+						</div>
+						<!-- tap切换 -->
+						<div class="my_tap_change change_item clearfix hide">
+							<div class="three_tap clearfix">
+								<div class="tap_find fl mo_ren">在岗率</div>
+								<div class="tap_find fl">考核分数</div>
+								<div class="tap_find fl">异常情况</div>
+							</div>
+						</div>
+						<!-- tap切换 -->
+						<div class="my_tap_change change_time clearfix">
+							<div class="three_tap clearfix">
+		                        <div class="check_out_num" onclick="checkOut_all_data(this)">导出</div>
+		                        <!-- <input type="text" id="time_num"> -->
+		                        <input class="form-control input_time" style="background:url(../images/date_f.png) no-repeat left center;" readonly="readonly" id="time_num" lay-key="1">
+		                        <div style="display: inline-block;background:url(../images/c_r.png) no-repeat left center;width:20px;height: 20px;position: relative;top:5px;left:-15px;"></div>
+		                        <!-- <div class="tap_find pull-left mo_ren" data-index="1" style="margin-left: 30px;" onclick='all_data(this)'>日</div>
+		                        <div class="tap_find pull-left" data-index="2" onclick='all_data(this)'>周</div>
+		                        <div class="tap_find pull-left" data-index="3" onclick='all_data(this)'>月</div> -->
+		
+		                    </div>
+						</div>
+
+						<!-- 公司名称 -->
+						<div class="left_kong fl"></div>
+						<div class="company_list_name ">
+							<ul class="fl clearfix" style="margin-bottom: 0;margin-top: 10px;">
+								<li title="总计">总计 </li>
+								<li title="涪城区">涪城区 </li>
+								<li title="游仙区">游仙区 </li>
+								<li title="高新区">高新区 </li>
+								<li title="经开区">经开区 </li>
+								<li title="科创园区">科创园区 </li>
+								<li title="科学城">科学城 </li>
+								<li title="仙海区">仙海区 </li>
+							</ul>
+						</div>
+
+						<div class="biao_kuang clearfix">
+							<!-- 在岗率 -->
+							<div class="chu_qin fl" id="attendance" style="display: none;">
+								<div class="day_number clearfix">
+									<div class="one_day fl">今天</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div id="bing_tu"></div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- 考核分数 -->
+							<div class="chu_qin kao_he fl" style="display: block;" id="mark">
+								<div class="day_number clearfix">
+									<div class="one_day fl">应到车辆</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:100%;"><span>13</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="" data-sdrs="1427" data-name="总计"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:23%;"><span>3</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3975" data-sdrs="99" data-name="涪城区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:23%;"><span>3</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3976" data-sdrs="191" data-name="游仙区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>2</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3977" data-sdrs="104" data-name="高新区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>2</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3978" data-sdrs="294" data-name="经开区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3979" data-sdrs="53" data-name="科创园区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3980" data-sdrs="237" data-name="科学城"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3981" data-sdrs="21" data-name="仙海区"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">实到车辆</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:100%;"><span>13</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:23%;"><span>3</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>3</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>2</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>2</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">缺勤车辆</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:100%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">超区域行驶</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<a href="/manage/unusual/index.html?areaId=">
+													<div class="cherk_zhu"><span>3</span>
+														<div class="cherk_num" style="height:100%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=151">
+													<div class="cherk_zhu"><span>1</span>
+														<div class="cherk_num" style="height:0.5%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=232">
+													<div class="cherk_zhu"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=231">
+													<div class="cherk_zhu"><span>1</span>
+														<div class="cherk_num" style="height:0.5%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=353">
+													<div class="cherk_zhu"><span>1</span>
+														<div class="cherk_num" style="height:0.5%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=148">
+													<div class="cherk_zhu"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=149">
+													<div class="cherk_zhu"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=147">
+													<div class="cherk_zhu"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">异常停留</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div class="cherk_zhu"><span>5</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>2</span>
+													<div class="cherk_num" style="height:40%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:20%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:20%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:20%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">里程异常</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href=""><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">迟到车辆</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:100%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">超速行驶</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:30%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="" data-name="总计"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:100%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3975" data-name="涪城区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3976" data-name="游仙区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3977" data-name="高新区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3978" data-name="经开区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3979" data-name="科创园区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3980" data-name="科学城"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3981" data-name="仙海区"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- 异常情况 -->
+							<div class="chu_qin kao_he fl" id="abnormal" style="display: none;">
+								<div class="day_number clearfix">
+									<div class="one_day fl">今天</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix e_massage">
+											<li>
+												<div class="unusual_tu ">
+													<div class="yi_chang1" style="height:35%;"></div>
+													<div class="yi_chang2" style="height:75%;"></div>
+													<div class="yi_chang3" style="height:45%;"></div>
+													<div class="yi_chang4" style="height:95%;"></div>
+
+												</div>
+												<!-- 看板hover悬浮效果 -->
+												<div class="xuan_fu">
+													<div class="all_massage">
+														<div class="foot_right_dian1"></div>
+														<span class="yi_cha">脱岗</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian2"></div>
+														<span class="yi_cha">违规停留</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian3"></div>
+														<span class="yi_cha">未戴设备</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian4"></div>
+														<span class="yi_cha">设备异常</span><span class="num_people">8人</span>
+													</div>
+
+													<p class="san_j"></p>
+												</div>
+											</li>
+
+											<li>
+												<div class="unusual_tu ">
+													<div class="yi_chang1" style="height:35%;"></div>
+													<div class="yi_chang2" style="height:75%;"></div>
+													<div class="yi_chang3" style="height:45%;"></div>
+													<div class="yi_chang4" style="height:95%;"></div>
+
+												</div>
+												<!-- 看板hover悬浮效果 -->
+												<div class="xuan_fu">
+													<div class="all_massage">
+														<div class="foot_right_dian1"></div>
+														<span class="yi_cha">脱岗</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian2"></div>
+														<span class="yi_cha">违规停留</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian3"></div>
+														<span class="yi_cha">未戴设备</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian4"></div>
+														<span class="yi_cha">设备异常</span><span class="num_people">8人</span>
+													</div>
+
+													<p class="san_j"></p>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="footer clearfix" style="display: none;">
+							<!-- 分页 -->
+							<div class="foot_dian clearfix attendance_page"></div>
+							<div class="foot_dian clearfix mark_page " style="display: none;"></div>
+							<div class="foot_dian clearfix abnormal_page" style="display: none;"></div>
+							<ul class="foot_right clearfix fr" style="display: none;">
+								<li>
+									<div class="foot_right_dian1"></div>
+									<span>脱岗</span>
+								</li>
+								<li>
+									<div class="foot_right_dian2"></div>
+									<span>违规停留</span>
+								</li>
+								<li>
+									<div class="foot_right_dian3"></div>
+									<span>网络异常</span>
+								</li>
+								<li>
+									<div class="foot_right_dian4"></div>
+									<span>关机</span>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- admin 个人资料 模态框-->
+		<div class="modal fade admin_position" id="ziliao_change" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog " role="document" style="margin-top:82px;">
+				<div class="modal-content admin_modal_body">
+					<div class="modal-header" style="margin-top:-22px;">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<br>
+						<h4 class="modal-title text-center " id="myModalLabel" style="font-weight:900;font-size:16px;opacity:0.9;">个人资料</h4>
+					</div>
+
+					<div class="modal-body admin_biao_dan ">
+						<div class="tu_xiang" style="width:100px;height:100px;margin:0 auto;position: relative;border-radius:50%;overflow: hidden;">
+							<div class="tu_people" style="width:100px;height:100px;background:url(../images/B1477.png); 
+                    background-size: 100% 100%;"></div>
+
+						</div>
+						<input type="file" class="local_host_file" style="display: none">
+						<div class="admin_name col-xs-12">
+							<div class="col-xs-4 ">名称：</div>
+							<div class="col-xs-6 eye_open">
+								<input type="text" value="绵阳市管理员" id="loginFullname" readonly="">
+							</div>
+						</div>
+						<div class="admin_count col-xs-12">
+							<div class="col-xs-4 ">账号：</div>
+							<div class="col-xs-6 eye_open">
+								<input type="text" value="admin" id="loginId" readonly="">
+							</div>
+						</div>
+						<div class="old_mi_ma col-xs-12">
+							<div class="col-xs-4">旧密码：</div>
+							<div class="col-xs-6 eye_open">
+								<input type="password" id="oldPwd">
+								<span class="glyphicon glyphicon-eye-open" id="oldPwdE" style="top:9px;left:85%;cursor: pointer;"></span>
+							</div>
+						</div>
+						<div class="new_mi_ma col-xs-12">
+							<div class="col-xs-5 ">新密码：</div>
+							<div class="col-xs-6 eye_open">
+								<input type="password" id="newPwd">
+								<span class="glyphicon glyphicon-eye-open" id="newPwdE" style="top:9px;left:85%;cursor: pointer;"></span>
+							</div>
+						</div>
+					</div>
+					<div class="tow_btn">
+						<span class="btn_blue col-xs-12" id="changePsd">保存</span>
+						<span data-dismiss="modal" class="btn  col-xs-12 btn_nor">取消</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container" style="width: 1536px; padding: 0px; height: 1000px;">
+
+			<link href="./../css/manage_command.css" rel="stylesheet" type="text/css">
+			<div class="content">
+				<div class="nav_t" style="left: 384px; display: block;">
+					<span class="nav_company">
+      		<span class="company_name">涪城中心片区</span> <i class="sort"></i>
+					<div class="company alert_box  alert_box_t hidden">
+						<div class="lists scroll">
+							<ul class="menu_company menu">
+								<li>
+									<label data-companyid="all" onclick="check_all()">
+										<input class="all_area" type="checkbox">全部区域
+									</label>
+								</li>
+								<li>
+									<label onclick="check_item(this)" title="涪城区">
+									<input data-companyid="1" class="area_type" type="checkbox">涪城区</label>
+								</li>
+								<li>
+									<label onclick="check_item(this)" title="游仙区">
+									<input data-companyid="2" class="area_type" type="checkbox">游仙区</label><ul></ul>
+								</li>
+								<li>
+									<label onclick="check_item(this)" title="高新区">
+									<input data-companyid="3" class="area_type" type="checkbox">高新区</label><ul></ul>
+								</li>
+								<li>
+									<label onclick="check_item(this)" title="经开区">
+									<input data-companyid="4" class="area_type" type="checkbox">经开区</label><ul></ul>
+								</li>
+								<li>
+									<label onclick="check_item(this)" title="科创园区">
+									<input data-companyid="5" class="area_type" type="checkbox">科创园区</label><ul></ul>
+								</li>
+								<li>
+									<label onclick="check_item(this)" title="科学城">
+									<input data-companyid="6" class="area_type" type="checkbox">科学城</label><ul></ul>
+								</li>
+								<li>
+									<label onclick="check_item(this)" title="">
+									<input data-companyid="7" class="area_type" type="checkbox">仙海区</label>
+									<ul></ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+					</span>
+					<span class="nav_area">
+      				<span class="type_name">全部类型</span> <i class="sort"></i>
+					<div class="lists">
+						<div class="person_class hidden" style="left: -25.7px;">
+							<div class="item">
+								<div class="checkbox pull-left check_all">
+									<label>
+										<input type="checkbox" class="type_all" data-id="0" onclick="type_check_all(this);">
+										&nbsp;全部类型
+									</label>
+								</div>
+							</div>
+							<div class="item" >
+								<div class="checkbox pull-left check_list">
+									<label title="垃圾收运车">
+										<input type="checkbox" class="type_input" data-id="1" onclick="refreshMap(this);">&nbsp;垃圾收运车
+									</label>
+								</div>
+								<img src="./../images/3.png" class="pull-right">
+							</div>
+							<div class="item">
+								<div class="checkbox pull-left check_list">
+									<label title="垃圾转运车">
+										<input type="checkbox" class="type_input" data-id="2" onclick="refreshMap(this);">
+										&nbsp;垃圾转运车
+									</label>
+								</div>
+								<img src="./../images/8.png" class="pull-right">
+							</div>
+							<!--<div class="item">
+								<div class="checkbox pull-left check_list">
+									<label title="垃圾中转站">
+										<input type="checkbox" class="type_input" data-id="3" onclick="refreshMap(this);">
+										&nbsp;垃圾中转站
+									</label>
+								</div>
+								<img src="./../images/zhongzhuan.png" class="pull-right">
+							</div>
+							<div class="item">
+								<div class="checkbox pull-left check_list">
+									<label title="垃圾处理站">
+										<input type="checkbox" class="type_input" data-id="4" onclick="refreshMap(this);">
+										&nbsp;垃圾处理站
+									</label>
+								</div>
+								<img src="./../images/chulizhan.png" class="pull-right">
+							</div>
+							<div class="item">
+								<div class="checkbox pull-left check_list">
+									<label title="垃圾处理站">
+										<input type="checkbox" class="type_input" data-id="5" onclick="refreshMap(this);">
+										&nbsp;收集点
+									</label>
+								</div>
+								<img src="./../images/shouji.png" class="pull-right">
+							</div>-->
+						</div>
+					</div>
+					</span>
+
+					<!-- <span data-index="3" class="nav_fail">路面人员 <em ></em></span> -->
+					<span class=" all_person">路面车辆 <em>77</em>
+      		<div class="alert_box person hidden scroll">
+    	<table class="table table-hover">
+    		<thead>
+    			<tr>
+    				<th class="text-center">编号</th>
+    				<th class="text-center">车牌</th>
+    				<th class="text-center">类型</th>
+    				<th class="text-center">部门</th>
+    				<th class="text-center">驾驶员</th>
+    				<th class="text-center">速度</th>
+    				<th class="text-center">位置</th>
+    			</tr>
+    		</thead>
+    		<tbody id="operation_vehicle">
+    			
+    		</tbody>
+    		<tbody style="display: none;">
+    			<tr class="text-center">
+	    			<td>川BTEST1</td>
+	    			<td>收运车</td>
+	    			<td>涪城区中转站</td>
+	    			<td>绵阳市滨江西路南段</td>
+	    			<td>2018-10-22 09:39:55</td>
+    			</tr>
+	    		<tr class="text-center">
+	    			<td>川BTEST2</td>
+	    			<td>收运车</td>
+	    			<td>涪城区中转站</td>
+	    			<td>绵阳市临园路东段29号</td>
+	    			<td>2018-10-22 09:38:07</td>
+	    		</tr>
+	    		<tr class="text-center">
+	    			<td>川BTEST3</td>
+	    			<td>收运车</td>
+	    			<td>涪城区中转站</td>
+	    			<td>绵阳市红星街123号</td>
+	    			<td>2018-10-22 09:38:28</td>
+	    		</tr>
+	    		<tr class="text-center">
+	    			<td>川BTEST4</td>
+	    			<td>收运车</td>
+	    			<td>涪城区中转站</td>
+	    			<td>绵阳市体运村路10号</td>
+	    			<td>2018-10-22 09:38:21</td>
+	    		</tr>
+	    		<tr class="text-center">
+	    			<td>川BTEST5</td>
+	    			<td>转运</td>
+	    			<td>涪城区中转站</td>
+	    			<td>绵阳市警钟街87号1楼</td>
+	    			<td>2018-10-22 09:40:00</td>
+	    		</tr>
+    		</tbody>
+    	</table>
+    	<nav aria-label="Page navigation" class="text-center">
+            <ul class="pagination">
+            	<li class="active"><a class="curpage">1</a></li>
+            	<li><a href="javascript:getAllPerson(2)">2</a></li>
+            	<li><a href="javascript:getAllPerson(3)">3</a></li>
+            	<li><a href="javascript:getAllPerson(4)">4</a></li>
+            	<li><a href="javascript:getAllPerson(16)">»</a></li>
+            </ul>
+        </nav>	
+    </div>
+    </span>
+	<span class="nav_fail">离线状态<em>68</em>
+	    <div class="alert_box fail hidden scroll">
+	    	<table class="table table-hover">
+	    		<thead>
+	    			<tr>
+	    				<th class="text-center">编号</th>
+	    				<th class="text-center">车牌</th>
+	    				<th class="text-center">类型</th>
+	    				<th class="text-center">部门</th>
+	    				<th class="text-center">离线驾驶员</th>
+	    				<th class="text-center">离线位置</th>
+	    				<th class="text-center">离线时间</th>
+	    			</tr>
+	    		</thead>
+	    		<tbody id="leave_vehicle">
+    			
+    			</tbody>
+	    	</table>
+	    	<nav aria-label="Page navigation" class="text-center">
+	            <ul class="pagination">
+	            	<li class="active"><a class="curpage">1</a></li>
+	            	<li><a href="javascript:locationFail(2)">2</a></li>
+	            	<li><a href="javascript:locationFail(3)">3</a></li>
+	            	<li><a href="javascript:locationFail(4)">4</a></li>
+	            	<li><a href="javascript:locationFail(14)">»</a></li>
+	            </ul>
+	        </nav>	
+	   	</div>
+	</span>	
+	<!-- 无需定位 <em></em> -->
+    <span class="nav_wuxu pull-right">应到车辆 <em>145</em>
+      	<div class="alert_box wuxu scroll hidden">
+	    	<table class="table table-hover">
+	    		<thead>
+	    			<tr>
+	    				<th class="text-center">编号</th>
+	    				<th class="text-center">车牌</th>
+	    				<th class="text-center">类型</th>
+	    				<th class="text-center">部门</th>
+	    				<th class="text-center">状态</th>
+	    				<th class="text-center">位置</th>
+	    			</tr>
+	    		</thead>
+	    		<tbody id="all_vehicle">
+    			
+    			</tbody>
+	    	</table>
+	    	<nav aria-label="Page navigation" class="text-center">
+	            <ul class="pagination">
+	            	<li class="active"><a class="curpage">1</a></li>
+	            	<li><a href="javascript:getNoNeedLocation(2)">2</a></li>
+	            	<li><a href="javascript:getNoNeedLocation(3)">3</a></li>
+	            	<li><a href="javascript:getNoNeedLocation(4)">4</a></li>
+	            	<li><a href="javascript:getNoNeedLocation(29)">»</a></li>
+	            </ul>
+	        </nav>	
+	    </div>
+   </span>
+	</div>
+	<div class="person_line_tool hide ">
+		<div class="title">
+			<span class="name"></span>
+			<span class="download" onclick="checkOut(this)"> 轨迹下载 </span>
+			<span class="detail"> 明细 </span>
+			<span class="close" onclick="refresh(this);"> </span>
+		</div>
+		<p class="colse_table hide"> </p>
+				<div class="p_table hide scroll">
+						<table class="table">
+							<thead>
+								<tr class="active">
+									<th class="text-center">序号</th>
+									<th class="text-center">定位时间</th>
+									<th class="text-center">纬度</th>
+									<th class="text-center">经度</th>
+									<th class="text-center">速度(km/h)</th>
+									<th class="text-center">方向</th>
+									<th class="text-center">地址</th>
+									<th style="font-size: 17px;"> &nbsp; </th>
+								</tr>
+							</thead>
+							<tbody>
+							<!-- <tr class="text-center">
+								<td>1</td><td>2017-09-09</td>
+								<td>10988</td><td>0099</td>
+								<td>10km/h</td><td>as</td>
+								<td>北京市朝阳区</td>
+							</tr> -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="tool">
+					<div class="lists hidden">
+						<p class="search_group" style="position: relative;margin-bottom: 20px;">
+							<input type="text" placeholder="输入小组名" class="form-control" style="background:url(&#39;/../images/search_s.png &#39;) no-repeat  93% center;height:26px;">
+							<span style="position: absolute;width: 35px;height: 35px;right:65px;top:0;cursor: pointer;"></span>
+						</p>
+						<ul class="scroll">
+							<li>
+								<a href="/manage/command/group_his.html?groupId=104">滨江广场1组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=105">滨江广场2组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=106">翠花街组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=107">大观园组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=108">涪城路一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=110">天桥组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=111">铁牛广场组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=112">下穿通道组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=113">垃圾收集组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=114">涪城路二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=115">红光路组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=116">精品街组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=117">警钟街组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=118">马家巷组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=119">南河路一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=120">体运村一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=121">卫生巷组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=123">河堤二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=124">河堤一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=125">红星街组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=127">南河大桥组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=128">南河路二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=130">三江半岛绿道</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=131">体运村二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=133">正南街组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=134">东街组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=135">佳净管理员</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=136">佳净驾驶员</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=139">管理员组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=140">佳圣A组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=141">佳圣B组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=142">佳圣C组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=143">佳圣D组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=144">佳圣机动车组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=145">快速保洁组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=146">路段组长组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=254">机动人员作业组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=160">教育园区机动保洁组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=161">教育园区二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=162">教育园区三组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=163">教育园区一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=336">教育园区护栏组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=337">教育园区垃圾清掏组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=338">教育园区管理人员组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=164">检察院组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=165">田森组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=166">党校组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=167">管理人员组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=168">护栏组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=169">剑南六组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=170">剑南四组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=171">剑南五组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=172">清洗收集组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=173">天生桥组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=174">西山南路组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=339">人防办组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=340">欧城组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=341">园艺街延伸段组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=342">剑南七组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=343">机动保洁组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=175">三区代家湾公园组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=176">三区党校组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=177">一区洞天公园组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=178">三区河堤五组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=179">护栏组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=181">三片绵山组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=182">一区绵吴路组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=183">清洗收集组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=184">三区热电厂组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=185">一区一环路组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=187">三区御营二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=188">御营管理人员组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=189">二区御营小学组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=190">一区御营一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=191">二区御园小区组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=192">一区闸坝组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=344">一区机场路组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=345">一区三汇桥组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=348">流动保洁组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=193">管理员组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=194">高压水车组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=195">清运车</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=196">扫地车</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=197">傍山大道</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=198">备用组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=199">城南路虹桥路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=200">护栏组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=201">机场路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=202">绵山二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=203">绵山三组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=204">绵山一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=205">南山中学</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=206">南塔路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=207">桃花岛虹云桥南山公园</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=208">鲜术蓉</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=314">明华新设备组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=209">花园1护栏组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=210">花园2护栏组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=211">花园2夜班组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=212">花园二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=213">花园片区清洗人员</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=214">花园片区收集车</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=215">花园三组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=216">花园四组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=217">花园一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=218">金柱园-安昌桥护栏组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=219">金柱园-西干道护栏组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=220">金柱园-西干道夜班组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=221">金柱园组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=222">双碑桥组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=223">西干道组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=224">临园长兴街组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=225">临园成绵路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=226">临园富乐路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=227">临园干道组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=228">临园果皮收集清洗车</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=229">临园河堤组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=230">临园通安巷组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=305">花园夜班一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=233">广场组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=234">绵兴组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=315">泰龙新设备组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=360">河堤二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=361">绵兴一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=362">三汇路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=363">桃源路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=364">五郎路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=365">河堤一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=366">新华西街</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=367">花园南街</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=368">绵兴三组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=369">荷花街</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=370">花园大道</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=371">樊华侨</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=372">广场组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=373">东辰组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=374">收集组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=421">火车站组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=422">绵兴2组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=235">开元组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=236">六里组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=237">绵盐组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=238">沈家坝组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=375">二桥</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=376">六里 一环路北段</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=377">中经路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=378">华兴上街</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=379">108国道</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=380">建材市场</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=381">剑南一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=382">剑南二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=383">滨河路东段</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=384">芙蓉溪路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=385">温馨小区</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=386">东原长岛</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=387">东原大桥</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=388">河堤栈道</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=389">一环路东段</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=390">富乐大桥</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=391">东津路上</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=392">东津路下</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=393">东津路中</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=394">芙蓉路上</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=395">芙蓉路下</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=396">六号路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=397">游仙大道</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=398">芙蓉金城</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=399">师专路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=400">朝阳厂</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=401">仙人桥</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=402">绵山路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=403">开元208</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=404">治平路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=405">五里堆</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=406">五里堆南路</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=407">绵盐路1组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=408">绵盐路2组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=409">绵盐路3组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=410">绵盐路4组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=411">绵盐路5组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=412">绵盐路6组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=413">绵盐路收集</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=414">东方桥</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=415">三江河堤</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=416">湿地公园</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=417">富乐山</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=418">开元收集组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=419">沈家坝收集组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=420">六里收集组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=423">管理员组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=354">保洁1组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=355">保洁2组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=356">保洁3组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=357">保洁4组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=358">机动保洁组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=359">巡检组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=15">跃进一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=16">白班快包车1</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=17">白班快包车2</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=18">跃进二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=19">夜班快包车5</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=20">夜班快包车4</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=21">夜班快包车3</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=22">夜班快包车2</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=23">夜班快包车1</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=24">门面垃圾收集车2</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=25">门面垃圾收集车1</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=26">剑南组管理员</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=27">剑南一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=28">剑南三组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=29">剑南二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=30">河堤一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=31">河堤二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=32">果屑收集车3</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=33">果屑收集车2</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=34">果屑手机车1</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=35">白班快包车3</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=36">白班快包车4</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=37">长虹二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=38">长虹三组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=39">长虹一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=40">管理员组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=41">迎宾路组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=42">一环路一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=43">一环路四组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=44">一环路三组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=45">一环路二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=46">先锋路组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=47">西山立交组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=64">西山东路组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=65">收集一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=66">收集二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=67">平政河堤组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=68">快报车组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=72">长虹六组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=73">长虹七组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=74">长虹四组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=75">长虹五组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=76">高水二组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=77">高水南街</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=78">高水一组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=79">果屑收集</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=80">红岩电站</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=81">快包车</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=82">圣水管理员</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=83">长虹八组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=84">快包车</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=85">平政二巷</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=86">五一广场</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=87">小岛管理员</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=88">小岛果屑收集车</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=89">小岛河堤组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=90">小岛门面收集车</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=91">小岛小岛组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=92">跃进路三组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=93">跃进路四组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=94">跃进路五组</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=95">汉龙桥</a>
+							</li>
+							<li>
+								<a href="/manage/command/group_his.html?groupId=352">新增设备组</a>
+							</li>
+						</ul>
+					</div>
+					<!-- <p class="check_his">  <i class=""></i> 查看历史轨迹  </p> -->
+
+					<div class="choose" style="display: none;">
+						<div class="tab pull-left" id="add_areaInfo">
+							<span class="check"></span>片区
+						</div>
+						<div class="tab pull-left" id="add_electronic">
+							<span class="check"></span>电子围栏
+						</div>
+					</div>
+				</div>
+				<div id="allmap" class="" style="overflow: hidden; position: relative; z-index: 0; background-color: rgb(243, 241, 236); color: rgb(0, 0, 0); text-align: left; height: 515px;">
+				</div>
+			</div>
+<script type="text/javascript">
+	/*+-------------全局变量-------------------+*/
+	var $imgDir = '../images/'; //默认图片目录
+	var $yjzc_zb = "104.724504,31.465048"; //默认坐标
+	/*+------------地图初始化--------------------+*/
+	var map = new BMap.Map("allmap",{enableMapClick:false}); //allmap为加载地图区域的ID
+	/*{yjzc_zb:'104.726466,31.467042',title:'川BN1256',
+	detail:'<div id="vehicle_info_big_box"><div id="vehicle_info_box"><div class="vehicle_info_img_box">'+
+	'<img src="../images/iwc-placeholder-vehicle.png"/></div>'+
+	'<div class="vehicle_info_box"><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>部门：</span><span>涪城中心片区</span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>类型：</span><span>垃圾转运</span></div>'+
+	'<div class="vehicle_info_min_two"><span>内部编号：</span><span>087</span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>当班司机：</span>董师傅<span></span></div>'+
+	'<div class="vehicle_info_min_two"><span>电话：</span><span>17395905992</span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>车辆状态：</span><span>正常</span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>工作时间：</span><span>13:00-19:00</span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>速度（km/h）：</span><span>41</span></div>'+
+	'<div class="vehicle_info_min_two"><span>里程：</span><span>1123.51km</span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_win_All"><span>位置：</span><span>四川省绵阳市涪城区剑门路西段81号</span></div>'+
+	'</div></div></div><div class="vehicle_info_location"></div></div>',color:'2'},
+	
+	{yjzc_zb:'104.737466,31.469042',title:'川BK1215',
+	detail:'<div id="vehicle_info_big_box"><div id="vehicle_info_box"><div class="vehicle_info_img_box">'+
+	'<img src="../images/iwc-placeholder-vehicle.png"/></div>'+
+	'<div class="vehicle_info_box"><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>部门：</span><span>涪城中心片区</span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>类型：</span><span>垃圾转运</span></div>'+
+	'<div class="vehicle_info_min_two"><span>内部编号：</span><span>059</span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>当班司机：</span><span></span></div>'+
+	'<div class="vehicle_info_min_two"><span>电话：</span><span></span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>车辆状态：</span><span>正常</span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>工作时间：</span><span></span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>速度（km/h）：</span><span>0</span></div>'+
+	'<div class="vehicle_info_min_two"><span>里程：</span><span>88118.84km</span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_win_All"><span>位置：</span><span>四川省绵阳市涪城区剑门路东段-47号</span></div>'+
+	'</div></div></div><div class="vehicle_info_location"></div></div>',color:'2'},
+	
+	{yjzc_zb:'104.717466,31.459042',title:'川BD9522',
+	detail:'<div id="vehicle_info_big_box"><div id="vehicle_info_box"><div class="vehicle_info_img_box">'+
+	'<img src="../images/iwc-placeholder-vehicle.png"/></div>'+
+	'<div class="vehicle_info_box"><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>部门：</span><span>涪城中心片区</span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>类型：</span><span>垃圾收运</span></div>'+
+	'<div class="vehicle_info_min_two"><span>内部编号：</span><span>041</span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>当班司机：</span><span></span></div>'+
+	'<div class="vehicle_info_min_two"><span>电话：</span><span></span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>车辆状态：</span><span>正常</span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>工作时间：</span><span></span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>速度（km/h）：</span><span>0</span></div>'+
+	'<div class="vehicle_info_min_two"><span>里程：</span><span>5485.44km</span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_win_All"><span>位置：</span><span>四川省绵阳市涪城区花园南街4</span></div>'+
+	'</div></div></div><div class="vehicle_info_location"></div></div>',color:'3'},
+	
+	{yjzc_zb:'104.756539,31.457373',title:'收集点',
+	detail:'<div id="vehicle_info_big_box"><div id="vehicle_info_box"><div class="vehicle_info_img_box">'+
+	'<img src="../images/lajito01.png"/></div>'+
+	'<div class="vehicle_info_box"><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>单位：</span><span>华溪音乐餐厅</span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>类型：</span><span>中餐</span></div>'+
+	'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>单位大小：</span><span>100m<sup>2</sup></span></div>'+
+	'<div class="vehicle_info_min_two"><span>电话：</span><span>XXXXXXXXXX</span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>垃圾桶状态：</span><span>正常</span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>垃圾桶数量：</span><span>3</span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_win_All"><span>位置：</span><span>四川省绵阳市涪城区滨河北路110-7号</span></div>'+
+	'</div></div></div><div class="vehicle_info_location"><p class="name">垃圾桶信息</p>'+
+	'<table class="table table-striped table-bordered">'+
+	'<thead><tr><th>编号</th><th>状态</th><th>垃圾量</th><th>总容量</th></tr></thead><tbody>'+
+	'<tr class="warning"><td>0025</td><td>溢满</td><td>100%</td><td>100L</td></tr>'+
+	'<tr class="success"><td>0026</td><td>正常</td><td>2%</td><td>100L</td></tr>'+
+	'<tr class="danger"><td>0027</td><td>离线</td><td>0%</td><td>100L</td></tr></tbody></div></div>',color:'4'},
+	
+	{yjzc_zb:'104.707466,31.469042',title:'中转站',
+	detail:'<div id="vehicle_info_big_box"><div id="vehicle_info_box"><div class="vehicle_info_img_box">'+
+	'<img src="../images/zhongzhuan01.jpg"/></div>'+
+	'<div class="vehicle_info_box"><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>部门：</span><span>高新区中转站</span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>类型：</span><span>垃圾转运站</span></div>'+
+	'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>总容量（L）：</span><span>5000</span></div>'+
+	'<div class="vehicle_info_min_two"></div></div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>囤积量（L）：</span><span>2000</span></div>'+
+	'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>可存量（L）：</span><span>3000</span></div>'+
+	'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_win_All"><span>位置：</span><span>四川省绵阳市涪城区花园南街4</span></div></div>'+
+	'</div></div><div class="vehicle_info_location">'+
+	'</div></div>',color:'5'},
+	
+	{yjzc_zb:'104.698466,31.459042',title:'处理站',
+	detail:'<div id="vehicle_info_big_box"><div id="vehicle_info_box"><div class="vehicle_info_img_box">'+
+	'<img src="../images/chuli01.png"/></div>'+
+	'<div class="vehicle_info_box"><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>部门：</span><span>高新区垃圾处理站</span></div>'+
+	'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>类型：</span><span>垃圾处理</span></div>'+
+	'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>总容量（L）：</span><span>10000</span></div>'+
+	'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>囤积量（L）：</span><span>8000</span></div>'+
+	'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_min_one"><span>可存量（L）：</span><span>2000</span></div>'+
+	'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+	'</div><div class="vehicle_info_min_box">'+
+	'<div class="vehicle_info_win_All"><span>位置：</span><span>四川省绵阳市涪城区花园南街4</span></div>'+
+	'</div></div></div><div class="vehicle_info_location"></div></div>',color:'6'},*/
+	var $coordinateJson = {data:[],};
+	/* 经纬度字段：yjzc_zb；
+	 * 覆盖显示类型：title；
+	 * 覆盖点的图片：img；
+	 * 车牌号：license；
+	 * 类型区分标识：type
+	 * （vehicleOne，表示为转运车；vehicleTwo，表示为收运车；gather，表示为收集点；transfer，表示为收集点；dealWith，表示为处理点；)
+	 * 收集点名称：gather；
+	 * 部门或者区域：branch；
+	 * 覆盖点类型：genre；
+	 * 收集点大小：size；
+	 * 收集点的垃圾桶数量：quantity；
+	 * 编号：code；
+	 * 车辆驱动者，驾驶员：driver；
+	 * 联系电话:phone;
+	 * 当前状态标识：status；
+	 * （1，正常；2，离线；3，）
+	 * 状态：vehicleStatus；
+	 * 工作时间：time；
+	 * 工作运行速度:speed;
+	 * 总运行里程：mileage;；
+	 * 车辆离线时间：leaveTime；
+	 * 转运站或处理站负责人：manager；
+	 * 转运站或处理站储存容量：hoard；
+	 * 转运站或处理站可用容量：usable；
+	 * 位置区域识别字段：areaid；
+	 * （1，涪城区；2，游仙区；3，高新区；4，经开区；5，科创园区；6，科学城；6，仙海区；）
+	 * 地理位置：locations；
+	 * 收集点垃圾桶信息：trashCan；
+	 * 收集点垃圾桶信息编号：trashCan.trashCanCode；
+	 * 收集点垃圾桶信息状态标识：trashCan.trashCanS；
+	 * （1.溢满，2.正常，3.离线）
+	 * 收集点垃圾桶信息状态：trashCan.trashCanStatus；
+	 * 收集点垃圾桶信息当前储存量%：trashCan.stockpile；
+	 * 收集点垃圾桶信息总容量：trashCan.capacity；
+	 * 收集点垃圾桶信息收集状态：trashCan.gatherStatus
+	 * （1.未收集，2.已收集，3.异常；）
+	 * 收集点垃圾桶信息上次收集时间：trashCan.gatherTime
+	 */
+	var simulationData = [
+		
+		{yjzc_zb:'104.737466,31.469042',title:'转运车',img:'../images/iwc-placeholder-vehicle.png',
+		license:'川BTEST1',type:'vehicleOne',gather:'',branch:'涪城区',genre:'垃圾转运',size:'',quantity:'',
+		code:'001',driver:'',phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'0',mileage:'88118.84',leaveTime:'2018-11-05 12:07',
+		manager:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区剑门路东段-47号',trashCan:[],},
+		
+		{yjzc_zb:'104.726466,31.467042',title:'转运车',img:'../images/iwc-placeholder-vehicle.png',
+		license:'川BTEST2',type:'vehicleOne',gather:'',branch:'涪城区',genre:'垃圾转运',size:'',quantity:'',code:'002',
+		driver:'董师傅',phone:'17395905992',status:'1',vehicleStatus:'正常',time:'13:00-19:00',speed:'41',mileage:'1123.51',
+		leaveTime:'',manager:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区剑门路西段81号',trashCan:[],},
+		
+		{yjzc_zb:'104.717466,31.459042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+		license:'川BTEST3',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',
+		code:'003',driver:'',phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'0',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+		manager:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+		
+		{yjzc_zb:'104.719466,31.469042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+		license:'川BTEST4',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'004',driver:'李师傅',
+		phone:'18180585415',status:'1',vehicleStatus:'在线',time:'15:00-17:30',speed:'30',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+		manager:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+		
+		{yjzc_zb:'104.699466,31.469042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+		license:'川BTEST5',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'005',driver:'王师傅',
+		phone:'18180585684',status:'1',vehicleStatus:'在线',time:'12:00-17:00',speed:'23',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+		manager:'',hoard:'',usable:'',areaid:'3',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+		
+		{yjzc_zb:'104.689466,31.464042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+		license:'川BTEST6',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'006',driver:'王师傅',
+		phone:'18180585684',status:'1',vehicleStatus:'在线',time:'12:00-17:00',speed:'23',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+		manager:'',hoard:'',usable:'',areaid:'3',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+		
+		{yjzc_zb:'104.679000,31.475042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+		license:'川BTEST7',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'007',driver:'王师傅',
+		phone:'18180585684',status:'1',vehicleStatus:'在线',time:'12:00-17:00',speed:'23',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+		manager:'',hoard:'',usable:'',areaid:'3',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+		
+		{yjzc_zb:'104.699466,31.489042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+		license:'川BTEST8',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'008',driver:'',
+		phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+		manager:'',hoard:'',usable:'',areaid:'3',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+		
+		{yjzc_zb:'104.700466,31.459042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+		license:'川BTEST9',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'009',driver:'',
+		phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+		manager:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+		
+		{yjzc_zb:'104.721466,31.463042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+		license:'川BTEST10',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'010',driver:'',
+		phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+		manager:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+		
+		
+		/*{yjzc_zb:'104.756539,31.457373',title:'收集点',img:'../images/lajito01.png',license:'',type:'gather',gather:'测试单位3',
+		branch:'涪城区',genre:'中餐',size:'100',quantity:'3',code:'',driver:'',phone:'XXXXXXXXXX',status:'1',vehicleStatus:'正常',
+		time:'',speed:'',mileage:'',leaveTime:'',total:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区滨河北路110-7号',
+		trashCan:[
+			{trashCanCode:'0025',trashCanS:'1',trashCanStatus:'溢满',stockpile:'100',
+			capacity:'100',gatherStatus:'1',gatherTime:'2018-11-07 15:12',},
+			{trashCanCode:'0026',trashCanS:'2',trashCanStatus:'正常',stockpile:'2',
+			capacity:'100',gatherStatus:'2',gatherTime:'2018-11-07 15:12',},
+			{trashCanCode:'0027',trashCanS:'3',trashCanStatus:'离线',stockpile:'0',
+			capacity:'100',gatherStatus:'3',gatherTime:'',},
+		],},
+		
+		{yjzc_zb:'104.727962,31.462892',title:'收集点',img:'../images/lajito01.png',license:'',type:'gather',gather:'测试单位1',
+		branch:'涪城区',genre:'中餐',size:'100',quantity:'2',code:'',driver:'',phone:'XXXXXXXXXX',status:'1',vehicleStatus:'正常',
+		time:'',speed:'',mileage:'',leaveTime:'',total:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区滨河北路110-7号',
+		trashCan:[
+			{trashCanCode:'0030',trashCanS:'2',trashCanStatus:'正常',stockpile:'100',
+			capacity:'100',gatherStatus:'2',gatherTime:'2018-11-07 15:12',},
+			{trashCanCode:'0031',trashCanS:'2',trashCanStatus:'正常',stockpile:'2',
+			capacity:'100',gatherStatus:'2',gatherTime:'2018-11-07 15:12',},
+		],},
+		
+		{yjzc_zb:'104.729265,31.459508',title:'收集点',img:'../images/lajito01.png',license:'',type:'gather',gather:'测试单位2',
+		branch:'涪城区',genre:'中餐',size:'100',quantity:'2',code:'',driver:'',phone:'XXXXXXXXXX',status:'1',vehicleStatus:'正常',
+		time:'',speed:'',mileage:'',leaveTime:'',total:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区滨河北路110-7号',
+		trashCan:[
+			{trashCanCode:'0033',trashCanS:'1',trashCanStatus:'溢满',stockpile:'100',
+			capacity:'100',gatherStatus:'1',gatherTime:'2018-11-07 11:45',},
+			{trashCanCode:'0034',trashCanS:'2',trashCanStatus:'正常',stockpile:'85',
+			capacity:'100',gatherStatus:'1',gatherTime:'2018-11-07 11:45',},
+		],},
+		
+		
+		{yjzc_zb:'104.707466,31.469042',title:'中转站',img:'../images/zhongzhuan01.jpg',license:'',type:'transfer',gather:'',
+		branch:'涪城区',genre:'垃圾转运站',size:'',quantity:'',code:'',driver:'',phone:'12345678910',status:'1',vehicleStatus:'正常',time:'',speed:'',
+		mileage:'',leaveTime:'',manager:'管理人员1',hoard:'2000',usable:'3000',areaid:'1',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+		
+		{yjzc_zb:'104.718707,31.449996',title:'处理站',img:'../images/chuli01.png',license:'',type:'dealWith',gather:'',
+		branch:'涪城区',genre:'垃圾处理站',size:'',quantity:'',code:'',driver:'',phone:'12345678910',status:'1',vehicleStatus:'正常',time:'',
+		speed:'',mileage:'',leaveTime:'',manager:'管理人员1',hoard:'8000',usable:'2000',areaid:'1',locations:'四川省绵阳市涪城区',trashCan:[],},
+		*/
+	];
+	
+	/* 轨迹 */
+	function lookDeitl(data){
+		map.enableScrollWheelZoom(false);
+		var locats = [
+			{lat:31.465734,lon:104.739502,},
+			{lat:31.465425,lon:104.739296,},
+			{lat:31.465373,lon:104.739938,},
+			{lat:31.465492,lon:104.740596,},
+			{lat:31.465178,lon:104.741836,},
+		];
+		var p1 = new BMap.Point(104.737466,31.469042);
+		var p2 = new BMap.Point(104.743368,31.465079);
+		var pList = [],
+			ins =0;//经过点下标
+		/*循环分出点信息*/
+		for (var i=0;i<locats.length;i++){
+			pList[ins] = new BMap.Point(locats[i].lon,locats[i].lat);
+			ins++;
+		}
+		var driving = new BMap.DrivingRoute(map, {renderOptions:{
+			map: map,
+			autoViewport: true,
+			panel: "r-result",
+			enableDragging : false //起终点可进行拖拽	
+		}});
+		console.info(pList);
+		//waypoints表示途经点
+		driving.search(p1, p2,{waypoints:pList});
+		$(".person_line_tool").removeClass("hide");
+	};
+	
+	function refresh(a){
+		history.go(0);
+	};
+	
+	//显示数据处理方法
+	function mapDataShow(dataList){
+		if(dataList == undefined){
+			return false;
+		};
+		var showData = {data:[],};
+		//console.log(dataList);
+		for(var i=0;i<dataList.length;i++){
+			var sd = dataList[i],item = {yjzc_zb:sd.yjzc_zb,},html='';
+			if(sd.type === "vehicleOne"){
+				item.title = sd.license;
+				item.color = '1';
+			}else if(sd.type === "vehicleTwo"){
+				item.title = sd.license;
+				item.color = '2';
+			}else if(sd.type === "transfer"){
+				item.title = sd.title;
+				item.color = '3';
+			}else if(sd.type === "dealWith"){
+				item.title = sd.title;
+				item.color = '4';
+			}else if(sd.type === "gather"){
+				//var trashCan = sd.trashCan,flag = false;
+				/*for(var j=0;j<trashCan.length;j++){
+					if(){
+						
+					}
+				}*/
+				item.title = sd.title;
+				item.color = '7';
+			};
+			html += '<div id="vehicle_info_big_box">';
+			/*<p class="over" style="padding:10px 0px 30px 0 ;">
+				<span class="col-xs-6 text-center">
+					<span class="btn_blue" data-userid="7166" onclick="draw_person_line(this)">查看轨迹</span>
+				</span>
+				<span class="col-xs-6 text-center">
+					<a target="_blank" href="/manage/command/his_check.html?userId=7166&amp;fullName=龚蓉辉">
+						<span class="btn_blue">历史考核</span>
+					</a>
+				</span>
+			</p>*/
+			//样式生成
+			if(sd.type === "vehicleOne" || sd.type === "vehicleTwo"){
+				html += '<div id="vehicle_info_box">'+
+				'<div class="vehicle_info_img_box"><img src="'+sd.img+'"/></div>'+
+				'<div class="vehicle_info_box">'+
+				'<div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span>部门：</span><span>'+sd.branch+'</span></div>'+
+				'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span>类型：</span><span>'+sd.genre+'</span></div>'+
+				'<div class="vehicle_info_min_two"><span>内部编号：</span><span>'+sd.code+'</span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span>当班司机：</span>'+sd.driver+'<span></span></div>'+
+				'<div class="vehicle_info_min_two"><span>电话：</span><span>'+sd.phone+'</span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span>车辆状态：</span><span>'+sd.vehicleStatus+'</span></div>'+
+				'<div class="vehicle_info_min_two"><span>工作时间：</span><span>'+sd.time+'</span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one" style="width:100%;"><span>当前时间：</span><span class="this_rel_time"></span></div>'+
+				/*'<div class="vehicle_info_min_two"><span></span><span></span></div>'+*/
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one" style="width:100%;"><span>经纬度：</span><span>'+sd.yjzc_zb+'</span></div>'+
+				/*'<div class="vehicle_info_min_two"><span></span><span></span></div>'+*/
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span>速度（km/h）：</span><span>'+sd.speed+'</span></div>'+
+				'<div class="vehicle_info_min_two"><span>里程：</span><span>'+sd.mileage+'km</span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_win_All"><span>位置：</span><span>'+sd.locations+'</span></div>'+
+				'</div></div></div>'+
+				'<div class="alertor_big_box" style="border-bottom: 1px solid #ccc;border-top: 1px solid #ccc;">'+
+				'<div class="alertor_box">'+
+				'<div class="alertor_one"><img style="width: 20px;height:20px;" src="../images/call_police.png" /></div>'+
+				'<div class="alertor_two">超速报警 持续5分钟( 11-16 07:41:06 - 11-16 07:44:34 )</div>'+
+				'</div><div class="alertor_box">'+
+				'<div class="alertor_one"><img style="width: 20px;height:20px;" src="../images/call_police.png" /></div>'+
+				'<div class="alertor_two">超速报警 持续3分钟( 11-17 06:56:03 - 11-17 06:59:35 )</div>'+
+				'</div>'+
+				'</div>'+
+				'<p class="over" style="padding:10px 0px 0px 0 ;">'+
+				'<span class="col-xs-6 text-center">'+
+				'<span class="btn_blue" data-userid="7166" onclick="lookDeitl();">查看轨迹</span>'+
+				'</span><span class="col-xs-6 text-center">'+
+				'<a target="_blank" >'+
+				'<span class="btn_blue">查看任务</span></a></span></p>';
+			}else if(sd.type === "transfer" || sd.type === "dealWith"){//
+				html += '<div id="vehicle_info_box">'+
+				'<div class="vehicle_info_img_box"><img src="'+sd.img+'"/></div>'+
+				'<div class="vehicle_info_box">'+
+				'<div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span>部门：</span><span>'+sd.branch+'</span></div>'+
+				'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span>类型：</span><span>'+sd.genre+'</span></div>'+
+				'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span>负责人：</span><span>'+sd.manager+'</span></div>'+
+				'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one" style="width: 200px;"><span>负责人电话：</span><span>'+sd.phone+'</span></div>'+
+				'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span></span><span></span></div>'+
+				'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_win_All"><span>位置：</span><span>'+sd.locations+'</span></div>'+
+				'</div></div></div>';
+			}else if(sd.type === "gather"){//
+				html += '<div id="vehicle_info_box">'+
+				'<div class="vehicle_info_img_box"><img src="'+sd.img+'"/></div>'+
+				'<div class="vehicle_info_box">'+
+				'<div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span>单位：</span><span>'+sd.gather+'</span></div>'+
+				'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span>类型：</span><span>'+sd.genre+'</span></div>'+
+				'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span>单位大小：</span><span>'+sd.size+'m<sup>2</sup></span></div>'+
+				'<div class="vehicle_info_min_two"><span>电话：</span><span>'+sd.phone+'</span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span></span><span></span></div>'+
+				'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_min_one"><span>垃圾桶数量：</span><span>'+sd.quantity+'</span></div>'+
+				'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
+				'</div><div class="vehicle_info_min_box">'+
+				'<div class="vehicle_info_win_All"><span>位置：</span><span>'+sd.locations+'</span></div>'+
+				'</div></div></div>';
+				//'<div class="vehicle_info_location"><p class="name">垃圾桶信息</p>'+
+				//'<table class="table table-striped table-bordered">'+
+				//'<thead><tr><th>编号</th><th>状态</th><th>收集状态</th><th>上次收集时间</th><th>垃圾量</th><th>总容量</th></tr></thead>'+
+				//'<tbody>';
+				var trashCan = sd.trashCan;
+				for(var j=0;j<trashCan.length;j++){
+					var tc = trashCan[j];
+					/*html += '<tr class="';
+					if(tc.trashCanS === "1"){//1.溢满，2.正常，3.离线
+						html += 'warning';
+					}else if(tc.trashCanS === "2"){
+						html += 'success';
+					}else if(tc.trashCanS === "3"){
+						html += 'danger';
+					};*/
+					//html += '">'+
+					//'<td>'+tc.trashCanCode+'</td>'+
+					//'<td>'+tc.trashCanStatus+'</td>';
+					if(tc.gatherStatus === "1"){
+						item.color = '5';
+						//html += '<td>待收集</td>';
+					}else if(tc.gatherStatus === "2"){
+						//html += '<td>已收集</td>';
+					}else if(tc.gatherStatus === "3"){
+						item.color = '6';
+						//html += '<td>异常</td>';
+					};
+					//html += '<td>'+tc.gatherTime+'</td>'+
+					//'<td>'+tc.stockpile+'%</td>'+
+					//'<td>'+tc.capacity+'</td>'+
+					//'</tr>';
+				};
+				//html += '</tbody></div>';
+			};
+			html += '</div>';
+			item.detail = html;
+			showData.data[i] = item;
+		};
+		//console.log(JSON.stringify(showData));
+		loadPointData(showData,{"showDetails":false}); //根据json加载地图数据
+	};
+	
+	var geolocation = new BMap.Geolocation();
+	geolocation.getCurrentPosition(function(r){
+		if(this.getStatus() == BMAP_STATUS_SUCCESS){
+			//var mk = new BMap.Marker(r.point);
+			//map.addOverlay(mk);
+			//map.panTo(r.point);
+			//alert('您的位置：'+r.point.lng+','+r.point.lat);
+		}else {
+			alert('failed'+this.getStatus());
+		}        
+	},{enableHighAccuracy: true});
+	
+	function lngAndLat(str){
+		if(str!=undefined && str.length>0){
+			var ret = {};
+			var zuobiao = str.split(',');
+			ret.l_point = zuobiao[0];//经度
+			ret.r_point = zuobiao[1]; //纬度
+			return ret;
+		};
+		return false ;
+	}
+	
+	/**
+	* 函数：加载坐标json数据
+	* @param json <=> json数据
+	*/
+	function loadPointData(dataJson,paramJson){
+		//BDMapInit(map,{"isNumc":1,"city":"绵阳","point":$yjzc_zb,"zoom":"15","copyright":''});
+		var ll = $yjzc_zb.split(',');
+		map.centerAndZoom(new BMap.Point(ll[0], ll[1]),15);// 初始化地图,创建点坐标,设置中心点坐标和地图级别。
+		map.enableScrollWheelZoom();//启用滚轮放大缩小
+		//map.clearOverlays();  //一次移除所有的覆盖物(相当于清空所有标注点)(必须!)
+		for(var i=0;i<dataJson.data.length;i++){
+			/*if(dataList[i]==undefined || dataList[i]==null){
+				continue;
+			}*/
+			var $json = dataJson.data[i];
+			var title = $json.title, //文本
+				description = $json.detail; //描述
+				zuobiao = lngAndLat($json.yjzc_zb),
+				l_point = zuobiao.l_point, //经度
+				r_point = zuobiao.r_point; //纬度
+			var	img = '', //标注点图标
+				style = ''; //标注点样式,使用英文颜色（eg.red）或颜色值（eg.'#1296db')
+			/*if($json.color=='1'){
+				img = '3.png';
+				style = "red";
+			}else if($json.color=='2'){
+				img = '3.png';
+				style = "blue";
+			}else if($json.color=='3'){
+				img = '8_2.png';
+				style = "green";
+			}else if($json.color=='4'){
+				img = 'shouji.png';
+				style = "orange";
+			}else if($json.color=='5'){
+				img = 'zhongzhuan.png';
+				style = "green2";
+			}else if($json.color=='6'){
+				img = 'chulizhan.png';
+				style = "green2";
+			}*/
+			if($json.color=='1'){//收运车
+				img = '3.png';
+				style = "blue";
+			}else if($json.color=='2'){//转运车
+				img = '8_2.png';
+				style = "green";
+			}else if($json.color=='3'){//中转站
+				img = 'zhongzhuan.png';
+				style = "green2";
+			}else if($json.color=='4'){//处理点
+				img = 'chulizhan.png';
+				style = "green2";
+			}else if($json.color=='5'){//待收集收集点
+				img = 'shouji.png';
+				style = "orange";
+			}else if($json.color=='6'){//异常收集点
+				img = 'shoujidianhong.png';
+				style = "red";
+			}else if($json.color=='7'){//正常收集点
+				img = 'shoujidianlv.png';
+				style = "green2";
+			}
+			if(img!='') img = $imgDir+img;
+			//创建标注点
+			var $pointJson = {"l_point":l_point,"r_point":r_point,"title":title,"description":description,"style":style,"icon":img};
+			createMapPoint($pointJson,paramJson);
+			//map.centerAndZoom(new BMap.Point(l_point, r_point), 11);
+			//var local = new BMap.LocalSearch(map, {renderOptions:{map: map}});
+			//local.search("景点");
+		};
+		/*$(".anchorTL").hide();
+		$(".anchorTR").hide();
+		$(".anchorTL").hide();*/
+	}
+	//全部区域选则
+	function check_all(){
+		var $obj = $(".all_area");
+		//console.log("选中状态："+$obj.prop('checked'));
+		if($obj.prop('checked')){
+			$('.area_type').each(function (index,domEle){
+				$(domEle).prop("checked",true);
+			});
+			check_item();
+			$obj.prop("checked",true);
+			//alert("选中状态");
+		}else{
+			//$obj.attr("checked",true);
+			$('.area_type').each(function (index,domEle){
+				$(domEle).prop("checked",false);
+			});
+			check_item();
+			$obj.prop("checked",false);
+			//alert("未选中状态");
+		};
+	};
+	//单个区域选则
+	function check_item(obj){
+		map.clearOverlays(); //一次移除所有的覆盖物(相当于清空所有标注点)(必须!)
+		//var $obj = $(obj),id = $obj.attr('data-id');
+		var showDataOne = [],inde=0,flag = true, $typeAll = $(".all_area");
+		$('.area_type').each(function (index,domEle){
+			//console.log($(domEle).prop("checked"));
+			var $domEle = $(domEle),id = $domEle.attr('data-companyid');
+			if($domEle.prop("checked")){
+				for(var i=0;i<simulationData.length;i++){
+					var sd = simulationData[i];
+					//data-companyid：1，涪城区；2，游仙区；3，高新区；4，经开区；5，科创园区；6，科学城；6，仙海区；
+					//areaid：1，涪城区；2，游仙区；3，高新区；4，经开区；5，科创园区；6，科学城；6，仙海区；
+					if(id == "1"){
+						if(sd.areaid === "1")showDataOne[inde++] = sd;
+					}else if(id == "2"){
+						if(sd.areaid === "2")showDataOne[inde++] = sd;
+					}else if(id == "3"){
+						if(sd.areaid === "3")showDataOne[inde++] = sd;
+					}else if(id == "4"){
+						if(sd.areaid === "4")showDataOne[inde++] = sd;
+					}else if(id == "5"){
+						if(sd.areaid === "5")showDataOne[inde++] = sd;
+					};
+				};
+			}else flag = false ;
+		});
+		if(flag) $typeAll.prop("checked",true);
+		else $typeAll.prop("checked",false);
+		//console.log(showDataOne);
+		if(showDataOne.length>0){
+			mapDataShow(showDataOne);
+		};
+		//console.log("——————————————————————————————————————————————————————————————————————————————————————————————————————————--");
+	}
+	/*function type_check_item(obj){
+		
+	};*/
+	//改变选中全部状态
+	function type_check_all(){
+		var $obj = $(".type_all");
+		//console.log("类型全部选中状态："+$obj.prop('checked'));
+		if($obj.prop('checked')){
+			//$obj.attr("checked",false);
+			$('.type_input').each(function (index,domEle){
+				$(domEle).prop("checked",true);
+			});
+			refreshMap();
+			//alert("选中状态");
+		}else{
+			//$obj.attr("checked",true);
+			$('.type_input').each(function (index,domEle){
+				$(domEle).prop("checked",false);
+			});
+			refreshMap();
+			//alert("未选中状态");
+		};
+	};
+	//改变选中状态
+	function refreshMap(obj){
+		map.clearOverlays(); //一次移除所有的覆盖物(相当于清空所有标注点)(必须!)
+		//var $obj = $(obj),id = $obj.attr('data-id');
+		var showDataOne = [],inde=0,flag = true, $typeAll = $(".type_all");
+		$('.type_input').each(function (index,domEle){
+			//console.log($(domEle).prop("checked"));
+			var $domEle = $(domEle),id = $domEle.attr('data-id');
+			if($domEle.prop("checked")){
+				for(var i=0;i<simulationData.length;i++){
+					var sd = simulationData[i];
+					//console.log(sd);
+					if(id == "1"){
+						if(sd.type === "vehicleOne")showDataOne[inde++] = sd;
+					}else if(id == "2"){
+						if(sd.type === "vehicleTwo")showDataOne[inde++] = sd;
+					}else if(id == "3"){
+						if(sd.type === "transfer")showDataOne[inde++] = sd;
+					}else if(id == "4"){
+						if(sd.type === "dealWith")showDataOne[inde++] = sd;
+					}else if(id == "5"){
+						if(sd.type === "gather")showDataOne[inde++] = sd;
+					};
+				};
+			}else flag = false ; 
+		});
+		if(flag) $typeAll.prop("checked",true);
+		else $typeAll.prop("checked",false);
+		//console.log(showDataOne);
+		if(showDataOne.length>0){
+			mapDataShow(showDataOne);
+		};
+		//console.log("——————————————————————————————————————————————————————————————————————————————————————————————————————————--");
+	}
+	//地图初始化
+	function mapInitialize(){
+		$(".all_area").prop("checked",true);
+		$(".type_all").prop("checked",true);
+		check_all();
+		type_check_all();
+	};
+	
+	
+	//数据初始化
+	function dataInitializ(){
+		var opv_html = '',opv_num = 0,//离线数据
+		leave_html = '',leave_num = 0,//在线数据
+		all_html = '',all_num = 0;//全部数据
+		for(var i=0;i<simulationData.length;i++){
+			var sd = simulationData[i];
+			//console.log(sd);
+			if(sd.type === "vehicleOne" || sd.type === "vehicleTwo"){
+				if(sd.status === "1"){
+					if(opv_num<5){
+						opv_html += '<tr class="text-center">'+
+						'<td>'+sd.code+'</td>'+
+						'<td>'+sd.license+'</td>'+
+						'<td>'+sd.title+'</td>'+
+						'<td>'+sd.branch+'</td>'+
+						'<td>'+sd.driver+'</td>'+
+						'<td>'+sd.speed+'</td>'+
+						'<td>'+sd.locations+'</td>'+
+						'</tr>';
+						opv_num++;
+					};
+				}else if(sd.status === "2"){
+					if(leave_num<5){
+						leave_html += '<tr class="text-center">'+
+						'<td>'+sd.code+'</td>'+
+						'<td>'+sd.license+'</td>'+
+						'<td>'+sd.title+'</td>'+
+						'<td>'+sd.branch+'</td>'+
+						'<td>'+sd.locations+'</td>'+
+						'<td>'+sd.leaveTime+'</td>'+
+						'</tr>';
+						leave_num++;
+					};
+				};
+				if(all_num<5){
+					all_html += '<tr class="text-center">'+
+					'<td>'+sd.code+'</td>'+
+					'<td>'+sd.license+'</td>'+
+					'<td>'+sd.title+'</td>'+
+					'<td>'+sd.branch+'</td>'+
+					'<td>'+sd.vehicleStatus+'</td>'+
+					'<td>'+sd.locations+'</td>'+
+					'</tr>';
+					all_num++;
+				};
+			};
+		};
+		//console.log(opv_html);
+		$("#operation_vehicle").empty().append(opv_html);//离线
+		$("#leave_vehicle").empty().append(leave_html);//在线
+		$("#all_vehicle").empty().append(all_html);//全部
+	};
+	
+	//高宽自动适应
+	function widthAndHeight(){
+		var innerWidth = window.innerWidth;
+		var innerHeight = window.innerHeight;
+		$(".container").css("width",innerWidth);//宽度自适应
+		var width = $(".nav_t").width();
+		var lef = (innerWidth-width)/2;
+		$(".nav_t").css("left",lef);//居中
+		
+		var height = $(".navbar-static-top").height();
+		$("#allmap").css("height",(innerHeight-height));
+	};
+	
+	$(function(){
+		//mapDataShow(simulationData); //调用处理数据方法，根据json数据加载地图数据；
+		//时间初始化
+		function timeInitialize(){
+			$('#sel_time').val(getTime());
+			// 时间轴的逻辑处理 
+			var hour = parseInt(getTime('hour'));
+			$('.timeline').find('li').eq(hour).addClass('active').html('现在');
+			//时间初始化
+			var dateStart = getTime('year'); //'2018-02-07';
+			var dateEnd = getTime('year');
+			$('#time_num').val(dateStart + ' 至 ' + dateEnd);
+			
+			//高宽自动适应
+			widthAndHeight();
+			//alert(lef);
+		};
+		//调用时间初始化方法；
+		timeInitialize();
+		//调用地图插件初始化方法；
+		mapInitialize();
+		//
+		dataInitializ();
+		
+		var t1=window.setInterval(function (){
+			var $rltime= $(".this_rel_time");
+			if($rltime!=undefined){
+				$rltime.empty().append(getTime(''));
+			};
+		}, 1000);
+	    //去掉定时器的方法  
+	    //window.clearInterval(t1);   
+		
+		
+		//$(".person_line_tool").hide();
+		
+	}); //END $(function(){});
+	
+	$(window).resize(function(){
+    	widthAndHeight();
+	});
+	
+	// 是否可编辑
+	function isEdit(obj) {
+		/*if('' == dateEnd) {
+			$(obj).find('.edit_num').css('display', 'inline-block');
+		}*/
+	}
+	function isEdit_(obj) {
+		// console.log(1111111111);
+		$(obj).find('.edit_num').css('display', 'none');
+	}
+	
+</script>
+			<div class="map_tool ">
+				<ul>
+					<!-- <li class="map_reload " title="刷新地图 "></li>	 -->
+					<!--<li class="map_big " title="放大 "></li>
+<li class="map_small " title="缩小 "></li>
+<li class="map_all " title="全屏 "></li>
+<li class="esc hidden " title="退出全屏 "></li>-->
+				</ul>
+			</div>
+			<div class="timeline timeline_reset ">
+				<ul>
+					<li style="width: 45.25px; ">00:00</li>
+					<li style="width: 45.25px; ">01:00</li>
+					<li style="width: 45.25px; ">02:00</li>
+					<li style="width: 45.25px; ">03:00</li>
+					<li style="width: 45.25px; ">04:00</li>
+					<li style="width: 45.25px; ">05:00</li>
+					<li style="width: 45.25px; ">06:00</li>
+					<li style="width: 45.25px; ">07:00</li>
+					<li style="width: 45.25px; ">08:00</li>
+					<li style="width: 45.25px; ">09:00</li>
+					<li style="width: 45.25px; ">10:00</li>
+					<li style="width: 45.25px; ">11:00</li>
+					<li style="width: 45.25px; ">12:00</li>
+					<li style="width: 45.25px; ">13:00</li>
+					<li style="width: 45.25px; ">14:00</li>
+					<li style="width: 45.25px; ">15:00</li>
+					<li style="width: 45.25px; ">16:00</li>
+					<li style="width: 45.25px; ">17:00</li>
+					<li style="width: 45.25px; ">18:00</li>
+					<li style="width: 45.25px; ">19:00</li>
+					<li style="width: 45.25px; ">20:00</li>
+					<li style="width: 45.25px; ">21:00</li>
+					<li style="width: 45.25px; ">22:00</li>
+					<li style="width: 45.25px; ">23:00</li>
+					<p class="drag " id="drag " style="position: relative; "><span style="position: absolute; cursor: move; "></span></p>
+				</ul>
+			</div>
+
+			<div class="box box_reset " id="box ">
+				<p class="time ">
+					<span class="bg "><input id="sel_time" class="sel_time" readonly="true"></span>
+				</p>
+				<p class="speed ">
+					<span id="slower "><i class="fa fa-backward " aria-hidden="true "></i></span>
+					<span id="play "><i class="fa fa-play " aria-hidden="true "></i></span>
+					<span id="faster "><i class="fa fa-forward " aria-hidden="true "></i></span>
+				</p>
+			</div>
+
+			<link href="../css/bootstrap-datetimepicker.min.css " type="text/css" rel="stylesheet">
+			<script type="text/javascript " src="../js/bootstrap-datetimepicker.min.js"></script>
+			<script type="text/javascript " src="../js/bootstrap-datetimepicker.zh-CN.js"></script>
+			<script src="../js/drag.js "></script>
+		</div>
+		<div class="datetimepicker datetimepicker-dropdown-top-right dropdown-menu" style="top: 667.7px; left: 32px; z-index: 100510;">
+			<div class="datetimepicker-minutes" style="display: none;">
+				<table class=" table-condensed">
+					<thead>
+						<tr>
+							<th class="prev" style="visibility: visible;"><i class="glyphicon icon-arrow-left"></i></th>
+							<th colspan="5" class="switch">22 十月 2018</th>
+							<th class="next" style="visibility: visible;"><i class="glyphicon icon-arrow-right"></i></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="7"><span class="minute">9:00</span><span class="minute">9:05</span><span class="minute">9:10</span><span class="minute">9:15</span><span class="minute">9:20</span><span class="minute">9:25</span><span class="minute">9:30</span><span class="minute">9:35</span><span class="minute active">9:40</span><span class="minute">9:45</span><span class="minute">9:50</span><span class="minute">9:55</span></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th colspan="7" class="today" style="display: none;">今天</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div class="datetimepicker-hours" style="display: none;">
+				<table class=" table-condensed">
+					<thead>
+						<tr>
+							<th class="prev" style="visibility: visible;"><i class="glyphicon icon-arrow-left"></i></th>
+							<th colspan="5" class="switch">22 十月 2018</th>
+							<th class="next" style="visibility: visible;"><i class="glyphicon icon-arrow-right"></i></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="7"><span class="hour">0:00</span><span class="hour">1:00</span><span class="hour">2:00</span><span class="hour">3:00</span><span class="hour">4:00</span><span class="hour">5:00</span><span class="hour">6:00</span><span class="hour">7:00</span><span class="hour">8:00</span><span class="hour active">9:00</span><span class="hour">10:00</span><span class="hour">11:00</span><span class="hour">12:00</span><span class="hour">13:00</span><span class="hour">14:00</span><span class="hour">15:00</span><span class="hour">16:00</span><span class="hour">17:00</span><span class="hour">18:00</span><span class="hour">19:00</span><span class="hour">20:00</span><span class="hour">21:00</span><span class="hour">22:00</span><span class="hour">23:00</span></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th colspan="7" class="today" style="display: none;">今天</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div class="datetimepicker-days" style="display: block;">
+				<table class=" table-condensed">
+					<thead>
+						<tr>
+							<th class="prev" style="visibility: visible;"><i class="glyphicon icon-arrow-left"></i></th>
+							<th colspan="5" class="switch">十月 2018</th>
+							<th class="next" style="visibility: visible;"><i class="glyphicon icon-arrow-right"></i></th>
+						</tr>
+						<tr>
+							<th class="dow">日</th>
+							<th class="dow">一</th>
+							<th class="dow">二</th>
+							<th class="dow">三</th>
+							<th class="dow">四</th>
+							<th class="dow">五</th>
+							<th class="dow">六</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="day old">30</td>
+							<td class="day">1</td>
+							<td class="day">2</td>
+							<td class="day">3</td>
+							<td class="day">4</td>
+							<td class="day">5</td>
+							<td class="day">6</td>
+						</tr>
+						<tr>
+							<td class="day">7</td>
+							<td class="day">8</td>
+							<td class="day">9</td>
+							<td class="day">10</td>
+							<td class="day">11</td>
+							<td class="day">12</td>
+							<td class="day">13</td>
+						</tr>
+						<tr>
+							<td class="day">14</td>
+							<td class="day">15</td>
+							<td class="day">16</td>
+							<td class="day">17</td>
+							<td class="day">18</td>
+							<td class="day">19</td>
+							<td class="day">20</td>
+						</tr>
+						<tr>
+							<td class="day">21</td>
+							<td class="day active">22</td>
+							<td class="day">23</td>
+							<td class="day">24</td>
+							<td class="day">25</td>
+							<td class="day">26</td>
+							<td class="day">27</td>
+						</tr>
+						<tr>
+							<td class="day">28</td>
+							<td class="day">29</td>
+							<td class="day">30</td>
+							<td class="day">31</td>
+							<td class="day new">1</td>
+							<td class="day new">2</td>
+							<td class="day new">3</td>
+						</tr>
+						<tr>
+							<td class="day new">4</td>
+							<td class="day new">5</td>
+							<td class="day new">6</td>
+							<td class="day new">7</td>
+							<td class="day new">8</td>
+							<td class="day new">9</td>
+							<td class="day new">10</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th colspan="7" class="today" style="display: none;">今天</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div class="datetimepicker-months" style="display: none;">
+				<table class="table-condensed">
+					<thead>
+						<tr>
+							<th class="prev" style="visibility: visible;"><i class="glyphicon icon-arrow-left"></i></th>
+							<th colspan="5" class="switch">2018</th>
+							<th class="next" style="visibility: visible;"><i class="glyphicon icon-arrow-right"></i></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="7"><span class="month">一月</span><span class="month">二月</span><span class="month">三月</span><span class="month">四月</span><span class="month">五月</span><span class="month">六月</span><span class="month">七月</span><span class="month">八月</span><span class="month">九月</span><span class="month active">十月</span><span class="month">十一月</span><span class="month">十二月</span></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th colspan="7" class="today" style="display: none;">今天</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div class="datetimepicker-years" style="display: none;">
+				<table class="table-condensed">
+					<thead>
+						<tr>
+							<th class="prev" style="visibility: visible;"><i class="glyphicon icon-arrow-left"></i></th>
+							<th colspan="5" class="switch">2010-2019</th>
+							<th class="next" style="visibility: visible;"><i class="glyphicon icon-arrow-right"></i></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year active">2018</span><span class="year">2019</span><span class="year old">2020</span></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th colspan="7" class="today" style="display: none;">今天</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</body>
+	</script>
+
+</html>

@@ -1,0 +1,227 @@
+body {
+	background-image: url('../images/bg.png');
+	/** background-size:100% auto; **/
+}
+
+.content {
+	position: relative;
+}
+
+.nav-tabs {
+	padding-left: 30px;
+}
+
+.nav-tabs li {
+	line-height: 36px;
+	height: 36px;
+	margin: 0 10px;
+	margin-top: 10px;
+}
+
+ul,
+ol {
+	list-style: none;
+	padding: 0;
+}
+
+.panel-body {
+	position: relative;
+	padding-top: 0;
+}
+
+.renwu .aside_left {
+	box-shadow: 3px 1px 70px #F1F1F1;
+	position: absolute;
+	height: 100%;
+	padding-right: 0;
+}
+
+.renwu .aside_left .active {
+	background: #5FB870;
+	border-bottom-left-radius: 4px;
+	border-top-left-radius: 4px;
+}
+
+.renwu .aside_left .active a {
+	color: #fff;
+}
+
+.renwu .aside_left li {
+	line-height: 30px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.renwu .aside_right {
+	padding-top: 42px;
+	position: relative;
+	min-height: 500px;
+}
+
+.renwu .aside_right .from {
+	box-shadow: 10px 10px 30px #F1F1F1;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.renwu .aside_right .map {
+	height: 450px;
+	margin-left: 4%;
+}
+
+.tow_tragle {
+	position: relative;
+}
+
+.tow_tragle .pai_xu {
+	position: absolute;
+	width: 12px;
+	height: 40px;
+	right: 0px;
+	top: 5px;
+	z-index: 100;
+}
+
+.tow_tragle .pai_xu>p {
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-bottom: 5px solid #1573d9;
+	margin-top: 13px;
+}
+
+.tow_tragle .pai_xu>div {
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 5px solid rgba(165, 162, 162, 0.5);
+	margin-top: 4px;
+}
+
+.fenshu_guiji {
+	left: -16px;
+	font-size: 14px
+}
+
+body .table>tbody>tr>td .fenshu_guiji li {
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+
+tbody {
+	font-size: 13px;
+}
+
+body {
+	overflow-y: scroll
+}
+
+#setRule input {
+	width: 25px;
+	height: 20px;
+	border: 1px solid #f0f0f0;
+	background: #f3f3f3;
+	text-align: center
+}
+
+#setRule .modal-body>div {
+	width: 100%;
+	position: relative;
+	padding: 1%;
+	font-size: 12px
+}
+
+#setRule .modal-body>div:first-child {
+	margin-bottom: 50px
+}
+
+#setRule .modal-body>div div span {
+	line-height: 2
+}
+
+#setRule .modal-body>div div {
+	margin-left: 5%;
+}
+
+#setRule .modal-body>div div:first-child {
+	font-weight: 900
+}
+
+.second {
+	position: absolute;
+	left: 15%;
+}
+
+.orderTh {
+	position: relative;
+}
+
+.orderTh .order {
+	position: absolute;
+	width: 12px;
+	height: 40px;
+	right: 0px;
+	top: 5px;
+	z-index: 100;
+}
+
+.orderTh .order .up {
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-bottom: 5px solid rgba(165, 162, 162, 0.5);
+	margin-top: 13px;
+	cursor: pointer;
+}
+
+.orderTh .order .down {
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 5px solid rgba(165, 162, 162, 0.5);
+	margin-top: 4px;
+	cursor: pointer;
+}
+
+.orderTh .order .active {
+	border-color: #333;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+}
+
+.change_color {
+	background: #fff;
+	letter-spacing: 16px;
+	text-indent: 16px;
+	color: rgb(153, 153, 153);
+}
+
+.change_color:hover {
+	background: #f2f2f2;
+	color: rgb(153, 153, 153);
+}
+
+body .organ {
+	height: 720px;
+}
+
+.task_type {
+	margin-right: 30px;
+	display: inline-block;
+	overflow: hidden;
+	float: left;
+	height: 50px;
+}
+
+
+/* .task_type span{   height: 40px;   line-height: 40px;   padding:0 60px;  } */
+
+.btn_exporty {
+	margin-right: 30px;
+}

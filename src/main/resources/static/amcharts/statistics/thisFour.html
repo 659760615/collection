@@ -1,0 +1,349 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>amCharts examples</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="../../datepicker/datepicker.css">
+        <script src="../amcharts/amcharts.js" type="text/javascript"></script>
+        <script src="../amcharts/serial.js" type="text/javascript"></script>
+        <script src="../amcharts/pie.js" type="text/javascript"></script>
+        <!-- theme files. you only need to include the theme you use.
+             feel free to modify themes and create your own themes -->
+        <script src="../amcharts/themes/light.js" type="text/javascript"></script>
+        <script src="../amcharts/themes/dark.js" type="text/javascript"></script>
+        <script src="../amcharts/themes/chalk.js" type="text/javascript"></script>
+        <script src="../amcharts/themes/patterns.js" type="text/javascript"></script>
+        <script src="../../js/utils.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        // in order to set theme for a chart, all you need to include theme file
+        // located in amcharts/themes folder and set theme property for the chart.
+        var data = JSON.parse(getCookie('parameter'));
+        //alert(getCookie('parameter'));
+        var chart1;
+        var chart2;
+        makeCharts("light", "#FFFFFF","");
+        // Theme can only be applied when creating chart instance - this means
+        // that if you need to change theme at run time, youhave to create whole
+        // chart object once again.
+        function makeCharts(theme, bgColor, bgImage){
+            if(chart1){
+                chart1.clear();
+            }
+            if(chart2){
+                chart2.clear();
+            }
+            // background
+            if(document.body){
+                document.body.style.backgroundColor = bgColor;
+                document.body.style.backgroundImage = "url(" + bgImage + ")";
+            }
+            /*var showData = [{
+                    "year": '',
+                    "income": 0,
+                    "expenses":  0
+                }, {
+                    "year":'',
+                        "income": 0,
+                        "expenses": 0
+                }, {
+                    "year":'',
+                        "income": 0,
+                        "expenses":0
+                }, {
+                    "year":'',
+                        "income": 0,
+                        "expenses": 0
+                }, {
+                    "year":'',
+                        "income":0,
+                        "expenses":0
+                }, {
+                    "year":'',
+                        "income": 19,
+                        "expenses": 19
+                }, {
+                    "year":'',
+                        "income": 25,
+                        "expenses": 25
+                },];*/
+            var amount = parseInt(data.amount);
+            //var mean = gross/7;
+            var arr = [30,22,52,15,52,71,32,28],
+            symbol = ["+","+","-","+","+","-","+","-",],
+           	showData = [],
+            time = [],
+            date = getTime("year");
+            for(var i=0; i<7;i++){
+        		var minusDay = getMinusTime(date,(i+1),"year");
+        		//chartData[i].country = minusDay;
+        		//time[i] = minusDay ;
+        		var item = {};
+        		item.year = minusDay;
+        		if(symbol[i] === "+"){
+        			item.income = amount + arr[i];
+        			item.expenses = amount + arr[i];
+        		}else if(symbol[i] === "-"){
+        			item.income = amount - arr[i];
+        			item.expenses = amount - arr[i];
+        		};
+        		showData[i] = item;
+        	};
+        	
+        	/*var showData = [],
+        	dataList = data.dataList;
+        	for(var i=0;i<dataList.length;i++){
+        		var item = {};
+        		item.year = dataList[i].name;
+        		item.income = dataList[i].gross;
+        		item.expenses = dataList[i].gross;
+        		showData[i] = item;
+        	}*/
+            // column chart
+            chart1 = AmCharts.makeChart("chartdiv1", {
+                type: "serial",
+                theme:theme,
+                dataProvider:showData,
+                categoryField: "year",
+                startDuration: 1,
+
+                categoryAxis: {
+                    gridPosition: "start"
+                },
+                valueAxes: [{
+                    title: "收运车 " +data.number+" 收集量",
+                }],
+                graphs: [{
+                    type: "column",
+                    title: "收集量",
+                    valueField: "income",
+                    lineAlpha: 0,
+                    fillAlphas: 0.8,
+                    balloonText: "[[category]] [[title]] :<b>[[value]]</b>"
+                }, {
+                    type: "line",
+                    title: "收集量",
+                    valueField: "expenses",
+                    lineThickness: 2,
+                    fillAlphas: 0,
+                    bullet: "round",
+                    balloonText: "[[category]] [[title]]:<b>[[value]]</b>"
+                }],
+                legend: {
+                    useGraphSettings: true
+                }
+
+            });
+				
+			/*var pieData = [];
+			for(var i=0;i<dataList.length;i++){
+        		var item = {};
+        		item.country = dataList[i].name;
+        		item.litres = dataList[i].gross;
+        		pieData[i] = item;
+        	}
+            // pie chart
+            chart2 = AmCharts.makeChart("chartdiv2", {
+                type: "pie",
+                theme: theme,
+                dataProvider: pieData,
+                titleField: "country",
+                valueField: "litres",
+                balloonText: "[[title]]<br><b>[[value]]</b> ([[percents]]%)",
+                legend: {
+                    align: "center",
+                    markerType: "circle"
+                }
+            });*/
+
+        }
+       </script>
+   </head>
+    <body style="font-size:15px;">
+        <!--Select theme:
+        <a href="#" onclick="makeCharts('light', '#ffffff');">Light</a> |
+        <a href="#" onclick="makeCharts('dark', '#282828')">Dark</a> |
+        <a href="#" onclick="makeCharts('patterns', '#ffffff')">Patterns</a> |
+        <a href="#" onclick="makeCharts('chalk', '#282828', 'images/board.jpg')">Chalk</a>-->
+       <!--<p style="float: left;margin-left: 20px;">
+    		其他类型: 
+		    <a href="javascript:void(0);" onclick="makeCharts('light', '#ffffff');"></a> |
+		    <a href="javascript:void(0);" onclick="makeCharts('dark', '#282828')"></a> |
+		    <a href="javascript:void(0);" onclick="makeCharts('patterns', '#ffffff')"></a> |
+		    <a href="javascript:void(0);" onclick="makeCharts('chalk', '#282828', 'images/board.jpg')"></a>
+    	</p>-->
+    	<style>
+    		#selectType{
+    			background-color: #f9f9f9;
+				font-size: 14px;
+				color: #555;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				line-height:32px;
+				margin-right: 0;
+				background-color: #f9f9f9;
+				-webkit-appearance: none;
+    			outline: none;
+    			cursor: pointer;
+    			background-image: url(../../images/drop.png);
+			    background-repeat: no-repeat;
+			    background-position: center right;
+				margin: 0;
+				padding: 0;
+    			padding-left: 20px;
+    			padding-right: 20px;
+			}
+    	</style>
+    	<div style="float: left;margin-left: 20px;">
+    		<div style="display: inline;">统计类型：</div>
+    		<select id="selectType">
+    			<option value="day">按日</option>
+    			<option value="month">按月</option>
+    			<option value="year">按年</option>
+    		</select>
+    		<div style="display: inline;">统计时间：</div>
+    		<div class="c-datepicker-date-editor J-datepicker-range-betweenDay mt10">
+		        <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+		        <input placeholder="开始日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+		        <span class="c-datepicker-range-separator">-</span>
+				<input placeholder="结束日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+			</div>
+			<!-- 月份 -->
+			<!--<div class="c-datepicker-date-editor J-datepicker-range-betweenMonth mt10" style="display: none;">
+		        <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+		        <input placeholder="开始日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+		        <span class="c-datepicker-range-separator">-</span>
+				<input placeholder="结束日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+			</div>-->
+			<div class="c-datepicker-date-editor c-datepicker-single-editor J-yearMonthPicker-single mt10" style="display: none;">
+	          <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+	          <input type="text" autocomplete="off" name="" placeholder="选择年月" class=" c-datepicker-data-input" value="">
+	        </div>
+			<!-- 年份 -->
+			<!--<div class="c-datepicker-date-editor J-datepicker-range-betweenYear mt10" style="display: none;">
+		        <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+		        <input placeholder="开始日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+		        <span class="c-datepicker-range-separator">-</span>
+				<input placeholder="结束日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+			</div>-->
+			<div class="c-datepicker-date-editor c-datepicker-single-editor J-yearPicker-single mt10" style="display: none;">
+	          <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+	          <input type="text" autocomplete="off" name="" placeholder="选择年份" class=" c-datepicker-data-input" value="">
+	        </div>
+    	</div>
+        <p style="float: right;margin-right: 20px;">
+		        展示主题:
+		        <a href="javascript:void(0);" onclick="makeCharts('light', '#ffffff');">Light</a> |
+		        <a href="javascript:void(0);" onclick="makeCharts('dark', '#282828')">Dark</a> |
+		        <a href="javascript:void(0);" onclick="makeCharts('patterns', '#ffffff')">Patterns</a> |
+		        <a href="javascript:void(0);" onclick="makeCharts('chalk', '#282828', 'images/board.jpg')">Chalk</a>
+	        </p>
+    	</div><br/><br/>
+        <p style="text-align: center;">柱状/折线图 </p>
+        <div id="chartdiv1" style="width: 100%;min-height: 500px;"></div>
+        <!--<p style="text-align: center;">扇形图 </p>
+        <div id="chartdiv2" style="width: 100%;min-height: 500px;"></div>-->
+    </body>
+    
+	<script src="../../js/jquery.min.js"></script>
+	<script src="../../datepicker/moment.min.js"></script>
+    <script src="../../datepicker/datepicker.all.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+    		var relStart = getTime("year");
+	        var minTime = getMinusTime(relStart,30,"year");
+      		//十分秒年月日范围，包含最大最小值
+      		//alert(relStart+":"+minTime);
+	        $('.J-datepicker-range-betweenDay').datePicker({
+	            hasShortcut: true,
+	            format: 'YYYY-MM-DD',
+	            min: minTime,
+	            max: relStart,
+	            isRange: true,
+	            shortcutOptions: [{
+	              name: '昨天',
+	              day: '-1,-1',
+	              time: '00:00:00,23:59:59'
+	            },{
+	              name: '最近一周',
+	              day: '-7,0',
+	              time:'00:00:00,'
+	            }, {
+	              name: '最近一个月',
+	              day: '-30,0',
+	              time: '00:00:00,'
+	            }, {
+	              name: '最近一个年',
+	              day: '-365,0',
+	              time: '00:00:00,'
+	            }],
+	            hide: function () {
+	            	//history.go(0);
+	            	//$("#showDate").show();
+	            	console.info(this.$input.eq(0).val(), this.$input.eq(1).val())
+	            }
+	        });
+	        var endTime = getTime("year");
+	        var startTime = getMinusTime(endTime,7,"year");
+	        $(".J-datepicker-range-betweenDay>input:eq(0)").val(startTime);
+	        $(".J-datepicker-range-betweenDay>input:eq(1)").val(endTime);
+	        //
+	        
+	         /*$('.J-datepicker-range-betweenMonth').datePicker({
+	            hasShortcut: true,
+	            format: 'YYYY-MM',
+	            isRange: true,
+	            shortcutOptions: [],
+	            hide: function () {
+	            	//history.go(0);
+	            	//$("#showDate").show();
+	            	console.info(this.$input.eq(0).val(), this.$input.eq(1).val())
+	            }
+	        });*/
+	       
+	       	//选则月
+	       	$('.J-yearMonthPicker-single').datePicker({
+	            format: 'YYYY-MM',
+	            min: '2017-01',
+	            max: endTime
+          	});
+	        
+	        //选择年
+	        $('.J-yearPicker-single').datePicker({
+	            format: 'YYYY',
+	            min: '2018',
+	            max: '2020'
+	        });
+	        
+	        /*$('.J-datepicker-range-betweenYear').datePicker({
+	            hasShortcut: true,
+	            format: 'YYYY',
+	            isRange: true,
+	            shortcutOptions: [],
+	            hide: function () {
+	            	//history.go(0);
+	            	//$("#showDate").show();
+	            	console.info(this.$input.eq(0).val(), this.$input.eq(1).val())
+	            }
+	        });*/
+	        
+	        //
+	        $("#selectType").change(function(){
+		        	var value = $("#selectType").val();
+		        	if(value === "day"){
+			     		$(".c-datepicker-date-editor").hide();
+		        		$(".J-datepicker-range-betweenDay").show();
+		        	}else if(value === "month"){
+		        		$(".c-datepicker-date-editor").hide();
+			     		$(".J-yearMonthPicker-single").show();
+		        	}else if(value === "year"){
+		        		$(".c-datepicker-date-editor").hide();
+			     		$(".J-yearPicker-single").show();
+		        	}
+		        	
+			    });
+	        
+	        
+    	});
+    </script>
+</html>

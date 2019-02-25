@@ -1,0 +1,76 @@
+.background {
+	position: absolute;
+	background: url('../images/login.jpg') center bottom no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+.login_logo {
+	background: url('../images/logo.png') no-repeat center center;
+	width: 212px;
+	height: 79px;
+	margin: 0 auto;
+}
+
+.form-horizontal {
+	padding: 18px 10px 8px 10px;
+}
+
+.panel {
+	width: 280px;
+	height: 378px;
+	position: absolute;
+	background: transparent;
+}
+
+.panel-body {
+	margin-top: 30px;
+	background: #ffffff;
+	border-radius: 5px;
+}
+
+.deng_lu {
+	width: 280px;
+	height: 50px;
+	margin: 30px auto;
+	color: #fff;
+	font-size: 22px;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	text-align: center;
+	line-height: 50px;
+	cursor: pointer;
+	box-shadow: 0 0 10px rgba(51, 51, 51, 0.6);
+}
+
+.panel-heading {
+	font-size: 24px;
+	color: #F0F0F0;
+	text-align: center;
+}
+
+.username {
+	background: #e0e0e0;
+	;
+	text-indent: 5px;
+	width: 230px;
+	height: 38px;
+}
+
+.password {
+	background: #e0e0e0;
+	;
+	text-indent: 5px;
+	width: 230px;
+	height: 38px;
+}
+
+.tu_left {
+	margin-left: 50px;
+}
+
+.bing_tu>div>ul>li {
+	float: left;
+}
