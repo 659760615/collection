@@ -26,7 +26,7 @@ public class ShiroConfiguration {
         /*拦截*/
         filterChainDefinitionMap.put("/zlys/**", "authc");
         filterChainDefinitionMap.put("/*", "authc");
-        /*anon 可以理解为不拦截*/
+        /*不拦截*/
         filterChainDefinitionMap.put("/zlys/login", "anon");
         filterChainDefinitionMap.put("/static/**", "anon");
         filterChainDefinitionMap.put("/auth/loginUser", "anon");
@@ -34,8 +34,6 @@ public class ShiroConfiguration {
         /*权限拦截*/
         filterChainDefinitionMap.put("/admin", "roles[admin]");
         filterChainDefinitionMap.put("/edit", "perms[edit]");
-        /*拦截所有*/
-        /*filterChainDefinitionMap.put("/**", "user");*/
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }

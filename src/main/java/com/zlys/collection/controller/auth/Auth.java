@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  * @desc:
  **/
 @Controller
-@RequestMapping("/auth")
+@RequestMapping("auth")
 public class Auth {
 
     /**
@@ -28,7 +28,7 @@ public class Auth {
      * @return:
      * @auther: czx
      */
-    @PostMapping("/loginUser")
+    @PostMapping("loginUser")
     @ResponseBody
     public String loginUser(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session, Model model) {
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
