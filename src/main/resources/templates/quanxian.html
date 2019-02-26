@@ -8,7 +8,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 		<title>智链云数</title>
         <link rel="icon" type="image/x-icon" href="../faviconok.ico">
-		<link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
 		<link href="../css/font-awesome.min.css" rel="stylesheet">
 		<link href="../css/manage_common.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="../css/ch_see_new.css">
@@ -18,6 +18,7 @@
 		<script src="../js/common.js"></script>
 		<script>
 			$(document).click(function(event) {
+
 			});
 		</script>
 		<link rel="stylesheet" href="../css/laydate.css" id="layuicss-laydate">
@@ -39,7 +40,7 @@
                     <li class=""><a href="/common/examine">监控中心</a></li>
                     <li class=""><a href="/common/tongjiindex">统计中心</a></li>
                 </ul>
-				<div class="head_setting">
+                <div class="head_setting">
 					<!-- <div class=" see " data-toggle="modal" data-target="#tan_see_new">222</div> -->
 					<div class=" see admin_see" data-toggle="modal" data-target="#tan_see_new">
 						<a href="javascript:"></a>
@@ -79,7 +80,7 @@
 							</ul>
 						</div>
 					</div>
-					
+				
 					<div class="inform">
 						<span class=" dropdown-toggle " data-toggle="dropdown">
                     	<span class="num" style="display: block;">1</span>
@@ -125,7 +126,7 @@
 
 			function get_notice() {
 				noticeLoading = true;
-				
+
 			}
 
 			//考核分数 滚动分页
@@ -141,7 +142,7 @@
 			});
 
 			$('.notice').click(function(event) {
-				
+
 			});
 		</script>
 
@@ -855,7 +856,7 @@
 
 					<div class="modal-body admin_biao_dan ">
 						<div class="tu_xiang" style="width:100px;height:100px;margin:0 auto;position: relative;border-radius:50%;overflow: hidden;">
-							<div class="tu_people" style="width:100px;height:100px;background:url(/../images/B1477.png); 
+							<div class="tu_people" style="width:100px;height:100px;background:url(../images/B1477.png); 
                     background-size: 100% 100%;"></div>
 
 						</div>
@@ -900,6 +901,8 @@
 				// $('#loginId').val();
 				//$('#oldPwd').val();
 				//$('#newPwd').val();
+
+				
 			});
 		</script>
 
@@ -1179,6 +1182,9 @@
 									'sdrs': sdrs
 								};
 							}
+
+							
+
 						} else {
 							$('html,body').css({
 								overflow: 'hidden'
@@ -1692,13 +1698,12 @@
 
 			// 看板头部数据
 			function see_header(isSome) {
+				
 			}
 
 			var nameNum = 0;
 
-			function get_company_name(page) {
-		
-			}
+			function get_company_name(page) {}
 
 			// （在岗率图） 比例 父级 颜色 文字 
 			function chuan(work, dd, se1, num) {
@@ -1808,7 +1813,7 @@
 
 			function get_attendance() {
 				attendanceLoading = true;
-				
+
 			}
 			// get_attendance();
 
@@ -1820,7 +1825,6 @@
 			function mark(page) {
 				markLoading = true;
 
-				
 			}
 			// mark(1);
 
@@ -1939,10 +1943,10 @@
                     <li class=" ">
                         <a href="/common/system_b" class=""></a>
                     </li>
-                    <li class="active ">
+                    <li class=" ">
                         <a href="/common/system_c" class=""></a>
                     </li>
-                    <li class=" ">
+                    <li class="active">
                         <a href="/common/system_d" class=""></a>
                     </li>
                     <li class=" ">
@@ -1956,295 +1960,398 @@
                     </li>
                 </ul>
 			</div>
-			<div class="content over renwu">
-				<div class="content_head">
-					<span class="active m" onclick="javascript:window.location='/common/system_c';">围栏管理</span>
-					<span class=" d" onclick="javascript:window.location='/common/system_cc';">线路管理</span>
-				</div>
-				<div class="row content_body">
-					<div class="col-xs-2 organ">
-						<!-- <div class="search_box">
-                <input class="input_search form-control" placeholder="公司、片区、小组">
-                <span class="search_over"></span>
-            </div> -->
-						<div class="organ_title">
-							组织架构
-						</div>
-						<ul id="menuTree" class="menuTree scroll">
-							<div class="all">
-								<span class="bloc active open" data-blocid="1" onclick="choose_organ(this)">
-									<img src="../images/close_hover.png" class="right">
-									<img src="../images/file.png"> 绵阳市
-								</span>
-								<div class="area" style="display: block;">
-									<span data-areaid="96" onclick="choose_organ(this)">
-										<img src="../images/file.png">涪城区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="138" onclick="choose_organ(this)">
-										<img src="../images/file.png">游仙区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="147" onclick="choose_organ(this)">
-										<img src="../images/file.png">高新区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="148" onclick="choose_organ(this)">
-										<img src="../images/file.png">经开区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="149" onclick="choose_organ(this)">
-										<img src="../images/file.png">科创园区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="150" onclick="choose_organ(this)">
-										<img src="../images/file.png">科学城
-									</span>
-									<div class="group"></div>
-									<span data-areaid="151" onclick="choose_organ(this)">
-										<img src="../images/file.png">仙海区
-									</span>
-								</div>
-							</div>
-						</ul>
+			<link href="../css/manage_admin.css" rel="stylesheet" type="text/css">
+			<style>
+				.modal-footer p:nth-child(2) button {
+					opacity: 0.6;
+					background: #fff!important;
+					line-height: 0;
+					color: #333
+				}
+				
+				.modal-footer p:nth-child(2) button:hover {
+					background-color: #f2f2f2!important;
+					opacity: 1
+				}
+				
+				.modal-header h5 {
+					font-weight: 900;
+					font-size: 16px;
+					opacity: 0.9;
+					margin-top: -10px
+				}
+				
+				.modal-body {
+					margin-top: 24px;
+					opacity: 1;
+					font-size: 12px;
+				}
+			</style>
+			<div class="content panel over renwu" style="margin-bottom:0px;">
+				
+				<div class="panel-body">
+					<div class="top ">
+						<span class="btn_blue pull-right" data-toggle="modal" data-target="#add" id="addrole" style="display: block;">
+            	<i class="plus"></i> 
+            	新增角色
+            </span>
 					</div>
-					<div class="col-xs-10">
-						<div class="top">
-							<div class="search_box">
-								<input class="form-control input_search" placeholder="输入名称" id="ename">
-								<span class="search_over"></span>
-							</div>
-							<p class="pull-right">
-								<a class="btn_blue" target="_blank" href="addRail.html"><i class="plus"></i> 新增电子围栏</a>
-							</p>
 
-						</div>
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th class="text-center">序号</th>
-									<th class="text-center">电子围栏名称</th>
-									<th class="text-center">巡检人员</th>
-									<th class="text-center">任务数</th>
-									<th class="text-center">电子围栏车辆数</th>
-									<th class="text-center">最后修改时间</th>
-									<th class="text-center"></th>
-								</tr>
-							</thead>
-							<tbody id="lists" class="text-center">
-								<tr>
-									<td>01</td>
-									<td>测试围栏1</td>
-									<td>请选择巡检人员</td>
-									<td>2</td>
-									<td>4</td>
-									<td>2018-03-28 15:37:00</td>
-									<td>
-										<a class="btn_default" target="_blank" href="addRail.html">编辑电子围栏</a>
-									</td>
-								</tr>
-								<tr>
-									<td>02</td>
-									<td>测试围栏2</td>
-									<td>请选择巡检人员</td>
-									<td>2</td>
-									<td>3</td>
-									<td>2018-01-02 17:12:45</td>
-									<td>
-										<a class="btn_default" target="_blank" href="addRail.html">编辑电子围栏</a>
-									</td>
-								</tr>
-								<tr>
-									<td>03</td>
-									<td>测试围栏3</td>
-									<td>请选择巡检人员</td>
-									<td>2</td>
-									<td>2</td>
-									<td>2018-01-02 17:12:54</td>
-									<td>
-										<a class="btn_default" target="_blank" href="addRail.html">编辑电子围栏</a>
-									</td>
-								</tr>
-								<tr>
-									<td>04</td>
-									<td>测试围栏4</td>
-									<td>请选择巡检人员</td>
-									<td>2</td>
-									<td>5</td>
-									<td>2018-02-08 16:21:58</td>
-									<td>
-										<a class="btn_default" target="_blank" href="addRail.html">编辑电子围栏</a>
-									</td>
-								</tr>
-								<tr>
-									<td>05</td>
-									<td>测试围栏5</td>
-									<td>请选择巡检人员</td>
-									<td>2</td>
-									<td>2</td>
-									<td>2018-02-08 16:27:36</td>
-									<td>
-										<a class="btn_default" target="_blank" href="addRail.html">编辑电子围栏</a>
-									</td>
-								</tr>
-								<tr>
-									<td>06</td>
-									<td>测试围栏6</td>
-									<td>请选择巡检人员</td>
-									<td>3</td>
-									<td>6</td>
-									<td>2018-07-10 09:38:32</td>
-									<td>
-										<a class="btn_default" target="_blank" href="addRail.html">编辑电子围栏</a>
-									</td>
-								</tr>
-								<tr>
-									<td>07</td>
-									<td>测试围栏7</td>
-									<td>请选择巡检人员</td>
-									<td>1</td>
-									<td>4</td>
-									<td>2018-01-02 17:13:26</td>
-									<td>
-										<a class="btn_default" target="_blank" href="addRail.html">编辑电子围栏</a>
-									</td>
-								</tr>
-								<tr>
-									<td>08</td>
-									<td>测试围栏8</td>
-									<td>请选择巡检人员</td>
-									<td>1</td>
-									<td>5</td>
-									<td>2018-01-02 17:13:32</td>
-									<td>
-										<a class="btn_default" target="_blank" href="addRail.html">编辑电子围栏</a>
-									</td>
-								</tr>
-								<tr>
-									<td>09</td>
-									<td>测试围栏9</td>
-									<td>请选择巡检人员</td>
-									<td>2</td>
-									<td>1</td>
-									<td>2018-02-08 17:18:46</td>
-									<td>
-										<a class="btn_default" target="_blank" href="addRail.html">编辑电子围栏</a>
-									</td>
-								</tr>
-								<tr>
-									<td>10</td>
-									<td>测试围栏10</td>
-									<td>请选择巡检人员</td>
-									<td>5</td>
-									<td>2</td>
-									<td>2018-07-30 11:02:06</td>
-									<td>
-										<a class="btn_default" target="_blank" href="addRail.html">编辑电子围栏</a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<!--分页-->
-						<nav aria-label="Page navigation" class="text-center">
-							<ul class="pagination">
-								<li class="active">
-									<a class="curpage">1</a>
-								</li>
-								<li>
-									<a href="javascript:getData(2)">2</a>
-								</li>
-								<li>
-									<a href="javascript:getData(3)">3</a>
-								</li>
-								<li>
-									<a href="javascript:getData(4)">4</a>
-								</li>
-								<li>
-									<a href="javascript:getData(5)">5</a>
-								</li>
-								<li>
-									<a href="javascript:getData(6)">6</a>
-								</li>
-								<li>
-									<a href="javascript:getData(7)">7</a>
-								</li>
-								<li>
-									<a href="javascript:getData(8)">8</a>
-								</li>
-								<li>
-									<a href="javascript:getData(33)">»</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th class="text-center">序号</th>
+								<th class="text-center">角色头像</th>
+								<th class="text-center dropdown people_sel">
+									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+										角色名称
+										<!-- <span class="fa fa-angle-down" style="font-size:16px;"></span> -->
+									</div>
+									<ul class="dropdown-menu " aria-labelledby="dropdownMenu1">
+										<!-- <li  data-target="#detail">管理人员</li>
+                        	<li  data-target="#detail">走保</li>
+                        	<li  data-target="#detail">快保</li>
+                        	<li  data-target="#detail">垃圾托运</li> -->
+									</ul>
+								</th>
+								<!--<th class="text-center">
+        			角色类别
+        			<span class="fa fa-angle-down" style="font-size:16px;"></span>
+        		</th>-->
+								<th class="text-center dropdown people_sel">
+									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+										角色类别
+										<!-- <span class="fa fa-angle-down" style="font-size:16px;"></span> -->
+									</div>
+									<ul class="dropdown-menu " aria-labelledby="dropdownMenu1">
+										<!-- <li  data-target="#detail">全部角色</li>
+                        	<li  data-target="#detail">管理人员</li>
+                        	<li  data-target="#detail">走保</li>
+                        	<li  data-target="#detail">快保</li>
+                        	<li  data-target="#detail">垃圾托运</li> -->
+									</ul>
+								</th>
+								<th class="text-center">人数</th>
+								<th class="text-center">考核项</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="text-center" ;="">
+								<td>1</td>
+								<td><img width="20" height="20" src="../images/3.png"></td>
+								<td>转运司机</td>
+								<td>员工</td>
+								<td>20</td>
+								<td>出勤,脱离工作区域,违规停留,超速驾驶,公里数</td>
+								<td class="menu" style="display: block; top: 223px; left: 655.5px;">
+									<span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
+									<span id="edSpan" rid="1" data-toggle="modal" data-target="#setting1">考核设置</span>
+									<span class="del">删除</span>
+								</td>
+							</tr>
+							<tr class="text-center" ;="">
+								<td>2</td>
+								<td><img width="20" height="20" src="../images/8.png"></td>
+								<td>收运司机</td>
+								<td>员工</td>
+								<td>15</td>
+								<td>出勤,脱离工作区域,违规停留,超速驾驶,公里数</td>
+								<td class="menu" style="display: block; top: 273px; left: 655.5px;">
+									<span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
+									<span id="edSpan" rid="2" data-toggle="modal" data-target="#setting1">考核设置</span>
+									<span class="del">删除</span>
+								</td>
+							</tr>
+							<tr class="text-center" ;="">
+								<td>3</td>
+								<td><img width="20" height="20" src="../images/zhongzhuan.png"></td>
+								<td>中转站人员</td>
+								<td>员工</td>
+								<td>3</td>
+								<td>出勤,脱离工作区域</td>
+								<td class="menu" style="display: block; top: 324px; left: 655.5px;">
+									<span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
+									<span id="edSpan" rid="3" data-toggle="modal" data-target="#setting1">考核设置</span>
+									<span class="del">删除</span>
+								</td>
+							</tr>
+							<tr class="text-center" ;="">
+								<td>4</td>
+								<td><img width="20" height="20" src="../images/chulizhan.png"></td>
+								<td>处理站人员</td>
+								<td>员工</td>
+								<td>12</td>
+								<td>出勤,脱离工作区域</td>
+								<td class="menu" style="display: block; top: 374px; left: 655.5px;">
+									<span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
+									<span id="edSpan" rid="4" data-toggle="modal" data-target="#setting1">考核设置</span>
+									<span class="del">删除</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<!-- 分页
+        <nav aria-label="Page navigation" class="text-center">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav> -->
 				</div>
 			</div>
 
-			<script src="../js/bootbox.min.js"></script>
-			<script type="text/javascript">
-				$(".del").click(function() {
-					$(".modal,.modal-backdrop").hide();
-					bootbox.confirm({
-						message: '删除操作不可以恢复，你确认要删除内容',
-						buttons: {
-							cancel: {
-								label: "取消"
-							},
-							confirm: {
-								label: "确定"
-							}
-						},
-						callback: function(result) {
-							if(result) {
-								console.log("shanchu ");
-							}
-						}
-					});
-				});
-				var conditions = {
-					"companyId": '',
-					"areaId": ""
-				}
-				//搜索
+			<!--添加-->
+			<div class="modal fade" id="add" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal_width" role="document">
+					<!--宽高修改-->
+					<div class="modal-content modal_width" style="height:500px">
+						<div class="modal-header">
+							<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+							<h5 class="modal-title text-center" id="myModalLabel" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">新增角色</h5>
+						</div>
+						<div class="modal-body over" style="margin-top:0px;">
 
-				$('.search_box .search_over').click(function() {
+							<div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+								<label class=" control-label">角色头像</label>
+								<br>
+								<select id="pic" class="form-control select_she_bei" style="width:160px;">
+									<option value="http://116.62.238.185/rolePic/1.png">1</option>
+									<option value="http://116.62.238.185/rolePic/2.png">2</option>
+									<option value="http://116.62.238.185/rolePic/3.png">3</option>
+									<option value="http://116.62.238.185/rolePic/4.png">4</option>
+									<option value="http://116.62.238.185/rolePic/5.png">5</option>
+									<option value="http://116.62.238.185/rolePic/6.png">6</option>
+									<option value="http://116.62.238.185/rolePic/7.png">7</option>
+									<option value="http://116.62.238.185/rolePic/8.png">8</option>
+									<option value="http://116.62.238.185/rolePic/9.png">9</option>
+									<option value="http://116.62.238.185/rolePic/10.png">10</option>
+									<option value="http://116.62.238.185/rolePic/11.png">11</option>
+									<option value="http://116.62.238.185/rolePic/12.png">12</option>
+									<option value="http://116.62.238.185/rolePic/13.png">13</option>
+									<option value="http://116.62.238.185/rolePic/14.png">14</option>
+									<option value="http://116.62.238.185/rolePic/15.png">15</option>
+									<option value="http://116.62.238.185/rolePic/16.png">16</option>
+								</select>
+								<br>
+								<div style="left:150px;"></div>
+								<img class="picUrl" style="position:absolute;top:16px;left:214px;" src="../images/1.png" alt="">
+							</div>
 
-					conditions.fenceName = $('#ename').val();
-					getData(1);
-				});
+							<div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+								<label class="control-label">角色名称</label><br>
+								<input id="rName" type="text" class="form-control">
+								<br>
 
-				function getData(page) {
+								<div></div>
+							</div>
 
-					var pageSize = 10;
-					
-				}
-				getData(1);
+							<div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+								<label class=" control-label">角色类别</label>
+								<br>
+								<select id="leavel" class="form-control select_she_bei">
+									<option value="1">员工</option>
+									<option value="2">领导</option>
+								</select>
+								<br>
+								<div></div>
+							</div>
 
-				$(function() {
-					// 公司、区域、小组筛选
-					var t = setInterval(function() {
-						console.log(1223);
-						$('#menuTree span').click(function() {
-							conditions = {
-								"companyId": '',
-								"areaId": ""
-							}
-							conditions.companyId = tree_conditions.companyId;
-							conditions.areaId = tree_conditions.areaId;
-							getData(1);
-						});
-						if($('#menuTree span').length) {
-							clearInterval(t);
-							$('#menuTree span[data-groupid]').remove();
-							$('#menuTree span[data-areaid] img:first-child').remove();
-						}
-					}, 100);
-				});
-			</script>
-			<!--</div>
-</body>
-</html>  -->
-		</div>
+							<!-- <div class="box_position">
+        		<p >角色头像:</p>
+        		                <br>
+        		               	<img src="http://up.qqjia.com/z/18/tu20464_2.jpg" style="margin-left:184px" width="80" height="80" >
+        						<br>
+        						<p class="text-center change_click">修改角色头像</p>
+        	</div> -->
+
+							<!--调用本地文件-->
+							<input type="file" style="visibility:hidden;" class="open_file">
+
+						</div>
+						<div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:15px">
+							<p class="col-xs-10 col-xs-offset-1">
+								<button type="button" id="addBtn" class="btn btn_blue btn-block" data-dismiss="modal">确认</button>
+							</p>
+							<p class="col-xs-10 col-xs-offset-1">
+								<button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">取消</button>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--编辑-->
+			<div class="modal fade edit_people" id="add2" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal_width" role="document">
+					<!--宽高修改-->
+					<div class="modal-content modal_width" style="height:495px">
+						<div class="modal-header">
+							<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> -->
+							<br>
+							<h5 class="modal-title text-center" id="myModalLabel">编辑角色</h5>
+						</div>
+						<div class="modal-body over" style="margin-top:25px;">
+
+							<div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+								<label class=" control-label">角色头像</label>
+								<br>
+								<select id="pic2" class="form-control select_she_bei" style="width:160px;">
+									<option value="http://116.62.238.185/rolePic/1.png">1</option>
+									<option value="http://116.62.238.185/rolePic/2.png">2</option>
+									<option value="http://116.62.238.185/rolePic/3.png">3</option>
+									<option value="http://116.62.238.185/rolePic/4.png">4</option>
+									<option value="http://116.62.238.185/rolePic/5.png">5</option>
+									<option value="http://116.62.238.185/rolePic/6.png">6</option>
+									<option value="http://116.62.238.185/rolePic/7.png">7</option>
+									<option value="http://116.62.238.185/rolePic/8.png">8</option>
+									<option value="http://116.62.238.185/rolePic/9.png">9</option>
+									<option value="http://116.62.238.185/rolePic/10.png">10</option>
+									<option value="http://116.62.238.185/rolePic/11.png">11</option>
+									<option value="http://116.62.238.185/rolePic/12.png">12</option>
+									<option value="http://116.62.238.185/rolePic/13.png">13</option>
+									<option value="http://116.62.238.185/rolePic/14.png">14</option>
+									<option value="http://116.62.238.185/rolePic/15.png">15</option>
+									<option value="http://116.62.238.185/rolePic/16.png">16</option>
+								</select>
+								<br>
+								<div style="left:150px;"></div>
+								<img class="picUrl2" style="position:absolute;top:16px;left:214px;" src="../images/1.png" alt="">
+							</div>
+							<div class="col-xs-8 col-xs-offset-2 lei_bie">
+								<label class="control-label">角色类别:</label>
+								<label style="font-weight:500;opacity:0.8"><input id="yuangong" value="1" name="posit" type="checkbox" style="margin-left: 30px;"> 员工</label>
+								<label style="font-weight:500;opacity:0.8"><input id="lindao" value="2" name="posit" type="checkbox" style="margin-left: 30px;"> 领导</label>
+							</div>
+							<div class="from-group col-xs-8 col-xs-offset-2 ming_cheng" style="margin-top:45px;">
+								<label class="control-label">角色名称:</label>
+								<br>
+								<input id="name" type="text" placeholder="请输入角色名称">
+							</div>
+							<!-- <div class="box_position people_photo" style="margin-top:135px;">
+        		<p >角色头像:</p>
+        		                <br>
+        		               	<img src="http://up.qqjia.com/z/18/tu20464_2.jpg" style="margin-left:184px;border-radius:50%;" width="80" height="80" >
+        						<br>
+        						<p class="text-center change_click" style="width:40px;height:21px">上传</p>
+        	</div> -->
+						</div>
+						<div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:35px">
+							<p class="col-xs-10 col-xs-offset-1">
+								<button id="editBtn" type="button" class="btn btn_blue btn-block" data-dismiss="modal">确认</button>
+							</p>
+							<p class="col-xs-10 col-xs-offset-1">
+                    <button type="button " class="btn btn_nor btn-block btn-default btn_dismiss " data-dismiss="modal " style="letter-spacing: 16px;text-indent: 16px; ">取消</button>    
+                </p>
+           </div>
+    	</div>
+  	</div>
+</div>
+
+<!-- 设置考核选项 -->
+<div class="modal fade edit_check " id="setting1" tabindex="-1 " role="dialog">
+  	<div class="modal-dialog " role="document ">
+    	<div class="modal-content ">
+      		<div class="modal-body setting " style="padding-top:5px; ">
+       	<div class="modal-header " style="margin-top:-10px ">
+                <!-- <button type="button " class="close " data-dismiss="modal " aria-label="Close "><span aria-hidden="true ">×</span></button> -->
+                <br>
+                <h5 class="modal-title text-center " id="myModalLabel ">考核设置</h5> 
+            </div>
+        		<table class="table table-hover " style="width:86%;margin: 15px auto;margin-top:14px ">
+        			<thead>
+        				<tr class="active ">
+        					<th class="text-center " style="width:6%; ">
+        						<input id="selAll" type="checkbox">
+        					</th>
+        					<th class="text-center " style="width:40%; ">考核项</th>
+        					<th class="text-center " style="width:40%; ">考核内容</th>
+        				</tr>
+        			</thead>
+        			<tbody id="setEI " class="text-center ">
+        				<tr>
+        					<td style="width:6%; ">
+        						<input type="checkbox">
+        					</td>
+        					<td>出勤</td>
+        					<td>迟到、早退、旷工</td>
+        				</tr>
+        				<tr>
+        					<td style="width:6%; ">
+        						<input type="checkbox">
+        					</td>
+        					<td>脱离工作片区</td>
+        					<td>脱离工作片区超时</td>
+        				</tr>
+        				<tr>
+        					<td style="width:6%; ">
+        						<input type="checkbox">
+        					</td>
+        					<td>违规停留</td>
+        					<td>停留不动超时</td>
+        				</tr>
+        				<tr>
+        					<td style="width:6%; ">
+        						<input type="checkbox">
+        					</td>
+        					<td>设备异常</td>
+        					<td>设备异常数据、设备离线</td>
+        				</tr>
+        				<tr>
+        					<td style="width:6%; ">
+        						<input type="checkbox">
+        					</td>
+        					<td>作业里程</td>
+        					<td>作业里程超标</td>
+        				</tr>
+        				<tr>
+        					<td style="width:6%; ">
+        						<input type="checkbox">
+        					</td>
+        					<td>超速驾驶</td>
+        					<td>超速驾驶车辆</td>
+        				</tr>
+        				
+        			</tbody>
+        		</table>
+        	</div>
+     		<div class="modal-footer " style="border:0;width:80%;margin:0 auto ">
+                <p class="col-xs-10 col-xs-offset-1 ">
+                    <button id="setBtn " type="button " class="btn btn_blue btn-block " data-dismiss="modal ">确认</button>
+                </p>
+                <p class="col-xs-10 col-xs-offset-1">
+                    <button type="button " class="btn btn_nor btn-block btn-default btn_dismiss " data-dismiss="modal " style="letter-spacing: 16px;text-indent:16px; ">取消</button>    
+                </p>
+           </div>
+    	</div>
+  	</div>
+</div>
+<!--设置监管项-->
+<script src="../js/bootbox.min.js "></script>
+</div>
 	</body>
-
+	<script type="text/javascript">
+		$(function(){
+			$("#pic").change(function(){
+				var src = $("#pic").val();
+				$(".picUrl").attr("src",src);
+			});
+			$("#pic2").change(function(){
+				var src = $("#pic2").val();
+				$(".picUrl2").attr("src",src);
+			});
+		}); //END $(function(){});
+	</script>
 </html>

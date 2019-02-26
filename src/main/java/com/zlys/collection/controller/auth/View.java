@@ -117,4 +117,45 @@ public class View {
     public String xianlu(){
         return "xianlu";
     }
+    /**
+     * @desc: 系统管理_角色管理 view
+     * @param:
+     * @return:
+     * @auther: czx
+     */
+    @RequestMapping("system_d")
+    public String quanxian(){
+        return "quanxian";
+    }
+    /**
+     * @desc: 系统管理_部门管理 view
+     * @param:
+     * @return:
+     * @auther: czx
+     */
+    @RequestMapping("system_e")
+    public String bumen(){
+        return "bumen";
+    }
+
+    /**
+     * @desc: 系统管理_车辆管理 view
+     * @param:
+     * @return:
+     * @auther: czx
+     */
+    @RequestMapping("system_f")
+    public String cheliang(){
+        return "cheliang";
+    }
+    /**
+     * @desc: 系统管理_收集点管理 view
+     * @param:
+     * @return:
+     * @auther: czx
+     */
+    @RequestMapping("system_g")
+    public String huoshoudian (){
+        return "huoshoudian";
+    }
 }

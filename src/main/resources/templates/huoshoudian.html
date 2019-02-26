@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<title>智链云数</title>
+        <link rel="icon" type="image/x-icon" href="../faviconok.ico">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/manage_common.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/ch_see_new.css">
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/bootbox.min.js"></script>
+		<script src="../js/common.js"></script>
+		<link rel="stylesheet" href="../css/laydate.css" id="layuicss-laydate">
+	</head>
+
+	<body style="">
+		<nav class=" navbar-static-top">
+			<div class="container">
+				<div class="logo">
+					<a class="navbar-brand" href="command.html">
+						<img src="../images/logo.png">
+					</a>
+				</div>
+                <ul class="nav_h">
+                    <li class=""><a href="/zlys/commond">指挥中心</a></li>
+                    <li class=""><a href="/common/check">考核中心</a></li>
+                    <li class=""><a href="/common/unusual">预警中心</a></li>
+                    <li class="active"><a href="/common/system_a">系统管理</a></li>
+                    <li class=""><a href="/common/examine">监控中心</a></li>
+                    <li class=""><a href="/common/tongjiindex">统计中心</a></li>
+                </ul>
+				<div class="head_setting">
+					<!-- <div class=" see " data-toggle="modal" data-target="#tan_see_new">222</div> -->
+					<div class=" see admin_see" data-toggle="modal" data-target="#tan_see_new">
+						<a href="javascript:"></a>
+					</div>
+
+					<div class=" see usual_see" style="display: none;">
+						<a href="manage/see.html" target="_blank"></a>
+					</div>
+
+					<div class="notice">
+						<span class=" dropdown-toggle " data-toggle="dropdown">
+                    <span class="num" style="display: block;">20</span>
+						</span>
+						<div class="notice_list  dropdown-menu ">
+							<p class="top"></p>
+							<ul class="scroll" id="notice_list">
+								<li class="warning">川BTEST1<span class="role">(转运车)</span> 异常停留</li>
+								<li class="warning">川BTEST5<span class="role">(收运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST3<span class="role">(收运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST9<span class="role">(收运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST12<span class="role">(收运车)</span>	异常停留</li>
+								<li class="warning">川BTEST12<span class="role">(收运车)</span> 超区域行驶</li>
+								<li class="warning">川BTEST4<span class="role">(收运车)</span> 设备连接异常</li>
+								<li class="warning">川BTEST7<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST3<span class="role">(收运车)</span> 超区域行驶</li>
+								<li class="warning">川BTEST8<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST9<span class="role">(收运车)</span> 超区域行驶</li>
+								<li class="warning">川BTEST3<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST6<span class="role">(收运车)</span> 设备连接异常</li>
+								<li class="warning">川BTEST7<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST2<span class="role">(转运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST4<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST5<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST6<span class="role">(收运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST2<span class="role">(转运车)</span> 设备连接异常</li>
+								<li class="warning">川BTEST3<span class="role">(收运车)</span> 超速行驶</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="inform">
+						<span class=" dropdown-toggle " data-toggle="dropdown">
+                    	<span class="num" style="display: block;">1</span>
+						</span>
+						<div class="notice_list  dropdown-menu ">
+							<p class="top"></p>
+							<ul class="scroll" id="notice_list">
+								<li class=" " >由于暴雨部分地区暂停回收工作</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="user ">
+						<span class=" dropdown-toggle " data-toggle="dropdown">
+                    <img class="user_img" src="../images/B1477.png">
+                    <!-- <span class="text-over" style="max-width: 55px;" title="环卫处管理员">环卫处管理员</span>
+						<span class="caret"></span>-->
+						</span>
+
+						<div class="user_list dropdown-menu">
+							<p class="top"></p>
+							<ul class="">
+								<li>
+									<a href="JavaScript:" data-toggle="modal" data-target="#ziliao_change" class="tan_chuang">
+										个人资料
+									</a>
+								</li>
+								<li>
+									<a href="login.html">退出</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!--看板-->
+		<link href="../css/manage_see.css" rel="stylesheet" type="text/css">
+		<script src="../js/highcharts.js"></script>
+		<!--<script src="../js/echarts.common.min.js"></script>-->
+		<!-- 新看板模态 -->
+		<div class="modal fade ch_new_modal" id="tan_see_new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog " role="document">
+				<div class="modal-content">
+					<div class="modal-body my_new_css">
+						<div class="top_header clearfix">
+							<div class="down_select fl">
+								<p class="top_name"> 绵阳市</p>
+							</div>
+							<!-- 头部 -->
+							<div class="work_message fl">
+								<ul class="top_num clearfix">
+								</ul>
+							</div>
+							<div class="go_back fl">
+								<!-- go_back -->
+								<div class="go_back_images " data-dismiss="modal"></div>
+							</div>
+						</div>
+
+						<!-- tap切换 -->
+						<div class="my_tap_change change_item clearfix hide">
+							<div class="three_tap clearfix">
+								<div class="tap_find fl mo_ren">在岗率</div>
+								<div class="tap_find fl">考核分数</div>
+								<div class="tap_find fl">异常情况</div>
+							</div>
+						</div>
+
+						<!-- tap切换 -->
+						<div class="my_tap_change change_time clearfix">
+							<div class="three_tap clearfix">
+								<div class="check_out_num" onclick="checkOut_all_data(this)">导出</div>
+								<!-- <input type="text" id="time_num"> -->
+								<input class="form-control input_time" style="background:url(../images/date_f.png) no-repeat left center;" readonly="readonly" id="time_num" lay-key="1">
+								<div style="display: inline-block;background:url(../images/c_r.png) no-repeat left center;width:20px;height: 20px;position: relative;top:5px;left:-15px;"></div>
+
+							</div>
+						</div>
+
+						<!-- 公司名称 -->
+						<div class="left_kong fl"></div>
+						<div class="company_list_name ">
+							<ul class="fl clearfix" style="margin-bottom: 0;margin-top: 10px;">
+								<li title="总计">总计 </li>
+								<li title="涪城区">涪城区 </li>
+								<li title="游仙区">游仙区 </li>
+								<li title="高新区">高新区 </li>
+								<li title="经开区">经开区 </li>
+								<li title="科创园区">科创园区 </li>
+								<li title="科学城">科学城 </li>
+								<li title="仙海区">仙海区 </li>
+							</ul>
+						</div>
+
+						<div class="biao_kuang clearfix">
+							<!-- 在岗率 -->
+							<div class="chu_qin fl" id="attendance" style="display: none;">
+								<div class="day_number clearfix">
+									<div class="one_day fl">今天</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div id="bing_tu"></div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- 考核分数 -->
+							<div class="chu_qin kao_he fl" style="display: block;" id="mark">
+								<div class="day_number clearfix">
+									<div class="one_day fl">应到车辆</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:100%;"><span>13</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="" data-sdrs="1427" data-name="总计"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:23%;"><span>3</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3975" data-sdrs="99" data-name="涪城区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:23%;"><span>3</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3976" data-sdrs="191" data-name="游仙区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>2</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3977" data-sdrs="104" data-name="高新区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>2</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3978" data-sdrs="294" data-name="经开区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3979" data-sdrs="53" data-name="科创园区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3980" data-sdrs="237" data-name="科学城"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3981" data-sdrs="21" data-name="仙海区"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">实到车辆</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:100%;"><span>13</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:23%;"><span>3</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>3</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>2</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>2</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">缺勤车辆</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:100%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">超区域行驶</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<a href="/manage/unusual/index.html?areaId=">
+													<div class="cherk_zhu"><span>3</span>
+														<div class="cherk_num" style="height:100%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=151">
+													<div class="cherk_zhu"><span>1</span>
+														<div class="cherk_num" style="height:0.5%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=232">
+													<div class="cherk_zhu"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=231">
+													<div class="cherk_zhu"><span>1</span>
+														<div class="cherk_num" style="height:0.5%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=353">
+													<div class="cherk_zhu"><span>1</span>
+														<div class="cherk_num" style="height:0.5%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=148">
+													<div class="cherk_zhu"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=149">
+													<div class="cherk_zhu"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=147">
+													<div class="cherk_zhu"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">异常停留</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div class="cherk_zhu"><span>5</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>2</span>
+													<div class="cherk_num" style="height:40%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:20%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:20%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:20%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">里程异常</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href=""><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">迟到车辆</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:100%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">超速行驶</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:30%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="" data-name="总计"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:100%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3975" data-name="涪城区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3976" data-name="游仙区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3977" data-name="高新区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3978" data-name="经开区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3979" data-name="科创园区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3980" data-name="科学城"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3981" data-name="仙海区"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- 异常情况 -->
+							<div class="chu_qin kao_he fl" id="abnormal" style="display: none;">
+								<div class="day_number clearfix">
+									<div class="one_day fl">今天</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix e_massage">
+											<li>
+												<div class="unusual_tu ">
+													<div class="yi_chang1" style="height:35%;"></div>
+													<div class="yi_chang2" style="height:75%;"></div>
+													<div class="yi_chang3" style="height:45%;"></div>
+													<div class="yi_chang4" style="height:95%;"></div>
+
+												</div>
+												<!-- 看板hover悬浮效果 -->
+												<div class="xuan_fu">
+													<div class="all_massage">
+														<div class="foot_right_dian1"></div>
+														<span class="yi_cha">脱岗</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian2"></div>
+														<span class="yi_cha">违规停留</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian3"></div>
+														<span class="yi_cha">未戴设备</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian4"></div>
+														<span class="yi_cha">设备异常</span><span class="num_people">8人</span>
+													</div>
+
+													<p class="san_j"></p>
+												</div>
+											</li>
+
+											<li>
+												<div class="unusual_tu ">
+													<div class="yi_chang1" style="height:35%;"></div>
+													<div class="yi_chang2" style="height:75%;"></div>
+													<div class="yi_chang3" style="height:45%;"></div>
+													<div class="yi_chang4" style="height:95%;"></div>
+
+												</div>
+												<!-- 看板hover悬浮效果 -->
+												<div class="xuan_fu">
+													<div class="all_massage">
+														<div class="foot_right_dian1"></div>
+														<span class="yi_cha">脱岗</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian2"></div>
+														<span class="yi_cha">违规停留</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian3"></div>
+														<span class="yi_cha">未戴设备</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian4"></div>
+														<span class="yi_cha">设备异常</span><span class="num_people">8人</span>
+													</div>
+
+													<p class="san_j"></p>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="footer clearfix" style="display: none;">
+							<!-- 分页 -->
+							<div class="foot_dian clearfix attendance_page"></div>
+							<div class="foot_dian clearfix mark_page " style="display: none;"></div>
+							<div class="foot_dian clearfix abnormal_page" style="display: none;"></div>
+
+							<ul class="foot_right clearfix fr" style="display: none;">
+								<li>
+									<div class="foot_right_dian1"></div>
+									<span>脱岗</span>
+								</li>
+								<li>
+									<div class="foot_right_dian2"></div>
+									<span>违规停留</span>
+								</li>
+								<li>
+									<div class="foot_right_dian3"></div>
+									<span>网络异常</span>
+								</li>
+								<li>
+									<div class="foot_right_dian4"></div>
+									<span>关机</span>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- admin 个人资料 模态框-->
+		<div class="modal fade admin_position" id="ziliao_change" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog " role="document" style="margin-top:82px;">
+				<div class="modal-content admin_modal_body">
+					<div class="modal-header" style="margin-top:-22px;">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<br>
+						<h4 class="modal-title text-center " id="myModalLabel" style="font-weight:900;font-size:16px;opacity:0.9;">个人资料</h4>
+					</div>
+
+					<div class="modal-body admin_biao_dan ">
+						<div class="tu_xiang" style="width:100px;height:100px;margin:0 auto;position: relative;border-radius:50%;overflow: hidden;">
+							<div class="tu_people" style="width:100px;height:100px;background:url(/../images/B1477.png); 
+                    background-size: 100% 100%;"></div>
+
+						</div>
+						<input type="file" class="local_host_file" style="display: none">
+						<div class="admin_name col-xs-12">
+							<div class="col-xs-4 ">名称：</div>
+							<div class="col-xs-6 eye_open">
+								<input type="text" id="loginFullname" readonly="">
+							</div>
+						</div>
+						<div class="admin_count col-xs-12">
+							<div class="col-xs-4 ">账号：</div>
+							<div class="col-xs-6 eye_open">
+								<input type="text" id="loginId" readonly="">
+							</div>
+						</div>
+						<div class="old_mi_ma col-xs-12">
+							<div class="col-xs-4">旧密码：</div>
+							<div class="col-xs-6 eye_open">
+								<input type="password" id="oldPwd">
+								<span class="glyphicon glyphicon-eye-open" id="oldPwdE" style="top:9px;left:85%;cursor: pointer;"></span>
+							</div>
+						</div>
+						<div class="new_mi_ma col-xs-12">
+							<div class="col-xs-5 ">新密码：</div>
+							<div class="col-xs-6 eye_open">
+								<input type="password" id="newPwd">
+								<span class="glyphicon glyphicon-eye-open" id="newPwdE" style="top:9px;left:85%;cursor: pointer;"></span>
+							</div>
+						</div>
+					</div>
+					<div class="tow_btn">
+						<span class="btn_blue col-xs-12" id="changePsd">保存</span>
+						<span data-dismiss="modal" class="btn  col-xs-12 btn_nor">取消</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<link href="../css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="../js/bootstrap-datetimepicker.min.js"></script>
+		<script type="text/javascript" src="../js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="../js/jquery.mousewheel.js"></script>
+		<!--看板修改人数-->
+		<script src="../js/laydate.js"></script>
+		<link rel="stylesheet" href="../css/laydate(1).css">
+
+		<div class="container">
+			<link href="../css/manage_admin.css" rel="stylesheet" type="text/css">
+			<div class="btns_nav">
+                <ul style="display:inline">
+                    <li class="">
+                        <a href="/common/system_a" class=""></a>
+                    </li>
+                    <li class=" ">
+                        <a href="/common/system_b" class=""></a>
+                    </li>
+                    <li class=" ">
+                        <a href="/common/system_c" class=""></a>
+                    </li>
+                    <li class=" ">
+                        <a href="/common/system_d" class=""></a>
+                    </li>
+                    <li class=" ">
+                        <a href="/common/system_e" class=""></a>
+                    </li>
+                    <li class=" ">
+                        <a href="/common/system_f" class=""></a>
+                    </li>
+                    <li class="active">
+                        <a href="/common/system_g" class=""></a>
+                    </li>
+                </ul>
+			</div>
+			<!--<link href="../css/manage_check.css" rel="stylesheet" type="text/css">-->
+			<div class="content" style="border-radius: 0;">
+				<div class="content_head">
+					<span class="active hide">每日考核</span>
+					<span class="hide">每月考核</span>
+				</div>
+
+				<div class="row content_body">
+					<div class="col-xs-2 organ ">
+						<div class="organ_title">
+							组织架构
+						</div>
+						<ul id="menuTree" class="menuTree scroll">
+							<div class="all">
+								<span class="bloc active open" data-blocid="1" onclick="choose_organ(this)">
+            						<img src="../images/close_hover.png" class="right">
+            						<img src="../images/file.png">绵阳市
+								</span>
+								<div class="area" style="display: block;">
+									<span data-areaid="96" onclick="choose_organ(this)">
+            							<img src="../images/close.png" class="right">
+            							<img src="../images/file.png">涪城区
+									</span>
+									<div class="group">
+										<span data-groupid="139" onclick="choose_organ(this)">
+            								<img src="../images/file.png">涪城区处理站
+										</span>
+										<span data-groupid="139" onclick="choose_organ(this)">
+            								<img src="../images/file.png">涪城区收集站
+										</span>
+									</div>
+									<span data-areaid="138" onclick="choose_organ(this)">
+            							<img src="../images/close.png" class="right">
+            							<img src="../images/file.png">游仙区
+									</span>
+									<div class="group"></div>
+									<span data-areaid="147" onclick="choose_organ(this)">
+            							<img src="../images/close.png" class="right">
+            							<img src="../images/file.png">高新区
+									</span>
+									<div class="group"></div>
+									<span data-areaid="148" onclick="choose_organ(this)">
+		            					<img src="../images/close.png" class="right">
+		            					<img src="../images/file.png">经开区
+									</span>
+									<div class="group"></div>
+									<span data-areaid="149" onclick="choose_organ(this)">
+	            						<img src="../images/close.png" class="right">
+	            						<img src="../images/file.png">科创园区
+									</span>
+									<div class="group"></div>
+									<span data-areaid="150" onclick="choose_organ(this)">
+										<img src="../images/close.png" class="right">
+            							<img src="../images/file.png">科学城
+									</span>
+									<div class="group"></div>
+									<span data-areaid="151" onclick="choose_organ(this)">
+            							<img src="../images/close.png" class="right">
+            							<img src="../images/file.png">仙海区
+									</span>
+									<div class="group"></div>
+								</div>
+							</div>
+						</ul>
+					</div>
+					<div class="aside_r col-xs-10">
+						<div class="top">
+							<span class="btn_blue pull-right" data-toggle="modal" data-target="#add" id="addrole" style="display: block;margin-bottom: 10px;">
+				            	<i class="plus"></i> 
+				            	新增回收点
+				            </span>
+							
+							<div class="search_box">
+								<input class="form-control input_search" placeholder="收集点信息" id="ename">
+								<span class="search_over"></span>
+							</div>
+
+							<!--<input style="width:240px" class="form-control input_time" readonly="readonly" id="times" lay-key="2">
+
+							<span id="export" class="btn_exporty btn_blue pull-right" style="margin-right:25px"> 导出</span>
+							<span data-toggle="modal" data-target="#reasonn" class="set_rule btn_setting btn_blue pull-right " style="display:none">设置审核理由</span>-->
+
+						</div>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<!-- <th class="text-center">
+                            <input type="checkbox" id="">
+                        </th> -->
+									<th class="text-center dropdown my_word_style">
+										所属区域
+									</th>
+									<th class="text-center dropdown my_word_style">
+										所属部门 
+									</th>
+									<th class="text-center dropdown my_word_style">
+										单位名称 
+									</th>
+									<th class="text-center dropdown my_word_style" id="role">
+										<div class="dropdown-toggle" type="button" data-toggle="dropdown">
+											所属类型
+											<img src="../images/fa-chevron-down.png">
+										</div>
+										<ul class="dropdown-menu " aria-labelledby="dropdownMenu1" style="width:80% ;font-size:12px;margin-left:10%;">
+											<li class="text-center">全部</li>
+											<li style="width:100%;text-align: center;" data-target="#detail" rid="1">中餐</li>
+											<li style="width:100%;text-align: center;" data-target="#detail" rid="2">西餐</li>
+										</ul>
+									</th>	
+									<!--<th class="text-center dropdown my_word_style">
+										<div class="dropdown-toggle" type="button" data-toggle="dropdown">
+											违规种类
+											<img src="../images/fa-chevron-down.png">
+										</div>
+										<ul class="dropdown-menu " aria-labelledby="dropdownMenu1" id="list_type" style="width:80% ;font-size:12px;margin-left:10%;">
+											<li data-type="">全部</li>
+											<li data-type="1">脱岗统计</li>
+
+											<li data-type="2">违规停留统计</li>
+											<li data-type="3">设备异常统计</li>
+											<li data-type="4">作业里程异常统计</li>
+											<li data-type="5">缺勤统计</li>
+											<li data-type="6">迟到统计</li>
+											<li data-type="7">早退统计</li>
+
+										</ul>
+									</th>-->
+									<th class="text-center dropdown my_word_style" id="">占位面积(m<sup>2</sup>)</th>
+									<th class="text-center dropdown my_word_style" id="">餐桌数量</th>
+									<th class="text-center dropdown my_word_style" id="">位置</th>
+									<th class="text-center dropdown my_word_style" id="">预估产废(m<sup>3</sup>)</th>
+									<th class="text-center dropdown my_word_style" id="">查看详细</th>
+									<th class="text-center dropdown my_word_style" id="">编辑</th>
+								</tr>
+							</thead>
+							<tbody class="text-center">
+								<tr>
+									<td>涪城区</td>
+									<td>涪城区收集站</td>
+									<td>测试单位1</td>
+									<td>火锅/中餐</td>
+									<td>100</td>
+									<td>10</td>
+									<td>绵阳市涪城区...</td>
+									<td>20</td>
+									<td><a target="_blank" href="javascript:void(0);"
+										data-toggle="modal" data-target="#detail">查看</a></td>
+									<td><a target="_blank" href="javascript:void(0);">编辑</a></td>
+								</tr>
+								
+							</tbody>
+						</table>
+						<!--分页-->
+						<nav aria-label="Page navigation" class="text-center">
+							<ul class="pagination">
+								<!--<li class="active">
+									<a class="curpage">1</a>
+								</li>
+								<li>
+									<a href="javascript:getData(2)">2</a>
+								</li>-->
+							</ul>
+						</nav>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- 脱岗 违规 模态框 详情-->
+			<div class="modal fade in " id="detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none;">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content mobody ">
+						<div class="modal-header">
+							<button type="button" class="close " data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title text-center" id="myModalLabel">查看详情</h4>
+						</div>
+
+						<div class="over form-horizontal">
+							<div class="form-group">
+								<label class="control-label col-xs-3">所属区域：</label>
+								<div class="col-xs-6 form-control-static" id="fullName">
+									涪城区
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">所属部门：</label>
+								<div class="col-xs-6 form-control-static" id="roleName">
+									涪城区收集站
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">单位名称：</label>
+								<div class="col-xs-6 form-control-static" id="areaName">
+									测试单位1
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">负责人：</label>
+								<div class="col-xs-6 form-control-static" id="name">
+									XXX
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">联系电话：</label>
+								<div class="col-xs-6 form-control-static" id="date">
+									12345678910
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">单位类型：</label>
+								<div class="col-xs-6 form-control-static" id="date">
+									火锅/中餐
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">占位面积(m<sup>2</sup>)：</label>
+								<div class="col-xs-6 form-control-static" id="lasttime">
+									100
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">餐桌数量：</label>
+								<div class="col-xs-6 form-control-static" id="status">
+									10
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">位置：</label>
+								<div class="col-xs-6 form-control-static" id="type">
+									绵阳市涪城区火车站
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">预估产废(m<sup>3</sup>)：</label>
+								<div class="col-xs-6 form-control-static" id="commitComment">
+									20
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">图片信息：</label>
+								<div class="col-xs-6 form-control-static" id="handleComment">
+									<img src="../images/danwei/header.jpg" id="img1" alt="" style="max-height: 100px;max-width: 200px;">
+									<img src="../images/danwei/interior.jpg" id="img1" alt="" style="margin-left: 10px;;max-height: 100px;max-width: 200px;">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">收集信息：</label>
+								<div class="col-xs-6 form-control-static" id="handleComment">
+									
+									<img src="../images/erweima.png" id="img1" alt="" style="max-height: 100px;max-width: 200px;">
+									<!--<img src="../images/touzhao.png" id="img1" alt="" style="margin-left: 10px;;max-height: 100px;max-width: 200px;">-->
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">添加时间：</label>
+								<div class="col-xs-6 form-control-static" id="type">
+									20118-10-26 11:22:32
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">添加人：</label>
+								<div class="col-xs-6 form-control-static" id="type">
+									admin
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">最进修改时间：</label>
+								<div class="col-xs-6 form-control-static" id="type">
+									2018-10-26 11:45:12
+								</div>
+							</div>
+							<div class="form-group" style="margin-bottom: 30px;">
+								<label class="control-label col-xs-3">修改人：</label>
+								<div class="col-xs-6 form-control-static" id="type">
+									admin
+								</div>
+							</div>
+							<!--<div class="form-group">
+								<label class="control-label col-xs-3">图片1：</label>
+								<div class="col-xs-6 form-control-static">
+									<img src="examine.html" id="img1" alt="" style="max-height: 100px;max-width: 200px;">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-xs-3">图片2：</label>
+								<div class="col-xs-6 form-control-static">
+									<img src="examine.html" id="img2" alt="" style="max-height: 100px;max-width: 200px;">
+								</div>
+							</div>-->
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 审核 -->
+		<div class="modal fade in " id="commitAudit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none;">
+			<div class="modal-dialog modal-md" role="document">
+				<div class="modal-content mobody ">
+					<div class="modal-header">
+						<button type="button" class="close " data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title text-center" id="myModalLabel">查看详情</h4>
+					</div>
+
+					<div class="over form-horizontal">
+						<br><br>
+						<div class="form-group">
+							<label for="email" class="col-xs-3 control-label">提交说明</label>
+							<div class="col-xs-5 form-control-static" id="commitComment_">
+
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="col-xs-3 control-label">审核意见</label>
+							<div class="col-xs-5">
+								<textarea name="" id="handleComment_" cols="10" class="form-control" rows="5"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer" style="border:0;width:80%;margin:0 auto">
+						<p class="col-xs-10 col-xs-offset-1">
+							<button type="button" class="btn btn_blue btn-block" onclick="update_audit(2)">确认违规</button>
+						</p>
+						<p class="col-xs-10 col-xs-offset-1">
+							<button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="color: #333;line-height: 100%;" onclick="update_audit(3)">通过审核</button>
+						</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- 设置规则模态框 -->
+		<div class="modal fade" id="reasonn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document" style="width:640px">
+				<div class="modal-content">
+					<div class="modal-header">
+						<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+						<h5 class="modal-title text-center" id="myModalLabel" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">审核理由</h5>
+					</div>
+					<div class="modal-body" style="padding-top:0;margin-top:14px;opacity:0.8;">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th class="text-center">理由</th>
+									<th class="text-center">操作</th>
+								</tr>
+							</thead>
+							<tbody class="text-center" id="reason_lists">
+								<tr>
+									<td>休假</td>
+									<td>
+										<a href="examine.html#" onclick="delReason(this)" id="12">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td>早餐时间</td>
+									<td>
+										<a href="examine.html#" onclick="delReason(this)" id="11">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td>特殊事件</td>
+									<td>
+										<a href="examine.html#" onclick="delReason(this)" id="9">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td>手环检测</td>
+									<td>
+										<a href="examine.html#" onclick="delReason(this)" id="8">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td>还班</td>
+									<td>
+										<a href="examine.html#" onclick="delReason(this)" id="7">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td>突击任务</td>
+									<td>
+										<a href="examine.html#" onclick="delReason(this)" id="6">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td>借调</td>
+									<td>
+										<a href="examine.html#" onclick="delReason(this)" id="5">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td>请假</td>
+									<td>
+										<a href="examine.html#" onclick="delReason(this)" id="4">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td>下雨</td>
+									<td>
+										<a href="examine.html#" onclick="delReason(this)" id="2">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td>顶班</td>
+									<td>
+										<a href="examine.html#" onclick="delReason(this)" id="1">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="text" id="reason" class="form-control"></td>
+									<td>
+										<a href="examine.html#" onclick="addReason()" style="line-height: 32px;">添加</a>
+									</td>
+								</tr>
+							</tbody>
+
+						</table>
+
+					</div>
+					<div class="modal-footer" style="border:0;margin-top:15px;">
+						<p class="col-xs-10 col-xs-offset-1">
+							<button type="button" class="btn btn_nor btn-block btn_blue setRule" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">确认</button>
+						</p>
+						<p class="col-xs-10 col-xs-offset-1" style="margin-top: 10px;margin-top:5px">
+							<button type="button" class="btn btn_nor btn-block btn-default" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;border:none;color: #333;">取消</button>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/selectCard.js"></script>
+		<script type="application/javascript">
+			/**  **/
+			function choose_organ(obj){
+				$("#menuTree span").removeClass('active').find('.right').attr('src','../images/close.png');
+				$(obj).addClass('active');
+				$(obj).find(".right").attr('src','../images/close_hover.png');
+			    $(obj).toggleClass('open');
+			    $(obj).next('div').slideToggle();
+			    tree_conditions.blocId = $(obj).attr('data-blocId')?$(obj).attr('data-blocId'):'';
+			    tree_conditions.companyId = $(obj).attr('data-companyId')?$(obj).attr('data-companyId'):'';
+			    tree_conditions.areaId = $(obj).attr('data-areaId')?$(obj).attr('data-areaId'):'';
+			    tree_conditions.groupId = $(obj).attr('data-groupId')?$(obj).attr('data-groupId'):''; 
+				var that = $(obj);
+				var id = that.attr('data-areaid');
+				//alert(id);
+				if(id == '2'){
+					//alert('2');
+				}else if(id == '3'){
+					//alert('3');
+				}else if(id == '4'){
+					//alert('4');
+				}else if(id == '5'){
+					//alert('5');
+				}else if(id == '6'){
+					//alert('6');
+				}else if(id == '7'){
+					//alert('7');
+				}else if(id == '8'){
+					//alert('8');
+				}else if(id == '9'){
+					//alert('9');
+				}else if(id == '10'){
+					//alert('10');
+				}
+			};
+		</script>
+	</body>
+</html>
