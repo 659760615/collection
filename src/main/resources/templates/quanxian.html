@@ -1950,7 +1950,7 @@
                         <a href="/common/system_d" class=""></a>
                     </li>
                     <li class=" ">
-                        <a href="/common/system_e" class=""></a>
+                        <a href="/department/system_e" class=""></a>
                     </li>
                     <li class=" ">
                         <a href="/common/system_f" class=""></a>
@@ -1993,7 +1993,7 @@
 					<div class="top ">
 						<span class="btn_blue pull-right" data-toggle="modal" data-target="#add" id="addrole" style="display: block;">
             	<i class="plus"></i> 
-            	新增角色
+            	新增司机
             </span>
 					</div>
 
@@ -2121,54 +2121,55 @@
 					<div class="modal-content modal_width" style="height:500px">
 						<div class="modal-header">
 							<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-							<h5 class="modal-title text-center" id="myModalLabel" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">新增角色</h5>
+							<h5 class="modal-title text-center" id="myModalLabe" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">新增司机</h5>
 						</div>
 						<div class="modal-body over" style="margin-top:0px;">
-
-							<div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
-								<label class=" control-label">角色头像</label>
-								<br>
-								<select id="pic" class="form-control select_she_bei" style="width:160px;">
-									<option value="http://116.62.238.185/rolePic/1.png">1</option>
-									<option value="http://116.62.238.185/rolePic/2.png">2</option>
-									<option value="http://116.62.238.185/rolePic/3.png">3</option>
-									<option value="http://116.62.238.185/rolePic/4.png">4</option>
-									<option value="http://116.62.238.185/rolePic/5.png">5</option>
-									<option value="http://116.62.238.185/rolePic/6.png">6</option>
-									<option value="http://116.62.238.185/rolePic/7.png">7</option>
-									<option value="http://116.62.238.185/rolePic/8.png">8</option>
-									<option value="http://116.62.238.185/rolePic/9.png">9</option>
-									<option value="http://116.62.238.185/rolePic/10.png">10</option>
-									<option value="http://116.62.238.185/rolePic/11.png">11</option>
-									<option value="http://116.62.238.185/rolePic/12.png">12</option>
-									<option value="http://116.62.238.185/rolePic/13.png">13</option>
-									<option value="http://116.62.238.185/rolePic/14.png">14</option>
-									<option value="http://116.62.238.185/rolePic/15.png">15</option>
-									<option value="http://116.62.238.185/rolePic/16.png">16</option>
-								</select>
-								<br>
-								<div style="left:150px;"></div>
-								<img class="picUrl" style="position:absolute;top:16px;left:214px;" src="../images/1.png" alt="">
-							</div>
-
 							<div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
-								<label class="control-label">角色名称</label><br>
+								<label class="control-label">司机姓名</label><br>
 								<input id="rName" type="text" class="form-control">
 								<br>
-
 								<div></div>
 							</div>
 
+                            <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                                <label class="control-label">身份证号</label><br>
+                                <input id="r" type="text" class="form-control">
+                                <br>
+                                <div></div>
+                            </div>
+
 							<div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
-								<label class=" control-label">角色类别</label>
+								<label class=" control-label">性别</label>
 								<br>
 								<select id="leavel" class="form-control select_she_bei">
-									<option value="1">员工</option>
-									<option value="2">领导</option>
+									<option value="0">男</option>
+									<option value="1">女</option>
 								</select>
 								<br>
 								<div></div>
 							</div>
+
+                            <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+                                <label class=" control-label">性别</label>
+                                <br>
+                                <select id="leave2" class="form-control select_she_bei">
+                                    <option value="0">转运司机</option>
+                                    <option value="1">收运司机</option>
+                                </select>
+                                <br>
+                                <div></div>
+                            </div>
+
+                            <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+                                <label class=" control-label">所属部门</label>
+                                <br>
+                                <select id="leave3" class="form-control select_she_bei">
+                                    <option value="0">测试部门1</option>
+                                    <option value="1">测试部门2</option>
+                                </select>
+                                <br>
+                                <div></div>
+                            </div>
 
 							<!-- <div class="box_position">
         		<p >角色头像:</p>
@@ -2182,7 +2183,7 @@
 							<input type="file" style="visibility:hidden;" class="open_file">
 
 						</div>
-						<div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:15px">
+						<div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:-35px">
 							<p class="col-xs-10 col-xs-offset-1">
 								<button type="button" id="addBtn" class="btn btn_blue btn-block" data-dismiss="modal">确认</button>
 							</p>

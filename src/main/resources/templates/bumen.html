@@ -791,7 +791,7 @@
                         <a href="/common/system_d" class=""></a>
                     </li>
                     <li class="active">
-                        <a href="/common/system_e" class=""></a>
+                        <a href="/department/system_e" class=""></a>
                     </li>
                     <li class=" ">
                         <a href="/common/system_f" class=""></a>
@@ -858,24 +858,93 @@
 				            	<i class="plus"></i> 
 				            	新增部门
 				            </span>
-							
-							<!--<div class="search_box">
-								<input class="form-control input_search" placeholder="输入姓名" id="ename">
-								<span class="search_over"></span>
-							</div>
+							<!--model-->
 
-							<input style="width:240px" class="form-control input_time" readonly="readonly" id="times" lay-key="2">
+                            <div class="modal fade" id="add" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal_width" role="document">
+                                    <!--宽高修改-->
+                                    <div class="modal-content modal_width" style="height:550px">
+                                        <div class="modal-header">
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                                            <h5 class="modal-title text-center" id="myModalLabe" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">新增部门</h5>
+                                        </div>
+                                        <div class="modal-body over" style="margin-top:0px;">
 
-							<span id="export" class="btn_exporty btn_blue pull-right" style="margin-right:25px"> 导出</span>
-							<span data-toggle="modal" data-target="#reasonn" class="set_rule btn_setting btn_blue pull-right " style="display:none">设置审核理由</span>-->
+                                            <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                                                <label class="control-label">部门名称</label><br>
+                                                <input id="name" type="text" class="form-control">
+                                                <br>
+                                                <div></div>
+                                            </div>
+
+                                            <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+                                                <label class=" control-label">部门类型</label>
+                                                <br>
+                                                <select id="de_type" class="form-control select_she_bei">
+                                                    <option value="0">收集站</option>
+                                                    <option value="1">处理站</option>
+                                                </select>
+                                                <br>
+                                                <div></div>
+                                            </div>
+
+                                            <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+                                                <label class=" control-label">所属区域</label>
+                                                <br>
+                                                <select id="area" class="form-control select_she_bei">
+                                                    <option value="涪城区">涪城区</option>
+                                                    <option value="游仙区">游仙区</option>
+                                                    <option value="高新区">高新区</option>
+                                                    <option value="经开区">经开区</option>
+                                                    <option value="科创区">科创园区</option>
+                                                    <option value="科学城">科学城</option>
+                                                    <option value="仙海区">仙海区</option>
+                                                </select>
+                                                <br>
+                                                <div></div>
+                                            </div>
+
+                                            <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                                                <label class="control-label">地理位置</label><br>
+                                                <input id="loc" type="text" class="form-control">
+                                                <br>
+                                                <div></div>
+                                            </div>
+
+                                            <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                                                <label class="control-label">负责人</label><br>
+                                                <input id="people" type="text" class="form-control">
+                                                <br>
+                                                <div></div>
+                                            </div>
+
+                                            <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                                                <label class="control-label">负责人电话</label><br>
+                                                <input id="phone" type="text" class="form-control">
+                                                <br>
+                                                <div></div>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:-10px">
+                                            <p class="col-xs-10 col-xs-offset-1">
+                                                <button type="button" id="addBtn" class="btn btn_blue btn-block" data-dismiss="modal">确认</button>
+                                            </p>
+                                            <p class="col-xs-10 col-xs-offset-1">
+                                                <button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">取消</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 						</div>
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<!-- <th class="text-center">
-                            <input type="checkbox" id="">
-                        </th> -->
+                                    <th class="text-center dropdown my_word_style">
+                                        序号
+                                    </th>
 									<th class="text-center dropdown my_word_style">
 										所属区域
 									</th>
@@ -892,84 +961,45 @@
 											<li style="width:100%;text-align: center;" data-target="#detail" rid="1">收集站</li>
 											<li style="width:100%;text-align: center;" data-target="#detail" rid="2">处理站</li>
 										</ul>
-									</th>	
-									<!--<th class="text-center dropdown my_word_style">
-										<div class="dropdown-toggle" type="button" data-toggle="dropdown">
-											违规种类
-											<img src="../images/fa-chevron-down.png">
-										</div>
-										<ul class="dropdown-menu " aria-labelledby="dropdownMenu1" id="list_type" style="width:80% ;font-size:12px;margin-left:10%;">
-											<li data-type="">全部</li>
-											<li data-type="1">脱岗统计</li>
-
-											<li data-type="2">违规停留统计</li>
-											<li data-type="3">设备异常统计</li>
-											<li data-type="4">作业里程异常统计</li>
-											<li data-type="5">缺勤统计</li>
-											<li data-type="6">迟到统计</li>
-											<li data-type="7">早退统计</li>
-
-										</ul>
-									</th>-->
+									</th>
 									<th class="text-center dropdown my_word_style">
 										地理位置
-										<!--<div class="dropdown-toggle" type="button" data-toggle="dropdown">
-											理由
-											<img src="../images/fa-chevron-down.png">
-										</div>
-										<ul class="dropdown-menu " aria-labelledby="dropdownMenu1" id="list_reason" style="width:80% ;font-size:12px;margin-left:10%;">
-
-											<li onclick="get_list_reason(this)">全部</li>
-											<li onclick="get_list_reason(this)">顶班</li>
-											<li onclick="get_list_reason(this)">下雨</li>
-											<li onclick="get_list_reason(this)">请假</li>
-											<li onclick="get_list_reason(this)">借调</li>
-											<li onclick="get_list_reason(this)">突击任务</li>
-											<li onclick="get_list_reason(this)">还班</li>
-											<li onclick="get_list_reason(this)">手环检测</li>
-											<li onclick="get_list_reason(this)">特殊事件</li>
-											<li onclick="get_list_reason(this)">早餐时间</li>
-											<li onclick="get_list_reason(this)">休假</li>
-										</ul>-->
 									</th>
 									<th class="text-center dropdown my_word_style" id="">查看详情</th>
 									<th class="text-center dropdown my_word_style" id="">编辑信息</th>
 								</tr>
 							</thead>
 							<tbody class="text-center">
-								<tr>
-									<td>涪城区</td>
-									<td>涪城区中转站</td>
-									<td>收集站</td>
-									<td>绵阳市涪城区...</td>
+								<tr th:each="dp,dpStat: ${pages.list}">
+									<td th:text="${dpStat.count}"></td>
+                                    <td th:text="${dp.area}"></td>
+									<td th:text="${dp.name}"></td>
+									<td th:if="${dp.type} eq 0">收集站</td>
+                                    <td th:if="${dp.type} eq 1">中转站</td>
+                                    <td th:text="${dp.loc}"></td>
 									<td>
-										<a target="_blank" href="javascript:void(0);"
-										data-toggle="modal" data-target="#detail">查看</a>
-									</td>
-									<td>
-										<a target="_blank" href="javascript:void(0);"
-										>编辑</a>
-									</td>
-								</tr>
-								<tr>
-									<td>涪城区</td>
-									<td>涪城区处理站</td>
-									<td>处理站</td>
-									<td>绵阳市涪城区...</td>
-									<td><a target="_blank" href="javascript:void(0);">查看</a></td>
-									<td><a target="_blank" href="javascript:void(0);">编辑</a></td>
+                                        <input type="hidden" th:value="${dp.id}">
+                                        <a target="_blank" onclick="lookThis(this)" data-toggle="modal" data-target="#detail" >查看</a>
+                                    </td>
+                                    <td><a target="_blank" href="javascript:void(0);">编辑</a></td>
 								</tr>
 							</tbody>
 						</table>
 						<!--分页-->
 						<nav aria-label="Page navigation" class="text-center">
 							<ul class="pagination">
-								<!--<li class="active">
-									<a class="curpage">1</a>
-								</li>
-								<li>
-									<a href="javascript:getData(2)">2</a>
-								</li>-->
+                                <li><a th:href="@{'system_e?currentPage='+${pages.firstPage}}" >首页</a></li>
+                                <li><a class="next"   th:href="@{'system_e?currentPage=' + ${pages.prePage}}" ><</a></li>
+                                <li><a class="num" th:if="${pages.prePage}-2 > 0" th:text="${pages.prePage}-2" th:href="@{'system_e?currentPage=' + ${pages.prePage-2}}"></a></li>
+                                <li><a class="num" th:if="${pages.prePage}-1 > 0" th:text="${pages.prePage}-1" th:href="@{'system_e?currentPage=' + ${pages.prePage-1}}"></a></li>
+                                <li><a class="num" th:if="${pages.prePage} > 0" th:text="${pages.prePage}" th:href="@{'system_e?currentPage=' + ${pages.prePage}}"></a></li>
+								<li class="active"><a class="curpage" th:text="${pages.prePage}+1"></a></li>
+                                <li><a class="num" th:if="${pages.prePage}+2 <= ${pages.pages}" th:text="${pages.prePage}+2" th:href="@{'system_e?currentPage=' + ${pages.prePage+2}}"></a></li>
+                                <li><a class="num" th:if="${pages.prePage}+3 <= ${pages.pages}" th:text="${pages.prePage}+3" th:href="@{'system_e?currentPage=' + ${pages.prePage+3}}"></a></li>
+                                <li><a class="num" th:if="${pages.prePage}+4 <= ${pages.pages}" th:text="${pages.prePage}+4" th:href="@{'system_e?currentPage=' + ${pages.prePage+4}}"></a></li>
+                                <li><a class="next" th:href="@{'system_e?currentPage=' + ${pages.nextPage}}" th:if="${pages.hasNextPage} == true">></a></li>
+                                <li><a th:href="@{'system_e?currentPage='+${pages.lastPage}}" > 尾页</a>
+                                <li><a class="next" th:text="'共 '+ ${pages.pages}+ ' 页'"></a>
 							</ul>
 						</nav>
 
@@ -990,88 +1020,38 @@
 							<div class="form-group">
 								<label class="control-label col-xs-3">所属区域：</label>
 								<div class="col-xs-6 form-control-static" id="detail1">
-									涪城区
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-xs-3">部门名称：</label>
 								<div class="col-xs-6 form-control-static" id="detail2">
-									涪城区中转站	
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-xs-3">部门类型：</label>
 								<div class="col-xs-6 form-control-static" id="detail3">
-									收集站
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-xs-3">地理位置：</label>
 								<div class="col-xs-6 form-control-static" id="detail4">
-									绵阳市涪城区
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-xs-3">负责人：</label>
 								<div class="col-xs-6 form-control-static" id="detail5">
-									测试人员
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-xs-3">负责人电话：</label>
 								<div class="col-xs-6 form-control-static" id="detail6">
-									15356589555
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-3">添加时间：</label>
-								<div class="col-xs-6 form-control-static" id="type">
-									20118-10-26 11:25:36
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-3">添加人：</label>
-								<div class="col-xs-6 form-control-static" id="type">
-									admin
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-xs-3">最进修改时间：</label>
-								<div class="col-xs-6 form-control-static" id="type">
-									2018-10-26 11:26:25
+								<div class="col-xs-6 form-control-static" id="detail7">
 								</div>
 							</div>
-							<div class="form-group" style="margin-bottom: 30px;">
-								<label class="control-label col-xs-3">修改人：</label>
-								<div class="col-xs-6 form-control-static" id="type">
-									admin
-								</div>
-							</div>
-							<!--<div class="form-group">
-								<label class="control-label col-xs-3">类型：</label>
-								<div class="col-xs-6 form-control-static" id="detail7"></div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-3">提交说明：</label>
-								<div class="col-xs-6 form-control-static" id="commitComment"></div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-3">审核说明：</label>
-								<div class="col-xs-6 form-control-static" id="handleComment"></div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-3">图片1：</label>
-								<div class="col-xs-6 form-control-static">
-									<img src="examine.html" id="img1" alt="" style="max-height: 100px;max-width: 200px;">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-3">图片2：</label>
-								<div class="col-xs-6 form-control-static">
-									<img src="examine.html" id="img2" alt="" style="max-height: 100px;max-width: 200px;">
-								</div>
-							</div>-->
-
 						</div>
 
 					</div>
@@ -1252,5 +1232,82 @@
 				}
 			};
 		</script>
+    <script>
+        /*czx*/
+        $("#addBtn").click(function(event){
+
+            var name=$("#name").val();
+            var de_type=$.trim($("#de_type").val());
+            var area=$.trim($("#area").val());
+            var loc=$.trim($("#loc").val());
+            var people=$.trim($("#people").val());
+            var phone=$.trim($("#phone").val());
+
+            $.ajax({
+                url: '/department/insert',
+                data: {'name': name, 'deType': de_type,'area':area,'loc':loc,'phone':phone,'people':people},
+                type: 'post',
+                dateType: 'json',
+                success: function (obj) {
+                    if(obj == 'success'){
+                        bootbox.alert({
+                            message: '新增成功',
+                            closeButton: false
+                        });
+                        window.location.href="/system_e";
+                    }else{
+                        bootbox.alert({
+                            message: '录入信息错误',
+                            closeButton: false
+                        });
+                    }
+                }
+            })
+        });
+
+        /*模态框传值*/
+        function lookThis(obj) {
+            const id = $(obj).prev().val();
+            $.ajax({
+                url: '/department/queryById',
+                data: {'id':id},
+                type: 'post',
+                dateType: 'json',
+                success: function (obj) {
+                    $("#detail1").text(obj.area);
+                    $("#detail2").text(obj.name);
+                    if(obj.type == 0){
+                        $("#detail3").text('收集站');
+                    }
+                    if(obj.type == 1){
+                        $("#detail3").text('中转站');
+                    }
+                    $("#detail4").text(obj.loc);
+                    $("#detail5").text(obj.people);
+                    $("#detail6").text(obj.phone);
+                    var newDate=formatDate(obj.updatetime);
+                    $("#detail7").text(newDate);
+                }
+            })
+        }
+
+        function formatDate(time){
+            var date = new Date(time);
+
+            var year = date.getFullYear(),
+                month = date.getMonth() + 1,//月份是从0开始的
+                day = date.getDate(),
+                hour = date.getHours(),
+                min = date.getMinutes(),
+                sec = date.getSeconds();
+            var newTime = year + '-' +
+                month + '-' +
+                day + ' ' +
+                hour + ':' +
+                min + ':' +
+                sec;
+            return newTime;
+        }
+    </script>
 	</body>
 </html>

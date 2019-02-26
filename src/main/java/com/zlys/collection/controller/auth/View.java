@@ -1,7 +1,16 @@
 package com.zlys.collection.controller.auth;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.zlys.collection.entity.DepartmentEntity;
+import com.zlys.collection.service.DepartmentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * @author:CZX
@@ -11,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("common")
 public class View {
+
+    @Autowired
+    private DepartmentService departmentService;
+
      /**
        * @desc:考核中心 view
        * @param:
@@ -107,6 +120,7 @@ public class View {
     public String quyu(){
         return "quyu";
     }
+
     /**
      * @desc: 系统管理_电子围栏_线路管理  view
      * @param:
@@ -117,6 +131,7 @@ public class View {
     public String xianlu(){
         return "xianlu";
     }
+
     /**
      * @desc: 系统管理_角色管理 view
      * @param:
@@ -126,16 +141,6 @@ public class View {
     @RequestMapping("system_d")
     public String quanxian(){
         return "quanxian";
-    }
-    /**
-     * @desc: 系统管理_部门管理 view
-     * @param:
-     * @return:
-     * @auther: czx
-     */
-    @RequestMapping("system_e")
-    public String bumen(){
-        return "bumen";
     }
 
     /**
@@ -148,6 +153,7 @@ public class View {
     public String cheliang(){
         return "cheliang";
     }
+
     /**
      * @desc: 系统管理_收集点管理 view
      * @param:
