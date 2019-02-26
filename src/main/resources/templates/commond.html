@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -97,19 +96,19 @@
 
 	<body style="">
 		<nav class=" navbar-static-top">
-			<div class="container" style="width: 1536px; padding: 0px; height: 100px;">
+			<div class="container" >
 				<div class="logo">
 					<a class="navbar-brand" href="/zlys/commond">
 						<img src="../images/logo.png">
 					</a>
 				</div>
 				<ul class="nav_h">
-					<li class="active"><a href="commond.html">指挥中心</a></li>
-					<li class=""><a href="check.html">考核中心</a></li>
-					<li class=""><a href="unusual.html">预警中心</a></li>
-					<li class=""><a href="paibanG.html">系统管理</a></li>
-					<li class=""><a href="examine.html">监控中心</a></li>
-					<li class=""><a href="tongjiindex.html">统计中心</a></li>
+					<li class="active"><a href="/zlys/commond">指挥中心</a></li>
+					<li class=""><a href="/common/check">考核中心</a></li>
+					<li class=""><a href="/common/unusual">预警中心</a></li>
+					<li class=""><a href="/common/system_a">系统管理</a></li>
+					<li class=""><a href="/common/examine">监控中心</a></li>
+					<li class=""><a href="/common/tongjiindex">统计中心</a></li>
 				</ul>
 				<div class="head_setting">
 					<!-- <div class=" see " data-toggle="modal" data-target="#tan_see_new">222</div> -->
@@ -127,12 +126,6 @@
 						<div class="notice_list  dropdown-menu ">
 							<p class="top"></p>
 							<ul class="scroll" id="notice_list">
-                                <!--boot-->
-                                <!--boot-->
-                                <!--boot-->
-                                <!--boot-->
-                                <!--boot-->
-                                <!--boot-->
 								<li class="warning">川BTEST1<span class="role">(转运车)</span> 异常停留</li>
 								<li class="warning">川BTEST5<span class="role">(收运车)</span> 超速行驶</li>
 								<li class="warning">川BTEST3<span class="role">(收运车)</span> 超速行驶</li>
@@ -173,7 +166,7 @@
 							</ul>
 						</div>
 					</div>
-					
+
 					<div class="user ">
 						<span class=" dropdown-toggle " data-toggle="dropdown">
                     <img class="user_img" src="../images/B1477.png">

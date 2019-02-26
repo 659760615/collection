@@ -25,6 +25,7 @@ public class ShiroConfiguration {
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         /*拦截*/
         filterChainDefinitionMap.put("/zlys/**", "authc");
+        filterChainDefinitionMap.put("/common/**", "authc");
         filterChainDefinitionMap.put("/*", "authc");
         /*不拦截*/
         filterChainDefinitionMap.put("/zlys/login", "anon");

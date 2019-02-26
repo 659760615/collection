@@ -1,0 +1,3297 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<title>智链云数</title>
+        <link rel="icon" type="image/x-icon" href="../faviconok.ico">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/manage_common.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/ch_see_new.css">
+		<link rel="stylesheet" href="../datepicker/datepicker.css">
+		<link rel="stylesheet" href="../css/laydate.css" id="layuicss-laydate">
+		
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/bootbox.min.js"></script>
+		<script src="../js/common.js"></script>
+		<script>
+			$(document).click(function(event) {
+
+			});
+		</script>
+		<link rel="stylesheet" href="../css/laydate.css" id="layuicss-laydate">
+	</head>
+
+	<body style="">
+		<nav class=" navbar-static-top">
+			<div class="container">
+				<div class="logo">
+					<a class="navbar-brand" href="command.html">
+						<img src="../images/logo.png">
+					</a>
+				</div>
+                <ul class="nav_h">
+                    <li class=""><a href="/zlys/commond">指挥中心</a></li>
+                    <li class=""><a href="/common/check">考核中心</a></li>
+                    <li class=""><a href="/common/unusual">预警中心</a></li>
+                    <li class=""><a href="/common/system_a">系统管理</a></li>
+                    <li class=""><a href="/common/examine">监控中心</a></li>
+                    <li class="active"><a href="/common/tongjiindex">统计中心</a></li>
+                </ul>
+				<div class="head_setting">
+					<!-- <div class=" see " data-toggle="modal" data-target="#tan_see_new">222</div> -->
+					<div class=" see admin_see" data-toggle="modal" data-target="#tan_see_new">
+						<a href="javascript:"></a>
+					</div>
+
+					<div class=" see usual_see" style="display: none;">
+						<a href="/manage/see.html" target="_blank"></a>
+					</div>
+
+					<div class="notice">
+						<span class=" dropdown-toggle " data-toggle="dropdown">
+                    <span class="num" style="display: block;">20</span>
+						</span>
+						<div class="notice_list  dropdown-menu ">
+							<p class="top"></p>
+							<ul class="scroll" id="notice_list">
+								<li class="warning">川BTEST1<span class="role">(转运车)</span> 异常停留</li>
+								<li class="warning">川BTEST5<span class="role">(收运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST3<span class="role">(收运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST9<span class="role">(收运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST12<span class="role">(收运车)</span>	异常停留</li>
+								<li class="warning">川BTEST12<span class="role">(收运车)</span> 超区域行驶</li>
+								<li class="warning">川BTEST4<span class="role">(收运车)</span> 设备连接异常</li>
+								<li class="warning">川BTEST7<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST3<span class="role">(收运车)</span> 超区域行驶</li>
+								<li class="warning">川BTEST8<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST9<span class="role">(收运车)</span> 超区域行驶</li>
+								<li class="warning">川BTEST3<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST6<span class="role">(收运车)</span> 设备连接异常</li>
+								<li class="warning">川BTEST7<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST2<span class="role">(转运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST4<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST5<span class="role">(收运车)</span> 异常停留</li>
+								<li class="warning">川BTEST6<span class="role">(收运车)</span> 超速行驶</li>
+								<li class="warning">川BTEST2<span class="role">(转运车)</span> 设备连接异常</li>
+								<li class="warning">川BTEST3<span class="role">(收运车)</span> 超速行驶</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="inform">
+						<span class=" dropdown-toggle " data-toggle="dropdown">
+                    	<span class="num" style="display: block;">1</span>
+						</span>
+						<div class="notice_list  dropdown-menu ">
+							<p class="top"></p>
+							<ul class="scroll" id="notice_list">
+								<li class=" " >由于暴雨部分地区暂停回收工作</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="user ">
+						<span class=" dropdown-toggle " data-toggle="dropdown">
+                    <img class="user_img" src="../images/B1477.png">
+                    <!-- <span class="text-over" style="max-width: 55px;" title="环卫处管理员">环卫处管理员</span>
+						<span class="caret"></span>-->
+						</span>
+
+						<div class="user_list dropdown-menu">
+							<p class="top"></p>
+							<ul class="">
+								<li>
+									<a href="JavaScript:" data-toggle="modal" data-target="#ziliao_change" class="tan_chuang">
+										个人资料
+									</a>
+								</li>
+								<li>
+									<a href="/zlys/logout">退出</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<script>
+			// 通知
+			var noticeLoading = false;
+			var noticePage = 1;
+			//考核分数 滚动分页
+			$('#notice_list').scroll(function() {
+				var srollPos = $(this).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)  
+				var allHeight = $(this).find("li").height() * $(this).find("li").size();
+				var parentHeight = $(".notice_list").height();
+				var bottomHeight = (allHeight - srollPos - parentHeight)
+				if(bottomHeight < 100 && !noticeLoading) {
+					console.log("加载....");
+					get_notice();
+				}
+			});
+
+			$('.notice').click(function(event) {
+				/*$.get('/manage/home/getData/get',{
+				       "action":"/notice/update-warning-time"
+				   }, 
+				   function(res){
+				       if(res.error){
+				           bootbox.alert({message:res.msg, closeButton:false});
+				           return;
+				       } else {
+				          $('.notice .num').css('display','none');
+				       }
+				   },'json');   */
+			});
+		</script>
+
+		<span data-toggle="modal" data-target="#sos" id="addSos"></span>
+		<!-- sos -->
+		<div class="modal fade" id="sos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="sos_head">
+						<span class="sos_title">张三SOS求救</span>
+						<ul>
+							<li>联系方式：1234566</li>
+							<li>求救时间：2017/01/09 13:09:09</li>
+							<li>当前位置：合肥市政务区潜山路123号</li>
+						</ul>
+						<span class="sos_state">已施救 </span>
+					</div>
+					<div class="sos_map">
+						<div id="map" style="width:100%;height:400px;">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			function alert_sos(event) {
+				$('#addSos').click();
+			}
+			// $('.navbar-static-top').click(function(){
+			//     // sos
+			//     alert_sos();
+			//     setTimeout(function(){
+			//         var map_sos = new BMap.Map("map");
+			//         var point = new BMap.Point(104.682687,31.470706);
+			//         var geoc = new BMap.Geocoder(); // 经纬解析对象  （个人资料）
+			//         map_sos.centerAndZoom(point, 16);
+			//         map_sos.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
+			//         map_sos.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+			//     },500);
+			// });
+		</script>
+
+		<!--看板-->
+		<link href="../css/manage_see.css" rel="stylesheet" type="text/css">
+		<script src="../js/highcharts.js"></script>
+		<!--<script src="../js/echarts.common.min.js"></script>-->
+
+		<!-- 新看板模态 -->
+		<div class="modal fade ch_new_modal" id="tan_see_new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog " role="document">
+				<div class="modal-content">
+					<div class="modal-body my_new_css">
+						<div class="top_header clearfix">
+							<div class="down_select fl">
+								<p class="top_name"> 绵阳市
+									<!--<span class="fa fa-angle-down"></span>--></p>
+								<!--  <div class="my_select" style="z-index:99999999;display: none;" >
+                            
+                            <div class="gong_si">
+                                <ul class="wang_ss">
+                                    
+                                </ul>
+                            </div>
+                        </div> -->
+							</div>
+							<!-- 头部 -->
+
+							<div class="work_message fl">
+								<ul class="top_num clearfix">
+									<!--<li>
+                                <span>出勤</span><span class="chu_qing"></span>
+                            </li>
+                            <li>
+                                <span>应出勤</span><span class="y_chuqin"></span>
+                                
+                            </li>
+                            <li>
+                                <span>缺勤</span><span class="que_qin"></span>
+                            </li>
+                            <li>
+                                <span>迟到</span><span class="chi_dao"></span>
+                            </li>
+                            <li class="xiujia_all" style="display: none;">
+                                <span>休假</span><span class="xiu_jia"></span>
+                            </li>
+
+                            
+                        </ul>
+                        <ul class="top_num clearfix">
+                            
+                            <li>
+                                <span>违规停留</span><span class="wei_gui"></span>
+                                
+                            </li>
+                            <li>
+                                <span>脱岗</span><span class="tuo_gang"></span>
+                            </li>
+                        1.看板上方的“网络异常”统计删除。 
+                            <li>
+                                <span>网络异常</span><span class="yi_chang">55人</span>
+                            </li> 
+                            <li>
+                                <span>关机</span><span class="guan_ji"></span>
+                            </li>
+                            <li class="shebei_all" style="display: none;">
+                                <span>设备维修</span><span class="she_bei"></span>
+                            </li>-->
+								</ul>
+							</div>
+							<div class="go_back fl">
+								<!-- go_back -->
+								<div class="go_back_images " data-dismiss="modal"></div>
+							</div>
+						</div>
+
+						<!-- tap切换 -->
+						<div class="my_tap_change change_item clearfix hide">
+							<div class="three_tap clearfix">
+								<div class="tap_find fl mo_ren">在岗率</div>
+								<div class="tap_find fl">考核分数</div>
+								<div class="tap_find fl">异常情况</div>
+							</div>
+						</div>
+
+						<!-- tap切换 -->
+						<div class="my_tap_change change_time clearfix">
+							<div class="three_tap clearfix">
+								<div class="check_out_num" onclick="checkOut_all_data(this)">导出</div>
+								<!-- <input type="text" id="time_num"> -->
+								<input class="form-control input_time" style="background:url(../images/date_f.png) no-repeat left center;" readonly="readonly" id="time_num" lay-key="1">
+								<div style="display: inline-block;background:url(../images/c_r.png) no-repeat left center;width:20px;height: 20px;position: relative;top:5px;left:-15px;"></div>
+								<!-- <div class="tap_find pull-left mo_ren" data-index="1" style="margin-left: 30px;" onclick='all_data(this)'>日</div>
+                        <div class="tap_find pull-left" data-index="2" onclick='all_data(this)'>周</div>
+                        <div class="tap_find pull-left" data-index="3" onclick='all_data(this)'>月</div> -->
+
+							</div>
+						</div>
+
+						<!-- 公司名称 -->
+						<div class="left_kong fl"></div>
+						<div class="company_list_name ">
+							<ul class="fl clearfix" style="margin-bottom: 0;margin-top: 10px;">
+								<li title="总计">总计 </li>
+								<li title="涪城区">涪城区 </li>
+								<li title="游仙区">游仙区 </li>
+								<li title="高新区">高新区 </li>
+								<li title="经开区">经开区 </li>
+								<li title="科创园区">科创园区 </li>
+								<li title="科学城">科学城 </li>
+								<li title="仙海区">仙海区 </li>
+							</ul>
+						</div>
+
+						<div class="biao_kuang clearfix">
+							<!-- 在岗率 -->
+							<div class="chu_qin fl" id="attendance" style="display: none;">
+								<div class="day_number clearfix">
+									<div class="one_day fl">今天</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div id="bing_tu"></div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- 考核分数 -->
+							<div class="chu_qin kao_he fl" style="display: block;" id="mark">
+								<div class="day_number clearfix">
+									<div class="one_day fl">应到车辆</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:100%;"><span>13</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="" data-sdrs="1427" data-name="总计"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:23%;"><span>3</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3975" data-sdrs="99" data-name="涪城区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:23%;"><span>3</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3976" data-sdrs="191" data-name="游仙区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>2</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3977" data-sdrs="104" data-name="高新区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>2</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3978" data-sdrs="294" data-name="经开区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3979" data-sdrs="53" data-name="科创园区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3980" data-sdrs="237" data-name="科学城"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="3981" data-sdrs="21" data-name="仙海区"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">实到车辆</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:100%;"><span>13</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:23%;"><span>3</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>3</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>2</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:15%;"><span>2</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:7%;"><span>1</span></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">缺勤车辆</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:100%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu">
+													<div class="cherk_num" style="height:0%;"><span>0</span></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">超区域行驶</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<a href="/manage/unusual/index.html?areaId=">
+													<div class="cherk_zhu"><span>3</span>
+														<div class="cherk_num" style="height:100%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=151">
+													<div class="cherk_zhu"><span>1</span>
+														<div class="cherk_num" style="height:0.5%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=232">
+													<div class="cherk_zhu"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=231">
+													<div class="cherk_zhu"><span>1</span>
+														<div class="cherk_num" style="height:0.5%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=353">
+													<div class="cherk_zhu"><span>1</span>
+														<div class="cherk_num" style="height:0.5%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=148">
+													<div class="cherk_zhu"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=149">
+													<div class="cherk_zhu"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a href="/manage/unusual/index.html?areaId=147">
+													<div class="cherk_zhu"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">异常停留</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div class="cherk_zhu"><span>5</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>2</span>
+													<div class="cherk_num" style="height:40%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:20%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:20%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:20%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">里程异常</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href=""><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+											<li class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">
+												<div class="cherk_zhu">
+													<a style="color:red;" href="javascript:void(0);"><span>0</span>
+														<div class="cherk_num" style="height:0%;"></div>
+													</a>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">迟到车辆</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:100%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+											<li>
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="day_number clearfix">
+									<div class="one_day fl">超速行驶</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix">
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:30%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="" data-name="总计"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>1</span>
+													<div class="cherk_num" style="height:100%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3975" data-name="涪城区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3976" data-name="游仙区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3977" data-name="高新区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3978" data-name="经开区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3979" data-name="科创园区"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3980" data-name="科学城"></div>
+												</div>
+											</li>
+											<li onmouseover="isEdit(this)" onmouseout="isEdit_(this)" class="edit_num_li">
+												<div class="cherk_zhu"><span>0</span>
+													<div class="cherk_num" style="height:0%;"></div>
+													<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="3981" data-name="仙海区"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- 异常情况 -->
+							<div class="chu_qin kao_he fl" id="abnormal" style="display: none;">
+								<div class="day_number clearfix">
+									<div class="one_day fl">今天</div>
+									<div class="one_day_number fl">
+										<ul class="clearfix e_massage">
+											<li>
+												<div class="unusual_tu ">
+													<div class="yi_chang1" style="height:35%;"></div>
+													<div class="yi_chang2" style="height:75%;"></div>
+													<div class="yi_chang3" style="height:45%;"></div>
+													<div class="yi_chang4" style="height:95%;"></div>
+
+												</div>
+												<!-- 看板hover悬浮效果 -->
+												<div class="xuan_fu">
+													<div class="all_massage">
+														<div class="foot_right_dian1"></div>
+														<span class="yi_cha">脱岗</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian2"></div>
+														<span class="yi_cha">违规停留</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian3"></div>
+														<span class="yi_cha">未戴设备</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian4"></div>
+														<span class="yi_cha">设备异常</span><span class="num_people">8人</span>
+													</div>
+
+													<p class="san_j"></p>
+												</div>
+											</li>
+
+											<li>
+												<div class="unusual_tu ">
+													<div class="yi_chang1" style="height:35%;"></div>
+													<div class="yi_chang2" style="height:75%;"></div>
+													<div class="yi_chang3" style="height:45%;"></div>
+													<div class="yi_chang4" style="height:95%;"></div>
+
+												</div>
+												<!-- 看板hover悬浮效果 -->
+												<div class="xuan_fu">
+													<div class="all_massage">
+														<div class="foot_right_dian1"></div>
+														<span class="yi_cha">脱岗</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian2"></div>
+														<span class="yi_cha">违规停留</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian3"></div>
+														<span class="yi_cha">未戴设备</span><span class="num_people">8人</span>
+													</div>
+													<div class="all_massage">
+														<div class="foot_right_dian4"></div>
+														<span class="yi_cha">设备异常</span><span class="num_people">8人</span>
+													</div>
+
+													<p class="san_j"></p>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="footer clearfix" style="display: none;">
+							<!-- 分页 -->
+							<div class="foot_dian clearfix attendance_page"></div>
+							<div class="foot_dian clearfix mark_page " style="display: none;"></div>
+							<div class="foot_dian clearfix abnormal_page" style="display: none;"></div>
+
+							<ul class="foot_right clearfix fr" style="display: none;">
+								<li>
+									<div class="foot_right_dian1"></div>
+									<span>脱岗</span>
+								</li>
+								<li>
+									<div class="foot_right_dian2"></div>
+									<span>违规停留</span>
+								</li>
+								<li>
+									<div class="foot_right_dian3"></div>
+									<span>网络异常</span>
+								</li>
+								<li>
+									<div class="foot_right_dian4"></div>
+									<span>关机</span>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- admin 个人资料 模态框-->
+		<div class="modal fade admin_position" id="ziliao_change" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog " role="document" style="margin-top:82px;">
+				<div class="modal-content admin_modal_body">
+					<div class="modal-header" style="margin-top:-22px;">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<br>
+						<h4 class="modal-title text-center " id="myModalLabel" style="font-weight:900;font-size:16px;opacity:0.9;">个人资料</h4>
+					</div>
+
+					<div class="modal-body admin_biao_dan ">
+						<div class="tu_xiang" style="width:100px;height:100px;margin:0 auto;position: relative;border-radius:50%;overflow: hidden;">
+							<div class="tu_people" style="width:100px;height:100px;background:url(../images/B1477.png); 
+                    background-size: 100% 100%;"></div>
+
+						</div>
+						<input type="file" class="local_host_file" style="display: none">
+						<div class="admin_name col-xs-12">
+							<div class="col-xs-4 ">名称：</div>
+							<div class="col-xs-6 eye_open">
+								<input type="text" id="loginFullname" readonly="">
+							</div>
+						</div>
+						<div class="admin_count col-xs-12">
+							<div class="col-xs-4 ">账号：</div>
+							<div class="col-xs-6 eye_open">
+								<input type="text" id="loginId" readonly="">
+							</div>
+						</div>
+						<div class="old_mi_ma col-xs-12">
+							<div class="col-xs-4">旧密码：</div>
+							<div class="col-xs-6 eye_open">
+								<input type="password" id="oldPwd">
+								<span class="glyphicon glyphicon-eye-open" id="oldPwdE" style="top:9px;left:85%;cursor: pointer;"></span>
+							</div>
+						</div>
+						<div class="new_mi_ma col-xs-12">
+							<div class="col-xs-5 ">新密码：</div>
+							<div class="col-xs-6 eye_open">
+								<input type="password" id="newPwd">
+								<span class="glyphicon glyphicon-eye-open" id="newPwdE" style="top:9px;left:85%;cursor: pointer;"></span>
+							</div>
+						</div>
+					</div>
+					<div class="tow_btn">
+						<span class="btn_blue col-xs-12" id="changePsd">保存</span>
+						<span data-dismiss="modal" class="btn  col-xs-12 btn_nor">取消</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$("#changePsd").click(function(event) {
+				// $('#loginFullname').val();
+				// $('#loginId').val();
+				//$('#oldPwd').val();
+				//$('#newPwd').val();
+
+				$.post('/manage/home/getData/post', {
+						"action": "/sysUser/update-psd",
+						"oldPsd": $('#oldPwd').val(),
+						"newPsd": $('#newPwd').val()
+					},
+					function(res) {
+						if(res.error) {
+							bootbox.alert({
+								message: res.message,
+								closeButton: false
+							});
+							return;
+						} else {
+							bootbox.alert({
+								message: res.message,
+								closeButton: false,
+								callback: function() {
+									window.location.href = '/';
+								}
+							});
+
+						}
+					}, 'json');
+			});
+		</script>
+
+		<script>
+			// 获取cookie
+			function getcookie(objname) { //获取指定名称的cookie的值
+				var arrstr = document.cookie.split("; ");
+				for(var i = 0; i < arrstr.length; i++) {
+					var temp = arrstr[i].split("=");
+					if(temp[0] == objname) return unescape(temp[1]);
+				}
+			}
+			//console.log('cookie', JSON.parse(getcookie('member')) );
+		</script>
+
+		<script type="text/javascript">
+			// admin模态 密码眼睛 -->
+			$(document).ready(function() {
+				function toggleText(sel) {
+					$(sel).click(function(event) {
+						var input = $(this).prev('input');
+						if(input.attr("type") == 'password') {
+							input.attr("type", "text");
+						} else {
+							input.attr("type", "password");
+						}
+					});
+				}
+
+				toggleText('#newPwdE');
+				toggleText('#oldPwdE');
+			});
+			//admin 资料修改 取消按钮
+			$('.tow_btn button').eq(1).click(function() {
+				$(".admin_position").modal("hide");
+			})
+			var modal_y = ($(window).height() - $('.admin_modal_body').height()) / 2.3;
+			var modal_x = ($(window).width() - $('.admin_modal_body').width()) / 2;
+			$('.tan_chuang').click(function() {
+				//$('.admin_modal_body').css({'top':modal_y});
+			})
+			$('.change_word').click(function() {
+				$('.local_host_file').click();
+			})
+		</script>
+
+		<link href="../css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="../js/bootstrap-datetimepicker.min.js"></script>
+		<script type="text/javascript" src="../js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="../js/jquery.mousewheel.js"></script>
+		<script src="../js/laydate.js"></script>
+		<link rel="stylesheet" href="../css/laydate(1).css">
+		<!-- 看板js -->
+		<script>
+			// getTime('year');
+			var dateStart = getTime('year'); //'2018-02-07';
+			var dateEnd = getTime('year');
+			$('#time_num').val(dateStart + ' 至 ' + dateEnd);
+			dateEnd = '';
+			console.log(dateEnd, dateEnd, dateEnd, 'dateEnddateEnd');
+			laydate.render({
+				elem: '#time_num', //指定元素
+				theme: '#0E3991',
+				range: "至",
+				ready: function(date) {
+					console.log(date); //得到初始的日期时间对象：{ year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+					$('.laydate-btns-clear').css("display", "none")
+				},
+				done: function(date) {
+					date = date.split(' 至 ');
+					// timeChange(date[0],date[1]);
+					dateEnd = date[1];
+					dateStart = date[0];
+					console.log('头部日期', dateStart, dateEnd);
+					if(dateStart == dateEnd) {
+						dateEnd = '';
+					}
+					all_data();
+
+				}
+			});
+
+			// 修改人数
+			function change_num(obj) {
+
+				var type = $(obj).attr('data-type');
+				var id = $(obj).attr('data-id');
+				var name = $(obj).attr('data-name');
+				var sdrs = $(obj).attr('data-sdrs');
+				console.log(type);
+				console.log(id)
+				bootbox.confirm({
+					title: "<p class='text-center change_num' >" + name + "</p>",
+					buttons: {
+						confirm: {
+							label: '确认',
+							className: 'btn_blue'
+						},
+						cancel: {
+							label: '取消',
+							className: 'btn-default'
+						}
+					},
+					message: '<div class="text-center">' +
+						'<p style="margin-top:30px;">' + ((type == 1) ? '休假人数' : (type == 2) ? '设备维修数' : '应到人数') + '：<input type="text" class="form-control input_search change_num_input" style="background:#fff;width:50px;"/>' + ((type == 2) ? '个' : '人') + '</p>' +
+						'</div>',
+					callback: function(result) {
+						//确认提交 
+						if(result) {
+							$('html,body').css({
+								overflow: 'hidden'
+							})
+							$('.modal').css('overflow', 'auto');
+							var num = $('.change_num_input').val();
+							if(num >= 0 == false) {
+								bootbox.alert({
+									message: "请输入有效人数！",
+									closeButton: false
+								});
+								return false;
+							}
+							if(type == 1) {
+								var up_data = {
+									"action": "/board/updateBoard",
+									"id": id,
+									"xj": num,
+
+								};
+							} else if(type == 2) {
+								var up_data = {
+									"action": "/board/updateBoard",
+									"id": id,
+									"sbwxs": num
+								};
+							} else {
+								var up_data = {
+									"action": "/board/updateBoard",
+									"id": id,
+									"ydrs": num,
+									'sdrs': sdrs
+								};
+							}
+
+							$.post('/manage/home/getData/post', up_data,
+								function(res) {
+									// console.log('修改分数',res);
+									if(res.error) {
+										bootbox.alert({
+											message: res.message,
+											closeButton: false
+										});
+										return;
+									} else {
+										bootbox.alert({
+											message: "提交成功",
+											closeButton: false,
+											callback: function() {
+												all_data();
+											}
+										});
+									}
+								}, 'json');
+
+						} else {
+							$('html,body').css({
+								overflow: 'hidden'
+							})
+							$('.modal').css('overflow', 'auto');
+						}
+					}
+				});
+				$('.change_num').parents('.bootbox-confirm').addClass('change_num_boot');
+			}
+			// 是否可编辑
+			function isEdit(obj) {
+				console.log(dateEnd);
+				if('' == dateEnd) {
+					$(obj).find('.edit_num').css('display', 'inline-block');
+				}
+			}
+
+			function isEdit_(obj) {
+				// console.log(1111111111);
+				$(obj).find('.edit_num').css('display', 'none');
+			}
+
+			// 判断是否是环卫处显示看板
+
+			var all_data_index = $('.change_time .mo_ren').attr('data-index');
+			all_data();
+
+			function all_data(obj) {
+				//看板 tap切换 显示数据时间段（环卫处权限）
+				var obj = obj ? obj : '';
+				$(obj).addClass('mo_ren').siblings('.tap_find').removeClass('mo_ren');
+				all_data_index = $('.change_time .mo_ren').attr('data-index');
+
+				// 3 月 2周 1日
+				var data_num = '';
+			}
+
+			function add_all_data(data_num) {
+				// see_header(1);
+				if(level == 0) { //环卫处
+					$('.shebei_all,.xiujia_all').css("display", 'block');
+
+					$('.change_time').removeClass('hide');
+					$('#attendance').css('display', 'none');
+					$('#mark').css('display', 'block');
+					$('#abnormal').css('display', 'none');
+					$('.footer').css('display', 'none');
+
+					// 加载默认数据
+					var all_pjgls = [], //平均公里
+						all_sbwxs = [], //设备维修
+						all_sbyc = [], //设备异常
+						all_tg = [], //脱岗
+						all_wgtl = [], //违规停留
+						all_xj = [], //休假
+						all_zgl = []; //在岗率
+					all_zgqk = []; //在岗情况
+					all_ydrs = []; //应到人数
+					all_sdrs = []; //实到人数
+
+					var company = '';
+
+					$.each(data_num, function(k, v) {
+						// console.log(v);
+						// console.log(v.areaName);
+						company += '<li title="' + v.areaName + '">' + v.areaName + ' </li>';
+
+						// all_pjgls.push( {num:data_num[k].pjgls,percent: data_num[k].pjglsPercent.toFixed(0)} );
+						// all_sbwxs.push( {id:data_num[k].id,num:data_num[k].sbwxs,percent:data_num[k].sbwxsPercent.toFixed(0),name:data_num[k].areaName} );
+						// all_sbyc.push({num:data_num[k].sbyc,percent:data_num[k].sbycPercent.toFixed(0)} );
+						// all_tg.push( {num:data_num[k].tg,percent:data_num[k].tgPercent.toFixed(0)} );
+						// all_wgtl.push({num:data_num[k].wgtl,percent:data_num[k].wgtlPercent.toFixed(0)} );
+						// all_xj.push( {id:data_num[k].id,num:data_num[k].xj,percent:data_num[k].xjPercent.toFixed(0),name:data_num[k].areaName} );
+
+						// all_zgqk.push({num:data_num[k].zgqk,percent:data_num[k].zgqkPercent.toFixed(0)} );
+						// all_ydrs.push({id:data_num[k].id,num:data_num[k].ydrs,num_:data_num[k].sdrs,percent:data_num[k].ydrsPercent.toFixed(0),name:data_num[k].areaName} );
+						// all_sdrs.push({num:data_num[k].sdrs,percent:data_num[k].sdrsPercent.toFixed(0)} );
+						// 
+						all_pjgls.push({
+							num: data_num[k].pjgls,
+							percent: data_num[k].pjglsPercent
+						});
+						all_sbwxs.push({
+							id: data_num[k].id,
+							num: data_num[k].arriveLate,
+							percent: data_num[k].arriveLatePercent,
+							name: data_num[k].areaName
+						});
+						all_sbyc.push({
+							num: data_num[k].leaveEarly,
+							percent: data_num[k].leaveEarlyPercent
+						});
+						all_tg.push({
+							num: data_num[k].tg,
+							percent: data_num[k].tgPercent,
+							areaId: data_num[k].areaId
+						});
+						console.log(data_num[k].areaId);
+						all_wgtl.push({
+							num: data_num[k].wgtl,
+							percent: data_num[k].wgtlPercent
+						});
+						// 休假改成作业里程异常
+						all_xj.push({
+							id: data_num[k].id,
+							areaName: data_num[k].areaName,
+							num: data_num[k].kilo,
+							percent: data_num[k].kiloPercent,
+							name: data_num[k].areaName
+						});
+
+						all_zgqk.push({
+							num: data_num[k].zgqk,
+							percent: data_num[k].zgqkPercent
+						});
+						all_ydrs.push({
+							id: data_num[k].id,
+							num: data_num[k].ydrs,
+							num_: data_num[k].sdrs,
+							percent: data_num[k].ydrsPercent,
+							name: data_num[k].areaName
+						});
+						all_sdrs.push({
+							num: data_num[k].sdrs,
+							percent: data_num[k].sdrsPercent
+						});
+
+					});
+					$('.company_list_name ul').html(company);
+
+					// console.log("all_pjgls",all_pjgls,
+					//             "all_sbwxs",all_sbwxs,
+					//             "all_sbyc ",all_sbyc ,
+					//             "all_tg   ",all_tg   ,
+					//             "all_wgtl ",all_wgtl ,
+					//             "all_xj   ",all_xj   ,
+					//             "all_zgl  ",all_zgl  );
+					var all_pjgls_html = '';
+					var all_sbwxs_html = '';
+					var all_sbyc_html = '';
+					var all_tg_html = '';
+					var all_wgtl_html = '';
+					var all_xj_html = '';
+
+					var all_zgqk_html = ''; //在岗率修改成应到人数 实到人数  在岗率
+					var all_ydrs_html = '';
+					var all_sdrs_html = '';
+					// 在岗率
+					// $.each(all_zgl,function(k,v){
+					//     all_zgl_html+='<li><div id="all_data_'+k+'"></div></li>' ;
+					// });
+					// 在岗情况
+					$.each(all_zgqk, function(k, v) {
+						all_zgqk_html += '<li>' +
+							'<div class="cherk_zhu">' +
+							'<div class="cherk_num" style="height:' + v.percent + '%;">' +
+							'<span>' + v.num + '</span>' +
+							'</div>' +
+							'</div>' +
+							'</li>';
+					});
+					// 应到人数
+					$.each(all_ydrs, function(k, v) {
+						// all_ydrs_html+=   '<li>' +
+						//                     '<div class="cherk_zhu">' +
+						//                         '<div class="cherk_num" style="height:'+v.percent+'%;">' +
+						//                             '<span>'+v.num+'人</span>' +
+						//                         '</div>' +
+						//                     '</div>' +
+						//                 '</li>' ;
+						all_ydrs_html += '<li  onmouseover="isEdit(this)" onmouseout="isEdit_(this)"  class="edit_num_li">' +
+							'<div class="cherk_zhu">' +
+							'<div class="cherk_num" style="height:' + v.percent + '%;">' +
+							'<span>' + v.num + '</span>' +
+							'</div>' +
+							'<div class="edit_num" onclick="change_num(this)" data-type="3" data-id="' + v.id + '" data-sdrs=' + v.num_ + ' data-name="' + v.name + '"></div>' +
+							'</div>' +
+							'</li>';
+
+					});
+					// 实到人数
+					$.each(all_sdrs, function(k, v) {
+						all_sdrs_html += '<li>' +
+							'<div class="cherk_zhu">' +
+							'<div class="cherk_num" style="height:' + v.percent + '%;">' +
+							'<span>' + v.num + '</span>' +
+							'</div>' +
+							'</div>' +
+							'</li>';
+					});
+
+					// 脱岗
+					$.each(all_tg, function(k, v) {
+						all_tg_html += '<li>' +
+							'<a href="index.html?areaId=' + v.areaId + '">' +
+							'<div class="cherk_zhu">' +
+							'<span>' + v.num + '</span>' +
+							'<div class="cherk_num" style="height:' + v.percent + '%;">' +
+
+							'</div>' +
+							'</div>' +
+							'</a>' +
+							'</li>';
+					});
+					// 休假 => 作业里程异常
+					$.each(all_xj, function(k, v) {
+						console.log('休假', escape(v.areaName));
+						var name = escape(v.areaName);
+						all_xj_html +=
+
+							'<li  class="edit_num_li" onmouseover="isEdit(this)" onmouseout="isEdit_(this)">' +
+							'<div class="cherk_zhu">' +
+							'<a style="color:red;" href="weidabiao.html?areaName=' + name + '">' +
+							'<span>' + v.num + '</span>' +
+							'<div class="cherk_num" style="height:' + v.percent + '%;">' +
+
+							'</div>' +
+							'</a>' +
+							// '<div class="edit_num" onclick="change_num(this)" data-type="1" data-id="'+v.id+'" data-name="'+v.name+'"></div>'+
+							'</div>' +
+							'</li>';
+					});
+					// 违规停留
+					$.each(all_wgtl, function(k, v) {
+						all_wgtl_html += '<li>' +
+							'<div class="cherk_zhu">' +
+							'<span>' + v.num + '</span>' +
+							'<div class="cherk_num" style="height:' + v.percent + '%;">' +
+
+							'</div>' +
+							'</div>' +
+							'</li>';
+					});
+					// 设备异常
+					$.each(all_sbyc, function(k, v) {
+						all_sbyc_html += '<li>' +
+							'<div class="cherk_zhu">' +
+							'<span>' + v.num + '</span>' +
+							'<div class="cherk_num" style="height:' + v.percent + '%;">' +
+
+							'</div>' +
+							'</div>' +
+							'</li>';
+					});
+					// 平均公里数
+					$.each(all_pjgls, function(k, v) {
+						all_pjgls_html += '<li>' +
+							'<div class="cherk_zhu">' +
+							'<span>' + v.num + '</span>' +
+							'<div class="cherk_num" style="height:' + v.percent + '%;">' +
+
+							'</div>' +
+							'</div>' +
+							'</li>';
+					});
+					//设备维修数
+					$.each(all_sbwxs, function(k, v) {
+						all_sbwxs_html += '<li  onmouseover="isEdit(this)" onmouseout="isEdit_(this)"  class="edit_num_li">' +
+							'<div class="cherk_zhu">' +
+							'<span>' + v.num + '</span>' +
+							'<div class="cherk_num" style="height:' + v.percent + '%;">' +
+
+							'</div>' +
+							'<div class="edit_num" onclick="change_num(this)" data-type="2" data-id="' + v.id + '" data-name="' + v.name + '"></div>' +
+							'</div>' +
+							'</li>';
+					});
+
+					var html =
+						// '<div class="day_number clearfix">' +
+						//     '<div class="one_day fl">在岗率</div>' +
+						//     '<div class="one_day_number fl">' +
+						//         '<ul class="clearfix">' +
+						//             all_zgl_html+
+						//         '</ul>' +
+						//     '</div>' +
+						// '</div>'+ all_zgqk_html+all_ydrs_html+ all_sdrs_html
+
+						'<div class="day_number clearfix">' +
+						'<div class="one_day fl">应到人数</div>' +
+						'<div class="one_day_number fl">' +
+						'<ul class="clearfix">' +
+						all_ydrs_html +
+						'</ul>' +
+						'</div>' +
+						'</div>' +
+
+						'<div class="day_number clearfix">' +
+						'<div class="one_day fl">实到人数</div>' +
+						'<div class="one_day_number fl">' +
+						'<ul class="clearfix">' +
+						all_sdrs_html +
+						'</ul>' +
+						'</div>' +
+						'</div>' +
+
+						'<div class="day_number clearfix">' +
+						'<div class="one_day fl">缺勤</div>' +
+						'<div class="one_day_number fl">' +
+						'<ul class="clearfix">' +
+						all_zgqk_html +
+						'</ul>' +
+						'</div>' +
+						'</div>' +
+
+						'<div class="day_number clearfix">' +
+						'<div class="one_day fl">脱岗</div>' +
+						'<div class="one_day_number fl">' +
+						'<ul class="clearfix">' +
+						all_tg_html +
+						'</ul>' +
+						'</div>' +
+						'</div>' +
+
+						'<div class="day_number clearfix">' +
+						'<div class="one_day fl">违规停留</div>' +
+						'<div class="one_day_number fl">' +
+						'<ul class="clearfix">' +
+						all_wgtl_html +
+						'</ul>' +
+						'</div>' +
+						'</div>' +
+
+						// 休假改成 作业里程异常
+						'<div class="day_number clearfix">' +
+						'<div class="one_day fl">作业里程异常</div>' +
+						'<div class="one_day_number fl">' +
+						'<ul class="clearfix">' +
+						all_xj_html +
+						'</ul>' +
+						'</div>' +
+						'</div>' +
+
+						// 关机 => 迟到
+						'<div class="day_number clearfix">' +
+						'<div class="one_day fl">迟到</div>' +
+						'<div class="one_day_number fl">' +
+						'<ul class="clearfix">' +
+						all_sbyc_html +
+						'</ul>' +
+						'</div>' +
+						'</div>' +
+
+						// '<div class="day_number clearfix">' +
+						//     '<div class="one_day fl">平均公里数</div>' +
+						//     '<div class="one_day_number fl">' +
+						//         '<ul class="clearfix">' +
+						//             all_pjgls_html+
+						//         '</ul>' +
+						//     '</div>' +
+						// '</div>'+
+						// 设备维修书 =》早退
+						'<div class="day_number clearfix">' +
+						'<div class="one_day fl">早退</div>' +
+						'<div class="one_day_number fl">' +
+						'<ul class="clearfix">' +
+						all_sbwxs_html +
+						'</ul>' +
+						'</div>' +
+						'</div>';
+
+					$('#mark').html(html);
+					// $.each(all_zgl,function(k,v){
+					//     var myChart = echarts.init(document.getElementById("all_data_"+k));
+					//     chuan(v.num,myChart,'#ff9900' ,v.num+'%\n');
+					// });
+
+				} else {
+					$('.change_item').removeClass('hide');
+					$('#attendance').css('display', 'block');
+					$('#mark').css('display', 'none');
+					$('#abnormal').css('display', 'none');
+					// 默认加载的数据
+					abnormal();
+					mark(1);
+					get_attendance();
+					get_company_name(1);
+
+				}
+			}
+
+			// 看板--环卫处特有看板--导出：
+			function checkOut_all_data() {
+				$.get('/manage/home/getData/get', {
+						"action": "/board/exportBoard?dateStart=" + dateStart + "&dateEnd=" + dateEnd,
+					},
+					function(res) {
+						var a = document.createElement('a');
+						a.setAttribute('href', res.data);
+						a.setAttribute('download', "");
+						a.setAttribute('style', 'display:none');
+						a.setAttribute('target', '_blank');
+						document.body.appendChild(a);
+						a.click();
+						a.parentNode.removeChild(a);
+
+					}, 'json');
+			}
+
+			// 组织结构的数据处理
+			var tt;
+			tt = setInterval(function() {
+				if(organize) {
+					//console.log(11133,organize);
+					add_organ();
+					clearInterval(tt);
+				}
+			}, 100);
+
+			function add_organ() {
+				var company = group_lists = '';
+				if(level == 0) {
+					company += '<li data-companyId="all" onclick="get_id(this,event)" class="s_company">全部片区</li>';
+				} else {
+					$('.top_name').html(organize.items[0].oName + '公司 <span class="fa fa-angle-down"></span>');
+				}
+				console.log('组织机构', organize);
+				$.each(organize.items, function(k, v_area) {
+
+					company += '<li data-areaId="' + v_area.id + '" onclick="get_id(this,event)" class="s_company">' + v_area.oName + '<ul class="pian_qu ">';
+
+					$.each(v_area.groupInfo, function(k, v_group) {
+						company += '<li data-groupId="' + v_group.id + '" onclick="get_id(this,event)"  >' + v_group.oName + '<ul class="xiao_zu">';
+
+						company += '</ul>' + '<div></div>' + '</li>';
+					});
+
+					company += '</ul>' + '<div><img src="/../images/right_2.png" alt="" /></div>' + '</li>';
+				});
+				$('.wang_ss').html(company);
+			}
+
+			//看板 tap切换 显示数据的类型
+			$('.change_item .tap_find').click(function() {
+				$(this).addClass('mo_ren').siblings('.tap_find').removeClass('mo_ren');
+				$('.chu_qin').eq($(this).index()).show().siblings('.chu_qin').hide();
+				$('.foot_dian').eq($(this).index()).show().siblings('.foot_dian').hide();
+				var left = $('.chu_qin').eq($(this).index()).find('.one_day_number').css('left');
+				// alert(left);
+				$('.company_list_name').css('left', left);
+				// alert($(this).index())
+				if($(this).index() == 2) {
+					$('.foot_right').show();
+				} else {
+					$('.foot_right').hide();
+				}
+			})
+
+			// 下拉
+			$('.down_select p').click(function() {
+				$('.my_select').toggle();
+
+				$('.pian_qu').each(function() {
+					if($(this).children('li').length == 1) {
+						$(this).children('li').css('border-radius', '5px');
+					}
+				})
+			})
+			$('.down_select').mouseleave(function() {
+				$('.my_select').hide();
+			});
+
+			var head_organ = {
+				level: 0,
+				companyId: '',
+				areaId: "",
+				groupId: ""
+			}
+
+			function get_id(obj, e) {
+				var isAll = $(obj).attr('data-companyid') == "all" ? true : false;
+				if(isAll) {
+					all_data();
+					$('.change_item').addClass('hide');
+					$('#attendance').css('display', 'none');
+					$('#mark').css('display', 'block');
+					$('#abnormal').css('display', 'none');
+					$('.shebei_all,.xiujia_all').css("display", 'block');
+					return false;
+				} else {
+					$('.change_time').addClass('hide');
+					$('.change_item').removeClass('hide');
+					$('#attendance').css('display', 'block');
+					$('#mark').css('display', 'none');
+					$('#abnormal').css('display', 'none');
+					$('.footer').css('display', 'none');
+					$('.shebei_all,.xiujia_all').css("display", 'none');
+				}
+
+				$('.my_select').css('display', 'none');
+				$('.company_list_name').css('left', 0);
+				isAbnormalPage = false;
+				isMarkPage = false;
+				isAttendancPage = false;
+				attendancePage = 1;
+				markPage = 1;
+				abnormalPage = 1;
+				e.stopPropagation();
+				head_organ.companyId = $(obj).attr('data-companyid') ? $(obj).attr('data-companyid') : '';
+				head_organ.areaId = $(obj).attr('data-areaid') ? $(obj).attr('data-areaid') : '';
+				head_organ.groupId = $(obj).attr('data-groupid') ? $(obj).attr('data-groupid') : '';
+
+				if(head_organ.companyId) head_organ.level = 1;
+				if(head_organ.areaId) head_organ.level = 2;
+				if(head_organ.groupId) head_organ.level = 3;
+				if(head_organ.companyId == 'all') {
+					head_organ.level = 0;
+					head_organ.companyId = '';
+				}
+				//console.log(head_organ );
+				// see_header();
+
+				$('#abnormal').html('');
+				$('#mark').html('');
+				$('#attendance').html('');
+
+				mark();
+				get_attendance();
+				get_company_name(1);
+				abnormal();
+			}
+
+			// 看板头部数据
+			function see_header(isSome) {
+				/*$.post('/manage/home/getData/post',{
+            "action":"/board/top",
+            "page":false,
+            "conditions":head_organ
+        }, 
+        function(res){
+            if(res.error){
+                bootbox.alert({message:res.msg, closeButton:false});
+                return;
+            } else {
+               //console.log('返回数据',res.data);
+                $.each(res.data,function(k,v){
+                    if(isSome){
+                        $('.y_chuqin').text(res.data.beOnDuty+'人');
+                        $('.chu_qing').text(res.data.attendance+'人');
+                        $('.que_qin').text(res.data.absenteeism+'人');
+                    }else{
+                        $('.y_chuqin').text(res.data.beOnDuty+'人');
+                        $('.chu_qing').text(res.data.attendance+'人');
+                        $('.que_qin').text(res.data.absenteeism+'人');
+                        $('.chi_dao').text(res.data.arriveLate+'人');
+                        $('.tuo_gang').text(res.data.outOfWorkAreaNum+'人');
+                        $('.wei_gui').text(res.data.illegalStayInterval+'人');
+                        $('.yi_chang').text(res.data.networkAnomaly+'人');
+                        $('.guan_ji').text(res.data.powerOff+'人');
+                    }
+
+                })
+            }
+    },'json')*/
+			}
+
+			var nameNum = 0;
+
+			function get_company_name(page) {
+			}
+
+			// （在岗率图） 比例 父级 颜色 文字 
+			function chuan(work, dd, se1, num) {
+				var option = {
+					// 图表1
+					title: {
+						show: true, //显示策略，默认值true,可选为：true（显示） | false（隐藏）
+						text: '', //主标题文本，'\n'指定换行
+						link: '', //主标题文本超链接,默认值true
+						target: null, //指定窗口打开主标题超链接，支持'self' | 'blank'，不指定等同为'blank'（新窗口）
+						subtext: num,
+						sublink: '', //副标题文本超链接
+						subtarget: null, //指定窗口打开副标题超链接，支持'self' | 'blank'，不指定等同为'blank'（新窗口）
+						x: 'center', //水平安放位置，默认为'left'，可选为：'center' | 'left' | 'right' | {number}（x坐标，单位px）
+						y: 'bottom', //垂直安放位置，默认为top，可选为：'top' | 'bottom' | 'center' | {number}（y坐标，单位px）
+						textAlign: null, //水平对齐方式，默认根据x设置自动调整，可选为： left' | 'right' | 'center
+						backgroundColor: 'rgba(0,0,0,0)', //标题背景颜色，默认'rgba(0,0,0,0)'透明
+						borderColor: '#ccc', //标题边框颜色,默认'#ccc'
+						borderWidth: 0, //标题边框线宽，单位px，默认为0（无边框）
+						itemGap: -15, //主副标题纵向间隔，单位px，默认为10
+						textStyle: { //主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+							// fontFamily: 'Arial',
+							fontSize: 12,
+							fontStyle: 'normal',
+							fontWeight: 'normal',
+							color: "#fff"
+						},
+						subtextStyle: { //主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
+							// fontFamily: 'Arial',
+							fontSize: 13,
+							fontStyle: 'normal',
+							fontWeight: 'normal',
+							color: "#fff"
+						},
+
+						zlevel: 0, //一级层叠控制。默认0,每一个不同的zlevel将产生一个独立的canvas，相同zlevel的组件或图标将在同一个canvas上渲染。zlevel越高越靠顶层，canvas对象增多会消耗更多的内存和性能，并不建议设置过多的zlevel，大部分情况可以通过二级层叠控制z实现层叠控制。
+						z: 6, //二级层叠控制，默认6,同一个canvas（相同zlevel）上z越高约靠顶层。
+					},
+					color: ['#666768', se1],
+
+					// hover悬浮效果
+					// tooltip: {
+					//         trigger: 'item'
+					//         ,
+					//         formatter: "{a} <br/>{b}: {c} ({d}%)"
+					//     },
+					legend: {
+						orient: 'vertical',
+						x: 'left',
+					},
+					series: [{
+						name: '出勤情况',
+						type: 'pie',
+						radius: ['45%', '65%'],
+						//                  radius: ['50%', '72%'],
+						//                  radius: ['40%', '62%']
+						avoidLabelOverlap: false,
+						label: {
+							normal: {
+								show: false,
+								position: 'center'
+							},
+							emphasis: {
+								show: true,
+								textStyle: {
+									fontSize: '30',
+									fontWeight: 'bold'
+								}
+							}
+						},
+						labelLine: {
+							normal: {
+								show: false
+							}
+						},
+						data: [{
+								value: (100 - parseInt(work)),
+								name: ''
+							},
+							{
+								value: work,
+								name: ''
+							},
+						]
+					}]
+				};
+				dd.setOption(option);
+			}
+			// var myChart = echarts.init(document.getElementById('bing_tu'));
+			// // 看板二传参
+			// chuan("",79,3,myChart,'#ff9900','#666768' ,'90%\n',-15,'45%','65%');
+
+			/*图表hover效果*/
+			$('.right_point1 li').mouseenter(function(event) {
+				$('.kehu_company1').eq($(this).index()).show().siblings('.kehu_company1').hide();
+				$(this).addClass('active').siblings('li').removeClass('active')
+			});
+			$('.right_point2 li').mouseenter(function(event) {
+				$('.kehu_company2').eq($(this).index()).show().siblings('.kehu_company2').hide();
+				$(this).addClass('active').siblings('li').removeClass('active')
+			});
+
+			// 在岗率
+			var isAttendancPage = false;
+			var attendancePage = 1;
+			var attendanceLoading = false;
+
+			function get_attendance() {
+				attendanceLoading = true;
+				$.post('/manage/home/getData/post', {
+						"action": "/board/attendance",
+						"pageNumber": attendancePage,
+						"pageSize": 10,
+						"conditions": head_organ
+					},
+					function(res) {
+						//console.log('在岗率',res);
+						attendancePage++;
+						var html = '';
+						$.each(res.data.rows, function(k, v) {
+							//console.log(k,v);
+							html +=
+								'<div class="day_number clearfix">' +
+								'<div class="one_day fl">' + v.date.slice(5, 10) + '</div>' +
+								'<div class="one_day_number fl">' +
+								'<ul class="clearfix">';
+							$.each(v.items, function(k_item, item) {
+								html += '<li><div id="bing_tu_' + attendancePage + '_' + k + '_' + k_item + '"></div></li>';
+							});
+							html +=
+								'</ul>' +
+								'</div>' +
+								'</div>';
+						});
+						$('#attendance').append(html);
+						$('.one_day_number').css('width', 115 * nameNum + 50);
+						//alert(isAttendancPage);
+						if(!isAttendancPage) {
+							add_page($('.attendance_page'), nameNum, 10);
+							isAttendancPage = true;
+						}
+						var index = $('#attendance.chu_qin').index();
+						var left = $('#attendance.chu_qin').find('.one_day_number').css('left');
+						$('.biao_kuang .chu_qin').eq(index).find('.one_day_number').css('left', left);
+
+						//console.log('9898',res.data.rows.length);
+						$.each(res.data.rows, function(k, v) {
+							$.each(v.items, function(k_item, item) {
+								var myChart = echarts.init(document.getElementById('bing_tu_' + attendancePage + '_' + k + '_' + k_item));
+								// 看板二传参
+								//console.log(item.percent);
+								if(k_item == 0) {
+									chuan(item.percent, myChart, '#ff9900', item.percent + '%\n');
+								} else {
+									chuan(item.percent, myChart, '#00c8ff', item.percent + '%\n');
+								}
+
+								// chuan("",item.percent,3,myChart,'#ff9900','#666768' ,item.percent+'%\n',-15);
+							});
+						});
+
+					}, 'json').done(function() {
+					attendanceLoading = false;
+
+				});
+			}
+			// get_attendance();
+
+			// 考核分数（数据）
+			var markPage = 1;
+			var isMarkPage = false;
+			var markLoading = false;
+
+			function mark(page) {
+				markLoading = true;
+
+				$.post('/manage/home/getData/post', {
+						"action": "/board/percent",
+						"pageNumber": markPage,
+						"pageSize": 10,
+						"conditions": head_organ
+					},
+					function(res) {
+						//console.log('分数',res);
+						var html = '';
+						$.each(res.data.rows, function(k, v) {
+							html +=
+								'<div class="day_number clearfix">' +
+								'<div class="one_day fl">' + v.date.slice(5, 10) + '</div>' +
+								'<div class="one_day_number fl">' +
+								'<ul class="clearfix">';
+							$.each(v.items, function(k_item, item) {
+								html +=
+									'<li>' +
+									'<div class="cherk_zhu">' +
+									'<div class="cherk_num" style="height:' + item.mark + '%;">' +
+
+									'<span>' + item.mark + '</span>' +
+									'</div>' +
+									'</div>' +
+									'</li>';
+							});
+							html +=
+								'</ul>' +
+								'</div>' +
+								'</div>';
+
+						});
+						$('#mark').append(html);
+						$('.one_day_number').css('width', 115 * nameNum + 50);
+						var index = $('#mark.chu_qin').index();
+						var left = $('#mark.chu_qin').find('.one_day_number').css('left');
+						$('.biao_kuang .chu_qin').eq(index).find('.one_day_number').css('left', left);
+
+						if(!isMarkPage) {
+							add_page($('.mark_page'), nameNum, 10);
+							isMarkPage = true;
+						}
+					}, 'json').done(function() {
+					markLoading = false;
+					markPage++;
+				});
+			}
+			// mark(1);
+
+			// 异常情况（数据）
+			var abnormalPage = 1;
+			var abnormalLoading = false;
+			var isAbnormalPage = false;
+
+			function abnormal(page) {
+				abnormalLoading = true;
+
+				$.post('/manage/home/getData/post', {
+						"action": "/board/abnormal",
+						"pageNumber": abnormalPage,
+						"pageSize": 10,
+						"conditions": head_organ
+					},
+					function(res) {
+						//console.log('异常情况',res);
+						var html = '';
+						$.each(res.data.rows, function(k, row) {
+							html +=
+								'<div class="day_number clearfix">' +
+								'<div class="one_day fl">' + row.date.slice(5, 10) + '</div>' +
+
+								'<div class="one_day_number fl">' +
+								'<ul class="clearfix e_massage">';
+							$.each(row.items, function(k, item) {
+								//console.log((parseInt(item.items.networkAnomalyNum)>100?100:item.items.networkAnomalyNum));
+								html +=
+									'<li>' +
+									'<div class="unusual_tu">' +
+									'<div class="yi_chang1" style="height:' + (parseInt(item.items.outOfWorkAreaNum) > 100 ? 100 : item.items.outOfWorkAreaNum) + '%;"></div>' +
+									'<div class="yi_chang2" style="height:' + (parseInt(item.items.illegalStayNum) > 100 ? 100 : item.items.illegalStayNum) + '%;"></div>' +
+									'<div class="yi_chang3" style="height:' + (parseInt(item.items.networkAnomalyNum) > 100 ? 100 : item.items.networkAnomalyNum) + '%;"></div>' +
+									'<div class="yi_chang4" style="height:' + (parseInt(item.items.powerOffNum) > 100 ? 100 : item.items.powerOffNum) + '%;"></div>' +
+									'</div>' +
+									'<div class="xuan_fu">' +
+									'<div class="all_massage">' +
+									'<div class="foot_right_dian1"></div>' +
+									'<span class="yi_cha">脱岗</span><span class="num_people">' + item.items.outOfWorkAreaNum + '次</span>' +
+									'</div>' +
+									'<div class="all_massage">' +
+									'<div class="foot_right_dian2"></div>' +
+									'<span class="yi_cha">违规停留</span><span class="num_people">' + item.items.illegalStayNum + '次</span>' +
+									'</div>' +
+									'<div class="all_massage">' +
+									'<div class="foot_right_dian3"></div>' +
+									'<span class="yi_cha">网络异常</span><span class="num_people">' + item.items.networkAnomalyNum + '次</span>' +
+									'</div>' +
+									'<div class="all_massage">' +
+									'<div class="foot_right_dian4"></div>' +
+									'<span class="yi_cha">关机</span><span class="num_people">' + item.items.powerOffNum + '次</span>' +
+									'</div>' +
+
+									'<p class="san_j"></p>' +
+									'</div>' +
+									'</li>';
+							});
+							html +=
+								'</ul>' +
+								'</div>' +
+								'</div>';
+						});
+						$('#abnormal').append(html);
+
+						$('.one_day_number').css('width', 115 * nameNum + 50);
+						var index = $('#abnormal.chu_qin').index();
+						var left = $('#abnormal.chu_qin').find('.one_day_number').css('left');
+						$('.biao_kuang .chu_qin').eq(index).find('.one_day_number').css('left', left);
+						//alert('加载分页',isAbnormalPage);
+						if(!isAbnormalPage) {
+
+							add_page($('.abnormal_page'), nameNum, 10);
+							isAbnormalPage = true;
+						}
+					}, 'json').done(function() {
+					abnormalLoading = false;
+					abnormalPage++;
+				});
+
+			}
+			// abnormal();
+
+			// 添加分页
+			function add_page(obj, total, pageSize, fun) {
+				//console.log(obj,'分页');
+				if(total / pageSize <= 1) {
+					return false;
+				}
+				page_num = Math.ceil(total / pageSize);
+				var page_html =
+					'<ul class="page">' +
+					'<li class="prev "> < </li>';
+				for(var i = 0; i < page_num; i++) {
+					if(i == 0) {
+						page_html +=
+							'<li date-page="' + (i + 1) + '" class="dot active"></li>';
+					} else {
+						page_html +=
+							'<li date-page="' + (i + 1) + '" class="dot"></li>';
+					}
+				}
+				page_html +=
+					'<li class="next "> > </li>' +
+					'</ul>';
+				//console.log(obj,page_html,'分页');
+				$(obj).html(page_html);
+				$(obj).find(".dot").click(function(event) {
+					$(this).addClass('active').siblings('.dot').removeClass('active');
+					var page = parseInt($(obj).find(".active").attr('date-page')) - 1;
+					var index = $(obj).index()
+					$('.biao_kuang .chu_qin').eq(index).find('.one_day_number').css('left', -(page * 115 * 10));
+					$('.company_list_name').css('left', -(page * 115 * 10));
+				});
+
+				$(obj).find('.prev').click(function(event) {
+					if($(obj).find(".dot").first().hasClass('active')) {
+						return;
+					}
+					$(obj).find(".active").removeClass('active').prev('.dot').addClass('active');
+
+					var page = parseInt($(obj).find(".active").attr('date-page')) - 1;
+					var index = $(obj).index()
+					$('.biao_kuang .chu_qin').eq(index).find('.one_day_number').css('left', -(page * 115 * 10));
+					$('.company_list_name').css('left', -(page * 115 * 10));
+				});
+
+				$(obj).find('.next').click(function(event) {
+					if($(obj).find(".dot").last().hasClass('active')) {
+						return;
+					}
+					$(obj).find(".active").removeClass('active').next('.dot').addClass('active');
+
+					var page = parseInt($(obj).find(".active").attr('date-page')) - 1;
+					var index = $(obj).index();
+					$('.biao_kuang .chu_qin').eq(index).find('.one_day_number').css('left', -(page * 115 * 10));
+					$('.company_list_name').css('left', -(page * 115 * 10));
+
+				});
+
+			}
+
+			//在岗率 滚动分页
+			$('#attendance').scroll(function() {
+				var srollPos = $('#attendance').scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)  
+				var allHeight = $(this).find('.day_number').size() * 100;
+				var parentHeight = $(this).height();
+				var bottomHeight = (allHeight - srollPos - parentHeight)
+				if(bottomHeight < 100 && !attendanceLoading) {
+					get_attendance();
+				}
+			});
+
+			//考核分数 滚动分页
+			$('#mark').scroll(function() {
+				var srollPos = $('#mark').scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)  
+				var allHeight = $(this).find('.day_number').size() * 100;
+				var parentHeight = $(this).height();
+				var bottomHeight = (allHeight - srollPos - parentHeight)
+				if(bottomHeight < 100 && !markLoading) {
+					mark();
+				}
+			});
+
+			//异常情况 滚动分页
+			$('#abnormal').scroll(function() {
+				var srollPos = $('#abnormal').scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)  
+				var allHeight = $(this).find('.day_number').size() * 100;
+				var parentHeight = $(this).height();
+				var bottomHeight = (allHeight - srollPos - parentHeight)
+				if(bottomHeight < 100 && !abnormalLoading) {
+					//console.log('加载');
+					abnormal();
+				}
+			});
+		</script>
+		<div class="container">
+
+			<link href="../css/manage_unusual.css" rel="stylesheet" type="text/css">
+			<div class="btns_nav">
+				<ul style="display:inline">
+					<li class="active ">
+						<a href="javacript:void(0);" class=""></a>
+					</li>
+					<!--<li class=" "><a href="ljttj.html" class=""></a></li>-->
+					<li class=" ">
+						<a href="taskStatistics.html" class=""></a>
+					</li>
+					<li class=" ">
+						<a href="vehicleStatistics.html" class=""></a>
+					</li>
+					<li class=" ">
+						<a href="jcrtj.html" class=""></a>
+					</li>
+				</ul>
+			</div>
+			<style>
+				.navbar-static-top {
+					height: 85px;
+				}
+				.btns_nav {
+					height: 65px;
+				}
+				/*.btns_nav li {
+					width: 17%;
+					margin: 10px;
+				}*/
+				.btns_nav li {
+					width: 20%;
+					margin: 20px;
+				}
+				.btns_nav li:nth-child(1) {
+					background-image: url(../images/shouyun.png);
+					background-size: 100% 90%;
+					background-repeat: no-repeat;
+					background-position: center center;
+				}
+				/*.btns_nav li:nth-child(2) {
+					background-image: url(../images/ljcstj.png);
+					background-size: 100% 90%;
+					background-repeat: no-repeat;
+					background-position: center center;
+				}*/
+				
+				.btns_nav li:nth-child(2) {
+					background-image: url(../images/renwu.png);
+				}
+				
+				.btns_nav li:nth-child(3) {
+					background-image: url(../images/cheliang2.png);
+				}
+				
+				.btns_nav li:nth-child(4) {
+					background-image: url(../images/churu.png);
+				}
+				
+				.btns_nav li:nth-child(6) {
+					background-image: url(../images/queqin.png);
+				}
+				
+				.btns_nav li:nth-child(7) {
+					background-image: url(../images/queqin.png);
+				}
+				
+				.btns_nav li:nth-child(8) {
+					background-image: url(../images/queqin.png);
+				}
+				/*.nav_h li {
+			    	line-height: 85px;
+				}*/
+			</style>
+			<script>
+				//获取预警设置
+				$('.getWS').click(function() {
+					getWS();
+				});
+				$('.outOfWorkarea input[type="checkbox"]').click(function() {
+					if($(this).prop('checked')) {
+						$('.outOfWorkarea input[type="checkbox"]').not($(this)).removeAttr('checked');
+					}
+				});
+				$('.illegalStay input[type="checkbox"]').click(function() {
+					if($(this).prop('checked')) {
+						$('.illegalStay input[type="checkbox"]').not($(this)).removeAttr('checked');
+					}
+				});
+				$('.equipmentAbnormal input[type="checkbox"]').click(function() {
+					if($(this).prop('checked')) {
+						$('.equipmentAbnormal input[type="checkbox"]').not($(this)).removeAttr('checked');
+					}
+				});
+				$('.kiloAbnormal input[type="checkbox"]').click(function() {
+					if($(this).prop('checked')) {
+						$('.kiloAbnormal input[type="checkbox"]').not($(this)).removeAttr('checked');
+					}
+				});
+				$('.absenteeismAbnormal input[type="checkbox"]').click(function() {
+					if($(this).prop('checked')) {
+						$('.absenteeismAbnormal input[type="checkbox"]').not($(this)).removeAttr('checked');
+					}
+				});
+				function getWS() {
+					
+				}
+				//预警设置
+				function setWS() {
+					
+				}
+				//更新设置
+				function updateWS() {
+					
+				}
+				//权限控制
+				if(level != 0) {
+					$('#setting input').attr("disabled", "disabled");
+				}
+				//创建新的窗口并打开
+				function newWindow(url){
+					window.open(url);
+				};
+			</script>
+
+			<div class="content  " style="border-radius: 0;">
+				<div class="content_head" ><!-- style="background:none;" -->
+				</div>
+				<div class="row content_body">
+					<div class="col-xs-2 organ ">
+						<div class="organ_title">组织架构</div>
+						<ul id="menuTree" class="menuTree scroll">
+							<div class="all">
+								<span class="bloc active open" data-blocid="1" onclick="choose_organ(this)">
+									<img src="../images/close_hover.png" class="right">
+									<img src="../images/file.png">绵阳市
+								</span>
+								<div class="area" style="display: block;">
+									<span data-areaid="96" onclick="choose_organ(this)">
+										<img src="../images/close.png" class="right">
+										<img src="../images/file.png">涪城区
+									</span>
+									<div class="group">
+										<span data-groupid="15" onclick="choose_organ(this)">
+											<!--<img src="../images/close.png" class="right">-->
+											<img src="../images/file.png">
+											<!--<input type="radio" style="margin-left:0px;" name="show"  />-->&nbsp;测试站1
+										</span>
+									</div>
+									<span data-areaid="147" onclick="choose_organ(this)">
+										<img src="../images/close.png" class="right">
+										<img src="../images/file.png">游仙区
+									</span>
+									<span data-areaid="96" onclick="choose_organ(this)">
+										<img src="../images/close.png" class="right">
+										<img src="../images/file.png">高新区
+									</span>
+									<span data-areaid="147" onclick="choose_organ(this)">
+										<img src="../images/close.png" class="right">
+										<img src="../images/file.png">经开区
+									</span>
+									<span data-areaid="96" onclick="choose_organ(this)">
+										<img src="../images/close.png" class="right">
+										<img src="../images/file.png">科创园区
+									</span>
+									<span data-areaid="96" onclick="choose_organ(this)">
+										<img src="../images/close.png" class="right">
+										<img src="../images/file.png">科学城
+									</span>
+									<span data-areaid="147" onclick="choose_organ(this)">
+										<img src="../images/close.png" class="right">
+										<img src="../images/file.png">仙海区
+									</span>
+									<div class="group">
+										<!--<span data-groupid="15" onclick="choose_organ(this)">-->
+											<!--<img src="../images/file.png">-->
+											<!--<input type="radio" style="margin-left:0px;" name="show"  />&nbsp;仙海中转站
+										</span>
+										<span data-groupid="15" onclick="choose_organ(this)">-->
+											<!--<img src="../images/file.png">-->
+											<!--<input type="radio" style="margin-left:0px;" name="show"  />&nbsp;ZY-0125
+										</span>-->
+									</div>
+								</div>
+							</div>
+						</ul>
+					</div>
+				<style type="text/css">
+					.search_box{
+						background-color: #f9f9f9;
+						font-size: 14px;
+						color: #555;
+						border: 1px solid #ccc;
+						border-radius: 4px;
+						line-height: 1.42857143;
+						margin: 0;
+						margin-right: 15px;
+						padding: 0;
+					}
+					.selectType{
+						margin-right: 0;
+						border-radius: 4px;
+						background-color: #f9f9f9;
+						font-size: 14px;
+						color: #555;
+						border: solid 1px #fff;
+						line-height: 1.42857143;
+						margin: 0;
+						padding: 0;
+					}
+					.selectType2{
+						margin-right: 0;
+						border-radius: 4px;
+						background-color: #f9f9f9;
+						font-size: 14px;
+						color: #555;
+						line-height: 1.42857143;
+						margin: 0;
+						border-top-right-radius:0px;
+						border-bottom-right-radius: 0px;
+					}
+					.time_select_box>div{
+						border:none;
+						padding: 0px 10px;
+					}
+					.input_search2{
+						border: none;
+						border-left: 1px solid #ccc;
+						border-radius: 0px;
+						margin-right: 0px;
+					}
+					.J-datepicker-range-betweenMonth{
+						margin-left: 15px;
+					}
+					.form-group {
+					    margin-bottom: 5px;
+					}
+				</style>
+				<div class="aside_r col-xs-10">
+					<div class="top">
+						
+						<div class="search_box" >
+							<select class="selectType" id="selectType" style="border: none;">
+								<option value="area">区域统计</option>
+								<option value="units">单位统计</option>
+							</select>
+							<input class="form-control input_search input_search2" style="width: 200px;" placeholder="输入搜索关键字" id="ename">
+							<span class="search_over" style="right: 1px;"></span>
+						</div>
+						
+						<div class="search_box time_select_box" id="time_select_box">
+							<select class="selectType2" id="selectType2" style="border: none;border-right:1px solid #ccc;" >
+								<option value="day">单日统计</option>
+								<option value="dayList">多天统计</option>
+								<option value="month">单月统计</option>
+								<option value="months">多月统计</option>
+								<option value="year">按年统计</option>
+							</select>
+						    <!-- 单天选择 -->
+						    <div class="c-datepicker-date-editor c-datepicker-single-editor J-datepicker-day mt10">
+					          <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+					          <input type="text" readonly="readonly" autocomplete="off" name="" id="select_day_input" placeholder="选择日期" class=" c-datepicker-data-input" value=""><!-- only-date -->
+					        </div>
+					        <!-- 多天选择 -->
+							<div class="c-datepicker-date-editor J-datepicker-range-betweenMonth mt10" style="display:none;">
+						        <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+						        <input placeholder="开始日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+						        <span class="c-datepicker-range-separator">-</span>
+						        <input placeholder="结束日期" name="" readonly="readonly" class="c-datepicker-data-input" value="">
+						    </div>
+						    <!-- 单月选择 -->
+						   	<div class="c-datepicker-date-editor c-datepicker-single-editor J-yearMonthPicker-single mt10" style="display: none;">
+					          <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+					          <input type="text" autocomplete="off" readonly="readonly" name="" placeholder="选择年月" class=" c-datepicker-data-input" value="">
+					        </div>
+					        <!-- 多月选则 -->
+					        <!--<input type="text" class="lineSelect demo-input" placeholder="请选择日期" id="test1" readonly>-->
+					        <div class="c-datepicker-date-editor J-yearMonthPicker-single-s-box mt10" style="display:none;">
+						        <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+						        <input placeholder="开始日期" name="" type="text" readonly="readonly" class="c-datepicker-data-input J-yearMonthPicker-single-s" value="">
+						       <!-- <span class="c-datepicker-range-separator">-</span>
+						        <input placeholder="结束日期" name="" readonly="readonly" class="c-datepicker-data-input J-yearMonthPicker-single-s" value="">-->
+						    </div>
+						    
+					        <!-- 单年选择 -->
+						    <div class="c-datepicker-date-editor c-datepicker-single-editor J-yearPicker-single mt10" style="display: none;">
+					          <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+					          <input type="text" autocomplete="off" readonly="readonly" name="" placeholder="选择年份" class=" c-datepicker-data-input" value="">
+					        </div>
+						</div>
+						
+						<span id="export" onclick="newWindow('login.html');" class="btn_exporty btn_blue pull-right">导出</span>
+						<span id="selectStatistical" onclick="newWindowTwo();" class="btn_statistical btn_blue pull-right">查看统计图</span>
+					</div>
+					<!-- 区域统计表 -->
+					<!-- <div class=" down_right col-md-10 col-md-10" > -->
+					<table class="table table-hover" id="area_table">
+						<thead>
+							<tr class="text-center">
+								<th class="text-center">区域名称</th>
+								<th class="text-center">垃圾桶数量</th>
+								<th class="text-center">总收集量(kg)</th>
+								<th class="text-center">总收集次数(次)</th>
+								<!--<th class="text-center dropdown my_word_style" id="role">
+									<div class="dropdown-toggle" type="button" data-toggle="dropdown">
+										车辆类型
+										<img src="../images/fa-chevron-down.png">
+									</div>
+									<ul class="dropdown-menu " aria-labelledby="dropdownMenu1" style="width:100% ;font-size:12px;">
+										<li class="text-center">全部</li>
+										<li style="width:100%;text-align: center;" data-target="#detail" rid="1">回收车</li>
+										<li style="width:100%;text-align: center;" data-target="#detail" rid="2">转运车</li>
+									</ul>
+								</th>-->
+								<th class="text-center">单位数量</th>
+								<th class="text-center">处理量</th>
+								<th class="text-center">平均含固量</th>
+								<th class="text-center">平均单位收集量</th>
+								<!--<th class="text-center">收运详情</th>-->
+								<th class="text-center">导出详情</th>
+								<!--<th class="text-center"></th>-->
+							</tr>
+						</thead>
+						<tbody >
+							<tr class="text-center">
+								<td>涪城区</td>
+								<td>123</td>
+								<td>1265</td>
+								<td>150</td>
+								<td>15</td>
+								<td>1150</td>
+								<td>68</td>
+								<td>84.33</td>
+								<!--<td>
+									<a target="_blank" oid="159136" class="detail" data-toggle="modal" data-target="#area_detail" 
+										href="javascript:void(0);">查看</a>
+								</td>-->
+								<td>
+									<a oid="159136" class="detail" href="javascript:" >导出</a>
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td>游仙区</td>
+								<td>233</td>
+								<td>1233</td>
+								<td>162</td>
+								<td>28</td>
+								<td>1246</td>
+								<td>69</td>
+								<td>85.52</td>
+								<!--<td>
+									<a target="_blank" oid="159136" class="detail" data-toggle="modal" data-target="#area_detail" 
+										href="javascript:void(0);">查看</a>
+								</td>-->
+								<td>
+									<a oid="159136" class="detail" href="javascript:" >导出</a>
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td>高新区</td>
+								<td>95</td>
+								<td>1345</td>
+								<td>152</td>
+								<td>12</td>
+								<td>1564</td>
+								<td>56</td>
+								<td>154</td>
+								<!--<td>
+									<a target="_blank" oid="159136" class="detail" data-toggle="modal" data-target="#area_detail" 
+										href="javascript:void(0);">查看</a>
+								</td>-->
+								<td>
+									<a oid="159136" class="detail" href="javascript:" >导出</a>
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td>经开区</td>
+								<td>165</td>
+								<td>1564</td>
+								<td>162</td>
+								<td>13</td>
+								<td>1423</td>
+								<td>86</td>
+								<td>85</td>
+								<!--<td>
+									<a target="_blank" oid="159136" class="detail" data-toggle="modal" data-target="#area_detail" 
+										href="javascript:void(0);">查看</a>
+								</td>-->
+								<td>
+									<a oid="159136" class="detail" href="javascript:" >导出</a>
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td>科创园区</td>
+								<td>123</td>
+								<td>1672</td>
+								<td>124</td>
+								<td>15</td>
+								<td>1895</td>
+								<td>95</td>
+								<td>114</td>
+								<!--<td>
+									<a target="_blank" oid="159136" class="detail" data-toggle="modal" data-target="#area_detail" 
+										href="javascript:void(0);">查看</a>
+								</td>-->
+								<td>
+									<a oid="159136" class="detail" href="javascript:" >导出</a>
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td>科学城</td>
+								<td>152</td>
+								<td>1568</td>
+								<td>164</td>
+								<td>16</td>
+								<td>1643</td>
+								<td>56</td>
+								<td>95</td>
+								<!--<td>
+									<a target="_blank" oid="159136" class="detail" data-toggle="modal" data-target="#area_detail" 
+										href="javascript:void(0);">查看</a>
+								</td>-->
+								<td>
+									<a oid="159136" class="detail" href="javascript:" >导出</a>
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td>仙海区</td>
+								<td>185</td>
+								<td>1234</td>
+								<td>172</td>
+								<td>18</td>
+								<td>1562</td>
+								<td>64</td>
+								<td>85</td>
+								<!--<td>
+									<a target="_blank" oid="159136" class="detail" data-toggle="modal" data-target="#area_detail" 
+										href="javascript:void(0);">查看</a>
+								</td>-->
+								<td>
+									<a oid="159136" class="detail" href="javascript:" >导出</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<!-- 单位统计表 -->
+					<table class="table table-hover" id="units_table" style="display: none;">
+						<thead>
+							<tr class="text-center">
+								<th class="text-center">所属部门</th>
+								<th class="text-center">单位名称</th>
+								<th class="text-center dropdown my_word_style" id="units_type">
+									<div class="dropdown-toggle" type="button" data-toggle="dropdown">
+										单位类型
+										<img src="../images/fa-chevron-down.png">
+									</div>
+									<ul class="dropdown-menu " aria-labelledby="dropdownMenu1" style="width:100% ;font-size:12px;">
+										<li class="text-center">全部</li>
+										<li style="width:100%;text-align: center;" rid="1">中餐</li>
+										<li style="width:100%;text-align: center;" rid="2">西餐</li>
+									</ul>
+								</th>
+								<th class="text-center">总垃圾桶数量</th>
+								<th class="text-center">总收集次数(次)</th>
+								<th class="text-center">收集量(kg)</th>
+								<th class="text-center">记录详情</th>
+								<th class="text-center">统计图</th>
+								<th class="text-center">导出详情</th>
+							</tr>
+						</thead>
+						<tbody >
+							<tr class="text-center">
+								<td>测试站1</td>
+								<td>测试单位1</td>
+								<td>中餐</td>
+								<td>2</td>
+								<td>1</td>
+								<td>35</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" data-toggle="modal" data-target="#setting" 
+									onclick="findUnitsDetail('测试单位1','中餐','涪城区','2','1','35');" href="javascript:void(0);">查看</a>
+								</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" 
+									onclick="newWindowThree('测试单位1','中餐','涪城区','2','1','35');" href="javascript:void(0);">查看</a>
+								</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" onclick="" href="javascript:void(0);">导出</a>
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td>测试站1</td>
+								<td>测试单位2</td>
+								<td>西餐</td>
+								<td>1</td>
+								<td>0</td>
+								<td>0</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" data-toggle="modal" data-target="#setting" 
+									onclick="findUnitsDetail('测试单位2','西餐','涪城区','1','0','0');" href="javascript:void(0);">查看</a>
+								</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" 
+									onclick="newWindowThree('测试单位2','西餐','涪城区','1','0','0');" href="javascript:void(0);">查看</a>
+								</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" onclick="" href="javascript:void(0);">导出</a>
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td>测试站1</td>
+								<td>测试单位3</td>
+								<td>中餐</td>
+								<td>2</td>
+								<td>1</td>
+								<td>65</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" data-toggle="modal" data-target="#setting" 
+									onclick="findUnitsDetail('测试单位3','中餐','涪城区','2','1','65');" href="javascript:void(0);">查看</a>
+								</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" 
+									onclick="newWindowThree('测试单位3','中餐','涪城区','2','1','65');" href="javascript:void(0);">查看</a>
+								</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" onclick="" href="javascript:void(0);">导出</a>
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td>测试站1</td>
+								<td>测试单位4</td>
+								<td>中餐</td>
+								<td>3</td>
+								<td>0</td>
+								<td>0</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" data-toggle="modal" data-target="#setting" 
+									onclick="findUnitsDetail('测试单位4','中餐','涪城区','3','0','0');" href="javascript:void(0);">查看</a>
+								</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" 
+									onclick="newWindowThree('测试单位4','中餐','涪城区','3','0','0');" href="javascript:void(0);">查看</a>
+								</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" onclick="" href="javascript:void(0);">导出</a>
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td>测试站1</td>
+								<td>测试单位5</td>
+								<td>中餐</td>
+								<td>1</td>
+								<td>2</td>
+								<td>125</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" data-toggle="modal" data-target="#setting"
+									onclick="findUnitsDetail('测试单位5','中餐','涪城区','1','2','125');" href="javascript:void(0);">查看</a>
+								</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" 
+									onclick="newWindowThree('测试单位5','中餐','涪城区','1','2','125');" href="javascript:void(0);">查看</a>
+								</td>
+								<td>
+									<a target="_blank" oid="159136" class="detail" onclick="" href="javascript:void(0);">导出</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<!-- 分页 -->
+					<!--<nav aria-label="Page navigation" class="text-center">
+						<ul class="pagination" style="display: none;">
+							<li class="active">
+								<a class="curpage">1</a>
+							</li>
+						</ul>
+					</nav>-->
+					
+				</div>
+			</div>
+		</div>
+		<!-- 提交审核莫泰框 -->
+		<div class="modal fade in " id="auditModal" tabindex="-1" role="dialog" aria-labelledby="audit" style="display:none;">
+			<div class="modal-dialog modal-md" role="document">
+				<div class="modal-content ">
+					<div class="modal-header">
+						<button type="button" class="close " data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title text-center">提交审核</h4>
+					</div>
+					<div class="modal-body form-horizontal ">
+						<div class="form-group">
+							<label class="control-label col-xs-3">理由：</label>
+							<div class="col-xs-6">
+								<select name="" id="audit_reason" class="form-control">
+
+									<option>顶班</option>
+									<option>下雨</option>
+									<option>请假</option>
+									<option>借调</option>
+									<option>突击任务</option>
+									<option>还班</option>
+									<option>手环检测</option>
+									<option>特殊事件</option>
+									<option>早餐时间</option>
+									<option>休假</option>
+								</select>
+							</div>
+
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-xs-3">说明：</label>
+
+							<div class="col-xs-6 form-control-static" id="audit_desc">
+								<textarea class="form-control" rows="5"></textarea>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-xs-3">图片1：</label>
+							<div class="col-xs-6">
+								<div class="upload_img">
+									<img id="img1" style="max-width:200px;max-height: 100px;">
+									<input type="file" name="" id="img-select1">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-xs-3">图片2：</label>
+							<div class="col-xs-6">
+								<div class="upload_img">
+									<img id="img2" style="max-width:200px;max-height: 100px;">
+									<input type="file" name="" id="img-select2">
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="modal-footer">
+						<div class="col-xs-10 col-xs-offset-1">
+							<span type="button" class="btn_blue btn-block btn_nor " onclick="audit()">确认</span>
+						</div>
+						<div class="col-xs-10 col-xs-offset-1">
+							<span type="button" class="btn_dismiss" data-dismiss="modal">取消</span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+				
+		<!-- 单位收集详情信息查看 -->
+		<div class="modal fade in " id="setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none;">
+			<div class="modal-dialog " role="document" style="min-width:650px;width: 50%;">
+				<div class="modal-content mobody" style="min-height: 650px;height:650px;overflow-y:auto;">
+					<div class="modal-header">
+						<!-- <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button> -->
+						<h5 class="modal-title text-center" id="myModalLabel">详情查看</h5>
+					</div>
+					
+					<div class="modal-body over form-horizontal ">
+						<div class="form-group">
+							<label class="control-label col-xs-3">单位名称：</label>
+							<div class="col-xs-6 form-control-static" id="detail1">
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">单位类型：</label>
+							<div class="col-xs-6 form-control-static" id="detail2">
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">单位位置：</label>
+							<div class="col-xs-6 form-control-static" id="detail3">
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">垃圾桶数量：</label>
+							<div class="col-xs-6 form-control-static" id="detail4">
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">收集次数：</label>
+							<div class="col-xs-6 form-control-static" id="detail5">
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">总收集量：</label>
+							<div class="col-xs-6 form-control-static" id="detail6">
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<!--<label class="control-label col-xs-3">收集详情：</label>
+							<div class="col-xs-6 form-control-static" id="detail_length">
+								
+							</div>-->
+							<div class="col-xs-12 form-control-static text-center" >
+								<table class="table table-bordered">
+									<label class="text-center " >收集详情</label>
+									<thead>
+										<tr>
+											<th class="text-center">收运车</th>
+											<th class="text-center">收运人</th>
+											<th class="text-center">收集量(kg)</th>
+											<th class="text-center">含固率(%)</th>
+											<th class="text-center">状态</th>
+											<th class="text-center">收集时间</th>
+										</tr>
+									</thead>
+									<tbody id="detail7">
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+					</div>
+
+					<!--<div class="modal-footer" style="border:0;margin-left:30px;width:90%">
+						<p class="col-xs-10 col-xs-offset-1">
+							<button type="button" class="btn btn_nor btn-block btn_blue setWS" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">确认</button>
+						</p>
+						<p class="col-xs-10 col-xs-offset-1" style="margin-top: 5px;">
+							<button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="background: #fff;letter-spacing: 16px;text-indent: 16px;">取消</button>
+						</p>
+					</div>-->
+					
+				</div>
+			</div>
+		</div>
+		
+		<!-- 区域收集详情信息查看 -->
+		<div class="modal fade in " id="area_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none;">
+			<div class="modal-dialog " role="document" style="width: 90%;">
+				<div class="modal-content mobody" style="height:650px;">
+					<div class="modal-header">
+						<!-- <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button> -->
+						<h5 class="modal-title text-center" id="myModalLabel">区域单位收集详情</h5>
+					</div>
+					
+					<div class="modal-body over form-horizontal ">
+						<div style="overflow-y:auto;">
+							
+							
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">单位名称：</label>
+							<div class="col-xs-6 form-control-static" id="detail1">
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">单位类型：</label>
+							<div class="col-xs-6 form-control-static" id="detail2">
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">单位位置：</label>
+							<div class="col-xs-6 form-control-static" id="detail3">
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">垃圾桶数量：</label>
+							<div class="col-xs-6 form-control-static" id="detail4">
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">收集次数：</label>
+							<div class="col-xs-6 form-control-static" id="detail5">
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-3">总收集量：</label>
+							<div class="col-xs-6 form-control-static" id="detail6">
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<!--<label class="control-label col-xs-3">收集详情：</label>
+							<div class="col-xs-6 form-control-static" id="detail_length">
+								
+							</div>-->
+							<div class="col-xs-12 form-control-static text-center" >
+								<table class="table table-bordered">
+									<label class="text-center " >收集详情</label>
+									<thead>
+										<tr>
+											<th class="text-center">收集量(kg)</th>
+											<th class="text-center">含固率(%)</th>
+											<th class="text-center">收集时间</th>
+										</tr>
+									</thead>
+									<tbody id="detail7">
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+					</div>
+
+					<!--<div class="modal-footer" style="border:0;margin-left:30px;width:90%">
+						<p class="col-xs-10 col-xs-offset-1">
+							<button type="button" class="btn btn_nor btn-block btn_blue setWS" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">确认</button>
+						</p>
+						<p class="col-xs-10 col-xs-offset-1" style="margin-top: 5px;">
+							<button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="background: #fff;letter-spacing: 16px;text-indent: 16px;">取消</button>
+						</p>
+					</div>-->
+					
+				</div>
+			</div>
+		</div>
+		
+		<script src="../js/selectCard.js"></script>
+		<script src="../datepicker/moment.min.js"></script>
+		<script src="../datepicker/datepicker.all.js"></script>
+		<script src="../js/utils.js"></script>
+		<script type="text/javascript" src="../laydate/laydate.js"></script>
+		<script type="text/javascript">
+			var relStart = getTime("year"),
+			minTime = getMinusTime(relStart,365,"year");
+			$(document).ready(function() {
+		        $("#select_day_input").val(relStart);
+		        //选则单天
+	        	$('.J-datepicker-day').datePicker({
+		            hasShortcut: true,
+		            max: relStart,
+		            format:'YYYY-MM-DD',
+		            shortcutOptions: [{
+		              name: '今天',
+		              day: '0'
+		            }, {
+		              name: '昨天',
+		              day: '-1'
+		            }, {
+		              name: '一周前',
+		              day: '-7'
+		            }]
+	          	});
+	          	//多天选则
+		        $('.J-datepicker-range-betweenMonth').datePicker({
+		            hasShortcut: true,
+		            format: 'YYYY-MM-DD',
+		            min: minTime,
+		            max: relStart,
+		            isRange: true,
+		            shortcutOptions: [{
+		              name: '昨天',
+		              day: '-1,-1',
+		              time: '00:00:00,23:59:59'
+		            },{
+		              name: '最近一周',
+		              day: '-7,0',
+		              time:'00:00:00,'
+		            }, {
+		              name: '最近一个月',
+		              day: '-30,0',
+		              time: '00:00:00,'
+		            }, {
+		              name: '最近一个年',
+		              day: '-365,0',
+		              time: '00:00:00,'
+		            }],
+		            hide: function () {
+		            	//history.go(0);
+		            	console.info(this.$input.eq(0).val(), this.$input.eq(1).val())
+		            }
+		        });
+		       	//选则单月
+		       	$('.J-yearMonthPicker-single').datePicker({
+		            format: 'YYYY-MM',
+		            min: '2017-01',
+		            max: relStart
+	          	});
+	          	//多月选则
+	          	/*$('.J-yearMonthPicker-single-s').datePicker({
+		            hasShortcut: true,
+		            max: relStart,
+		            format:'YYYY-MM',
+		            isRange: true,
+		            shortcutOptions: [{
+		              name: '上个月',
+		              day: '-30'
+		            }]
+	          	});*/
+	          	laydate.render({
+					elem: '.J-yearMonthPicker-single-s',
+					type: 'month',
+					range: true
+				});
+	          	
+		        //var endYear = getTime("year");
+		        //alert(endYear);
+		        //选择单年
+		        $('.J-yearPicker-single').datePicker({
+		            format: 'YYYY',
+		            min:'2017',
+		            max:relStart,
+		        });
+		        /* 日期切换 */
+		        $("#selectType2").change(function(){
+		        	var value = $("#selectType2").val();
+		        	if(value === "day"){
+		        		$("#time_select_box>div").hide();
+			     		//$(".J-datepicker-range-betweenMonth").hide();
+			     		//$(".J-yearMonthPicker-single").hide();
+			     		//$(".J-yearPicker-single").hide();
+		        		$(".J-datepicker-day").show();
+		        	}else if(value === "dayList"){
+		        		//$(".J-datepicker-day").hide();
+			     		//$(".J-yearMonthPicker-single").hide();
+			     		//$(".J-yearPicker-single").hide();
+			     		$("#time_select_box>div").hide();
+			     		$(".J-datepicker-range-betweenMonth").show();
+		        	}else if(value === "month"){
+		        		//$(".J-datepicker-range-betweenMonth").hide();
+		        		//$(".J-datepicker-day").hide();
+			     		//$(".J-yearPicker-single").hide();
+			     		$("#time_select_box>div").hide();
+			     		$(".J-yearMonthPicker-single").show();
+		        	}else if(value === "months"){
+		        		//$(".J-datepicker-range-betweenMonth").hide();
+		        		//$(".J-datepicker-day").hide();
+			     		//$(".J-yearPicker-single").hide();
+			     		$("#time_select_box>div").hide();
+			     		$(".J-yearMonthPicker-single-s-box").show();
+		        	}else if(value === "year"){
+		        		//$(".J-datepicker-day").hide();
+		        		//$(".J-datepicker-range-betweenMonth").hide();
+			     		//$(".J-yearMonthPicker-single").hide();
+			     		$("#time_select_box>div").hide();
+			     		$(".J-yearPicker-single").show();
+		        	};
+		        	
+			    });
+			    /* 类型切换 */
+			    $("#selectType").change(function(){
+		        	var value = $("#selectType").val();
+		        	if(value === "area"){
+			     		$("#units_table").hide();
+			     		$("#area_table").show();
+			     		$("#selectStatistical").show();
+		        	}else if(value === "units"){
+		        		$("#selectStatistical").hide();
+		        		$("#area_table").hide();
+			     		$("#units_table").show();
+		        	};
+			    });
+			    
+		        //$("#selectType").children('option').first().hide();
+		    });
+		    
+		    /* 单位详情查看方法 */
+		    function findUnitsDetail(detail1,detail2,detail3,detail4,detail5,detail6){
+		    	$("#detail1").empty().append(detail1);
+		    	$("#detail2").empty().append(detail2);
+		    	$("#detail3").empty().append(detail3);
+		    	$("#detail4").empty().append(detail4);
+		    	$("#detail5").empty().append(detail5);
+		    	$("#detail6").empty().append(detail6);
+		    	var num = parseInt(detail5),
+		    	weight = parseFloat(detail6),
+		    	mean = (weight/num).toFixed(2),
+		    	html='';
+		    	if(num == 1){
+		    		html += '<tr><td>川BTEST1</td><td>测试人员1</td><td>'+detail6+'</td><td>65</td><td>正常</td><td>'+relStart+' 09:13</td></tr>';
+		    	}else if(num==2){
+		    		html += '<tr><td>川BTEST1</td><td>测试人员1</td><td>'+(parseFloat(mean)-5)+'</td><td>62</td><td>正常</td><td>'+relStart+' 00:15</td></tr>'+
+		    		'<tr><td>川BTEST1</td><td>测试人员1</td><td>'+(parseFloat(mean)+5)+'</td><td>78</td><td>正常</td><td>'+relStart+' 08:34</td></tr>';
+		    	}else if(num==3){
+		    		html += '<tr><td>川BTEST1</td><td>测试人员1</td><td>'+(parseFloat(mean)+2)+'</td><td>67</td><td>正常</td><td>'+relStart+' 00:13</td></tr>'+
+		    		'<tr><td>川BTEST1</td><td>测试人员1</td><td>'+(parseFloat(mean)+3)+'</td><td>63</td><td>正常</td><td>'+relStart+' 08:25</td></tr>'+
+		    		'<tr><td>川BTEST1</td><td>测试人员1</td><td>'+(parseFloat(mean)-5)+'</td><td>72</td><td>正常</td><td>'+relStart+' 08:26</td></tr>';
+		    	}else if(num==4){
+		    		html += '<tr><td>川BTEST1</td><td>测试人员1</td><td>'+(parseFloat(mean)-3)+'</td><td>74</td><td>正常</td><td>'+relStart+' 00:46</td></tr>'+
+		    		'<tr><td>川BTEST1</td><td>测试人员1</td><td>'+(parseFloat(mean)-4)+'</td><td>81</td><td>正常</td><td>'+relStart+' 08:26</td></tr>'+
+		    		'<tr><td>川BTEST1</td><td>测试人员1</td><td>'+(parseFloat(mean)+9)+'</td><td>74</td><td>正常</td><td>'+relStart+' 08:27</td></tr>'+
+		    		'<tr><td>川BTEST1</td><td>测试人员1</td><td>'+(parseFloat(mean)-2)+'</td><td>65</td><td>正常</td><td>'+relStart+' 08:28</td></tr>';
+		    	}else if(num>4){
+		    		
+		    	}else{
+		    		/*html += '<tr><td>'+(parseFloat(mean)-3)+'</td><td>74</td><td>'+relStart+' 00:46</td></tr>'+
+		    		'<tr><td>'+(parseFloat(mean)-4)+'</td><td>81</td><td>'+relStart+' 08:26</td></tr>'+
+		    		'<tr><td>'+(parseFloat(mean)+9)+'</td><td>74</td><td>'+relStart+' 08:27</td></tr>'+
+		    		'<tr><td>'+(parseFloat(mean)-2)+'</td><td>65</td><td>'+relStart+' 08:28</td></tr>'+
+		    		'<tr><td>'+(parseFloat(mean)-3)+'</td><td>74</td><td>'+relStart+' 00:46</td></tr>'+
+		    		'<tr><td>'+(parseFloat(mean)-4)+'</td><td>81</td><td>'+relStart+' 08:26</td></tr>'+
+		    		'<tr><td>'+(parseFloat(mean)+9)+'</td><td>74</td><td>'+relStart+' 08:27</td></tr>'+
+		    		'<tr><td>'+(parseFloat(mean)-2)+'</td><td>65</td><td>'+relStart+' 08:28</td></tr>'+
+		    		'<tr><td>'+(parseFloat(mean)-3)+'</td><td>74</td><td>'+relStart+' 00:46</td></tr>'+
+		    		'<tr><td>'+(parseFloat(mean)-4)+'</td><td>81</td><td>'+relStart+' 08:26</td></tr>'+
+		    		'<tr><td>'+(parseFloat(mean)+9)+'</td><td>74</td><td>'+relStart+' 08:27</td></tr>'+
+		    		'<tr><td>'+(parseFloat(mean)-2)+'</td><td>65</td><td>'+relStart+' 08:28</td></tr>';*/
+		    	}
+		    	$("#detail7").empty().append(html);
+		    };
+		    
+		   	//查看统计图
+		   	function newWindowTwo(){
+				var value = {
+					dataList:[
+						{name:'涪城区',trash:123,gross:1265,num:150,unitNum:15,dispose:1150,meanHG:68,meanUnit:84.33,},
+						{name:'游仙区',trash:233,gross:1233,num:162,unitNum:28,dispose:1246,meanHG:69,meanUnit:84.33,},
+						{name:'高新区',trash:95,gross:1345,num:152,unitNum:12,dispose:1564,meanHG:56,meanUnit:154,},
+						{name:'经开区',trash:165,gross:1564,num:162,unitNum:13,dispose:1423,meanHG:86,meanUnit:85,},
+						{name:'科创园区',trash:123,gross:1672,num:124,unitNum:15,dispose:1895,meanHG:95,meanUnit:114,},
+						{name:'科学城',trash:152,gross:1568,num:164,unitNum:16,dispose:1643,meanHG:56,meanUnit:95,},
+						{name:'仙海区',trash:185,gross:1234,num:172,unitNum:18,dispose:1562,meanHG:64,meanUnit:85,},	
+					],
+					type:"thisOne",
+				};
+				addCookie('parameter',JSON.stringify(value),1);
+				window.open('statisticalAll.html');
+			}
+		   //单位查看统计图
+		   function newWindowThree(detail1,detail2,detail3,detail4,detail5,detail6){
+		   		console.log(detail1+"\r\n"+detail2+"\r\n"+detail3+"\r\n"+detail4+"\r\n"+detail5+"\r\n"+detail6);
+				var value = {
+					dataList:[
+						{name:detail1,type:detail2,areas:detail3,trash:detail4,gatherNum:detail5,gross:detail6,},
+						/*{name:'游仙区',trash:233,gross:1233,num:162,unitNum:28,dispose:1246,meanHG:69,meanUnit:84.33,},
+						{name:'高新区',trash:95,gross:1345,num:152,unitNum:12,dispose:1564,meanHG:56,meanUnit:154,},
+						{name:'经开区',trash:165,gross:1564,num:162,unitNum:13,dispose:1423,meanHG:86,meanUnit:85,},
+						{name:'科创园区',trash:123,gross:1672,num:124,unitNum:15,dispose:1895,meanHG:95,meanUnit:114,},
+						{name:'科学城',trash:152,gross:1568,num:164,unitNum:16,dispose:1643,meanHG:56,meanUnit:95,},
+						{name:'仙海区',trash:185,gross:1234,num:172,unitNum:18,dispose:1562,meanHG:64,meanUnit:85,},	*/
+					],
+					type:"thisSix",
+				};
+				addCookie('parameter',JSON.stringify(value),1);
+				window.open('statisticalAll.html');
+			}
+		   
+		    
+		    
+		    
+		/*##########################################################################################################################################*/
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) {
+					return unescape(r[2]);
+				} else {
+					return null;
+				}
+			}
+			var seeAreaId = GetQueryString('areaId');
+			var seestart = GetQueryString("starttime");
+			var seeend = GetQueryString("endtime") == '' ? seestart : GetQueryString("endtime");
+			var con = {};
+			con.dateStart = getTime('year');
+			con.dateEnd = '';
+			$('#time_wei').val(con.dateStart + ' 至 ' + con.dateStart);
+			if(seestart) {
+				$('#time_wei').val(seestart + ' 至 ' + seeend);
+			}
+			laydate.render({
+				elem: '#time_wei', //指定元素
+				range: "至",
+				theme: '#167FDB',
+				ready: function(date) {
+					console.log(date); //得到初始的日期时间对象：{ year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+					$('.laydate-btns-clear').css("display", "none")
+				},
+				done: function(date) {
+					date = date.split(' 至 ');
+					// timeChange(date[0],date[1]);
+					con.dateEnd = date[1];
+					con.dateStart = date[0];
+					if(date[1] == date[0]) {
+						con.dateEnd = '';
+					}
+					show(1);
+					getWarnNum();
+					getGroupNum();
+				}
+			});
+			//initTime();
+			//设置条件
+			con.typeVal = 0;
+			//con.date=$('#time').val();
+			con.lth = '';
+			con.num = '';
+			function setCon(c) {
+				con = c;
+			}
+			// 展示数据方法
+			function show(num) {
+
+			}
+			//判断当前选项卡是每日脱岗统计还是每月脱岗统计
+			// if($('.check_head span.active').text()=='每日脱岗统计'){
+			//     var type=0;
+			// }else{
+			//     var type=1;
+			// }
+			//默认页
+			function dPage() {
+				// var con={'typeVal':0,'date':$('#time').val(),'lth':'desc'};
+				setCon(con);
+				console.log('con', con)
+				show(1);
+				return con;
+			}
+			con = dPage();
+			//点击组织结构显示响应内容
+			var t = setInterval(function() {
+				$('#menuTree span').click(function() {
+					con.companyId = tree_conditions.companyId;
+					con.groupId = tree_conditions.groupId;
+					con.areaId = tree_conditions.areaId ? tree_conditions.areaId : seeAreaId;
+					show(1);
+				});
+				if($('#menuTree span').length) {
+					clearInterval(t);
+					// $('span[data-areaid="'+areaId+'"]').click();
+					// $('span[data-areaid="'+areaId+'"]').click();
+					con.dataStart = seestart;
+					con.dataEnd = seeend;
+					$('.area span[data-areaid=' + seeAreaId + ']').click();
+					// 获取数字
+					getWarnNum();
+					getGroupNum();
+
+				}
+			}, 100);
+			// 获取数量
+			function getWarnNum() {
+				// 获取数量
+				// 总数量
+				//$('#menuTree .num').remove();
+				//var totals = 0;
+
+			}
+			//获取小组数量 
+			function getGroupNum() {}
+			//查看详情
+			$('body').on('click', '.detail', function() {
+
+			});
+			// 打开审核模态框
+			var auditOid = auditUserId = auditDate = auditType = '';
+			function openAudit(obj) {
+				auditOid = $(obj).attr('oid');
+				auditUserId = $(obj).attr('userId');
+				auditDate = $(obj).attr('date');
+				auditType = $(obj).attr('otype');
+				console.log(auditOid, auditUserId);
+			}
+			// 加载理由
+			function getReason() {}
+			getReason();
+			// 提交审核
+			function audit() {
+				var commitReason = $('#audit_reason option:selected').text();
+				var commitComment = $('#audit_desc textarea').val();
+				if(cookie.level != 0 || cookie.loginId == 'admin') {
+					bootbox.alert({
+						message: "无权操作！",
+						closeButton: false
+					});
+					return;
+				}
+				
+			}
+			//上传头像
+			function imgPreview1() {
+				var files = this.files;
+				console.log(files);
+				var file = files[0];
+				var reader = new FileReader();
+
+				reader.onload = function() {
+					var result = this.result;
+					document.getElementById('img1').src = result; //img的id 
+					console.log(result);
+				};
+				reader.readAsDataURL(file);
+			}
+			function imgPreview2() {
+
+				var files = this.files;
+				console.log(files);
+				var file = files[0];
+				var reader = new FileReader();
+
+				reader.onload = function() {
+					var result = this.result;
+					document.getElementById('img2').src = result; //img的id 
+					console.log(result);
+				};
+				reader.readAsDataURL(file);
+			}
+			document.getElementById('img-select1').addEventListener('change', imgPreview1);
+			document.getElementById('img-select2').addEventListener('change', imgPreview2);
+			//导出excel文件
+			$('#export').on('click', function() {
+				var arr = [];
+				var name = $('#name').val();
+				var date = $('#time').val();
+				$("tbody [type='checkbox']:checked").each(function() {
+					arr.push(parseInt($(this).val()));
+				});
+				con_ = {
+					"action": "/warning-center/out-of-work-area-export",
+					"page": false,
+					"pageNumber": "",
+					"pageSize": "",
+					"conditions": {
+						"fullName": $("#ename").val(),
+						"dateStart": con.dateStart,
+						"dateEnd": con.dateEnd,
+						/* "companyId":con.companyId,*/
+						"areaId": con.areaId,
+						"groupId": con.groupId,
+						"roleId": con.roleId,
+						"length": "desc",
+						"type": con.typeVal,
+						"id": arr
+					}
+				}
+				checkOut(con_);
+			});
+		</script>
+	</body>
+</html>

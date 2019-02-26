@@ -11,4 +11,3 @@ import com.zlys.collection.entity.User;
 public interface UserService {
     User findByUsername(String username);
 }
-
