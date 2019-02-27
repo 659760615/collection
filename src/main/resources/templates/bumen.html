@@ -819,35 +819,12 @@
 									<img src="../images/close_hover.png" class="right">
 									<img src="../images/file.png"> 绵阳市
 								</span>
-								<div class="area" style="display: block;">
-									<span data-areaid="2" onclick="choose_organ(this)">
-										<img src="../images/file.png">涪城区
+								<div class="area" style="display: block;" >
+                                    <span th:each="area: ${area}">
+                                        <span th:attr="data-areaid=${area.areaName}" onclick="choose_organ(this)">
+										<img src="../images/file.png" th:text="${area.areaName}">
 									</span>
-									<div class="group"></div>
-									<span data-areaid="3" onclick="choose_organ(this)">
-										<img src="../images/file.png">游仙区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="4" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 高新区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="5" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 经开区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="6" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 科创园区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="7" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 科学城
-									</span>
-									<div class="group"></div>
-									<span data-areaid="8" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 仙海区
-									</span>
-									<div class="group"></div>
+                                    </span>
 								</div>
 							</div>
 						</ul>
@@ -891,14 +868,10 @@
                                             <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
                                                 <label class=" control-label">所属区域</label>
                                                 <br>
-                                                <select id="area" class="form-control select_she_bei">
-                                                    <option value="涪城区">涪城区</option>
-                                                    <option value="游仙区">游仙区</option>
-                                                    <option value="高新区">高新区</option>
-                                                    <option value="经开区">经开区</option>
-                                                    <option value="科创区">科创园区</option>
-                                                    <option value="科学城">科学城</option>
-                                                    <option value="仙海区">仙海区</option>
+                                                <select id="area" class="form-control select_she_bei" >
+                                                    <div th:each="area: ${area}">
+                                                        <option th:value="${area.areaName}" th:text="${area.areaName}">涪城区</option>
+                                                    </div>
                                                 </select>
                                                 <br>
                                                 <div></div>
@@ -939,7 +912,7 @@
                             </div>
 
 						</div>
-						<table class="table table-hover">
+						<table class="table table-hover"  id="areabody" th:fragment="areabody" >
 							<thead>
 								<tr>
                                     <th class="text-center dropdown my_word_style">
@@ -954,60 +927,61 @@
 									<th class="text-center dropdown my_word_style" id="role">
 										<div class="dropdown-toggle" type="button" data-toggle="dropdown">
 											部门类型
-											<img src="../images/fa-chevron-down.png">
+											<!--<img src="../images/fa-chevron-down.png">-->
 										</div>
-										<ul class="dropdown-menu " aria-labelledby="dropdownMenu1" style="width:80% ;font-size:12px;margin-left:10%;">
-											<li class="text-center">全部</li>
-											<li style="width:100%;text-align: center;" data-target="#detail" rid="1">收集站</li>
-											<li style="width:100%;text-align: center;" data-target="#detail" rid="2">处理站</li>
-										</ul>
+										<!--<ul class="dropdown-menu " aria-labelledby="dropdownMenu1" style="width:80% ;font-size:12px;margin-left:10%;">-->
+											<!--<li class="text-center">全部</li>-->
+											<!--<li style="width:100%;text-align: center;" data-target="#detail" rid="1">收集站</li>-->
+											<!--<li style="width:100%;text-align: center;" data-target="#detail" rid="2">处理站</li>-->
+										<!--</ul>-->
 									</th>
 									<th class="text-center dropdown my_word_style">
 										地理位置
 									</th>
-									<th class="text-center dropdown my_word_style" id="">查看详情</th>
-									<th class="text-center dropdown my_word_style" id="">编辑信息</th>
+									<th class="text-center dropdown my_word_style" >查看详情</th>
+									<th class="text-center dropdown my_word_style" >编辑信息</th>
 								</tr>
 							</thead>
-							<tbody class="text-center">
-								<tr th:each="dp,dpStat: ${pages.list}">
-									<td th:text="${dpStat.count}"></td>
-                                    <td th:text="${dp.area}"></td>
-									<td th:text="${dp.name}"></td>
-									<td th:if="${dp.type} eq 0">收集站</td>
-                                    <td th:if="${dp.type} eq 1">中转站</td>
-                                    <td th:text="${dp.loc}"></td>
-									<td>
-                                        <input type="hidden" th:value="${dp.id}">
-                                        <a target="_blank" onclick="lookThis(this)" data-toggle="modal" data-target="#detail" >查看</a>
-                                    </td>
-                                    <td><a target="_blank" href="javascript:void(0);">编辑</a></td>
-								</tr>
-							</tbody>
+
+                                <tbody class="text-center" >
+                                    <tr th:each="dp,dpStat: ${pages.list}" >
+                                        <td th:text="${dpStat.count}"></td>
+                                        <td th:text="${dp.area}"></td>
+                                        <td th:text="${dp.name}"></td>
+                                        <td th:if="${dp.type} eq 0">收集站</td>
+                                        <td th:if="${dp.type} eq 1">中转站</td>
+                                        <td th:text="${dp.loc}"></td>
+                                        <td>
+                                            <input type="hidden" th:value="${dp.id}">
+                                            <a target="_blank" onclick="lookThis(this)" data-toggle="modal" data-target="#detail" >查看</a>
+                                        </td>
+                                        <td>
+                                            <input type="hidden" th:value="${dp.id}">
+                                            <a target="_blank" onclick="editThis(this)" data-toggle="modal" data-target="#detai2" >编辑</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
 						</table>
 						<!--分页-->
-						<nav aria-label="Page navigation" class="text-center">
-							<ul class="pagination">
-                                <li><a th:href="@{'system_e?currentPage='+${pages.firstPage}}" >首页</a></li>
-                                <li><a class="next"   th:href="@{'system_e?currentPage=' + ${pages.prePage}}" ><</a></li>
-                                <li><a class="num" th:if="${pages.prePage}-2 > 0" th:text="${pages.prePage}-2" th:href="@{'system_e?currentPage=' + ${pages.prePage-2}}"></a></li>
-                                <li><a class="num" th:if="${pages.prePage}-1 > 0" th:text="${pages.prePage}-1" th:href="@{'system_e?currentPage=' + ${pages.prePage-1}}"></a></li>
-                                <li><a class="num" th:if="${pages.prePage} > 0" th:text="${pages.prePage}" th:href="@{'system_e?currentPage=' + ${pages.prePage}}"></a></li>
-								<li class="active"><a class="curpage" th:text="${pages.prePage}+1"></a></li>
-                                <li><a class="num" th:if="${pages.prePage}+2 <= ${pages.pages}" th:text="${pages.prePage}+2" th:href="@{'system_e?currentPage=' + ${pages.prePage+2}}"></a></li>
-                                <li><a class="num" th:if="${pages.prePage}+3 <= ${pages.pages}" th:text="${pages.prePage}+3" th:href="@{'system_e?currentPage=' + ${pages.prePage+3}}"></a></li>
-                                <li><a class="num" th:if="${pages.prePage}+4 <= ${pages.pages}" th:text="${pages.prePage}+4" th:href="@{'system_e?currentPage=' + ${pages.prePage+4}}"></a></li>
-                                <li><a class="next" th:href="@{'system_e?currentPage=' + ${pages.nextPage}}" th:if="${pages.hasNextPage} == true">></a></li>
-                                <li><a th:href="@{'system_e?currentPage='+${pages.lastPage}}" > 尾页</a>
-                                <li><a class="next" th:text="'共 '+ ${pages.pages}+ ' 页'"></a>
-							</ul>
-						</nav>
-
-					</div>
+                            <nav aria-label="Page navigation" class="text-center">
+                                <ul class="pagination" id="pageHelper">
+                                    <li><a th:href="@{'system_e?queryByArea='+${pages.firstPage}}" >首页</a></li>
+                                    <li><a class="num" th:if="${pages.prePage}-2 > 0" th:text="${pages.prePage}-2" th:href="@{'system_e?currentPage=' + ${pages.prePage-2}}"></a></li>
+                                    <li><a class="num" th:if="${pages.prePage}-1 > 0" th:text="${pages.prePage}-1" th:href="@{'system_e?currentPage=' + ${pages.prePage-1}}"></a></li>
+                                    <li><a class="num" th:if="${pages.prePage} > 0" th:text="${pages.prePage}" th:href="@{'system_e?currentPage=' + ${pages.prePage}}"></a></li>
+                                    <li class="active"><a class="curpage" th:text="${pages.prePage}+1"></a></li>
+                                    <li><a class="num" th:if="${pages.prePage}+2 <= ${pages.pages}" th:text="${pages.prePage}+2" th:href="@{'system_e?currentPage=' + ${pages.prePage+2}}"></a></li>
+                                    <li><a class="num" th:if="${pages.prePage}+3 <= ${pages.pages}" th:text="${pages.prePage}+3" th:href="@{'system_e?currentPage=' + ${pages.prePage+3}}"></a></li>
+                                    <li><a class="num" th:if="${pages.prePage}+4 <= ${pages.pages}" th:text="${pages.prePage}+4" th:href="@{'system_e?currentPage=' + ${pages.prePage+4}}"></a></li>
+                                    <li><a th:href="@{'system_e?currentPage='+${pages.lastPage}}" > 尾页</a>
+                                    <li><a class="next" th:text="'共 '+ ${pages.pages}+ ' 页'"></a>
+                                </ul>
+                            </nav>
+                        </div>
 				</div>
 			</div>
 
-			<!-- 脱岗 违规 模态框 详情-->
+			<!-- 查看详情-->
 			<div class="modal fade in " id="detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none;">
 				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content mobody ">
@@ -1058,146 +1032,84 @@
 				</div>
 			</div>
 		</div>
-		<!-- 审核 -->
-		<div class="modal fade in " id="commitAudit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none;">
-			<div class="modal-dialog modal-md" role="document">
-				<div class="modal-content mobody ">
-					<div class="modal-header">
-						<button type="button" class="close " data-dismiss="modal" aria-hidden="true">×</button>
-						<h4 class="modal-title text-center" id="myModalLabel">查看详情</h4>
-					</div>
 
-					<div class="over form-horizontal">
-						<br><br>
-						<div class="form-group">
-							<label for="email" class="col-xs-3 control-label">提交说明</label>
-							<div class="col-xs-5 form-control-static" id="commitComment_">
+        <!--编辑模态框-->
+        <div class="modal fade" id="detai2" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal_width" role="document">
+                <!--宽高修改-->
+                <div class="modal-content modal_width" style="height:550px">
+                    <div class="modal-header">
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h5 class="modal-title text-center" id="myModalLabe" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">新增部门</h5>
+                    </div>
+                    <div class="modal-body over" style="margin-top:0px;">
+                        <input type="hidden" id="editid"/>
+                        <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                            <label class="control-label">部门名称</label><br>
+                            <input id="editname" type="text" class="form-control">
+                            <br>
+                            <div></div>
+                        </div>
 
-							</div>
-						</div>
+                        <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+                            <label class=" control-label">部门类型</label>
+                            <br>
+                            <select id="edittype" class="form-control select_she_bei">
+                                    <option value="0">收集站</option>
+                                    <option value="1">处理站</option>
+                            </select>
+                            <br>
+                            <div></div>
+                        </div>
 
-						<div class="form-group">
-							<label for="email" class="col-xs-3 control-label">审核意见</label>
-							<div class="col-xs-5">
-								<textarea name="" id="handleComment_" cols="10" class="form-control" rows="5"></textarea>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer" style="border:0;width:80%;margin:0 auto">
-						<p class="col-xs-10 col-xs-offset-1">
-							<button type="button" class="btn btn_blue btn-block" onclick="update_audit(2)">确认违规</button>
-						</p>
-						<p class="col-xs-10 col-xs-offset-1">
-							<button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="color: #333;line-height: 100%;" onclick="update_audit(3)">通过审核</button>
-						</p>
-					</div>
+                        <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+                            <label class=" control-label">所属区域</label>
+                            <br>
+                            <select id="editarea" class="form-control select_she_bei" >
+                                <div th:each="area: ${area}">
+                                    <option th:value="${area.areaName}" th:text="${area.areaName}">涪城区</option>
+                                </div>
+                            </select>
+                            <br>
+                            <div></div>
+                        </div>
 
-				</div>
-			</div>
-		</div>
+                        <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                            <label class="control-label">地理位置</label><br>
+                            <input id="editloc" type="text" class="form-control">
+                            <br>
+                            <div></div>
+                        </div>
 
-		<!-- 设置规则模态框 -->
-		<div class="modal fade" id="reasonn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document" style="width:640px">
-				<div class="modal-content">
-					<div class="modal-header">
-						<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-						<h5 class="modal-title text-center" id="myModalLabel" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">审核理由</h5>
-					</div>
-					<div class="modal-body" style="padding-top:0;margin-top:14px;opacity:0.8;">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th class="text-center">理由</th>
-									<th class="text-center">操作</th>
-								</tr>
-							</thead>
-							<tbody class="text-center" id="reason_lists">
-								<tr>
-									<td>休假</td>
-									<td>
-										<a href="examine.html#" onclick="delReason(this)" id="12">删除</a>
-									</td>
-								</tr>
-								<tr>
-									<td>早餐时间</td>
-									<td>
-										<a href="examine.html#" onclick="delReason(this)" id="11">删除</a>
-									</td>
-								</tr>
-								<tr>
-									<td>特殊事件</td>
-									<td>
-										<a href="examine.html#" onclick="delReason(this)" id="9">删除</a>
-									</td>
-								</tr>
-								<tr>
-									<td>手环检测</td>
-									<td>
-										<a href="examine.html#" onclick="delReason(this)" id="8">删除</a>
-									</td>
-								</tr>
-								<tr>
-									<td>还班</td>
-									<td>
-										<a href="examine.html#" onclick="delReason(this)" id="7">删除</a>
-									</td>
-								</tr>
-								<tr>
-									<td>突击任务</td>
-									<td>
-										<a href="examine.html#" onclick="delReason(this)" id="6">删除</a>
-									</td>
-								</tr>
-								<tr>
-									<td>借调</td>
-									<td>
-										<a href="examine.html#" onclick="delReason(this)" id="5">删除</a>
-									</td>
-								</tr>
-								<tr>
-									<td>请假</td>
-									<td>
-										<a href="examine.html#" onclick="delReason(this)" id="4">删除</a>
-									</td>
-								</tr>
-								<tr>
-									<td>下雨</td>
-									<td>
-										<a href="examine.html#" onclick="delReason(this)" id="2">删除</a>
-									</td>
-								</tr>
-								<tr>
-									<td>顶班</td>
-									<td>
-										<a href="examine.html#" onclick="delReason(this)" id="1">删除</a>
-									</td>
-								</tr>
-								<tr>
-									<td><input type="text" id="reason" class="form-control"></td>
-									<td>
-										<a href="examine.html#" onclick="addReason()" style="line-height: 32px;">添加</a>
-									</td>
-								</tr>
-							</tbody>
+                        <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                            <label class="control-label">负责人</label><br>
+                            <input id="editpeople" type="text" class="form-control">
+                            <br>
+                            <div></div>
+                        </div>
 
-						</table>
+                        <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                            <label class="control-label">负责人电话</label><br>
+                            <input id="editphone" type="text" class="form-control">
+                            <br>
+                            <div></div>
+                        </div>
 
-					</div>
-					<div class="modal-footer" style="border:0;margin-top:15px;">
-						<p class="col-xs-10 col-xs-offset-1">
-							<button type="button" class="btn btn_nor btn-block btn_blue setRule" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">确认</button>
-						</p>
-						<p class="col-xs-10 col-xs-offset-1" style="margin-top: 10px;margin-top:5px">
-							<button type="button" class="btn btn_nor btn-block btn-default" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;border:none;color: #333;">取消</button>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
+                    </div>
+                    <div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:-10px">
+                        <p class="col-xs-10 col-xs-offset-1">
+                            <button type="button" id="editBtn" class="btn btn_blue btn-block" data-dismiss="modal">确认</button>
+                        </p>
+                        <p class="col-xs-10 col-xs-offset-1">
+                            <button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">取消</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
 		<script src="../js/selectCard.js"></script>
 		<script type="application/javascript">
-			/**  **/
+
 			function choose_organ(obj){
 				$("#menuTree span").removeClass('active').find('.right').attr('src','../images/close.png');
 				$(obj).addClass('active');
@@ -1207,33 +1119,17 @@
 			    tree_conditions.blocId = $(obj).attr('data-blocId')?$(obj).attr('data-blocId'):'';
 			    tree_conditions.companyId = $(obj).attr('data-companyId')?$(obj).attr('data-companyId'):'';
 			    tree_conditions.areaId = $(obj).attr('data-areaId')?$(obj).attr('data-areaId'):'';
-			    tree_conditions.groupId = $(obj).attr('data-groupId')?$(obj).attr('data-groupId'):''; 
+			    tree_conditions.groupId = $(obj).attr('data-groupId')?$(obj).attr('data-groupId'):'';
 				var that = $(obj);
-				var id = that.attr('data-areaid');
-				//alert(id);
-				if(id == '2'){
-					//alert('2');
-				}else if(id == '3'){
-					//alert('3');
-				}else if(id == '4'){
-					//alert('4');
-				}else if(id == '5'){
-					//alert('5');
-				}else if(id == '6'){
-					//alert('6');
-				}else if(id == '7'){
-					//alert('7');
-				}else if(id == '8'){
-					//alert('8');
-				}else if(id == '9'){
-					//alert('9');
-				}else if(id == '10'){
-					//alert('10');
-				}
+				var areaName = that.attr('data-areaid');
+                if(areaName != null){
+                    $('#areabody').load("/department/queryByArea?area="+areaName);
+                }
+                $("#pageHelper li").remove();
 			};
 		</script>
     <script>
-        /*czx*/
+        /*新增*/
         $("#addBtn").click(function(event){
 
             var name=$("#name").val();
@@ -1252,9 +1148,9 @@
                     if(obj == 'success'){
                         bootbox.alert({
                             message: '新增成功',
-                            closeButton: false
+                            closeButton: false,
                         });
-                        window.location.href="/system_e";
+                        window.location.href="/department/system_e";
                     }else{
                         bootbox.alert({
                             message: '录入信息错误',
@@ -1264,8 +1160,38 @@
                 }
             })
         });
+        /*编辑确认*/
+        $("#editBtn").click(function(event){
+            var id=$("#editid").val();
+            var name=$("#editname").val();
+            var de_type=$.trim($("#edittype").val());
+            var area=$.trim($("#editarea").val());
+            var loc=$.trim($("#editloc").val());
+            var people=$.trim($("#editpeople").val());
+            var phone=$.trim($("#editphone").val());
 
-        /*模态框传值*/
+            $.ajax({
+                url: '/department/edit',
+                data: {'name': name, 'deType': de_type,'area':area,'loc':loc,'phone':phone,'people':people,'id':id},
+                type: 'post',
+                dateType: 'json',
+                success: function (obj) {
+                    if(obj == 'success'){
+                        bootbox.alert({
+                            message: '修改成功!',
+                            closeButton: false,
+                        });
+                    }else{
+                        bootbox.alert({
+                            message: '修改失败',
+                            closeButton: false
+                        });
+                    }
+                }
+            })
+        });
+
+        /*新增部门模态框传值*/
         function lookThis(obj) {
             const id = $(obj).prev().val();
             $.ajax({
@@ -1291,9 +1217,33 @@
             })
         }
 
+        /*编辑部门模态框传值*/
+        function editThis(obj) {
+            const id = $(obj).prev().val();
+            $.ajax({
+                url: '/department/queryById',
+                data: {'id':id},
+                type: 'post',
+                dateType: 'json',
+                success: function (obj) {
+                    $("#editarea").val(obj.area);
+                    $("#editname").val(obj.name);
+                    if(obj.type == 0){
+                        $("#edittype").val(obj.type);
+                    }
+                    if(obj.type == 1){
+                        $("#edittype").val(obj.type);
+                    }
+                    $("#editloc").val(obj.loc);
+                    $("#editpeople").val(obj.people);
+                    $("#editphone").val(obj.phone);
+                    $("#editid").val(obj.id);
+                }
+            })
+        }
+
         function formatDate(time){
             var date = new Date(time);
-
             var year = date.getFullYear(),
                 month = date.getMonth() + 1,//月份是从0开始的
                 day = date.getDate(),

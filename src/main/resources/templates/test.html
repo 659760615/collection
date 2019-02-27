@@ -1,51 +1,37 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="icon" type="image/x-icon" href="../faviconok.ico">
+    <title>thymeleaf局部刷新</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 </head>
 <body>
-    <h1>test</h1>
+<div>
+    <span style="margin:0 auto;font-size: 26px" th:text="${refresh}"></span>
+    <button onClick="localRefresh()">点击刷新表格</button>
+</div>
 
-    <li class="active">
-
-
-        <ul class="nav_h">
-            <li class=""><a href="/zlys/commond">指挥中心</a></li>
-            <li class=""><a href="/common/check">考核中心</a></li>
-            <li class=""><a href="/common/unusual">预警中心</a></li>
-            <li class="active"><a href="/common/system_a">系统管理</a></li>
-            <li class=""><a href="/common/examine">监控中心</a></li>
-            <li class=""><a href="/common/tongjiindex">统计中心</a></li>
-        </ul>
-
-
-        <div class="btns_nav">
-
-        <ul style="display:inline">
-            <li class="active ">
-                <a href="/common/system_a" class=""></a>
-            </li>
-            <li class=" ">
-                <a href="/common/system_b" class=""></a>
-            </li>
-            <li class=" ">
-                <a href="/common/system_c" class=""></a>
-            </li>
-            <li class=" ">
-                <a href="/common/system_d" class=""></a>
-            </li>
-            <li class=" ">
-                <a href="/department/systme_e" class=""></a>
-            </li>
-            <li class=" ">
-                <a href="/common/system_g" class=""></a>
-            </li>
-            <li class=" ">
-                <a href="/common/system_h" class=""></a>
-            </li>
-        </ul>
+<!-- 需要局部刷新的部分，设置了th:fragment="table_refresh" -->
+<div id="table_refresh" style="text-align: center;margin:0 auto;width: 900px" th:fragment="table_refresh">
+    <h1 th:text="${title}"></h1>
+    <table width="100%" border="1" cellspacing="1" cellpadding="0">
+        <tr>
+            <td style="color: #0F4FFC">Author</td>
+            <td>Book</td>
+            <td>Url</td>
+        </tr>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.url}"></td>
+        </tr>
+    </table>
+</div>
 </body>
+<script>
+    function localRefresh() {
+        // 装载局部刷新返回的页面
+        $('#table_refresh').load("/test/local");
+    }
+</script>
 </html>
