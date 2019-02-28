@@ -196,7 +196,10 @@ public class DepartmentController {
         DepartmentEntity departmentEntity=new DepartmentEntity();
         departmentEntity.setUsername(username);
         DepartmentEntity departmentEntityNew= departmentService.queryDepartmentLimitOne(departmentEntity);
-        return departmentEntityNew.getName();
+        if(departmentEntityNew != null){
+            return  departmentEntity.getName();
+        }
+        return null;
     }
 
 }
