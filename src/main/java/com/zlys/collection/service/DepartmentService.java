@@ -7,7 +7,7 @@ import com.zlys.collection.entity.DepartmentEntity;
 /**
  * @Description:
  * @author czx
- * @date: 2019-02-26 15:21:11
+ * @date: 2019-02-28 09:58:30
  */
 @Service
 public interface DepartmentService {
@@ -22,12 +22,12 @@ public interface DepartmentService {
 
 	List<DepartmentEntity> queryAll();
 
-	DepartmentEntity queryDepartmentById (Integer id);
+	DepartmentEntity queryDepartmentById(Integer id);
 	
-	List<DepartmentEntity> queryDepartmentByIds (List<Integer> ids);
+	List<DepartmentEntity> queryDepartmentByIds(List<Integer> ids);
 	
-	boolean updateDepartmentById (DepartmentEntity entity);
+	boolean updateDepartmentById(DepartmentEntity entity);
 	
-	boolean deleteDepartmentById (Integer id);
+	boolean deleteDepartmentById(Integer id);
 
 }

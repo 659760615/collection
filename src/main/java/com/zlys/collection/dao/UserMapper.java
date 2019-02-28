@@ -2,8 +2,7 @@ package com.zlys.collection.dao;
 
 
 import com.zlys.collection.entity.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,5 +13,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface UserMapper {
+
     User findByUsername(@Param("username") String username);
+
+    @Insert("insert into user( username , password ) values(#{username}, #{password})")
+    Integer insert(@Param("username") String username,@Param("password") String password);
+
+    @Select("select uid from user where username = #{username}")
+    Integer selectByUsername(String username);
+
+    @Update("update user set password = #{password} WHERE username = #{username} ")
+    Integer  update(@Param("username") String username,@Param("password") String password);
 }

@@ -11,7 +11,7 @@ import com.zlys.collection.entity.DepartmentEntity;
 /**
  * @Description:
  * @author czx
- * @date: 2019-02-26 15:21:11
+ * @date: 2019-02-28 09:58:30
  */
 @Repository
 @Mapper
@@ -27,12 +27,12 @@ public interface DepartmentMapper {
 
 	List<DepartmentEntity> queryAll();
 	
-	DepartmentEntity queryById (@Param("id") Integer id);
+	DepartmentEntity queryById(@Param("id") Integer id);
 
 	List<DepartmentEntity> queryByIds(@Param("keys") List<Integer> ids);
 	
-	int updateDepartmentById (DepartmentEntity entity);
+	int updateDepartmentById(DepartmentEntity entity);
 	
-	int deleteDepartmentById (@Param("id") Integer id);
+	int deleteDepartmentById(@Param("id") Integer id);
 	
 }

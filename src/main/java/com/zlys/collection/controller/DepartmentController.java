@@ -4,8 +4,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zlys.collection.entity.DepartmentArea;
 import com.zlys.collection.entity.DepartmentEntity;
+import com.zlys.collection.entity.User;
 import com.zlys.collection.service.DepartmentAreaService;
 import com.zlys.collection.service.DepartmentService;
+import com.zlys.collection.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,9 @@ public class DepartmentController {
     @Autowired
     private DepartmentAreaService departmentAreaService;
 
+    @Autowired
+    private UserService userService;
+
     /**
      * @desc: 系统管理_部门管理 view
      * @param:
@@ -62,9 +67,9 @@ public class DepartmentController {
      */
     @RequestMapping("insert")
     @ResponseBody
-    public String insertDepartment(String name, Integer deType, String area, String loc, String phone, String people) {
-        if(name == null || deType == null || area ==null || loc== null || people == null || phone == null ||
-        name == "" || area == "" ||  loc== ""  || people == "" || phone == ""){
+    public String insertDepartment(String name, Integer deType, String area, String loc, String phone, String people,String username,String password) {
+        if(name == null || deType == null || area ==null || loc== null || people == null || phone == null || username == null ||
+        name == "" || area == "" ||  loc== ""  || people == "" || phone == "" || password =="" ){
             logger.info("新增部门信息失败!");
             return "error";
         }
@@ -77,8 +82,9 @@ public class DepartmentController {
         departmentEntity.setLoc(loc);
         departmentEntity.setPhone(phone);
         departmentEntity.setPeople(people);
+        departmentEntity.setUsername(username);
+        departmentEntity.setPassword(password);
         departmentService.insertDepartment(departmentEntity);
-        logger.info("新增部门信息suucess!");
         return "success";
     }
      /**
@@ -121,9 +127,9 @@ public class DepartmentController {
      */
     @RequestMapping("edit")
     @ResponseBody
-    public String editDepartment(String name, Integer deType, String area, String loc, String phone, String people,String id) {
-        if(name == null || deType == null || area ==null || loc== null || people == null || phone == null || id == null
-            || name == "" || area == "" ||  loc== ""  || people == "" || phone == "" || id == ""){
+    public String editDepartment(String name, Integer deType, String area, String loc, String phone, String people,String id,String username,String password) {
+        if(name == null || deType == null || area ==null || loc== null || people == null || phone == null || id == null || username == null || password == null
+            || name == "" || area == "" ||  loc== ""  || people == "" || phone == "" || id == "" || username == "" || password == ""  ){
             logger.info("修改部门信息失败!");
             return "error";
         }
@@ -136,8 +142,9 @@ public class DepartmentController {
         departmentEntity.setLoc(loc);
         departmentEntity.setPhone(phone);
         departmentEntity.setPeople(people);
+        departmentEntity.setUsername(username);
+        departmentEntity.setPassword(password);
         departmentService.updateDepartmentById(departmentEntity);
-        logger.info("修改部门信息suucess!");
         return "success";
     }
 

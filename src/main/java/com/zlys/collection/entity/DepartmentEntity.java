@@ -6,8 +6,9 @@ import lombok.Data;
 
 /**
  * Description: 部门表
+ *
  * @author czx
- * @date: 2019-02-26 15:21:11
+ * @date: 2019-02-28 09:58:30
  */
 @Data
 public class DepartmentEntity implements Serializable {
@@ -34,6 +35,12 @@ public class DepartmentEntity implements Serializable {
 	
 	/**负责人电话*/
 	private String phone;
+	
+	/**部门登录账户*/
+	private String username;
+	
+	/**部门登录密码*/
+	private String password;
 	
 	/**创建时间*/
 	private Date createdtime;

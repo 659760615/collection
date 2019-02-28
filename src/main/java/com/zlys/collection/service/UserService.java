@@ -10,4 +10,8 @@ import com.zlys.collection.entity.User;
  **/
 public interface UserService {
     User findByUsername(String username);
+
+    Integer insert(String username,String  password);
+
+    Integer selectByUsername(String username);
 }

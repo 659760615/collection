@@ -2118,72 +2118,65 @@
 			<div class="modal fade" id="add" tabindex="-1" role="dialog">
 				<div class="modal-dialog modal_width" role="document">
 					<!--宽高修改-->
-					<div class="modal-content modal_width" style="height:500px">
+					<div class="modal-content modal_width" style="height:550px">
 						<div class="modal-header">
-							<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
 							<h5 class="modal-title text-center" id="myModalLabe" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">新增司机</h5>
 						</div>
 						<div class="modal-body over" style="margin-top:0px;">
 							<div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
 								<label class="control-label">司机姓名</label><br>
-								<input id="rName" type="text" class="form-control">
+								<input id="dname" type="text" class="form-control">
 								<br>
 								<div></div>
 							</div>
-
                             <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
                                 <label class="control-label">身份证号</label><br>
-                                <input id="r" type="text" class="form-control">
+                                <input id="didcard" type="text" class="form-control">
                                 <br>
                                 <div></div>
                             </div>
-
 							<div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
 								<label class=" control-label">性别</label>
 								<br>
-								<select id="leavel" class="form-control select_she_bei">
+								<select  class="form-control select_she_bei" id="dsex">
 									<option value="0">男</option>
 									<option value="1">女</option>
 								</select>
 								<br>
 								<div></div>
 							</div>
-
                             <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
-                                <label class=" control-label">性别</label>
+                                <label class=" control-label">类别</label>
                                 <br>
-                                <select id="leave2" class="form-control select_she_bei">
+                                <select  class="form-control select_she_bei" id="dtype">
                                     <option value="0">转运司机</option>
                                     <option value="1">收运司机</option>
                                 </select>
                                 <br>
                                 <div></div>
                             </div>
-
                             <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
                                 <label class=" control-label">所属部门</label>
                                 <br>
-                                <select id="leave3" class="form-control select_she_bei">
+                                <select  class="form-control select_she_bei" id="ddepartment">
                                     <option value="0">测试部门1</option>
                                     <option value="1">测试部门2</option>
                                 </select>
                                 <br>
                                 <div></div>
                             </div>
-
-							<!-- <div class="box_position">
-        		<p >角色头像:</p>
-        		                <br>
-        		               	<img src="http://up.qqjia.com/z/18/tu20464_2.jpg" style="margin-left:184px" width="80" height="80" >
-        						<br>
-        						<p class="text-center change_click">修改角色头像</p>
-        	</div> -->
-
-							<!--调用本地文件-->
-							<input type="file" style="visibility:hidden;" class="open_file">
-
+                            <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+                                <label class=" control-label">考核项</label>
+                                <br>
+                                <select  class="form-control select_she_bei" id="dcheck">
+                                    <option value="0">测试部门1</option>
+                                    <option value="1">测试部门2</option>
+                                </select>
+                                <br>
+                                <div></div>
+                            </div>
 						</div>
-						<div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:-35px">
+						<div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:-15px">
 							<p class="col-xs-10 col-xs-offset-1">
 								<button type="button" id="addBtn" class="btn btn_blue btn-block" data-dismiss="modal">确认</button>
 							</p>

@@ -27,5 +27,5 @@ public interface DepartmentAreaMapper {
             "department_area.area_number areaName\n" +
             "FROM\n" +
             "department_area\n")
-    public List<DepartmentArea> findAll();
+    List<DepartmentArea> findAll();
 }

@@ -103,7 +103,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="login.html">退出</a>
+									<a href="/zlys/logout">退出</a>
 								</li>
 							</ul>
 						</div>
@@ -840,7 +840,7 @@
                             <div class="modal fade" id="add" tabindex="-1" role="dialog">
                                 <div class="modal-dialog modal_width" role="document">
                                     <!--宽高修改-->
-                                    <div class="modal-content modal_width" style="height:550px">
+                                    <div class="modal-content modal_width" style="height:690px">
                                         <div class="modal-header">
                                             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
                                             <h5 class="modal-title text-center" id="myModalLabe" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">新增部门</h5>
@@ -894,6 +894,18 @@
                                             <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
                                                 <label class="control-label">负责人电话</label><br>
                                                 <input id="phone" type="text" class="form-control">
+                                                <br>
+                                                <div></div>
+                                            </div>
+                                            <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                                                <label class="control-label">设置用户名</label><br>
+                                                <input id="username" type="text" class="form-control">
+                                                <br>
+                                                <div></div>
+                                            </div>
+                                            <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                                                <label class="control-label">设置密码</label><br>
+                                                <input id="password" type="text" class="form-control">
                                                 <br>
                                                 <div></div>
                                             </div>
@@ -1021,6 +1033,16 @@
 								<div class="col-xs-6 form-control-static" id="detail6">
 								</div>
 							</div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-3">用户名：</label>
+                                <div class="col-xs-6 form-control-static" id="detail8">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-3">密码：</label>
+                                <div class="col-xs-6 form-control-static" id="detail9">
+                                </div>
+                            </div>
 							<div class="form-group">
 								<label class="control-label col-xs-3">最进修改时间：</label>
 								<div class="col-xs-6 form-control-static" id="detail7">
@@ -1037,7 +1059,7 @@
         <div class="modal fade" id="detai2" tabindex="-1" role="dialog">
             <div class="modal-dialog modal_width" role="document">
                 <!--宽高修改-->
-                <div class="modal-content modal_width" style="height:550px">
+                <div class="modal-content modal_width" style="height:695px">
                     <div class="modal-header">
                         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
                         <h5 class="modal-title text-center" id="myModalLabe" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">新增部门</h5>
@@ -1094,9 +1116,15 @@
                             <br>
                             <div></div>
                         </div>
-
+                        <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                            <label class="control-label">密码</label><br>
+                            <input id="editpassword" type="text" class="form-control">
+                            <br>
+                            <div></div>
+                        </div>
+                        <input id="editusername" type="hidden">
                     </div>
-                    <div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:-10px">
+                    <div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:-15px">
                         <p class="col-xs-10 col-xs-offset-1">
                             <button type="button" id="editBtn" class="btn btn_blue btn-block" data-dismiss="modal">确认</button>
                         </p>
@@ -1138,10 +1166,12 @@
             var loc=$.trim($("#loc").val());
             var people=$.trim($("#people").val());
             var phone=$.trim($("#phone").val());
+            var username=$.trim($("#username").val());
+            var password=$.trim($("#password").val());
 
             $.ajax({
                 url: '/department/insert',
-                data: {'name': name, 'deType': de_type,'area':area,'loc':loc,'phone':phone,'people':people},
+                data: {'name': name, 'deType': de_type,'area':area,'loc':loc,'phone':phone,'people':people,'username':username,'password':password},
                 type: 'post',
                 dateType: 'json',
                 success: function (obj) {
@@ -1169,10 +1199,12 @@
             var loc=$.trim($("#editloc").val());
             var people=$.trim($("#editpeople").val());
             var phone=$.trim($("#editphone").val());
+            var username=$.trim($("#editusername").val());
+            var password=$.trim($("#editpassword").val());
 
             $.ajax({
                 url: '/department/edit',
-                data: {'name': name, 'deType': de_type,'area':area,'loc':loc,'phone':phone,'people':people,'id':id},
+                data: {'name': name, 'deType': de_type,'area':area,'loc':loc,'phone':phone,'people':people,'id':id,'username':username,'password':password},
                 type: 'post',
                 dateType: 'json',
                 success: function (obj) {
@@ -1191,7 +1223,7 @@
             })
         });
 
-        /*新增部门模态框传值*/
+        /*查看部门模态框传值*/
         function lookThis(obj) {
             const id = $(obj).prev().val();
             $.ajax({
@@ -1213,6 +1245,8 @@
                     $("#detail6").text(obj.phone);
                     var newDate=formatDate(obj.updatetime);
                     $("#detail7").text(newDate);
+                    $("#detail8").text(obj.username);
+                    $("#detail9").text(obj.password);
                 }
             })
         }
@@ -1238,6 +1272,8 @@
                     $("#editpeople").val(obj.people);
                     $("#editphone").val(obj.phone);
                     $("#editid").val(obj.id);
+                    $("#editusername").val(obj.username);
+                    $("#editpassword").val(obj.password);
                 }
             })
         }
