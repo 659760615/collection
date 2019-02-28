@@ -7,7 +7,6 @@ import com.zlys.collection.entity.DepartmentEntity;
 import com.zlys.collection.entity.User;
 import com.zlys.collection.service.DepartmentAreaService;
 import com.zlys.collection.service.DepartmentService;
-import com.zlys.collection.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,13 +54,13 @@ public class DepartmentController {
         List<DepartmentArea> departmentAreas = new ArrayList<>();
         /*admin  zkmt*/
         if(departmentName == null){
-            departmentAreas=departmentAreaService.findAll();
-            List<DepartmentEntity> list=departmentService.queryAll();
-            model.addAttribute("area",departmentAreas);
             /*分页*/
-            PageHelper.startPage(currentPage,8);
+            PageHelper.startPage(currentPage,3);
+            List<DepartmentEntity> list=departmentService.queryAll();
             PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
             model.addAttribute("pages",pageInfo);
+            departmentAreas=departmentAreaService.findAll();
+            model.addAttribute("area",departmentAreas);
         }else{
             /*left下拉区域信息   departmentAreas*/
             DepartmentArea departmentArea=new DepartmentArea();
@@ -78,7 +77,7 @@ public class DepartmentController {
             List<DepartmentEntity> list=departmentService.queryByCond(departmentEntityNew);
             model.addAttribute("area",departmentAreas);
             /*分页*/
-            PageHelper.startPage(currentPage,8);
+            PageHelper.startPage(currentPage,3);
             PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
             model.addAttribute("pages",pageInfo);
         }
@@ -135,20 +134,24 @@ public class DepartmentController {
     @RequestMapping("queryByArea")
     public String queryById1(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage,String area,Model model,HttpSession session){
         String departmentName = user(session);
+        PageHelper.startPage(currentPage,3);
+        DepartmentEntity departmentEntity=new DepartmentEntity();
+        List<DepartmentEntity> list=new LinkedList<DepartmentEntity>();
         if(departmentName == null){
-            List<DepartmentEntity> list=departmentService.queryAll();
-            /*分页*/
-            PageHelper.startPage(currentPage,8);
-            PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
-            model.addAttribute("pages",pageInfo);
-        }else{
-            DepartmentEntity departmentEntityNew=new DepartmentEntity();
-            departmentEntityNew.setName(departmentName);
-            List<DepartmentEntity> list=departmentService.queryByCond(departmentEntityNew);
-            PageHelper.startPage(currentPage,8);
-            PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
-            model.addAttribute("pages",pageInfo);
+            /*根据区域查询*/
+            if(area != null){
+                departmentEntity.setArea(area);
+                list=departmentService.queryByCond(departmentEntity);
+            }else {
+                list=departmentService.queryAll();
+            }
+        }else {
+            /*根据部门名称查询*/
+            departmentEntity.setName(departmentName);
         }
+        /*分页*/
+        PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
+        model.addAttribute("pages",pageInfo);
         return "bumen :: areabody";
     }
 

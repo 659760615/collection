@@ -17,6 +17,9 @@
 		<script src="../js/bootbox.min.js"></script>
 		<script src="../js/common.js"></script>
 		<link rel="stylesheet" href="../css/laydate.css" id="layuicss-laydate">
+        <!--page-->
+        <link rel="stylesheet"  href="../css/zxf_page.css"/>
+        <script  src="../js/zxf_page.js"></script>
 	</head>
 	<body style="">
 		<nav class=" navbar-static-top">
@@ -975,20 +978,33 @@
                                 </tbody>
 						</table>
 						<!--分页-->
-                            <nav aria-label="Page navigation" class="text-center">
-                                <ul class="pagination" id="pageHelper">
-                                    <li><a th:href="@{'system_e?queryByArea='+${pages.firstPage}}" >首页</a></li>
-                                    <li><a class="num" th:if="${pages.prePage}-2 > 0" th:text="${pages.prePage}-2" th:href="@{'system_e?currentPage=' + ${pages.prePage-2}}"></a></li>
-                                    <li><a class="num" th:if="${pages.prePage}-1 > 0" th:text="${pages.prePage}-1" th:href="@{'system_e?currentPage=' + ${pages.prePage-1}}"></a></li>
-                                    <li><a class="num" th:if="${pages.prePage} > 0" th:text="${pages.prePage}" th:href="@{'system_e?currentPage=' + ${pages.prePage}}"></a></li>
-                                    <li class="active"><a class="curpage" th:text="${pages.prePage}+1"></a></li>
-                                    <li><a class="num" th:if="${pages.prePage}+2 <= ${pages.pages}" th:text="${pages.prePage}+2" th:href="@{'system_e?currentPage=' + ${pages.prePage+2}}"></a></li>
-                                    <li><a class="num" th:if="${pages.prePage}+3 <= ${pages.pages}" th:text="${pages.prePage}+3" th:href="@{'system_e?currentPage=' + ${pages.prePage+3}}"></a></li>
-                                    <li><a class="num" th:if="${pages.prePage}+4 <= ${pages.pages}" th:text="${pages.prePage}+4" th:href="@{'system_e?currentPage=' + ${pages.prePage+4}}"></a></li>
-                                    <li><a th:href="@{'system_e?currentPage='+${pages.lastPage}}" > 尾页</a>
-                                    <li><a class="next" th:text="'共 '+ ${pages.pages}+ ' 页'"></a>
-                                </ul>
-                            </nav>
+                            <!--<nav aria-label="Page navigation" class="text-center">-->
+                                <!--<ul class="pagination" id="pageHelper">-->
+                                    <!--<li><a th:href="@{'system_e?queryByArea='+${pages.firstPage}}" >首页</a></li>-->
+                                    <!--<li><a class="num" th:if="${pages.prePage}-2 > 0" th:text="${pages.prePage}-2" th:href="@{'system_e?currentPage=' + ${pages.prePage-2}}"></a></li>-->
+                                    <!--<li><a class="num" th:if="${pages.prePage}-1 > 0" th:text="${pages.prePage}-1" th:href="@{'system_e?currentPage=' + ${pages.prePage-1}}"></a></li>-->
+                                    <!--<li><a class="num" th:if="${pages.prePage} > 0" th:text="${pages.prePage}" th:href="@{'system_e?currentPage=' + ${pages.prePage}}"></a></li>-->
+                                    <!--<li class="active"><a class="curpage" th:text="${pages.prePage}+1"></a></li>-->
+                                    <!--<li><a class="num" th:if="${pages.prePage}+2 <= ${pages.pages}" th:text="${pages.prePage}+2" th:href="@{'system_e?currentPage=' + ${pages.prePage+2}}"></a></li>-->
+                                    <!--<li><a class="num" th:if="${pages.prePage}+3 <= ${pages.pages}" th:text="${pages.prePage}+3" th:href="@{'system_e?currentPage=' + ${pages.prePage+3}}"></a></li>-->
+                                    <!--<li><a class="num" th:if="${pages.prePage}+4 <= ${pages.pages}" th:text="${pages.prePage}+4" th:href="@{'system_e?currentPage=' + ${pages.prePage+4}}"></a></li>-->
+                                    <!--<li><a th:href="@{'system_e?currentPage='+${pages.lastPage}}" > 尾页</a>-->
+                                    <!--<li><a class="next" th:text="'共 '+ ${pages.pages}+ ' 页'"></a>-->
+                                <!--</ul>-->
+                            <!--</nav>-->
+                            <div class="zxf_pagediv"></div>
+                            <input type="hidden" th:value="${pages.pages}" id="pageCount">
+                        <script>
+                            //翻页
+                            var pageCount=$("#pageCount").val();
+                            $(".zxf_pagediv").createPage({
+                                pageNum: pageCount,
+                                current: 1,
+                                backfun: function(e) {
+                                    $('#areabody').load("/department/queryByArea?currentPage="+e.current);
+                                }
+                            });
+                        </script>
                         </div>
 				</div>
 			</div>

@@ -35,6 +35,8 @@ public class ShiroConfiguration {
         /*权限拦截*/
         filterChainDefinitionMap.put("/admin", "roles[admin]");
         filterChainDefinitionMap.put("/edit", "perms[edit]");
+        filterChainDefinitionMap.put("/department/insert", "perms[all]");
+        filterChainDefinitionMap.put("/department/edit", "perms[all]");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }
