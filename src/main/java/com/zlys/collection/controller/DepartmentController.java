@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -37,8 +40,6 @@ public class DepartmentController {
     @Autowired
     private DepartmentAreaService departmentAreaService;
 
-    @Autowired
-    private UserService userService;
 
     /**
      * @desc: 系统管理_部门管理 view
@@ -47,15 +48,40 @@ public class DepartmentController {
      * @auther: czx
      */
     @RequestMapping("system_e")
-    public String bumen(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage, Model model){
+    public String bumen(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage, Model model, HttpSession session){
+        /*返回值为当前登录的部门名称      null为(admin or zkmt)*/
+        String departmentName = user(session);
         /*获取区域信息*/
-        List<DepartmentArea> departmentAreas = departmentAreaService.findAll();
-        model.addAttribute("area",departmentAreas);
-        /*分页*/
-        PageHelper.startPage(currentPage,8);
-        List<DepartmentEntity> list=departmentService.queryAll();
-        PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
-        model.addAttribute("pages",pageInfo);
+        List<DepartmentArea> departmentAreas = new ArrayList<>();
+        /*admin  zkmt*/
+        if(departmentName == null){
+            departmentAreas=departmentAreaService.findAll();
+            List<DepartmentEntity> list=departmentService.queryAll();
+            model.addAttribute("area",departmentAreas);
+            /*分页*/
+            PageHelper.startPage(currentPage,8);
+            PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
+            model.addAttribute("pages",pageInfo);
+        }else{
+            /*left下拉区域信息   departmentAreas*/
+            DepartmentArea departmentArea=new DepartmentArea();
+            DepartmentEntity departmentEntity=new DepartmentEntity();
+            departmentEntity.setName(departmentName);
+            departmentArea.setAreaName(departmentService.queryDepartmentLimitOne(departmentEntity).getArea());
+            System.out.println(departmentArea.toString());
+            if(departmentArea != null){
+                departmentAreas.add(departmentArea);
+            }
+            /*right 部门信息 list*/
+            DepartmentEntity departmentEntityNew=new DepartmentEntity();
+            departmentEntityNew.setName(departmentName);
+            List<DepartmentEntity> list=departmentService.queryByCond(departmentEntityNew);
+            model.addAttribute("area",departmentAreas);
+            /*分页*/
+            PageHelper.startPage(currentPage,8);
+            PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
+            model.addAttribute("pages",pageInfo);
+        }
         return "bumen";
     }
 
@@ -107,15 +133,22 @@ public class DepartmentController {
        * @auther: czx
        */
     @RequestMapping("queryByArea")
-    public String queryById1(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage,String area,Model model){
-        DepartmentEntity departmentEntity=new DepartmentEntity();
-        departmentEntity.setArea(area);
-        List<DepartmentEntity> list=departmentService.queryByCond(departmentEntity);
-
-        /*分页*/
-        PageHelper.startPage(currentPage,8);
-        PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
-        model.addAttribute("pages",pageInfo);
+    public String queryById1(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage,String area,Model model,HttpSession session){
+        String departmentName = user(session);
+        if(departmentName == null){
+            List<DepartmentEntity> list=departmentService.queryAll();
+            /*分页*/
+            PageHelper.startPage(currentPage,8);
+            PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
+            model.addAttribute("pages",pageInfo);
+        }else{
+            DepartmentEntity departmentEntityNew=new DepartmentEntity();
+            departmentEntityNew.setName(departmentName);
+            List<DepartmentEntity> list=departmentService.queryByCond(departmentEntityNew);
+            PageHelper.startPage(currentPage,8);
+            PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
+            model.addAttribute("pages",pageInfo);
+        }
         return "bumen :: areabody";
     }
 
@@ -146,6 +179,24 @@ public class DepartmentController {
         departmentEntity.setPassword(password);
         departmentService.updateDepartmentById(departmentEntity);
         return "success";
+    }
+
+    /**
+     * @desc: 判断是否是admin或者中科绵投登录
+     * @param:
+     * @return:  null(admin  zkmt) or 登录的单位名称
+     * @auther: czx
+     */
+    public  String user(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        String username=user.getUsername();
+        if("admin".equals(username) || "zkmt".equals(username)){
+            return null;
+        }
+        DepartmentEntity departmentEntity=new DepartmentEntity();
+        departmentEntity.setUsername(username);
+        DepartmentEntity departmentEntityNew= departmentService.queryDepartmentLimitOne(departmentEntity);
+        return departmentEntityNew.getName();
     }
 
 }

@@ -14,4 +14,5 @@ public interface UserService {
     Integer insert(String username,String  password);
 
     Integer selectByUsername(String username);
+
 }
