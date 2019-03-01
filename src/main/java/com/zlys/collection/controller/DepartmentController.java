@@ -67,7 +67,6 @@ public class DepartmentController {
             DepartmentEntity departmentEntity=new DepartmentEntity();
             departmentEntity.setName(departmentName);
             departmentArea.setAreaName(departmentService.queryDepartmentLimitOne(departmentEntity).getArea());
-            System.out.println(departmentArea.toString());
             if(departmentArea != null){
                 departmentAreas.add(departmentArea);
             }
@@ -148,6 +147,7 @@ public class DepartmentController {
         }else {
             /*根据部门名称查询*/
             departmentEntity.setName(departmentName);
+            list=departmentService.queryByCond(departmentEntity);
         }
         /*分页*/
         PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
@@ -198,7 +198,6 @@ public class DepartmentController {
         }
         DepartmentEntity departmentEntity=new DepartmentEntity();
         departmentEntity.setUsername(username);
-        System.out.println(departmentEntity.toString());
         List<DepartmentEntity> departmentEntityNew= departmentService.queryByCond(departmentEntity);
         if(departmentEntityNew != null){
             return  departmentEntityNew.get(0).getName();

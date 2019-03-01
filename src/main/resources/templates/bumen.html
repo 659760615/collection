@@ -974,37 +974,11 @@
                                             <input type="hidden" th:value="${dp.id}">
                                             <a target="_blank" onclick="editThis(this)" data-toggle="modal" data-target="#detai2" >编辑</a>
                                         </td>
+                                        <input type="hidden" th:value="${pages.pages}" id="pageCount">
                                     </tr>
                                 </tbody>
 						</table>
-						<!--分页-->
-                            <!--<nav aria-label="Page navigation" class="text-center">-->
-                                <!--<ul class="pagination" id="pageHelper">-->
-                                    <!--<li><a th:href="@{'system_e?queryByArea='+${pages.firstPage}}" >首页</a></li>-->
-                                    <!--<li><a class="num" th:if="${pages.prePage}-2 > 0" th:text="${pages.prePage}-2" th:href="@{'system_e?currentPage=' + ${pages.prePage-2}}"></a></li>-->
-                                    <!--<li><a class="num" th:if="${pages.prePage}-1 > 0" th:text="${pages.prePage}-1" th:href="@{'system_e?currentPage=' + ${pages.prePage-1}}"></a></li>-->
-                                    <!--<li><a class="num" th:if="${pages.prePage} > 0" th:text="${pages.prePage}" th:href="@{'system_e?currentPage=' + ${pages.prePage}}"></a></li>-->
-                                    <!--<li class="active"><a class="curpage" th:text="${pages.prePage}+1"></a></li>-->
-                                    <!--<li><a class="num" th:if="${pages.prePage}+2 <= ${pages.pages}" th:text="${pages.prePage}+2" th:href="@{'system_e?currentPage=' + ${pages.prePage+2}}"></a></li>-->
-                                    <!--<li><a class="num" th:if="${pages.prePage}+3 <= ${pages.pages}" th:text="${pages.prePage}+3" th:href="@{'system_e?currentPage=' + ${pages.prePage+3}}"></a></li>-->
-                                    <!--<li><a class="num" th:if="${pages.prePage}+4 <= ${pages.pages}" th:text="${pages.prePage}+4" th:href="@{'system_e?currentPage=' + ${pages.prePage+4}}"></a></li>-->
-                                    <!--<li><a th:href="@{'system_e?currentPage='+${pages.lastPage}}" > 尾页</a>-->
-                                    <!--<li><a class="next" th:text="'共 '+ ${pages.pages}+ ' 页'"></a>-->
-                                <!--</ul>-->
-                            <!--</nav>-->
                             <div class="zxf_pagediv"></div>
-                            <input type="hidden" th:value="${pages.pages}" id="pageCount">
-                        <script>
-                            //翻页
-                            var pageCount=$("#pageCount").val();
-                            $(".zxf_pagediv").createPage({
-                                pageNum: pageCount,
-                                current: 1,
-                                backfun: function(e) {
-                                    $('#areabody').load("/department/queryByArea?currentPage="+e.current);
-                                }
-                            });
-                        </script>
                         </div>
 				</div>
 			</div>
@@ -1153,6 +1127,7 @@
         </div>
 		<script src="../js/selectCard.js"></script>
 		<script type="application/javascript">
+            var chooseArea = null;
 
 			function choose_organ(obj){
 				$("#menuTree span").removeClass('active').find('.right').attr('src','../images/close.png');
@@ -1166,10 +1141,12 @@
 			    tree_conditions.groupId = $(obj).attr('data-groupId')?$(obj).attr('data-groupId'):'';
 				var that = $(obj);
 				var areaName = that.attr('data-areaid');
+				chooseArea = areaName;
                 if(areaName != null){
                     $('#areabody').load("/department/queryByArea?area="+areaName);
                 }
                 $("#pageHelper li").remove();
+                page(chooseArea);
 			};
 		</script>
     <script>
@@ -1309,6 +1286,27 @@
                 min + ':' +
                 sec;
             return newTime;
+        }
+        $(function () {
+            page();
+        });
+        //翻页
+        function page(obj) {
+            var pageCount=$("#pageCount").val();
+            if(pageCount == null){
+                pageCount = 1;
+            }
+            $(".zxf_pagediv").createPage({
+                pageNum: pageCount,
+                current: 1,
+                backfun: function(e) {
+                    if(chooseArea != null){
+                        $('#areabody').load("/department/queryByArea?currentPage="+e.current+'&area='+obj);
+                    }else {
+                        $('#areabody').load("/department/queryByArea?currentPage="+e.current);
+                    }
+                }
+            });
         }
     </script>
 	</body>
