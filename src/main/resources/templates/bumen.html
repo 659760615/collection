@@ -977,9 +977,9 @@
                                         <input type="hidden" th:value="${pages.pages}" id="pageCount">
                                     </tr>
                                 </tbody>
-						</table>
-                            <div class="zxf_pagediv"></div>
-                        </div>
+                        </table>
+                        <div class="zxf_pagediv" id="zxf_pagediv"></div>
+                    </div>
 				</div>
 			</div>
 
@@ -1143,10 +1143,15 @@
 				var areaName = that.attr('data-areaid');
 				chooseArea = areaName;
                 if(areaName != null){
-                    $('#areabody').load("/department/queryByArea?area="+areaName);
+                    $('#areabody').load("/department/queryByArea?area="+areaName,function () {
+                        page(chooseArea);
+                    })
+                }else {
+                    // $('#areabody').load("/department/queryByArea",function () {
+                    //     page(chooseArea);
+                    // })
+                    /*有问题*/
                 }
-                $("#pageHelper li").remove();
-                page(chooseArea);
 			};
 		</script>
     <script>
@@ -1287,9 +1292,6 @@
                 sec;
             return newTime;
         }
-        $(function () {
-            page();
-        });
         //翻页
         function page(obj) {
             var pageCount=$("#pageCount").val();
