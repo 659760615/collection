@@ -1142,15 +1142,15 @@
 				var that = $(obj);
 				var areaName = that.attr('data-areaid');
 				chooseArea = areaName;
+
                 if(areaName != null){
                     $('#areabody').load("/department/queryByArea?area="+areaName,function () {
                         page(chooseArea);
                     })
                 }else {
-                    // $('#areabody').load("/department/queryByArea",function () {
-                    //     page(chooseArea);
-                    // })
-                    /*有问题*/
+                     $('#areabody').load("/department/queryByArea",function () {
+                         pageBtNull();
+                     })
                 }
 			};
 		</script>
@@ -1292,7 +1292,7 @@
                 sec;
             return newTime;
         }
-        //翻页
+        //翻页 有值
         function page(obj) {
             var pageCount=$("#pageCount").val();
             if(pageCount == null){
@@ -1303,8 +1303,28 @@
                 current: 1,
                 backfun: function(e) {
                     if(chooseArea != null){
-                        $('#areabody').load("/department/queryByArea?currentPage="+e.current+'&area='+obj);
+                        $('#areabody').load("/department/queryByArea?currentPage="+e.current+'&area='+chooseArea);
                     }else {
+                        $('#areabody').load("/department/queryByArea?currentPage="+e.current);
+                    }
+                }
+            });
+        }
+        /*全局*/
+        $(function () {
+            pageBtNull();
+        });
+        //翻页 null
+        function pageBtNull() {
+            var pageCount=$("#pageCount").val();
+            if(pageCount == null){
+                pageCount = 1;
+            }
+            $(".zxf_pagediv").createPage({
+                pageNum: pageCount,
+                current: 1,
+                backfun: function(e) {
+                    if(chooseArea ==null){
                         $('#areabody').load("/department/queryByArea?currentPage="+e.current);
                     }
                 }
