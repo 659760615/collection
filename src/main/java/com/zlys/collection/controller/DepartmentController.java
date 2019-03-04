@@ -108,7 +108,10 @@ public class DepartmentController {
         departmentEntity.setPeople(people);
         departmentEntity.setUsername(username);
         departmentEntity.setPassword(password);
-        departmentService.insertDepartment(departmentEntity);
+        Integer id=departmentService.insertDepartment(departmentEntity);
+        if(id == 444){
+            return "error";
+        }
         return "success";
     }
      /**

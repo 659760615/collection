@@ -51,8 +51,9 @@ public class DepartmentServiceImpl implements DepartmentService {
            logger.info("新增部门登录权限信息error!");
            /*手动设置事务 注解无效*/
            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+           return 444;
 		}
-		return id;
+		return 888;
 	}
 	
 	@Override

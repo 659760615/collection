@@ -16,12 +16,12 @@
 		<script src="../js/bootstrap.min.js"></script>
 		<script src="../js/bootbox.min.js"></script>
 		<script src="../js/common.js"></script>
-		<script>
-			$(document).click(function(event) {
-
-			});
-		</script>
 		<link rel="stylesheet" href="../css/laydate.css" id="layuicss-laydate">
+        <!--vue-->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.js"></script>
+        <!--page-->
+        <link rel="stylesheet"  href="../css/zxf_page.css"/>
+        <script  src="../js/zxf_page.js"></script>
 	</head>
 
 	<body style="">
@@ -1947,7 +1947,7 @@
                         <a href="/common/system_c" class=""></a>
                     </li>
                     <li class="active">
-                        <a href="/common/system_d" class=""></a>
+                        <a href="/driver/system_d" class=""></a>
                     </li>
                     <li class=" ">
                         <a href="/department/system_e" class=""></a>
@@ -2035,82 +2035,74 @@
 								<th class="text-center">考核项</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr class="text-center" ;="">
-								<td>1</td>
-								<td><img width="20" height="20" src="../images/3.png"></td>
-								<td>转运司机</td>
-								<td>员工</td>
-								<td>20</td>
-								<td>出勤,脱离工作区域,违规停留,超速驾驶,公里数</td>
-								<td class="menu" style="display: block; top: 223px; left: 655.5px;">
-									<span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
-									<span id="edSpan" rid="1" data-toggle="modal" data-target="#setting1">考核设置</span>
-									<span class="del">删除</span>
-								</td>
-							</tr>
-							<tr class="text-center" ;="">
-								<td>2</td>
-								<td><img width="20" height="20" src="../images/8.png"></td>
-								<td>收运司机</td>
-								<td>员工</td>
-								<td>15</td>
-								<td>出勤,脱离工作区域,违规停留,超速驾驶,公里数</td>
-								<td class="menu" style="display: block; top: 273px; left: 655.5px;">
-									<span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
-									<span id="edSpan" rid="2" data-toggle="modal" data-target="#setting1">考核设置</span>
-									<span class="del">删除</span>
-								</td>
-							</tr>
-							<tr class="text-center" ;="">
-								<td>3</td>
-								<td><img width="20" height="20" src="../images/zhongzhuan.png"></td>
-								<td>中转站人员</td>
-								<td>员工</td>
-								<td>3</td>
-								<td>出勤,脱离工作区域</td>
-								<td class="menu" style="display: block; top: 324px; left: 655.5px;">
-									<span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
-									<span id="edSpan" rid="3" data-toggle="modal" data-target="#setting1">考核设置</span>
-									<span class="del">删除</span>
-								</td>
-							</tr>
-							<tr class="text-center" ;="">
-								<td>4</td>
-								<td><img width="20" height="20" src="../images/chulizhan.png"></td>
-								<td>处理站人员</td>
-								<td>员工</td>
-								<td>12</td>
-								<td>出勤,脱离工作区域</td>
-								<td class="menu" style="display: block; top: 374px; left: 655.5px;">
-									<span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
-									<span id="edSpan" rid="4" data-toggle="modal" data-target="#setting1">考核设置</span>
-									<span class="del">删除</span>
-								</td>
-							</tr>
-						</tbody>
+                            <tbody>
+                            <tr class="text-center" ;="">
+                                <td>1</td>
+                                <td><img width="20" height="20" src="../images/3.png"></td>
+                                <td>转运司机</td>
+                                <td>员工</td>
+                                <td>20</td>
+                                <td>出勤,脱离工作区域,违规停留,超速驾驶,公里数</td>
+                                <td class="menu" style="display: block; top: 223px; left: 655.5px;">
+                                    <span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
+                                    <span id="edSpan" rid="1" data-toggle="modal" data-target="#setting1">考核设置</span>
+                                    <span class="del">删除</span>
+                                </td>
+                            </tr>
+                            <tr class="text-center" ;="">
+                                <td>2</td>
+                                <td><img width="20" height="20" src="../images/8.png"></td>
+                                <td>收运司机</td>
+                                <td>员工</td>
+                                <td>15</td>
+                                <td>出勤,脱离工作区域,违规停留,超速驾驶,公里数</td>
+                                <td class="menu" style="display: block; top: 273px; left: 655.5px;">
+                                    <span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
+                                    <span id="edSpan" rid="2" data-toggle="modal" data-target="#setting1">考核设置</span>
+                                    <span class="del">删除</span>
+                                </td>
+                            </tr>
+                            <tr class="text-center" ;="">
+                                <td>3</td>
+                                <td><img width="20" height="20" src="../images/zhongzhuan.png"></td>
+                                <td>中转站人员</td>
+                                <td>员工</td>
+                                <td>3</td>
+                                <td>出勤,脱离工作区域</td>
+                                <td class="menu" style="display: block; top: 324px; left: 655.5px;">
+                                    <span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
+                                    <span id="edSpan" rid="3" data-toggle="modal" data-target="#setting1">考核设置</span>
+                                    <span class="del">删除</span>
+                                </td>
+                            </tr>
+                            <tr class="text-center" ;="">
+                                <td>4</td>
+                                <td><img width="20" height="20" src="../images/chulizhan.png"></td>
+                                <td>处理站人员</td>
+                                <td>员工</td>
+                                <td>12</td>
+                                <td>出勤,脱离工作区域</td>
+                                <td class="menu" style="display: block; top: 374px; left: 655.5px;">
+                                    <span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
+                                    <span id="edSpan" rid="4" data-toggle="modal" data-target="#setting1">考核设置</span>
+                                    <span class="del">删除</span>
+                                </td>
+                            </tr>
+                            </tbody>
 					</table>
-
-					<!-- 分页
-        <nav aria-label="Page navigation" class="text-center">
-            <ul class="pagination">
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav> -->
+                    <div class="zxf_pagediv" id="zxf_pagediv"></div>
+                    <script>
+                        //翻页 null
+                        $(".zxf_pagediv").createPage({
+                            pageNum: 20,
+                            current: 1,
+                            backfun: function(e) {
+                                if(chooseArea ==null){
+                                    $('#areabody').load("/department/queryByArea?currentPage="+e.current);
+                                }
+                            }
+                        });
+                    </script>
 				</div>
 			</div>
 
@@ -2334,7 +2326,9 @@
 </div>
 <!--设置监管项-->
 <script src="../js/bootbox.min.js "></script>
+
 </div>
+
 	</body>
 	<script type="text/javascript">
 		$(function(){

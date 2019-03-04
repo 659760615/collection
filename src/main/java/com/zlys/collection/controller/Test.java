@@ -1,8 +1,11 @@
 package com.zlys.collection.controller;
 
+import com.zlys.collection.service.DepartmentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +21,9 @@ import java.util.Map;
 @RequestMapping("test")
 public class Test {
 
+
+    @Autowired
+    private DepartmentService departmentService;
 
     @RequestMapping("test")
     public String globalRefresh(Model model) {
@@ -54,6 +60,13 @@ public class Test {
         // "table_refresh"是test.html中需要刷新的部分标志,
         // 在标签里加入：th:fragment="table_refresh"
         return "test::table_refresh";
+    }
+
+    @RequestMapping("/vue")
+    @ResponseBody
+    public Object testVue(String p){
+        System.out.println(p);
+        return departmentService.queryAll();
     }
 
 }

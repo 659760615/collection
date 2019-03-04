@@ -125,16 +125,6 @@ public class View {
         return "xianlu";
     }
 
-    /**
-     * @desc: 系统管理_角色管理 view
-     * @param:
-     * @return:
-     * @auther: czx
-     */
-    @RequestMapping("system_d")
-    public String quanxian(){
-        return "quanxian";
-    }
 
     /**
      * @desc: 系统管理_车辆管理 view
