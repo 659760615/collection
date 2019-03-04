@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -2014,19 +2014,21 @@
 								</th>
 								<th class="text-center">类别</th>
 								<th class="text-center">身份证号</th>
+								<th class="text-center">考核项</th>
 							</tr>
 						</thead>
                             <tbody >
-                                <tr class="text-center"  v-for="object in objects">
+                                <tr class="text-center"  v-for="object in objects.list">
                                     <td>1</td>
-                                    <td><img width="20" height="20" src="../images/3.png"></td>
+                                    <td v-if="object.type == 0"><img width="20" height="20" src="../images/3.png"></td>
+                                    <td v-if="object.type == 1"><img width="20" height="20" src="../images/8.png"></td>
                                     <td>{{object.name}}</td>
                                     <td v-if="object.sex == 0">女</td>
                                     <td v-if="object.sex == 1">男</td>
                                     <td v-if="object.type == 0">收运司机</td>
                                     <td v-if="object.type == 1">转运司机</td>
                                     <td >{{object.idCrad}}</td>
-                                    <td>出勤,脱离工作区域,违规停留,超速驾驶,公里数</td>
+                                    <td >{{object.driverCheck}}</td>
                                     <td class="menu" style="display: block; left: 655.5px;">
                                         <span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
                                         <span id="edSpan" rid="1" data-toggle="modal" data-target="#setting1">考核设置</span>
@@ -2038,24 +2040,15 @@
                     <div class="zxf_pagediv" id="zxf_pagediv"></div>
                 </div>
                     <script>
-                        //翻页 null
-                        $(".zxf_pagediv").createPage({
-                            pageNum: 20,
-                            current: 1,
-                            backfun: function(e) {
-                                if(chooseArea ==null){
-                                    $('#areabody').load("/department/queryByArea?currentPage="+e.current);
-                                }
-                            }
-                        });
 
                         new Vue({
                             el:'#driver',
                             data:{
-                                objects:[]
+                                objects:[],
                             },
                             created: function () {
                                 var self = this;
+                                /**/
                                 $.ajax({
                                     url: '/driver/allDriver',
                                     type: 'post',
@@ -2063,9 +2056,28 @@
                                     dataType: 'json'
                                 }).then(function (res) {
                                     self.objects = res;
+
+                                    //翻页 null
+                                        $(".zxf_pagediv").createPage({
+                                            pageNum: res.pages,
+                                            current: 1,
+                                            backfun: function(e) {
+                                                $.ajax({
+                                                    url: '/driver/allDriver',
+                                                    type: 'post',
+                                                    data: { currentPage : e.current},
+                                                    dataType: 'json'
+                                                }).then(function (res) {
+                                                    self.objects = res;
+                                                }).fail(function () {
+                                                    console.log('error');
+                                                });
+                                            }
+                                        });
+
                                 }).fail(function () {
                                     console.log('error');
-                                })
+                                });
                             }
                         })
 
@@ -2077,29 +2089,29 @@
 			<div class="modal fade" id="add" tabindex="-1" role="dialog">
 				<div class="modal-dialog modal_width" role="document">
 					<!--宽高修改-->
-					<div class="modal-content modal_width" style="height:550px">
+					<div class="modal-content modal_width" style="height:550px" id="insertDriver">
 						<div class="modal-header">
 							<h5 class="modal-title text-center" id="myModalLabe" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">新增司机</h5>
 						</div>
-						<div class="modal-body over" style="margin-top:0px;">
+						<div class="modal-body over" style="margin-top:0px;" >
 							<div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
 								<label class="control-label">司机姓名</label><br>
-								<input id="dname" type="text" class="form-control">
+								<input id="dname" type="text" class="form-control" v-model="iName">
 								<br>
 								<div></div>
 							</div>
                             <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
                                 <label class="control-label">身份证号</label><br>
-                                <input id="didcard" type="text" class="form-control">
+                                <input id="didcard" type="text" class="form-control" v-model="iCard">
                                 <br>
                                 <div></div>
                             </div>
 							<div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
 								<label class=" control-label">性别</label>
 								<br>
-								<select  class="form-control select_she_bei" id="dsex">
-									<option value="0">男</option>
-									<option value="1">女</option>
+								<select  class="form-control select_she_bei" id="dsex" v-model="iSex">
+									<option value="0">女</option>
+									<option value="1">男</option>
 								</select>
 								<br>
 								<div></div>
@@ -2107,9 +2119,9 @@
                             <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
                                 <label class=" control-label">类别</label>
                                 <br>
-                                <select  class="form-control select_she_bei" id="dtype">
-                                    <option value="0">转运司机</option>
-                                    <option value="1">收运司机</option>
+                                <select  class="form-control select_she_bei" id="dtype" v-model="iType">
+                                    <option value="1">转运司机</option>
+                                    <option value="0">收运司机</option>
                                 </select>
                                 <br>
                                 <div></div>
@@ -2117,19 +2129,10 @@
                             <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
                                 <label class=" control-label">所属部门</label>
                                 <br>
-                                <select  class="form-control select_she_bei" id="ddepartment">
-                                    <option value="0">测试部门1</option>
-                                    <option value="1">测试部门2</option>
-                                </select>
-                                <br>
-                                <div></div>
-                            </div>
-                            <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
-                                <label class=" control-label">考核项</label>
-                                <br>
-                                <select  class="form-control select_she_bei" id="dcheck">
-                                    <option value="0">测试部门1</option>
-                                    <option value="1">测试部门2</option>
+                                <select  class="form-control select_she_bei" id="ddepartment" v-model="iDepartment">
+                                    <div th:each="d: ${department}">
+                                     <option th:value="${d}" th:text="${d}"></option>
+                                    </div>
                                 </select>
                                 <br>
                                 <div></div>
@@ -2137,12 +2140,46 @@
 						</div>
 						<div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:-15px">
 							<p class="col-xs-10 col-xs-offset-1">
-								<button type="button" id="addBtn" class="btn btn_blue btn-block" data-dismiss="modal">确认</button>
+								<button type="button" id="addBtn" class="btn btn_blue btn-block" data-dismiss="modal" v-on:click="insertDriver">确认</button>
 							</p>
 							<p class="col-xs-10 col-xs-offset-1">
 								<button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">取消</button>
 							</p>
 						</div>
+                        <script>
+                            /*新增司机*/
+                            new Vue({
+                                el:"#insertDriver",
+                                data:{
+                                    iName:'',
+                                    iCard:'',
+                                    iSex:'',
+                                    iType:'',
+                                    iDpartment:"",
+                                },
+                                methods: {
+                                    insertDriver: function (event) {
+                                        $.ajax({
+                                            url: '/driver/insertDriver',
+                                            type: 'post',
+                                            data: {
+                                                iName:this.iName,
+                                                iCard:this.iCard,
+                                                iSex:this.iSex,
+                                                iDepartment:this.iDepartment,
+                                                iType:this.iType
+                                            },
+                                            dataType: 'json'
+                                        }).then(function (res) {
+                                            alert_sos(res)
+                                        }).fail(function () {
+                                            console.log('error');
+                                        })
+                                    }
+                                }
+
+                            })
+                        </script>
 					</div>
 				</div>
 			</div>
@@ -2193,13 +2230,6 @@
 								<br>
 								<input id="name" type="text" placeholder="请输入角色名称">
 							</div>
-							<!-- <div class="box_position people_photo" style="margin-top:135px;">
-        		<p >角色头像:</p>
-        		                <br>
-        		               	<img src="http://up.qqjia.com/z/18/tu20464_2.jpg" style="margin-left:184px;border-radius:50%;" width="80" height="80" >
-        						<br>
-        						<p class="text-center change_click" style="width:40px;height:21px">上传</p>
-        	</div> -->
 						</div>
 						<div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:35px">
 							<p class="col-xs-10 col-xs-offset-1">

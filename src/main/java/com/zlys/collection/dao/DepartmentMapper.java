@@ -3,6 +3,7 @@ package com.zlys.collection.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -34,5 +35,7 @@ public interface DepartmentMapper {
 	int updateDepartmentById(DepartmentEntity entity);
 	
 	int deleteDepartmentById(@Param("id") Integer id);
-	
+
+    @Select("select name from department")
+    List<String> queryAllName();
 }

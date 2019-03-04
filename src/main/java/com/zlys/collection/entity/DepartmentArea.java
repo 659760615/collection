@@ -2,13 +2,15 @@ package com.zlys.collection.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author:CZX
  * @create:2019-02-27 9:47
  * @desc:
  **/
 @Data
-public class DepartmentArea {
+public class DepartmentArea implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

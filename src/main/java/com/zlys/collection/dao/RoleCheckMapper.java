@@ -1,10 +1,9 @@
 package com.zlys.collection.dao;
 
+import com.zlys.collection.entity.RoleCheck;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * @author:CZX
@@ -13,8 +12,8 @@ import java.util.List;
  **/
 @Repository
 @Mapper
-public interface RoleCheck {
+public interface RoleCheckMapper {
 
-//    @Select()
-    List<RoleCheck> findAll();
+    @Select("select id,name,check_name checkName from role_check where id = #{id}")
+    RoleCheck findByid(Integer id);
 }

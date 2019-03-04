@@ -2,13 +2,15 @@ package com.zlys.collection.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author:CZX
  * @create:2019-02-27 16:56
  * @desc: 角色考核基础信息表
  **/
 @Data
-public class RoleCheck {
+public class RoleCheck implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

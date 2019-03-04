@@ -30,4 +30,6 @@ public interface DepartmentService {
 	
 	boolean deleteDepartmentById(Integer id);
 
+	List<String> queryAllName();
+
 }

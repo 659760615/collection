@@ -138,4 +138,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 			return false;
 		}
 	}
+
+    @Override
+    public List<String> queryAllName() {
+        return departmentMapper.queryAllName();
+    }
 }
