@@ -1996,7 +1996,7 @@
             	新增司机
             </span>
 					</div>
-
+                    <div id="driver">
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -2004,93 +2004,39 @@
 								<th class="text-center">角色头像</th>
 								<th class="text-center dropdown people_sel">
 									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-										角色名称
-										<!-- <span class="fa fa-angle-down" style="font-size:16px;"></span> -->
+										司机名称
 									</div>
-									<ul class="dropdown-menu " aria-labelledby="dropdownMenu1">
-										<!-- <li  data-target="#detail">管理人员</li>
-                        	<li  data-target="#detail">走保</li>
-                        	<li  data-target="#detail">快保</li>
-                        	<li  data-target="#detail">垃圾托运</li> -->
-									</ul>
 								</th>
-								<!--<th class="text-center">
-        			角色类别
-        			<span class="fa fa-angle-down" style="font-size:16px;"></span>
-        		</th>-->
 								<th class="text-center dropdown people_sel">
 									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-										角色类别
-										<!-- <span class="fa fa-angle-down" style="font-size:16px;"></span> -->
+										性别
 									</div>
-									<ul class="dropdown-menu " aria-labelledby="dropdownMenu1">
-										<!-- <li  data-target="#detail">全部角色</li>
-                        	<li  data-target="#detail">管理人员</li>
-                        	<li  data-target="#detail">走保</li>
-                        	<li  data-target="#detail">快保</li>
-                        	<li  data-target="#detail">垃圾托运</li> -->
-									</ul>
 								</th>
-								<th class="text-center">人数</th>
-								<th class="text-center">考核项</th>
+								<th class="text-center">类别</th>
+								<th class="text-center">身份证号</th>
 							</tr>
 						</thead>
-                            <tbody>
-                            <tr class="text-center" ;="">
-                                <td>1</td>
-                                <td><img width="20" height="20" src="../images/3.png"></td>
-                                <td>转运司机</td>
-                                <td>员工</td>
-                                <td>20</td>
-                                <td>出勤,脱离工作区域,违规停留,超速驾驶,公里数</td>
-                                <td class="menu" style="display: block; top: 223px; left: 655.5px;">
-                                    <span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
-                                    <span id="edSpan" rid="1" data-toggle="modal" data-target="#setting1">考核设置</span>
-                                    <span class="del">删除</span>
-                                </td>
-                            </tr>
-                            <tr class="text-center" ;="">
-                                <td>2</td>
-                                <td><img width="20" height="20" src="../images/8.png"></td>
-                                <td>收运司机</td>
-                                <td>员工</td>
-                                <td>15</td>
-                                <td>出勤,脱离工作区域,违规停留,超速驾驶,公里数</td>
-                                <td class="menu" style="display: block; top: 273px; left: 655.5px;">
-                                    <span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
-                                    <span id="edSpan" rid="2" data-toggle="modal" data-target="#setting1">考核设置</span>
-                                    <span class="del">删除</span>
-                                </td>
-                            </tr>
-                            <tr class="text-center" ;="">
-                                <td>3</td>
-                                <td><img width="20" height="20" src="../images/zhongzhuan.png"></td>
-                                <td>中转站人员</td>
-                                <td>员工</td>
-                                <td>3</td>
-                                <td>出勤,脱离工作区域</td>
-                                <td class="menu" style="display: block; top: 324px; left: 655.5px;">
-                                    <span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
-                                    <span id="edSpan" rid="3" data-toggle="modal" data-target="#setting1">考核设置</span>
-                                    <span class="del">删除</span>
-                                </td>
-                            </tr>
-                            <tr class="text-center" ;="">
-                                <td>4</td>
-                                <td><img width="20" height="20" src="../images/chulizhan.png"></td>
-                                <td>处理站人员</td>
-                                <td>员工</td>
-                                <td>12</td>
-                                <td>出勤,脱离工作区域</td>
-                                <td class="menu" style="display: block; top: 374px; left: 655.5px;">
-                                    <span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
-                                    <span id="edSpan" rid="4" data-toggle="modal" data-target="#setting1">考核设置</span>
-                                    <span class="del">删除</span>
-                                </td>
-                            </tr>
+                            <tbody >
+                                <tr class="text-center"  v-for="object in objects">
+                                    <td>1</td>
+                                    <td><img width="20" height="20" src="../images/3.png"></td>
+                                    <td>{{object.name}}</td>
+                                    <td v-if="object.sex == 0">女</td>
+                                    <td v-if="object.sex == 1">男</td>
+                                    <td v-if="object.type == 0">收运司机</td>
+                                    <td v-if="object.type == 1">转运司机</td>
+                                    <td >{{object.idCrad}}</td>
+                                    <td>出勤,脱离工作区域,违规停留,超速驾驶,公里数</td>
+                                    <td class="menu" style="display: block; left: 655.5px;">
+                                        <span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
+                                        <span id="edSpan" rid="1" data-toggle="modal" data-target="#setting1">考核设置</span>
+                                        <span class="del">删除</span>
+                                    </td>
+                                </tr>
                             </tbody>
-					</table>
+                    </table>
                     <div class="zxf_pagediv" id="zxf_pagediv"></div>
+                </div>
                     <script>
                         //翻页 null
                         $(".zxf_pagediv").createPage({
@@ -2102,6 +2048,27 @@
                                 }
                             }
                         });
+
+                        new Vue({
+                            el:'#driver',
+                            data:{
+                                objects:[]
+                            },
+                            created: function () {
+                                var self = this;
+                                $.ajax({
+                                    url: '/driver/allDriver',
+                                    type: 'post',
+                                    data: {},
+                                    dataType: 'json'
+                                }).then(function (res) {
+                                    self.objects = res;
+                                }).fail(function () {
+                                    console.log('error');
+                                })
+                            }
+                        })
+
                     </script>
 				</div>
 			</div>

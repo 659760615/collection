@@ -1,7 +1,14 @@
 package com.zlys.collection.controller;
 
+import com.zlys.collection.entity.DriverEntity;
+import com.zlys.collection.service.DriverService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * @author:CZX
@@ -11,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("driver")
 public class DriverController {
+
+    @Autowired
+    private DriverService driverService;
+
     /**
      * @desc: 系统管理_角色管理 view
      * @param:
@@ -25,4 +36,9 @@ public class DriverController {
         return "quanxian";
     }
 
+    @PostMapping("allDriver")
+    @ResponseBody
+    public Object  allDriver(){
+        return driverService.queryAll();
+    }
 }
