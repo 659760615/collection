@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zlys.collection.entity.DepartmentArea;
 import com.zlys.collection.entity.DepartmentEntity;
-import com.zlys.collection.entity.User;
 import com.zlys.collection.service.DepartmentAreaService;
 import com.zlys.collection.service.DepartmentService;
 import org.slf4j.Logger;
@@ -29,7 +28,7 @@ import java.util.List;
  **/
 @Controller
 @RequestMapping("department")
-public class DepartmentController {
+public class DepartmentController extends BaseController{
 
     private static Logger logger = LoggerFactory.getLogger(DepartmentController.class);
 
@@ -187,26 +186,6 @@ public class DepartmentController {
         return "success";
     }
 
-    /**
-     * @desc: 判断是否是admin或者中科绵投登录
-     * @param:
-     * @return:  null(admin  zkmt) or 登录的单位名称
-     * @auther: czx
-     */
-    public  String user(HttpSession session){
-        User user = (User) session.getAttribute("user");
-        String username=user.getUsername();
-        if("admin".equals(username) || "zkmt".equals(username)){
-            return null;
-        }
-        DepartmentEntity departmentEntity=new DepartmentEntity();
-        departmentEntity.setUsername(username);
-        List<DepartmentEntity> departmentEntityNew= departmentService.queryByCond(departmentEntity);
-        if(departmentEntityNew != null){
-            return  departmentEntityNew.get(0).getName();
-        }
-        return null;
-    }
 
 }
 

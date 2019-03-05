@@ -2023,8 +2023,8 @@
                                     <td>{{index+1}}</td>
                                     <td v-if="object.type == 0"><img width="20" height="20" src="../images/3.png"></td>
                                     <td v-if="object.type == 1"><img width="20" height="20" src="../images/8.png"></td>
-                                    <td>{{object.name}}</td>
                                     <td>{{object.department}}</td>
+                                    <td>{{object.name}}</td>
                                     <td v-if="object.sex == 0">女</td>
                                     <td v-if="object.sex == 1">男</td>
                                     <td v-if="object.type == 0">收运司机</td>
@@ -2033,8 +2033,8 @@
                                     <td >{{object.driverCheck}}</td>
                                     <td class="menu" style="display: block; left: 655.5px;">
                                         <span id="edit" data-toggle="modal" data-target="#add2" @click="edit(object.id,object.sex,object.department,object.name,object.type,object.idCrad)">编辑</span>
-                                        <span id="edSpan" rid="1" data-toggle="modal" data-target="#setting1">考核设置</span>
-                                        <span class="del">删除</span>
+                                        <span id="edSpan" rid="1" data-toggle="modal" data-target="#setting1" @click="check(object.id,object.driverCheck)">考核设置</span>
+                                        <span class="del" @click="deleteById(object.id)">删除</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -2081,23 +2081,72 @@
                                 }).fail(function () {
                                     console.log('error');
                                 });
-                            }
-                            /**/
-                            // methods: {
-                            //     edit: function (id,sex,department,name,type,idCrad) {
-                            //         var czx=new Vue({
-                            //             el:"#editDriver",
-                            //             data:{
-                            //                 eId:id,
-                            //                 eSex:sex,
-                            //                 eDepartment:department,
-                            //                 eName:name,
-                            //                 eType:type,
-                            //                 eCard:idCrad
-                            //             }
-                            //         })
-                            //     }
-                            // }
+                            },
+                             methods: {
+                                 edit: function (id,sex,department,name,type,idCrad) {
+                                     $("#eName").val(name);
+                                     $("#eId").val(id);
+                                     $("#eDepartment").val(department);
+                                     $("#eType").val(type);
+                                     $("#eCard").val(idCrad);
+                                     $("#eSex").val(sex);
+                                 },
+                                 check:function (a,b) {
+                                     $.ajax({
+                                         url: '/driver/findCheckById',
+                                         type: 'post',
+                                         data: {id:a},
+                                         dataType: 'json'
+                                     }).then(function (res) {
+                                         $(".roleCheck").each(function(index,item) {
+                                             $(this).removeAttr('checked');
+                                             for(var i=0;i<res.length;i++){
+                                                 if(res[i] == $(this).val()){
+                                                     $(this).prop('checked',true)
+                                                 }
+                                             }
+                                         });
+                                         $("#driverId").val(a);
+                                     }).fail(function () {
+                                         console.log('error');
+                                     });
+                                 },
+                                 deleteById: function (id) {
+                                     bootbox.confirm("确认删除", function (result) {
+                                         var strResult = result;
+                                         if(strResult){
+                                             $.ajax({
+                                                 url: '/driver/deleteDriver',
+                                                 type: 'post',
+                                                 data: {
+                                                     id:id
+                                                 },
+                                                 dataType: 'text'
+                                             }).then(function (obj) {
+                                                 if(obj == 'success'){
+                                                     bootbox.alert({
+                                                         message: '删除司机成功',
+                                                         closeButton: false,
+                                                         callback: function () {
+                                                             location.reload();
+                                                         }
+                                                     });
+                                                 }else{
+                                                     bootbox.alert({
+                                                         message: '删除失败,请联系管理员',
+                                                         closeButton: false
+                                                     });
+                                                 }
+                                             }).fail(function () {
+                                                 bootbox.alert({
+                                                     message: '删除失败,请联系管理员',
+                                                     closeButton: false
+                                                 });
+                                             })
+                                         }
+                                     })
+                                 }
+                             }
                         })
 
                     </script>
@@ -2195,6 +2244,9 @@
                                                 bootbox.alert({
                                                     message: '新增司机成功',
                                                     closeButton: false,
+                                                    callback: function () {
+                                                        location.reload();
+                                                    }
                                                 });
                                             }else{
                                                 bootbox.alert({
@@ -2210,37 +2262,80 @@
                                         })
                                     }
                                 }
-
                             })
+
+                            /*编辑司机*/
+                            function editDriverTrue() {
+                                var name=$("#eName").val();
+                                var id=$("#eId").val();
+                                var department=$("#eDepartment").val();
+                                var type=$("#eType").val();
+                                var idCrad=$("#eCard").val();
+                                var sex=$("#eSex").val();
+                                $.ajax({
+                                    url: '/driver/editDriver',
+                                    type: 'post',
+                                    data: {
+                                        id:id,
+                                        name:name,
+                                        department:department,
+                                        type:type,
+                                        idCard:idCrad,
+                                        sex:sex
+                                    },
+                                    dataType: 'text'
+                                }).then(function (obj) {
+                                    if(obj == 'success'){
+                                        bootbox.alert({
+                                            message: '修改司机信息成功',
+                                            closeButton: true,
+                                            callback: function () {
+                                                location.reload();
+                                            }
+                                        });
+                                    }else{
+                                        bootbox.alert({
+                                            message: '录入信息错误',
+                                            closeButton: false
+                                        });
+                                    }
+                                }).fail(function () {
+                                    bootbox.alert({
+                                        message: '录入信息错误',
+                                        closeButton: false
+                                    });
+                                })
+                            }
                         </script>
 					</div>
 				</div>
 			</div>
 			<!--编辑-->
             <div class="modal fade" id="add2" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal_width" role="document">
+                <div class="modal-dialog modal_width" role="document" id="editDriver">
                     <!--宽高修改-->
-                    <div class="modal-content modal_width" style="height:550px" id="editDriver">
+                    <div class="modal-content modal_width" style="height:550px" >
                         <div class="modal-header">
                             <h5 class="modal-title text-center" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">编辑资料</h5>
                         </div>
+                        <input type="hidden" id="eId"/>
                         <div class="modal-body over" style="margin-top:0px;" >
                             <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
                                 <label class="control-label">司机姓名</label><br>
-                                <input  type="text" class="form-control" v-model="eName">
+                                <input  type="text" class="form-control" v-model="eName" id="eName">
                                 <br>
                                 <div></div>
                             </div>
                             <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
                                 <label class="control-label">身份证号</label><br>
-                                <input  type="text" class="form-control" v-model="eCard">
+                                <input  type="text" class="form-control" v-model="eCard" id="eCard">
                                 <br>
                                 <div></div>
                             </div>
                             <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
                                 <label class=" control-label">性别</label>
                                 <br>
-                                <select  class="form-control select_she_bei"  v-model="eSex">
+                                <select  class="form-control select_she_bei"  v-model="eSex" id="eSex">
                                     <option value="0">女</option>
                                     <option value="1">男</option>
                                 </select>
@@ -2250,7 +2345,7 @@
                             <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
                                 <label class=" control-label">类别</label>
                                 <br>
-                                <select  class="form-control select_she_bei"  v-model="eType">
+                                <select  class="form-control select_she_bei"  v-model="eType" id="eType">
                                     <option value="1">转运司机</option>
                                     <option value="0">收运司机</option>
                                 </select>
@@ -2260,7 +2355,7 @@
                             <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
                                 <label class=" control-label">所属部门</label>
                                 <br>
-                                <select  class="form-control select_she_bei"  v-model="eDepartment">
+                                <select  class="form-control select_she_bei"  v-model="eDepartment" id="eDepartment">
                                     <div th:each="d: ${department}">
                                         <option th:value="${d}" th:text="${d}"></option>
                                     </div>
@@ -2271,7 +2366,7 @@
                         </div>
                         <div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:-15px">
                             <p class="col-xs-10 col-xs-offset-1">
-                                <button type="button" id="editBtn" class="btn btn_blue btn-block" data-dismiss="modal" v-on:click="editDriverTrue">确认</button>
+                                <button type="button" id="editBtn" class="btn btn_blue btn-block" data-dismiss="modal" onclick="editDriverTrue()">确认</button>
                             </p>
                             <p class="col-xs-10 col-xs-offset-1">
                                 <button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">取消</button>
@@ -2283,6 +2378,7 @@
 
 <!-- 设置考核选项 -->
 <div class="modal fade edit_check " id="setting1" tabindex="-1 " role="dialog">
+    <input type="hidden" id="driverId">
   	<div class="modal-dialog " role="document ">
     	<div class="modal-content ">
       		<div class="modal-body setting " style="padding-top:5px; ">
@@ -2294,68 +2390,71 @@
         		<table class="table table-hover " style="width:86%;margin: 15px auto;margin-top:14px ">
         			<thead>
         				<tr class="active ">
-        					<th class="text-center " style="width:6%; ">
-        						<input id="selAll" type="checkbox">
-        					</th>
+        					<th class="text-center " style="width:6%; ">&nbsp;</th>
+                            <!--<th class="text-center " style="width:6%; "><input id="selAll" type="checkbox"></th>-->
         					<th class="text-center " style="width:40%; ">考核项</th>
         					<th class="text-center " style="width:40%; ">考核内容</th>
         				</tr>
         			</thead>
-        			<tbody id="setEI " class="text-center ">
+        			<tbody id="roleCheck " class="text-center " th:each="rc : ${roleCheck}">
         				<tr>
         					<td style="width:6%; ">
-        						<input type="checkbox">
+        						<input type="checkbox" th:value="${rc.id}" class="roleCheck">
         					</td>
-        					<td>出勤</td>
-        					<td>迟到、早退、旷工</td>
+        					<td th:text="${rc.name}"></td>
+        					<td th:text="${rc.checkName}"></td>
         				</tr>
-        				<tr>
-        					<td style="width:6%; ">
-        						<input type="checkbox">
-        					</td>
-        					<td>脱离工作片区</td>
-        					<td>脱离工作片区超时</td>
-        				</tr>
-        				<tr>
-        					<td style="width:6%; ">
-        						<input type="checkbox">
-        					</td>
-        					<td>违规停留</td>
-        					<td>停留不动超时</td>
-        				</tr>
-        				<tr>
-        					<td style="width:6%; ">
-        						<input type="checkbox">
-        					</td>
-        					<td>设备异常</td>
-        					<td>设备异常数据、设备离线</td>
-        				</tr>
-        				<tr>
-        					<td style="width:6%; ">
-        						<input type="checkbox">
-        					</td>
-        					<td>作业里程</td>
-        					<td>作业里程超标</td>
-        				</tr>
-        				<tr>
-        					<td style="width:6%; ">
-        						<input type="checkbox">
-        					</td>
-        					<td>超速驾驶</td>
-        					<td>超速驾驶车辆</td>
-        				</tr>
-        				
         			</tbody>
         		</table>
         	</div>
      		<div class="modal-footer " style="border:0;width:80%;margin:0 auto ">
                 <p class="col-xs-10 col-xs-offset-1 ">
-                    <button id="setBtn " type="button " class="btn btn_blue btn-block " data-dismiss="modal ">确认</button>
+                    <button id="setBtn " type="button " class="btn btn_blue btn-block " data-dismiss="modal " onclick="insertCheck()">确认</button>
                 </p>
                 <p class="col-xs-10 col-xs-offset-1">
                     <button type="button " class="btn btn_nor btn-block btn-default btn_dismiss " data-dismiss="modal " style="letter-spacing: 16px;text-indent:16px; ">取消</button>    
                 </p>
            </div>
+            <script>
+                function insertCheck() {
+                    var roleCheck="";
+                    var id=$("#driverId").val();
+                    $(".roleCheck").each(function(index,item) {
+                        if($(this).is(":checked")){
+                            roleCheck = roleCheck + $(this).val();
+                        }
+                    });
+                    $.ajax({
+                        url: '/driver/insertCheck',
+                        type: 'post',
+                        data: {
+                            checkName : roleCheck,
+                            id:id
+                        },
+                        dataType: 'text'
+                    }).then(function (obj) {
+                        if(obj == 'success'){
+                            bootbox.alert({
+                                message: '修改考核项成功',
+                                closeButton: true,
+                                callback: function () {
+                                    location.reload();
+                                }
+                            });
+                        }else{
+                            bootbox.alert({
+                                message: '录入信息错误',
+                                closeButton: false
+                            });
+                        }
+                    }).fail(function () {
+                        bootbox.alert({
+                            message: '录入信息错误',
+                            closeButton: false
+                        });
+                    })
+                }
+            </script>
     	</div>
   	</div>
 </div>

@@ -1177,6 +1177,9 @@
                         bootbox.alert({
                             message: '新增成功',
                             closeButton: false,
+                            callback: function () {
+                                location.reload();
+                            }
                         });
                         window.location.href="/department/system_e";
                     }else{
@@ -1210,6 +1213,9 @@
                         bootbox.alert({
                             message: '修改成功!',
                             closeButton: false,
+                            callback: function () {
+                                location.reload();
+                            }
                         });
                     }else{
                         bootbox.alert({

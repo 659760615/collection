@@ -6,6 +6,8 @@ import com.zlys.collection.service.RoleCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author:CZX
  * @create:2019-03-04 14:20
@@ -21,5 +23,10 @@ public class RoleCheckServiceImpl implements RoleCheckService {
     @Override
     public RoleCheck findByid(Integer id) {
         return roleCheckMapper.findByid(id);
+    }
+
+    @Override
+    public List<RoleCheck> findAll() {
+        return roleCheckMapper.findAll();
     }
 }
