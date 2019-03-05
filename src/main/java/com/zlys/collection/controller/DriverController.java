@@ -2,7 +2,6 @@ package com.zlys.collection.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zlys.collection.entity.DepartmentEntity;
 import com.zlys.collection.entity.DriverEntity;
 import com.zlys.collection.service.DepartmentService;
 import com.zlys.collection.service.DriverService;
@@ -62,7 +61,6 @@ public class DriverController {
     @RequestMapping("allDriver")
     @ResponseBody
     public Object  allDriver(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage,Model model){
-        System.out.println(currentPage+"----");
         PageHelper.startPage(currentPage,3);
         List<DriverEntity> list=driverService.queryAll();
         /*考核项*/
@@ -100,7 +98,10 @@ public class DriverController {
         driverEntity.setType(iType);
         driverEntity.setCreatedTime(new Date());
         driverEntity.setUpdateTime(new Date());
-        driverService.insertDriver(driverEntity);
+        Integer id=driverService.insertDriver(driverEntity);
+        if(id == 0){
+            return "error";
+        }
         return "success";
     }
 

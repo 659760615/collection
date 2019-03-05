@@ -2002,6 +2002,7 @@
 							<tr>
 								<th class="text-center">序号</th>
 								<th class="text-center">角色头像</th>
+								<th class="text-center">部门名称</th>
 								<th class="text-center dropdown people_sel">
 									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
 										司机名称
@@ -2018,11 +2019,12 @@
 							</tr>
 						</thead>
                             <tbody >
-                                <tr class="text-center"  v-for="object in objects.list">
-                                    <td>1</td>
+                                <tr class="text-center"  v-for="(object,index) in objects.list">
+                                    <td>{{index+1}}</td>
                                     <td v-if="object.type == 0"><img width="20" height="20" src="../images/3.png"></td>
                                     <td v-if="object.type == 1"><img width="20" height="20" src="../images/8.png"></td>
                                     <td>{{object.name}}</td>
+                                    <td>{{object.department}}</td>
                                     <td v-if="object.sex == 0">女</td>
                                     <td v-if="object.sex == 1">男</td>
                                     <td v-if="object.type == 0">收运司机</td>
@@ -2030,7 +2032,7 @@
                                     <td >{{object.idCrad}}</td>
                                     <td >{{object.driverCheck}}</td>
                                     <td class="menu" style="display: block; left: 655.5px;">
-                                        <span id="edit" data-toggle="modal" data-target="#add2">编辑</span>
+                                        <span id="edit" data-toggle="modal" data-target="#add2" @click="edit(object.id,object.sex,object.department,object.name,object.type,object.idCrad)">编辑</span>
                                         <span id="edSpan" rid="1" data-toggle="modal" data-target="#setting1">考核设置</span>
                                         <span class="del">删除</span>
                                     </td>
@@ -2046,6 +2048,7 @@
                             data:{
                                 objects:[],
                             },
+                            /**/
                             created: function () {
                                 var self = this;
                                 /**/
@@ -2079,6 +2082,22 @@
                                     console.log('error');
                                 });
                             }
+                            /**/
+                            // methods: {
+                            //     edit: function (id,sex,department,name,type,idCrad) {
+                            //         var czx=new Vue({
+                            //             el:"#editDriver",
+                            //             data:{
+                            //                 eId:id,
+                            //                 eSex:sex,
+                            //                 eDepartment:department,
+                            //                 eName:name,
+                            //                 eType:type,
+                            //                 eCard:idCrad
+                            //             }
+                            //         })
+                            //     }
+                            // }
                         })
 
                     </script>
@@ -2087,13 +2106,13 @@
 
 			<!--添加-->
 			<div class="modal fade" id="add" tabindex="-1" role="dialog">
-				<div class="modal-dialog modal_width" role="document">
+				<div class="modal-dialog modal_width" role="document" >
 					<!--宽高修改-->
-					<div class="modal-content modal_width" style="height:550px" id="insertDriver">
+					<div class="modal-content modal_width" style="height:550px" >
 						<div class="modal-header">
 							<h5 class="modal-title text-center" id="myModalLabe" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">新增司机</h5>
 						</div>
-						<div class="modal-body over" style="margin-top:0px;" >
+						<div class="modal-body over" style="margin-top:0px;" id="insertDriver">
 							<div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
 								<label class="control-label">司机姓名</label><br>
 								<input id="dname" type="text" class="form-control" v-model="iName">
@@ -2109,7 +2128,7 @@
 							<div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
 								<label class=" control-label">性别</label>
 								<br>
-								<select  class="form-control select_she_bei" id="dsex" v-model="iSex">
+								<select  class="form-control select_she_bei"  v-model="iSex">
 									<option value="0">女</option>
 									<option value="1">男</option>
 								</select>
@@ -2119,7 +2138,7 @@
                             <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
                                 <label class=" control-label">类别</label>
                                 <br>
-                                <select  class="form-control select_she_bei" id="dtype" v-model="iType">
+                                <select  class="form-control select_she_bei"  v-model="iType">
                                     <option value="1">转运司机</option>
                                     <option value="0">收运司机</option>
                                 </select>
@@ -2129,7 +2148,7 @@
                             <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
                                 <label class=" control-label">所属部门</label>
                                 <br>
-                                <select  class="form-control select_she_bei" id="ddepartment" v-model="iDepartment">
+                                <select  class="form-control select_she_bei"  v-model="iDepartment">
                                     <div th:each="d: ${department}">
                                      <option th:value="${d}" th:text="${d}"></option>
                                     </div>
@@ -2137,15 +2156,16 @@
                                 <br>
                                 <div></div>
                             </div>
+                            <div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:-15px">
+                                <p class="col-xs-10 col-xs-offset-1">
+                                    <button type="button" id="addBtn" class="btn btn_blue btn-block" data-dismiss="modal" v-on:click="insertDriver">确认</button>
+                                </p>
+                                <p class="col-xs-10 col-xs-offset-1">
+                                    <button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">取消</button>
+                                </p>
+                            </div>
 						</div>
-						<div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:-15px">
-							<p class="col-xs-10 col-xs-offset-1">
-								<button type="button" id="addBtn" class="btn btn_blue btn-block" data-dismiss="modal" v-on:click="insertDriver">确认</button>
-							</p>
-							<p class="col-xs-10 col-xs-offset-1">
-								<button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">取消</button>
-							</p>
-						</div>
+
                         <script>
                             /*新增司机*/
                             new Vue({
@@ -2155,10 +2175,10 @@
                                     iCard:'',
                                     iSex:'',
                                     iType:'',
-                                    iDpartment:"",
+                                    iDepartment:""
                                 },
                                 methods: {
-                                    insertDriver: function (event) {
+                                    insertDriver: function () {
                                         $.ajax({
                                             url: '/driver/insertDriver',
                                             type: 'post',
@@ -2169,11 +2189,24 @@
                                                 iDepartment:this.iDepartment,
                                                 iType:this.iType
                                             },
-                                            dataType: 'json'
-                                        }).then(function (res) {
-                                            alert_sos(res)
+                                            dataType: 'text'
+                                        }).then(function (obj) {
+                                            if(obj == 'success'){
+                                                bootbox.alert({
+                                                    message: '新增司机成功',
+                                                    closeButton: false,
+                                                });
+                                            }else{
+                                                bootbox.alert({
+                                                    message: '录入信息错误',
+                                                    closeButton: false
+                                                });
+                                            }
                                         }).fail(function () {
-                                            console.log('error');
+                                            bootbox.alert({
+                                                message: '录入信息错误',
+                                                closeButton: false
+                                            });
                                         })
                                     }
                                 }
@@ -2184,64 +2217,69 @@
 				</div>
 			</div>
 			<!--编辑-->
-			<div class="modal fade edit_people" id="add2" tabindex="-1" role="dialog">
-				<div class="modal-dialog modal_width" role="document">
-					<!--宽高修改-->
-					<div class="modal-content modal_width" style="height:495px">
-						<div class="modal-header">
-							<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> -->
-							<br>
-							<h5 class="modal-title text-center" id="myModalLabel">编辑角色</h5>
-						</div>
-						<div class="modal-body over" style="margin-top:25px;">
-
-							<div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
-								<label class=" control-label">角色头像</label>
-								<br>
-								<select id="pic2" class="form-control select_she_bei" style="width:160px;">
-									<option value="http://116.62.238.185/rolePic/1.png">1</option>
-									<option value="http://116.62.238.185/rolePic/2.png">2</option>
-									<option value="http://116.62.238.185/rolePic/3.png">3</option>
-									<option value="http://116.62.238.185/rolePic/4.png">4</option>
-									<option value="http://116.62.238.185/rolePic/5.png">5</option>
-									<option value="http://116.62.238.185/rolePic/6.png">6</option>
-									<option value="http://116.62.238.185/rolePic/7.png">7</option>
-									<option value="http://116.62.238.185/rolePic/8.png">8</option>
-									<option value="http://116.62.238.185/rolePic/9.png">9</option>
-									<option value="http://116.62.238.185/rolePic/10.png">10</option>
-									<option value="http://116.62.238.185/rolePic/11.png">11</option>
-									<option value="http://116.62.238.185/rolePic/12.png">12</option>
-									<option value="http://116.62.238.185/rolePic/13.png">13</option>
-									<option value="http://116.62.238.185/rolePic/14.png">14</option>
-									<option value="http://116.62.238.185/rolePic/15.png">15</option>
-									<option value="http://116.62.238.185/rolePic/16.png">16</option>
-								</select>
-								<br>
-								<div style="left:150px;"></div>
-								<img class="picUrl2" style="position:absolute;top:16px;left:214px;" src="../images/1.png" alt="">
-							</div>
-							<div class="col-xs-8 col-xs-offset-2 lei_bie">
-								<label class="control-label">角色类别:</label>
-								<label style="font-weight:500;opacity:0.8"><input id="yuangong" value="1" name="posit" type="checkbox" style="margin-left: 30px;"> 员工</label>
-								<label style="font-weight:500;opacity:0.8"><input id="lindao" value="2" name="posit" type="checkbox" style="margin-left: 30px;"> 领导</label>
-							</div>
-							<div class="from-group col-xs-8 col-xs-offset-2 ming_cheng" style="margin-top:45px;">
-								<label class="control-label">角色名称:</label>
-								<br>
-								<input id="name" type="text" placeholder="请输入角色名称">
-							</div>
-						</div>
-						<div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:35px">
-							<p class="col-xs-10 col-xs-offset-1">
-								<button id="editBtn" type="button" class="btn btn_blue btn-block" data-dismiss="modal">确认</button>
-							</p>
-							<p class="col-xs-10 col-xs-offset-1">
-                    <button type="button " class="btn btn_nor btn-block btn-default btn_dismiss " data-dismiss="modal " style="letter-spacing: 16px;text-indent: 16px; ">取消</button>    
-                </p>
-           </div>
-    	</div>
-  	</div>
-</div>
+            <div class="modal fade" id="add2" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal_width" role="document">
+                    <!--宽高修改-->
+                    <div class="modal-content modal_width" style="height:550px" id="editDriver">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center" style="font-weight: 900;font-size:16px;opacity:0.9;margin-top:-10px">编辑资料</h5>
+                        </div>
+                        <div class="modal-body over" style="margin-top:0px;" >
+                            <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                                <label class="control-label">司机姓名</label><br>
+                                <input  type="text" class="form-control" v-model="eName">
+                                <br>
+                                <div></div>
+                            </div>
+                            <div class="from-group col-xs-8 col-xs-offset-2 " style="margin-top: 0px;">
+                                <label class="control-label">身份证号</label><br>
+                                <input  type="text" class="form-control" v-model="eCard">
+                                <br>
+                                <div></div>
+                            </div>
+                            <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+                                <label class=" control-label">性别</label>
+                                <br>
+                                <select  class="form-control select_she_bei"  v-model="eSex">
+                                    <option value="0">女</option>
+                                    <option value="1">男</option>
+                                </select>
+                                <br>
+                                <div></div>
+                            </div>
+                            <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+                                <label class=" control-label">类别</label>
+                                <br>
+                                <select  class="form-control select_she_bei"  v-model="eType">
+                                    <option value="1">转运司机</option>
+                                    <option value="0">收运司机</option>
+                                </select>
+                                <br>
+                                <div></div>
+                            </div>
+                            <div class="from-group col-xs-8 col-xs-offset-2 add_san_jiao" style="margin-top: 0px;">
+                                <label class=" control-label">所属部门</label>
+                                <br>
+                                <select  class="form-control select_she_bei"  v-model="eDepartment">
+                                    <div th:each="d: ${department}">
+                                        <option th:value="${d}" th:text="${d}"></option>
+                                    </div>
+                                </select>
+                                <br>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="border:0;width:80%;margin:0 auto;margin-top:-15px">
+                            <p class="col-xs-10 col-xs-offset-1">
+                                <button type="button" id="editBtn" class="btn btn_blue btn-block" data-dismiss="modal" v-on:click="editDriverTrue">确认</button>
+                            </p>
+                            <p class="col-xs-10 col-xs-offset-1">
+                                <button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">取消</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 <!-- 设置考核选项 -->
 <div class="modal fade edit_check " id="setting1" tabindex="-1 " role="dialog">
