@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,13 +17,18 @@
 		<script src="../js/bootbox.min.js"></script>
 		<script src="../js/common.js"></script>
 		<link rel="stylesheet" href="../css/laydate.css" id="layuicss-laydate">
+        <!--page-->
+        <link rel="stylesheet"  href="../css/zxf_page.css"/>
+        <script  src="../js/zxf_page.js"></script>
+        <!--vue-->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.js"></script>
 		<style>
 			.mcontent{
 				line-height: 3.5;
 			}
 			.m_left_2{
 				margin-left: 20px;
-			};
+			}
 			.search_box{
 				background-color: #f9f9f9;
 				font-size: 14px;
@@ -164,7 +169,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="login.html">退出</a>
+									<a href="/zlys/logout">退出</a>
 								</li>
 							</ul>
 						</div>
@@ -855,7 +860,7 @@
                         <a href="/department/system_e" class=""></a>
                     </li>
                     <li class="active">
-                        <a href="/common/system_f" class=""></a>
+                        <a href="/car/system_f" class=""></a>
                     </li>
                     <li class=" ">
                         <a href="/common/system_g" class=""></a>
@@ -881,562 +886,621 @@
             						<img src="../images/file.png">绵阳市
 								</span>
 								<div class="area" style="display: block;">
-									<span data-areaid="96" onclick="choose_organ(this)">
-            							<img src="../images/close.png" class="right">
-            							<img src="../images/file.png">涪城区
+                                    <span th:each="d: ${departments}">
+                                        <span th:attr="data-areaid=${d}" onclick="choose_organ(this)">
+            							<img src="../images/file.png" th:value="${d}" th:text="${d}">
 									</span>
-									<div class="group">
-										<span data-groupid="139" onclick="choose_organ(this)">
-            								<img src="../images/file.png">涪城区处理站
-										</span>
-										<span data-groupid="139" onclick="choose_organ(this)">
-            								<img src="../images/file.png">涪城区中转站
-										</span>
-									</div>
-									<span data-areaid="138" onclick="choose_organ(this)">
-            							<img src="../images/close.png" class="right">
-            							<img src="../images/file.png">游仙区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="147" onclick="choose_organ(this)">
-            							<img src="../images/close.png" class="right">
-            							<img src="../images/file.png">高新区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="148" onclick="choose_organ(this)">
-		            					<img src="../images/close.png" class="right">
-		            					<img src="../images/file.png">经开区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="149" onclick="choose_organ(this)">
-	            						<img src="../images/close.png" class="right">
-	            						<img src="../images/file.png">科创园区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="150" onclick="choose_organ(this)">
-										<img src="../images/close.png" class="right">
-            							<img src="../images/file.png">科学城
-									</span>
-									<div class="group"></div>
-									<span data-areaid="151" onclick="choose_organ(this)">
-            							<img src="../images/close.png" class="right">
-            							<img src="../images/file.png">仙海区
-									</span>
-									<div class="group"></div>
+                                    </span>
+
 								</div>
 							</div>
 						</ul>
-						<!--<ul id="menuTree" class="menuTree scroll">
-							<div class="all">
-								<span class="bloc active open" data-blocid="1" onclick="choose_organ(this)">
-									<img src="../images/close_hover.png" class="right">
-									<img src="../images/file.png"> 绵阳市环卫处
-								</span>
-								<div class="area" style="display: block;">
-									<span data-areaid="2" onclick="choose_organ(this)">
-										<img src="../images/file.png">涪城中心片区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="3" onclick="choose_organ(this)">
-										<img src="../images/file.png">游仙镇片区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="4" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 教育园区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="5" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 行政办公片区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="6" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 御营片区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="7" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 南山片区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="8" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 涪城临园片区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="9" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 花园片区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="10" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 游仙片区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="11" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 二环路片区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="12" onclick="choose_organ(this)">
-										<img src="../images/file.png"> 高圣平片区
-									</span>
-									<div class="group"></div>
-								</div>
-							</div>
-						</ul>-->
 					</div>
 					<div class="aside_r col-xs-10">
 						<div class="top">
 							<span class="btn_blue pull-right" data-toggle="modal" data-target="#add_vehicle" id="addrole" style="display: block;margin-bottom: 10px;">
-				            	<i class="plus"></i> 
+				            	<i class="plus"></i>
 				            	新增车辆
 				            </span>
-							
-							<div class="search_box">
-								<input class="form-control input_search" placeholder="车辆信息" id="ename">
-								<span class="search_over"></span>
-							</div>
-
-							<!--<input style="width:240px" class="form-control input_time" readonly="readonly" id="times" lay-key="2">
-
-							<span id="export" class="btn_exporty btn_blue pull-right" style="margin-right:25px"> 导出</span>
-							<span data-toggle="modal" data-target="#reasonn" class="set_rule btn_setting btn_blue pull-right " style="display:none">设置审核理由</span>-->
-
-						</div>
+                        </div>
+                        <div id="car">
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<!-- <th class="text-center">
-                            <input type="checkbox" id="">
-                        </th> -->
+                                    <th class="text-center dropdown my_word_style">序号</th>
+									<th class="text-center dropdown my_word_style">所属区域</th>
+									<th class="text-center dropdown my_word_style">所属部门</th>
+									<th class="text-center dropdown my_word_style" >终端号</th>
+									<th class="text-center dropdown my_word_style">车辆车牌</th>
 									<th class="text-center dropdown my_word_style">
-										所属区域
+										<div class="dropdown-toggle" type="button" data-toggle="dropdown">车辆类型</div>
 									</th>
-									<th class="text-center dropdown my_word_style">
-										所属部门
-									</th>
-									<th class="text-center dropdown my_word_style" id="role">
-										车辆编号
-									</th>
-									<th class="text-center dropdown my_word_style" id="role">
-										车辆车牌
-									</th>
-									<th class="text-center dropdown my_word_style" id="role">
-										<div class="dropdown-toggle" type="button" data-toggle="dropdown">
-											车辆类型
-											<img src="../images/fa-chevron-down.png">
-										</div>
-										<ul class="dropdown-menu " aria-labelledby="dropdownMenu1" style="width:80% ;font-size:12px;margin-left:10%;">
-											<li class="text-center">全部</li>
-											<li style="width:100%;text-align: center;" data-target="#detail" rid="1">转运车</li>
-											<li style="width:100%;text-align: center;" data-target="#detail" rid="2">收运车</li>
-										</ul>
-									</th>	
-									<!--<th class="text-center dropdown my_word_style">
-										<div class="dropdown-toggle" type="button" data-toggle="dropdown">
-											违规种类
-											<img src="../images/fa-chevron-down.png">
-										</div>
-										<ul class="dropdown-menu " aria-labelledby="dropdownMenu1" id="list_type" style="width:80% ;font-size:12px;margin-left:10%;">
-											<li data-type="">全部</li>
-											<li data-type="1">脱岗统计</li>
-
-											<li data-type="2">违规停留统计</li>
-											<li data-type="3">设备异常统计</li>
-											<li data-type="4">作业里程异常统计</li>
-											<li data-type="5">缺勤统计</li>
-											<li data-type="6">迟到统计</li>
-											<li data-type="7">早退统计</li>
-
-										</ul>
-									</th>-->
-									<th class="text-center dropdown my_word_style">
-										运载容量(m<sup>3</sup>)
-										<!--<div class="dropdown-toggle" type="button" data-toggle="dropdown">
-											理由
-											<img src="../images/fa-chevron-down.png">
-										</div>
-										<ul class="dropdown-menu " aria-labelledby="dropdownMenu1" id="list_reason" style="width:80% ;font-size:12px;margin-left:10%;">
-
-											<li onclick="get_list_reason(this)">全部</li>
-											<li onclick="get_list_reason(this)">顶班</li>
-											<li onclick="get_list_reason(this)">下雨</li>
-											<li onclick="get_list_reason(this)">请假</li>
-											<li onclick="get_list_reason(this)">借调</li>
-											<li onclick="get_list_reason(this)">突击任务</li>
-											<li onclick="get_list_reason(this)">还班</li>
-											<li onclick="get_list_reason(this)">手环检测</li>
-											<li onclick="get_list_reason(this)">特殊事件</li>
-											<li onclick="get_list_reason(this)">早餐时间</li>
-											<li onclick="get_list_reason(this)">休假</li>
-										</ul>-->
-									</th>
-									<th class="text-center dropdown my_word_style" id="">查看详情</th>
-									<th class="text-center dropdown my_word_style" id="">编辑信息</th>
+									<th class="text-center dropdown my_word_style">运载容量(m<sup>3</sup>)</th>
+									<th class="text-center dropdown my_word_style" >查看详情</th>
+									<th class="text-center dropdown my_word_style" >编辑信息</th>
 								</tr>
 							</thead>
+
 							<tbody class="text-center">
-								<tr>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>test01</td>
-									<td>川BTEST1</td>
-									<td>转运车</td>
-									<td>1000</td>
-									<td><a target="_blank" href="javascript:void(0);"
-										data-toggle="modal" data-target="#detail">查看</a></td>
-									<td><a target="_blank" href="javascript:void(0);">编辑</a></td>
-								</tr>
-								<tr>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>test02</td>
-									<td>川BTEST2</td>
-									<td>转运车</td>
-									<td>1000</td>
-									<td><a target="_blank" href="javascript:void(0);">查看</a></td>
-									<td><a target="_blank" href="javascript:void(0);">编辑</a></td>
-								</tr>
-								<tr>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>test03</td>
-									<td>川BTEST3</td>
-									<td>收运车</td>
-									<td>1000</td>
-									<td><a target="_blank" href="javascript:void(0);">查看</a></td>
-									<td><a target="_blank" href="javascript:void(0);">编辑</a></td>
-								</tr>
-								<tr>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>test04</td>
-									<td>川BTEST4</td>
-									<td>收运车</td>
-									<td>1000</td>
-									<td><a target="_blank" href="javascript:void(0);">查看</a></td>
-									<td><a target="_blank" href="javascript:void(0);">编辑</a></td>
-								</tr>
-								<tr>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>test05</td>
-									<td>川BTEST5</td>
-									<td>收运车</td>
-									<td>1000</td>
-									<td><a target="_blank" href="javascript:void(0);">查看</a></td>
-									<td><a target="_blank" href="javascript:void(0);">编辑</a></td>
-								</tr>
-								<tr>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>test06</td>
-									<td>川BTEST6</td>
-									<td>收运车</td>
-									<td>1000</td>
-									<td><a target="_blank" href="javascript:void(0);">查看</a></td>
-									<td><a target="_blank" href="javascript:void(0);">编辑</a></td>
-								</tr>
-								<tr>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>test07</td>
-									<td>川BTEST7</td>
-									<td>收运车</td>
-									<td>1000</td>
-									<td><a target="_blank" href="javascript:void(0);">查看</a></td>
-									<td><a target="_blank" href="javascript:void(0);">编辑</a></td>
-								</tr>
-								<tr>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>test08</td>
-									<td>川BTEST8</td>
-									<td>收运车</td>
-									<td>1000</td>
-									<td><a target="_blank" href="javascript:void(0);">查看</a></td>
-									<td><a target="_blank" href="javascript:void(0);">编辑</a></td>
-								</tr>
-								<tr>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>test09</td>
-									<td>川BTEST9</td>
-									<td>收运车</td>
-									<td>1000</td>
-									<td><a target="_blank" href="javascript:void(0);">查看</a></td>
-									<td><a target="_blank" href="javascript:void(0);">编辑</a></td>
-								</tr>
-								<tr>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>test10</td>
-									<td>川BTEST10</td>
-									<td>收运车</td>
-									<td>1000</td>
-									<td><a target="_blank" href="javascript:void(0);">查看</a></td>
-									<td><a target="_blank" href="javascript:void(0);">编辑</a></td>
+								<tr v-for="(object,index) in objects.list">
+                                    <td>{{index+1}}</td>
+                                    <td>{{object.departmentArea}}</td>
+                                    <td>{{object.departmentName}}</td>
+									<td>{{object.deviceSerial}}</td>
+									<td>{{object.plateNumber}}</td>
+                                    <td v-if="object.type == 0">收运车</td>
+                                    <td v-if="object.type == 1">转运车</td>
+									<td>{{object.loadCapacity}}</td>
+									<td>
+                                        <a target="_blank" href="javascript:void(0);" data-toggle="modal" data-target="#detail" @click="look(object.id,object.departmentArea,object.departmentName,object.deviceSerial,object.plateNumber,object.type,object.loadCapacity,object.createdtime,object.updatetime)">查看</a>
+                                    </td>
+									<td>
+                                        <a target="_blank" href="javascript:void(0);" data-toggle="modal" data-target="#detail1" @click="edit(object.id,object.departmentArea,object.departmentName,object.deviceSerial,object.plateNumber,object.type,object.loadCapacity,object.createdtime,object.updatetime,object.colour,object.manufacturer,object.modelNum,object.weight,object.purchasingDate,object.initialMileage,object.remark,object.images)">编辑</a>
+                                    </td>
 								</tr>
 							</tbody>
 						</table>
-						<!--分页-->
-						<nav aria-label="Page navigation" class="text-center">
-							<ul class="pagination">
-								<li class="active">
-									<a class="curpage">1</a>
-								</li>
-								<li>
-									<a href="javascript:getData(2)">2</a>
-								</li>
-							</ul>
-						</nav>
+                            <div class="zxf_pagediv" id="zxf_pagediv"></div>
+                        </div>
+                        <script>
+                            var departmentName=null;
+                            /*zlys*/
+                           var allCar = new Vue({
+                                el: '#car',
+                                data: {
+                                    objects: [],
+                                },
+                                created: function () {
+                                    var self = this;
+                                    $.ajax({
+                                        url: '/car/allCar',
+                                        type: 'post',
+                                        data: {dName:departmentName},
+                                        dataType: 'json'
+                                    }).then(function (res) {
+                                        self.objects = res;
+                                        //翻页 null
+                                        $(".zxf_pagediv").createPage({
+                                            pageNum: res.pages,
+                                            current: 1,
+                                            backfun: function(e) {
+                                                $.ajax({
+                                                    url: '/car/allCar',
+                                                    type: 'post',
+                                                    data: { currentPage : e.current,dName:departmentName},
+                                                    dataType: 'json'
+                                                }).then(function (res) {
+                                                    self.objects = res;
+                                                }).fail(function () {
+                                                    console.log('error');
+                                                });
+                                            }
+                                        });
+                                    }).fail(function () {
+                                        console.log('error');
+                                    });
+                                },
+                                methods: {
+                                    look:function(id,departmentArea,departmentName,deviceSerial,plateNumber,type,loadCapacity,createdtime,updatetime){
+                                            $("#lid").val(id);
+                                            $("#ldepartmentArea").text(departmentArea);
+                                            $("#ldepartmentName").text(departmentName);
+                                            $("#ldeviceSerial").text(deviceSerial);
+                                            $("#lplateNumber").text(plateNumber);
+                                            $("#ltype").text(type);
+                                            $("#lloadCapacity").text(loadCapacity);
+                                            $("#lcreatedtime").text(formatDate(createdtime));
+                                            $("#lupdatetime").text(formatDate(updatetime));
+                                        },
+                                    edit:function(id,departmentArea,departmentName,deviceSerial,plateNumber,type,loadCapacity,createdtime,updatetime,colour,manufacturer,modelNum,weight,purchasingDate,initialMileage,remark,images){
+                                        $("#eid").val(id);
+                                        $("#edepartmentArea").val(departmentArea);
+                                        $("#edepartmentName").val(departmentName);
+                                        $("#edeviceSerial").val(deviceSerial);
+                                        $("#eplateNumber").val(plateNumber);
+                                        $("#etype").val(type);
+                                        $("#eloadCapacity").val(loadCapacity);
+                                        $("#ecreatedtime").val(formatDate(createdtime));
+                                        $("#eupdatetime").val(formatDate(updatetime));
+                                        $("#ecolour").val(colour);
+                                        $("#emanufacturer").val(manufacturer);
+                                        $("#emodelNum").val(modelNum);
+                                        $("#eweight").val(weight);
+                                        $("#epurchasingDate").val(formatDateNew(purchasingDate));
+                                        $("#einitialMileage").val(initialMileage);
+                                        $("#eremark").val(remark);
+                                        /*$("#eimages").val(images);*/
+                                    },
+                                    rerender: function(){
+                                        var self = this;
+                                        $.ajax({
+                                            url: '/car/allCar',
+                                            type: 'post',
+                                            data: {dName:departmentName},
+                                            dataType: 'json'
+                                        }).then(function (res) {
+                                            self.objects = res;
+                                            //翻页 null
+                                            $(".zxf_pagediv").createPage({
+                                                pageNum: res.pages,
+                                                current: 1,
+                                                backfun: function(e) {
+                                                    $.ajax({
+                                                        url: '/car/allCar',
+                                                        type: 'post',
+                                                        data: { currentPage : e.current,dName:departmentName},
+                                                        dataType: 'json'
+                                                    }).then(function (res) {
+                                                        self.objects = res;
+                                                    }).fail(function () {
+                                                        console.log('error');
+                                                    });
+                                                }
+                                            });
+                                        }).fail(function () {
+                                            console.log('error');
+                                        });
+                                    }
+                                }
+                            })
+                            /*日期格式化*/
+                            function formatDate(time){
+                                var date = new Date(time);
+                                var year = date.getFullYear(),
+                                    month = date.getMonth() + 1,//月份是从0开始的
+                                    day = date.getDate(),
+                                    hour = date.getHours(),
+                                    min = date.getMinutes(),
+                                    sec = date.getSeconds();
+                                var newTime = year + '-' +
+                                    month + '-' +
+                                    day + ' ' +
+                                    hour + ':' +
+                                    min + ':' +
+                                    sec;
+                                return newTime;
+                            }
 
+                            /*日期格式化*/
+                            function formatDateNew(time){
+                                var date = new Date(time);
+                                var year = date.getFullYear(),
+                                    month = date.getMonth() + 1,//月份是从0开始的
+                                    day = date.getDate()
+                                var newTime = year + '-' +
+                                    month + '-' +
+                                    day;
+                                return newTime;
+                            }
+                        </script>
 					</div>
 				</div>
 			</div>
+            <!--编辑-->
+            <div class="modal fade" id="detail1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                <form id="updateCar">
+                <div class="modal-dialog" role="document" style="width:950px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                            <h5 class="modal-title text-center"  style="font-size:16px;font-weight:800">编辑车辆信息</h5>
+                        </div>
+                        <div class="modal-body" style="padding-top:0;width:100%;">
+                            <div class="mcontent" style="width:80%;margin:0 auto;">
+                                <table>
+                                    <tbody>
+                                    <input type="hidden" id="eid" name="id">
+                                    <tr>
+                                        <td class="text-center" width="20%">车辆车牌:</td>
+                                        <td width="30%">
+                                            <input type="text" class="form-control"  id="eplateNumber" name="plateNumber">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" width="20%">车辆类型:</td>
+                                        <td width="30%">
+                                            <select class="selectType" id="etype" name="type">
+                                                <option value="0">收运车</option>
+                                                <option value="1">转运车</option>
+                                            </select>
+                                        </td>
+                                        <td class="text-center" width="20%">车辆颜色:</td>
+                                        <td width="30%">
+                                            <select class="selectType" id="ecolour" name="colour">
+                                                <option value="黄色">黄色</option>
+                                                <option value="白色">白色</option>
+                                                <option value="蓝色">蓝色</option>
+                                                <option value="黑色">黑色</option>
+                                                <option value="其他">其他</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" width="20%">所属区域:</td>
+                                        <td width="30%">
+                                            <select class="selectType" id="edepartmentArea" name="departmentArea">
+                                                <div th:each="d: ${areas}">
+                                                    <option th:value="${d.areaName}" th:text="${d.areaName}"></option>
+                                                </div>
+                                            </select>
+                                        </td>
+                                        <td class="text-center" width="20%">所属部门:</td>
+                                        <td width="30%">
+                                            <select class="selectType" id="edepartmentName" name="departmentName">
+                                                <div th:each="d: ${departments}">
+                                                    <option th:value="${d}" th:text="${d}"></option>
+                                                </div>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" width="20%">终端号:</td>
+                                        <td width="30%">
+                                            <input type="text" class="form-control" id="edeviceSerial" name="deviceSerial">
+                                        </td>
+                                        <td class="text-center" width="20%">生产厂家:</td>
+                                        <td width="30%">
+                                            <input type="text" class="form-control" id="emanufacturer" name="manufacturer">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" width="20%">生产型号:</td>
+                                        <td width="30%">
+                                            <input type="text" class="form-control" id="emodelNum" name="modelNum">
+                                        </td>
+                                        <td class="text-center" width="20%">车辆载重量(t):</td>
+                                        <td width="30%">
+                                            <input type="text" class="form-control" id="eloadCapacity" name="loadCapacity">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" width="20%">车自重(t):</td>
+                                        <td width="30%">
+                                            <input type="text" class="form-control" id="eweight" name="weight">
+                                        </td>
+                                        <td class="text-center" width="20%">购买时间:</td>
+                                        <td width="30%">
+                                            <input class="form-control input_time" style="width:100%"  id="epurchasingDate" name="purchasingDate">
+                                            <script>
+                                                laydate.render({
+                                                    elem: '#epurchasingDate' //指定元素
+                                                });
+                                            </script>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" width="20%">初始公里(km):</td>
+                                        <td width="30%"><input type="text" class="form-control" id="einitialMileage" name="initialMileage"></td>
+                                    </tr>
+                                    <br/>
+                                    <tr>
+                                        <td class="text-center" width="20%">备注信息:</td>
+                                        <td colspan="3">
+                                            <textarea style="width: 100%;height: 60px;resize: none;" id="eremark" name="remark"></textarea>
+                                        </td>
+                                    </tr>
+                                    <!--<tr>-->
+                                        <!--<td class="text-center" width="20%">图片信息:</td>-->
+                                        <!--<td colspan="3">-->
+                                            <!--<div class="upload_img">-->
+                                                <!--<label href="javascript:" class="a-upload label_img" for="img-select">+</label>-->
+                                                <!--<br />-->
+                                                <!--<input type="file" name="images" id="img-select">-->
+                                            <!--</div>-->
+                                        <!--</td>-->
+                                    <!--</tr>-->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer" style="border:0;width:80%;margin:0 auto">
+                                <p class="col-xs-10 col-xs-offset-1">
+                                    <button type="submit" class="btn btn_blue btn-block" id="updateCarTrue">确认</button>
+                                </p>
+                                <p class="col-xs-10 col-xs-offset-1">
+                                    <button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">取消</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+                <script>
+                    //ajax提交信息
+                    $("#updateCar").submit(function(){
+                            jQuery.ajax({
+                                url: '/car/updateCar',
+                                data: $('#updateCar').serialize(),
+                                type: "POST",
+                                beforeSend: function()
+                                {
+                                },
+                                success: function(obj)
+                                {
+                                    if(obj == 'success'){
+                                        bootbox.alert({
+                                            message: '修改车辆信息成功!',
+                                            closeButton: true,
+                                            callback: function () {
+                                                location.reload();
+                                            }
+                                        });
+                                    }else{
+                                        bootbox.alert({
+                                            message: '录入信息错误',
+                                            closeButton: false
+                                        });
+                                    }
+                                }
+                            });
+                            return false;
+                    })
+                </script>
+            </div>
 
-			<!-- 脱岗 违规 模态框 详情-->
+			<!--查看-->
 			<div class="modal fade in " id="detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none;">
 				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content mobody ">
 						<div class="modal-header">
 							<button type="button" class="close " data-dismiss="modal" aria-hidden="true">×</button>
-							<h4 class="modal-title text-center" id="myModalLabel">查看详情</h4>
+							<h4 class="modal-title text-center" >查看详情</h4>
 						</div>
-
+                        <input type="hidden" id="lid">
 						<div class="over form-horizontal">
 							<div class="form-group">
 								<label class="control-label col-xs-3">所属区域：</label>
-								<div class="col-xs-6 form-control-static" id="fullName">
+								<div class="col-xs-6 form-control-static" id="ldepartmentArea">
 									涪城区
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-xs-3">所属部门：</label>
-								<div class="col-xs-6 form-control-static" id="roleName">
+								<div class="col-xs-6 form-control-static" id="ldepartmentName">
 									涪城区收集站
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-xs-3">车辆编号：</label>
-								<div class="col-xs-6 form-control-static" id="areaName">
+								<div class="col-xs-6 form-control-static" id="ldeviceSerial">
 									test01
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-xs-3">车辆车牌：</label>
-								<div class="col-xs-6 form-control-static" id="date">
+								<div class="col-xs-6 form-control-static" id="lplateNumber">
 									川BTEST1
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-xs-3">车辆类型：</label>
-								<div class="col-xs-6 form-control-static" id="lasttime">
+								<div class="col-xs-6 form-control-static" id="ltype">
 									转运车
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-xs-3">运载容量(m3)：</label>
-								<div class="col-xs-6 form-control-static" id="status">
+								<div class="col-xs-6 form-control-static" id="lloadCapacity">
 									1000
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-3">图片信息：</label>
-								<div class="col-xs-6 form-control-static">
-									<img src="../images/iwc-placeholder-vehicle.png" id="img1" alt="" style="max-height: 100px;max-width: 200px;">
-									<img src="../images/iwc-placeholder-vehicle.png" id="img1" alt="" style="margin-left:10px;max-height: 100px;max-width: 200px;">
-								</div>
-							</div>
+							<!--<div class="form-group">-->
+								<!--<label class="control-label col-xs-3">图片信息：</label>-->
+								<!--<div class="col-xs-6 form-control-static">-->
+									<!--<img src="../images/iwc-placeholder-vehicle.png" id="img1" alt="" style="max-height: 100px;max-width: 200px;">-->
+									<!--<img src="../images/iwc-placeholder-vehicle.png" id="img1" alt="" style="margin-left:10px;max-height: 100px;max-width: 200px;">-->
+								<!--</div>-->
+							<!--</div>-->
 							<div class="form-group">
 								<label class="control-label col-xs-3">添加时间：</label>
-								<div class="col-xs-6 form-control-static" id="type">
+								<div class="col-xs-6 form-control-static" id="lcreatedtime">
 									20118-10-26 11:25:36
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-xs-3">添加人：</label>
-								<div class="col-xs-6 form-control-static" id="type">
-									admin
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="control-label col-xs-3">最进修改时间：</label>
-								<div class="col-xs-6 form-control-static" id="type">
+								<div class="col-xs-6 form-control-static" id="lupdatetime">
 									2018-10-26 11:26:25
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-3">修改人：</label>
-								<div class="col-xs-6 form-control-static" id="type">
-									admin
-								</div>
-							</div>
-							<!--<div class="form-group">
-								<label class="control-label col-xs-3">提交说明：</label>
-								<div class="col-xs-6 form-control-static" id="commitComment"></div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-3">审核说明：</label>
-								<div class="col-xs-6 form-control-static" id="handleComment"></div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-3">图片1：</label>
-								<div class="col-xs-6 form-control-static">
-									<img src="examine.html" id="img1" alt="" style="max-height: 100px;max-width: 200px;">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-xs-3">图片2：</label>
-								<div class="col-xs-6 form-control-static">
-									<img src="examine.html" id="img2" alt="" style="max-height: 100px;max-width: 200px;">
-								</div>
-							</div>-->
-
 						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
 		
 		<!-- 新增车辆  -->
-		<div class="modal fade" id="add_vehicle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal fade" id="add_vehicle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
 			<div class="modal-dialog" role="document" style="width:950px;">
 				<div class="modal-content">
 					<div class="modal-header">
 						<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-						<h5 class="modal-title text-center" id="myModalLabel" style="font-size:16px;font-weight:800">新增普通员工</h5>
+						<h5 class="modal-title text-center"  style="font-size:16px;font-weight:800">新增车辆信息</h5>
 					</div>
-					<div class="modal-body" style="padding-top:0;width:100%;">
+					<div class="modal-body" style="padding-top:0;width:100%;" id="insertCar">
 						<div class="mcontent" style="width:80%;margin:0 auto;">
-
 							<table>
 								<tbody>
 									<tr>
 										<td class="text-center" width="20%">车辆车牌:</td>
-										<td width="30%"><input type="text" class="form-control" id="this_code"></td>
-										<td class="text-center" width="20%">内部编号:</td>
-										<td width="30%"><input type="text" class="form-control" ></td>
+										<td width="30%">
+                                            <input type="text" class="form-control" v-model="plateNumber">
+                                        </td>
 									</tr>
 									<tr>
 										<td class="text-center" width="20%">车辆类型:</td>
 										<td width="30%">
-											<select class="selectType" >
-												<option>收运车</option>
-												<option>转运车</option>
+											<select class="selectType" v-model="type">
+												<option value="0">收运车</option>
+												<option value="1">转运车</option>
 											</select>
 										</td>
 										<td class="text-center" width="20%">车辆颜色:</td>
 										<td width="30%">
-											<select class="selectType" >
-												<option>黄色</option>
-												<option>白色</option>
-												<option>蓝色</option>
-												<option>黑色</option>
-												<option>其他</option>
+											<select class="selectType" v-model="colour">
+												<option value="黄色">黄色</option>
+												<option value="白色">白色</option>
+												<option value="蓝色">蓝色</option>
+												<option value="黑色">黑色</option>
+												<option value="其他">其他</option>
 											</select>
 										</td>
 									</tr>
 									<tr>
 										<td class="text-center" width="20%">所属区域:</td>
 										<td width="30%">
-											<select class="selectType" >
-												<option>涪城区</option>
-												<option>游仙区</option>
-												<option>高新区</option>
-												<option>经开区</option>
-												<option>科创园区</option>
-												<option>科学车</option>
-												<option>仙海区</option>
+											<select class="selectType" v-model="departmentArea">
+                                                <div th:each="d: ${areas}">
+                                                    <option th:value="${d.areaName}" th:text="${d.areaName}"></option>
+                                                </div>
 											</select>
 										</td>
 										<td class="text-center" width="20%">所属部门:</td>
 										<td width="30%">
-											<select class="selectType" >
-												<option>涪城区收集站</option>
-												<option>游仙区收集站</option>
-												<option>高新区收集站</option>
-												<option>经开区收集站</option>
-												<option>科创园区收集站</option>
-												<option>科学车收集站</option>
-												<option>仙海区收集站</option>
-											</select>
+                                            <select class="selectType" v-model="departmentName">
+                                                <div th:each="d: ${departments}">
+                                                    <option th:value="${d}" th:text="${d}"></option>
+                                                </div>
+                                            </select>
 										</td>
 									</tr>
 									<tr>
 										<td class="text-center" width="20%">终端号:</td>
 										<td width="30%">
-											<input type="text" class="form-control">
+											<input type="text" class="form-control" v-model="deviceSerial">
 										</td>
 										<td class="text-center" width="20%">生产厂家:</td>
 										<td width="30%">
-											<input type="text" class="form-control" >
+											<input type="text" class="form-control" v-model="manufacturer">
 										</td>
 									</tr>
 									<tr>
 										<td class="text-center" width="20%">生产型号:</td>
 										<td width="30%">
-											<input type="text" class="form-control">
+											<input type="text" class="form-control" v-model="modelNum">
 										</td>
 										<td class="text-center" width="20%">车辆载重量(t):</td>
 										<td width="30%">
-											<input type="text" class="form-control" >
+											<input type="text" class="form-control" v-model="loadCapacity" >
 										</td>
 									</tr>
 									<tr>
 										<td class="text-center" width="20%">车自重(t):</td>
-										<td width="30%"><input type="text" class="form-control"></td>
+										<td width="30%">
+                                            <input type="text" class="form-control" v-model="weight">
+                                        </td>
 										<td class="text-center" width="20%">购买时间:</td>
-										<td width="30%"><input class="form-control input_time" readonly="readonly" id="time" style="width:100%"></td>
-									</tr>
+										<td width="30%">
+                                            <input class="form-control input_time" style="width:100%"  id="purchasingDate">
+                                        </td>
+                                    </tr>
 									<tr>
 										<td class="text-center" width="20%">初始公里(km):</td>
-										<td width="30%"><input type="text" class="form-control"></td>
-										<td class="text-center" width="20%">是否监管:</td>
-										<td width="30%"><input type="text" class="form-control" ></td>
+										<td width="30%"><input type="text" class="form-control" v-model="initialMileage"></td>
 									</tr>
-									<tr>
-										<td class="text-center" width="20%">拍照设置(km):</td>
-										<td width="30%">
-											<select class="selectType" >
-												<option>收运车</option>
-												<option>转运车</option>
-											</select>
-										</td>
-										<td class="text-center" width="20%"></td>
-										<td width="30%"></td>
-									</tr>
-									<tr>
+                                    <br/>
+                                    <tr>
 										<td class="text-center" width="20%">备注信息:</td>
 										<td colspan="3">
-											<textarea style="width: 100%;height: 60px;resize: none;"></textarea>
+											<textarea style="width: 100%;height: 60px;resize: none;" v-model="remark"></textarea>
 										</td>
 									</tr>
-									<tr>
-										<td class="text-center" width="20%">图片信息:</td>
-										<td colspan="3">
-											
-											<div class="upload_img">
-			                                    <label href="javascript:" class="a-upload label_img" for="img-select">+</label>
-			                                    <br />
-			                                    <input type="file" name="" id="img-select">
-			                                </div>
-										</td>
-									</tr>
-									
+									<!--<tr>-->
+										<!--<td class="text-center" width="20%">图片信息:</td>-->
+										<!--<td colspan="3">-->
+											<!--<div class="upload_img">-->
+			                                    <!--<label href="javascript:" class="a-upload label_img" for="img-select">+</label>-->
+			                                    <!--<br />-->
+			                                    <!--<input type="file" name="" id="img-select" v-model="images">-->
+			                                <!--</div>-->
+										<!--</td>-->
+									<!--</tr>-->
 								</tbody>
 							</table>
 						</div>
-					</div>
-					<div class="modal-footer" style="border:0;width:80%;margin:0 auto">
-						<p class="col-xs-10 col-xs-offset-1">
-							<button type="button" class="btn btn_blue btn-block" onclick="update_staff()">确认</button>
-						</p>
-						<p class="col-xs-10 col-xs-offset-1">
-							<button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">取消</button>
-						</p>
+                        <div class="modal-footer" style="border:0;width:80%;margin:0 auto">
+                            <p class="col-xs-10 col-xs-offset-1">
+                                <button type="button" class="btn btn_blue btn-block"  v-on:click="insertCar">确认</button>
+                            </p>
+                            <p class="col-xs-10 col-xs-offset-1">
+                                <button type="button" class="btn btn_nor btn-block btn-default btn_dismiss" data-dismiss="modal" style="letter-spacing: 16px;text-indent: 16px;">取消</button>
+                            </p>
+                        </div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+		<script>
+            /*新增司机*/
+            new Vue({
+                el:"#insertCar",
+                data:{
+                    plateNumber:'',
+                    type:'',
+                    colour:'',
+                    departmentArea:'',
+                    departmentName:"",
+                    deviceSerial:"",
+                    manufacturer:"",
+                    modelNum:"",
+                    loadCapacity:"",
+                    weight:"",
+                    remark:"",
+                    images:"",
+                    initialMileage:"",
+                },
+                mounted: function(){
+                    laydate.render({
+                        elem: '#purchasingDate' //指定元素
+                    });
+                },
+                methods: {
+                    insertCar: function () {
+                        var purchasingDate=($("#purchasingDate").val());
+                        $.ajax({
+                            url: '/car/insertCar',
+                            type: 'post',
+                            data: {
+                                plateNumber:this.plateNumber,
+                                type:this.type,
+                                colour:this.colour,
+                                departmentArea:this.departmentArea,
+                                departmentName:this.departmentName,
+                                deviceSerial:this.deviceSerial,
+                                manufacturer:this.manufacturer,
+                                modelNum:this.modelNum,
+                                loadCapacity:this.loadCapacity,
+                                weight:this.weight,
+                                purchasingDate:purchasingDate,
+                                remark:this.remark,
+                                images:this.images,
+                                initialMileage:this.initialMileage
+                            },
+                            dataType: 'text'
+                        }).then(function (obj) {
+                            if(obj == 'success'){
+                                bootbox.alert({
+                                    message: '新增司机成功',
+                                    closeButton: false,
+                                    callback: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else{
+                                bootbox.alert({
+                                    message: '录入信息错误',
+                                    closeButton: false
+                                });
+                            }
+                        }).fail(function () {
+                            bootbox.alert({
+                                message: '录入信息错误',
+                                closeButton: false
+                            });
+                        })
+                    }
+                }
+            })
+        </script>
 		<!-- 审核 -->
 		<div class="modal fade in " id="commitAudit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none;">
 			<div class="modal-dialog modal-md" role="document">
@@ -1590,27 +1654,10 @@
 			    tree_conditions.groupId = $(obj).attr('data-groupId')?$(obj).attr('data-groupId'):''; 
 				var that = $(obj);
 				var id = that.attr('data-areaid');
-				//alert(id);
-				if(id == '2'){
-					//alert('2');
-				}else if(id == '3'){
-					//alert('3');
-				}else if(id == '4'){
-					//alert('4');
-				}else if(id == '5'){
-					//alert('5');
-				}else if(id == '6'){
-					//alert('6');
-				}else if(id == '7'){
-					//alert('7');
-				}else if(id == '8'){
-					//alert('8');
-				}else if(id == '9'){
-					//alert('9');
-				}else if(id == '10'){
-					//alert('10');
-				}
+                departmentName=id;
+                allCar.rerender();
 			};
+
 		</script>
 	</body>
 </html>

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlys.collection.dao.CarMapper">
+
+	<resultMap id="BaseResultMap" type="com.zlys.collection.entity.CarEntity">
+		<id column="id" property="id" />
+		<result column="plate_number" property="plateNumber" />
+		<result column="colour" property="colour" />
+		<result column="device_serial" property="deviceSerial" />
+		<result column="department_name" property="departmentName" />
+		<result column="department_area" property="departmentArea" />
+		<result column="type" property="type" />
+		<result column="manufacturer" property="manufacturer" />
+		<result column="model_num" property="modelNum" />
+		<result column="load_capacity" property="loadCapacity" />
+		<result column="weight" property="weight" />
+		<result column="purchasing_date" property="purchasingDate" />
+		<result column="initial_mileage" property="initialMileage" />
+		<result column="remark" property="remark" />
+		<result column="images" property="images" />
+		<result column="createdtime" property="createdtime" />
+		<result column="updatetime" property="updatetime" />
+	</resultMap>
+
+	<sql id="table-name">car</sql>
+
+	<sql id="all-column">id ,plate_number ,colour ,device_serial ,department_name ,department_area ,type ,manufacturer ,model_num ,load_capacity ,weight ,purchasing_date ,initial_mileage ,remark ,images ,createdtime ,updatetime	</sql>
+
+	<sql id="all-query-condition">
+		<if test="id != null">
+	      and id = #{id}
+    </if>
+	   <if test="plateNumber != null and plateNumber != ''">
+	      and plate_number = #{plateNumber}
+    </if>
+	   <if test="colour != null and colour != ''">
+	      and colour = #{colour}
+    </if>
+	   <if test="deviceSerial != null and deviceSerial != ''">
+	      and device_serial = #{deviceSerial}
+    </if>
+	   <if test="departmentName != null and departmentName != ''">
+	      and department_name = #{departmentName}
+    </if>
+	   <if test="departmentArea != null and departmentArea != ''">
+	      and department_area = #{departmentArea}
+    </if>
+		<if test="type != null">
+	      and type = #{type}
+    </if>
+	   <if test="manufacturer != null and manufacturer != ''">
+	      and manufacturer = #{manufacturer}
+    </if>
+	   <if test="modelNum != null and modelNum != ''">
+	      and model_num = #{modelNum}
+    </if>
+	   <if test="loadCapacity != null and loadCapacity != ''">
+	      and load_capacity = #{loadCapacity}
+    </if>
+	   <if test="weight != null and weight != ''">
+	      and weight = #{weight}
+    </if>
+		<if test="purchasingDate != null">
+	      and purchasing_date = #{purchasingDate}
+    </if>
+	   <if test="initialMileage != null and initialMileage != ''">
+	      and initial_mileage = #{initialMileage}
+    </if>
+	   <if test="remark != null and remark != ''">
+	      and remark = #{remark}
+    </if>
+	   <if test="images != null and images != ''">
+	      and images = #{images}
+    </if>
+		<if test="createdtime != null">
+	      and createdtime = #{createdtime}
+    </if>
+		<if test="updatetime != null">
+	      and updatetime = #{updatetime}
+    </if>
+	</sql>
+
+
+	<!-- Selective Insert-->
+	<insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.zlys.collection.entity.CarEntity">
+		insert into <include refid="table-name"/>
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="id != null">
+	  	        id,
+  	        </if>
+	   <if test="plateNumber != null and plateNumber != ''">
+	  	        plate_number,
+  	        </if>
+	   <if test="colour != null and colour != ''">
+	  	        colour,
+  	        </if>
+	   <if test="deviceSerial != null and deviceSerial != ''">
+	  	        device_serial,
+  	        </if>
+	   <if test="departmentName != null and departmentName != ''">
+	  	        department_name,
+  	        </if>
+	   <if test="departmentArea != null and departmentArea != ''">
+	  	        department_area,
+  	        </if>
+		<if test="type != null">
+	  	        type,
+  	        </if>
+	   <if test="manufacturer != null and manufacturer != ''">
+	  	        manufacturer,
+  	        </if>
+	   <if test="modelNum != null and modelNum != ''">
+	  	        model_num,
+  	        </if>
+	   <if test="loadCapacity != null and loadCapacity != ''">
+	  	        load_capacity,
+  	        </if>
+	   <if test="weight != null and weight != ''">
+	  	        weight,
+  	        </if>
+		<if test="purchasingDate != null">
+	  	        purchasing_date,
+  	        </if>
+	   <if test="initialMileage != null and initialMileage != ''">
+	  	        initial_mileage,
+  	        </if>
+	   <if test="remark != null and remark != ''">
+	  	        remark,
+  	        </if>
+	   <if test="images != null and images != ''">
+	  	        images,
+  	        </if>
+		<if test="createdtime != null">
+	  	        createdtime,
+  	        </if>
+		<if test="updatetime != null">
+	  	        updatetime
+  	        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 		<if test="id != null">
+	  	        #{id},
+  	        </if>
+   	   <if test="plateNumber != null and plateNumber != ''">
+	  	        #{plateNumber},
+  	        </if>
+   	   <if test="colour != null and colour != ''">
+	  	        #{colour},
+  	        </if>
+   	   <if test="deviceSerial != null and deviceSerial != ''">
+	  	        #{deviceSerial},
+  	        </if>
+   	   <if test="departmentName != null and departmentName != ''">
+	  	        #{departmentName},
+  	        </if>
+   	   <if test="departmentArea != null and departmentArea != ''">
+	  	        #{departmentArea},
+  	        </if>
+   		<if test="type != null">
+	  	        #{type},
+  	        </if>
+   	   <if test="manufacturer != null and manufacturer != ''">
+	  	        #{manufacturer},
+  	        </if>
+   	   <if test="modelNum != null and modelNum != ''">
+	  	        #{modelNum},
+  	        </if>
+   	   <if test="loadCapacity != null and loadCapacity != ''">
+	  	        #{loadCapacity},
+  	        </if>
+   	   <if test="weight != null and weight != ''">
+	  	        #{weight},
+  	        </if>
+   		<if test="purchasingDate != null">
+	  	        #{purchasingDate},
+  	        </if>
+   	   <if test="initialMileage != null and initialMileage != ''">
+	  	        #{initialMileage},
+  	        </if>
+   	   <if test="remark != null and remark != ''">
+	  	        #{remark},
+  	        </if>
+   	   <if test="images != null and images != ''">
+	  	        #{images},
+  	        </if>
+   		<if test="createdtime != null">
+	  	        #{createdtime},
+  	        </if>
+   		<if test="updatetime != null">
+	              #{updatetime}
+  	        </if>
+  		</trim>
+	</insert>
+
+	<!-- Batch Selective -->
+	<insert id="insertRecords" parameterType="java.util.List">
+		insert into <include refid="table-name"/>
+		<trim prefix="(" suffix=")values">
+		 	<include refid="all-column"/>
+		</trim>
+		<foreach collection="records" item="record"  separator=",">
+		  (		#{id},
+			#{plateNumber},
+			#{colour},
+			#{deviceSerial},
+			#{departmentName},
+			#{departmentArea},
+			#{type},
+			#{manufacturer},
+			#{modelNum},
+			#{loadCapacity},
+			#{weight},
+			#{purchasingDate},
+			#{initialMileage},
+			#{remark},
+			#{images},
+			#{createdtime},
+			#{updatetime}
+		   )
+		</foreach>
+	</insert>
+
+        <!-- QueryAll -->
+    <select id="queryAll" resultMap="BaseResultMap" parameterType="com.zlys.collection.entity.CarEntity">
+        select <include refid="all-column" /> from <include refid="table-name"/>
+    </select>
+
+	<!-- Query limit one -->
+	<select id="queryLimitOne" resultMap="BaseResultMap" parameterType="com.zlys.collection.entity.CarEntity">
+		select <include refid="all-column" /> from <include refid="table-name"/>
+		where 1=1   <include refid="all-query-condition"/>
+        limit 1
+	</select>
+
+	<!-- Query By Cond -->
+	<select id="queryByCond" resultMap="BaseResultMap" parameterType="com.zlys.collection.entity.CarEntity">
+		select <include refid="all-column" /> from <include refid="table-name"/>
+		where 1=1 <include refid="all-query-condition"/>
+	</select>
+
+	<!-- Query By Primary Key -->
+	<select id="queryById" resultMap="BaseResultMap">
+		select
+		<include refid="all-column" />
+		from <include refid="table-name"/> where id = #{id}
+	</select>
+
+	<!-- Query By Primary Keys-->
+	<select id="queryByIds" resultMap="BaseResultMap" parameterType="java.util.List">
+		select
+		<include refid="all-column" />
+		from <include refid="table-name"/> where id in
+		<foreach collection="keys" item="key" open="(" close=")" separator=",">
+			#{key}
+		</foreach>
+	</select>
+
+	<!-- Update By Primary Key -->
+	<update id="updateCarById" parameterType="com.zlys.collection.entity.CarEntity">
+		update <include refid="table-name" />
+		<set>
+		<if test="id != null">
+		        id = #{id},
+			</if>
+				   <if test="plateNumber != null and plateNumber != ''">
+		        plate_number = #{plateNumber},
+			</if>
+				   <if test="colour != null and colour != ''">
+		        colour = #{colour},
+			</if>
+				   <if test="deviceSerial != null and deviceSerial != ''">
+		        device_serial = #{deviceSerial},
+			</if>
+				   <if test="departmentName != null and departmentName != ''">
+		        department_name = #{departmentName},
+			</if>
+				   <if test="departmentArea != null and departmentArea != ''">
+		        department_area = #{departmentArea},
+			</if>
+					<if test="type != null">
+		        type = #{type},
+			</if>
+				   <if test="manufacturer != null and manufacturer != ''">
+		        manufacturer = #{manufacturer},
+			</if>
+				   <if test="modelNum != null and modelNum != ''">
+		        model_num = #{modelNum},
+			</if>
+				   <if test="loadCapacity != null and loadCapacity != ''">
+		        load_capacity = #{loadCapacity},
+			</if>
+				   <if test="weight != null and weight != ''">
+		        weight = #{weight},
+			</if>
+					<if test="purchasingDate != null">
+		        purchasing_date = #{purchasingDate},
+			</if>
+				   <if test="initialMileage != null and initialMileage != ''">
+		        initial_mileage = #{initialMileage},
+			</if>
+				   <if test="remark != null and remark != ''">
+		        remark = #{remark},
+			</if>
+				   <if test="images != null and images != ''">
+		        images = #{images},
+			</if>
+					<if test="createdtime != null">
+		        createdtime = #{createdtime},
+			</if>
+					<if test="updatetime != null">
+	            updatetime = #{updatetime}
+			</if>
+					</set>
+		<where>id = #{id}</where>
+	</update>
+
+	<!-- Delete By primary Keys -->
+	<delete id="deleteCarById">
+		delete from <include refid="table-name" />
+		<where>id = #{id}</where>
+	</delete>
+
+
+
+</mapper>

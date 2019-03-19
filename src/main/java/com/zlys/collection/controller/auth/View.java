@@ -127,17 +127,6 @@ public class View {
 
 
     /**
-     * @desc: 系统管理_车辆管理 view
-     * @param:
-     * @return:
-     * @auther: czx
-     */
-    @RequestMapping("system_f")
-    public String cheliang(){
-        return "cheliang";
-    }
-
-    /**
      * @desc: 系统管理_收集点管理 view
      * @param:
      * @return:

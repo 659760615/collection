@@ -54,7 +54,7 @@ public class DepartmentController extends BaseController{
         /*admin  zkmt*/
         if(departmentName == null){
             /*分页*/
-            PageHelper.startPage(currentPage,3);
+            PageHelper.startPage(currentPage,8);
             List<DepartmentEntity> list=departmentService.queryAll();
             PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
             model.addAttribute("pages",pageInfo);
@@ -75,7 +75,7 @@ public class DepartmentController extends BaseController{
             List<DepartmentEntity> list=departmentService.queryByCond(departmentEntityNew);
             model.addAttribute("area",departmentAreas);
             /*分页*/
-            PageHelper.startPage(currentPage,3);
+            PageHelper.startPage(currentPage,8);
             PageInfo<DepartmentEntity> pageInfo=new PageInfo<>(list);
             model.addAttribute("pages",pageInfo);
         }
@@ -135,7 +135,7 @@ public class DepartmentController extends BaseController{
     @RequestMapping("queryByArea")
     public String queryById1(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage,String area,Model model,HttpSession session){
         String departmentName = user(session);
-        PageHelper.startPage(currentPage,3);
+        PageHelper.startPage(currentPage,8);
         DepartmentEntity departmentEntity=new DepartmentEntity();
         List<DepartmentEntity> list=new LinkedList<DepartmentEntity>();
         if(departmentName == null){
