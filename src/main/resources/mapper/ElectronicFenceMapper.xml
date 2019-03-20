@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlys.collection.dao.ElectronicFenceMapper">
+
+	<resultMap id="BaseResultMap" type="com.zlys.collection.entity.ElectronicFenceEntity">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="department" property="department" />
+		<result column="created_time" property="createdTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="fence" property="fence" />
+		<result column="remark" property="remark" />
+	</resultMap>
+
+	<sql id="table-name">electronic_fence</sql>
+
+	<sql id="all-column">id ,name ,department ,created_time ,update_time ,fence ,remark	</sql>
+
+	<sql id="all-query-condition">
+		<if test="id != null">
+	      and id = #{id}
+    </if>
+	   <if test="name != null and name != ''">
+	      and name = #{name}
+    </if>
+	   <if test="department != null and department != ''">
+	      and department = #{department}
+    </if>
+		<if test="createdTime != null">
+	      and created_time = #{createdTime}
+    </if>
+		<if test="updateTime != null">
+	      and update_time = #{updateTime}
+    </if>
+	   <if test="fence != null and fence != ''">
+	      and fence = #{fence}
+    </if>
+	   <if test="remark != null and remark != ''">
+	      and remark = #{remark}
+    </if>
+	</sql>
+
+
+	<!-- Selective Insert-->
+	<insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.zlys.collection.entity.ElectronicFenceEntity">
+		insert into <include refid="table-name"/>
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="id != null">
+	  	        id,
+  	        </if>
+	   <if test="name != null and name != ''">
+	  	        name,
+  	        </if>
+	   <if test="department != null and department != ''">
+	  	        department,
+  	        </if>
+		<if test="createdTime != null">
+	  	        created_time,
+  	        </if>
+		<if test="updateTime != null">
+	  	        update_time,
+  	        </if>
+	   <if test="fence != null and fence != ''">
+	  	        fence,
+  	        </if>
+	   <if test="remark != null and remark != ''">
+	  	        remark
+  	        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 		<if test="id != null">
+	  	        #{id},
+  	        </if>
+   	   <if test="name != null and name != ''">
+	  	        #{name},
+  	        </if>
+   	   <if test="department != null and department != ''">
+	  	        #{department},
+  	        </if>
+   		<if test="createdTime != null">
+	  	        #{createdTime},
+  	        </if>
+   		<if test="updateTime != null">
+	  	        #{updateTime},
+  	        </if>
+   	   <if test="fence != null and fence != ''">
+	  	        #{fence},
+  	        </if>
+   	   <if test="remark != null and remark != ''">
+	              #{remark}
+  	        </if>
+  		</trim>
+	</insert>
+
+	<!-- Batch Selective -->
+	<insert id="insertRecords" parameterType="java.util.List">
+		insert into <include refid="table-name"/>
+		<trim prefix="(" suffix=")values">
+		 	<include refid="all-column"/>
+		</trim>
+		<foreach collection="records" item="record"  separator=",">
+		  (		#{id},
+			#{name},
+			#{department},
+			#{createdTime},
+			#{updateTime},
+			#{fence},
+			#{remark}
+		   )
+		</foreach>
+	</insert>
+
+        <!-- QueryAll -->
+    <select id="queryAll" resultMap="BaseResultMap" parameterType="com.zlys.collection.entity.ElectronicFenceEntity">
+        select <include refid="all-column" /> from <include refid="table-name"/>
+    </select>
+
+	<!-- Query limit one -->
+	<select id="queryLimitOne" resultMap="BaseResultMap" parameterType="com.zlys.collection.entity.ElectronicFenceEntity">
+		select <include refid="all-column" /> from <include refid="table-name"/>
+		where 1=1   <include refid="all-query-condition"/>
+        limit 1
+	</select>
+
+	<!-- Query By Cond -->
+	<select id="queryByCond" resultMap="BaseResultMap" parameterType="com.zlys.collection.entity.ElectronicFenceEntity">
+		select <include refid="all-column" /> from <include refid="table-name"/>
+		where 1=1 <include refid="all-query-condition"/>
+	</select>
+
+	<!-- Query By Primary Key -->
+	<select id="queryById" resultMap="BaseResultMap">
+		select
+		<include refid="all-column" />
+		from <include refid="table-name"/> where id = #{id}
+	</select>
+
+	<!-- Query By Primary Keys-->
+	<select id="queryByIds" resultMap="BaseResultMap" parameterType="java.util.List">
+		select
+		<include refid="all-column" />
+		from <include refid="table-name"/> where id in
+		<foreach collection="keys" item="key" open="(" close=")" separator=",">
+			#{key}
+		</foreach>
+	</select>
+
+	<!-- Update By Primary Key -->
+	<update id="updateElectronicFenceById" parameterType="com.zlys.collection.entity.ElectronicFenceEntity">
+		update <include refid="table-name" />
+		<set>
+		<if test="id != null">
+		        id = #{id},
+			</if>
+				   <if test="name != null and name != ''">
+		        name = #{name},
+			</if>
+				   <if test="department != null and department != ''">
+		        department = #{department},
+			</if>
+					<if test="createdTime != null">
+		        created_time = #{createdTime},
+			</if>
+					<if test="updateTime != null">
+		        update_time = #{updateTime},
+			</if>
+				   <if test="fence != null and fence != ''">
+		        fence = #{fence},
+			</if>
+				   <if test="remark != null and remark != ''">
+	            remark = #{remark}
+			</if>
+					</set>
+		<where>id = #{id}</where>
+	</update>
+
+	<!-- Delete By primary Keys -->
+	<delete id="deleteElectronicFenceById">
+		delete from <include refid="table-name" />
+		<where>id = #{id}</where>
+	</delete>
+
+
+
+</mapper>

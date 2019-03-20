@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<title>电子围栏</title>
+        <link rel="icon" type="image/x-icon" href="../faviconok.ico">
+		<link href="../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/manage_common.css" rel="stylesheet" type="text/css">
+		<link href="../css/manage_admin.css" rel="stylesheet" type="text/css">
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/bootbox.min.js"></script>
+		<script src="../js/common.js"></script>
+		<link href="../css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="../js/bootstrap-datetimepicker.min.js"></script>
+		<script type="text/javascript" src="../js/bootstrap-datetimepicker.zh-CN.js"></script>
+        <!--vue-->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.js"></script>
+        <!--page-->
+        <link rel="stylesheet"  href="../css/zxf_page.css"/>
+        <script  src="../js/zxf_page.js"></script>
+		<!--百度地图api-->
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LD93KDmWIlxj1MPIxmHs6qpNLv9dSNEU"></script>
+		<script type="text/javascript" src="../js/jquery.bdmap.js"></script><!--百度地图API模块化成函数供前台调用<--></-->
+		<script type="text/javascript">
+			// 获取url里的参数 name为 key值 返回value
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) {
+					return unescape(r[2]);
+				} else {
+					return null;
+				}
+			}
+			//var cookie = JSON.parse(getcookie('member'));
+		</script>
+		<style type="text/css">
+			.aside_right {
+				padding: 0 25px;
+				height: 100%;
+				overflow: auto;
+			}
+			
+			.aside_right .title {
+				margin: 30px 0;
+				font-size: 17px;
+				color: #333;
+				text-align: center;
+			}
+			
+			.aside_right p {
+				height: 40px;
+				line-height: 40px;
+				font-size: 14px;
+				color: rgba(51, 51, 51, 0.8);
+			}
+			
+			.aside_right p .input {
+				border: 1px solid #bbb;
+				background-color: #fff;
+				outline: none;
+				height: 28px;
+				width: 80%;
+				padding: 0 5px;
+			}
+			
+			.aside_right .tab {
+				width: 100%;
+				height: 33px;
+				line-height: 33px;
+				margin-bottom: 10px;
+			}
+			
+			.aside_right .tab span {
+				display: inline-block;
+				float: left;
+				width: 50%;
+				text-align: center;
+			}
+			
+			.aside_right .task_lists li {
+				position: relative;
+				height: 35px;
+				line-height: 35px;
+				margin: 5px 0;
+				border: 1px solid #ccc;
+				cursor: pointer;
+			}
+			
+			.aside_right .task_lists li:hover .del_task {
+				display: block;
+			}
+			
+			.aside_right .task_lists li:hover {
+				background: #E6E6E6;
+			}
+			
+			.aside_right .task_lists div {
+				display: inline-block;
+				text-align: center;
+				float: left;
+				overflow: hidden;
+			}
+			
+			.aside_right .task_lists div select {
+				border: none;
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				height: 25px;
+				margin-top: 5px;
+				line-height: 25px;
+				padding: 0;
+				background-size: 15px;
+				padding-right: 15px;
+				padding-left: 3px;
+			}
+			
+			.aside_right .task_lists .index {
+				width: 5%;
+				margin-left: 3%;
+			}
+			
+			.aside_right .task_lists .starttime {
+				width: 18%;
+			}
+			
+			.aside_right .task_lists .endtime {
+				width: 18%;
+			}
+			
+			.aside_right .task_lists .num {
+				width: 15%;
+				margin-left: 4%;
+			}
+			
+			.aside_right .task_lists .num input {
+				width: 100%;
+				height: 25px;
+				margin-top: 5px;
+				padding: 0 5px;
+			}
+			
+			.aside_right .task_lists .unit {
+				width: 15%;
+			}
+			
+			.aside_right .task_lists .type {
+				width: 23%;
+				margin-left: 3%;
+				margin-right: 0;
+			}
+			
+			.aside_right .task_lists .del_task {
+				position: absolute;
+				width: 30px;
+				height: 30px;
+				right: -30px;
+				cursor: pointer;
+				display: none;
+				padding-left: 10px;
+				background: url('../images/delete.png') no-repeat center center;
+			}
+			
+			.lists_head {
+				height: 30px;
+				background: #E7E7E7;
+				line-height: 30px;
+				position: relative;
+			}
+			
+			.lists_head span {
+				display: inline-block;
+				position: absolute;
+			}
+			
+			.lists_head span:nth-child(1) {
+				left: 4%;
+			}
+			
+			.lists_head span:nth-child(2) {
+				left: 24%;
+			}
+			
+			.lists_head span:nth-child(3) {
+				left: 48%;
+			}
+			
+			.lists_head span:nth-child(4) {
+				left: 80%;
+			}
+			
+			.aside_right .add_task {
+				background-color: #fbfbfb;
+				display: block;
+				width: 100px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				margin: 30px auto;
+				padding-left: 17px;
+				cursor: pointer;
+				background-image: url(../images/add_d.png);
+				box-shadow: 0 -2px 6px #ccc;
+				background-position: 30px center;
+				background-repeat: no-repeat;
+			}
+			
+			.aside_right .submit {
+				display: block;
+				margin: 0 auto;
+				text-align: center;
+				border-radius: 5px;
+				width: 200px;
+				height: 30px;
+				line-height: 30px;
+				background: #1781DC;
+				color: #fff;
+				cursor: pointer;
+			}
+			
+			.aside_right .dismiss {
+				display: block;
+				margin: 0 auto;
+				text-align: center;
+				border-radius: 5px;
+				width: 200px;
+				height: 30px;
+				line-height: 30px;
+				background: #fff;
+				color: #333;
+				cursor: pointer;
+			}
+			
+			.container,
+			.panel-body {
+				padding: 0;
+			}
+			
+			.content {
+				border-radius: 0;
+			}
+			
+			.col-xs-9 {
+				padding: 0;
+			}
+			
+			body .BMapLib_Drawing_panel {
+				border: none;
+				box-shadow: none;
+				border-radius: 0;
+			}
+			
+			body .BMapLib_Drawing .BMapLib_box {
+				background-color: #DDDDDD;
+				height: 35px;
+				width: 120px;
+				text-align: center;
+				color: #333;
+				font-size: 16px;
+				line-height: 35px;
+				text-decoration: none;
+			}
+			
+			body .BMapLib_Drawing .BMapLib_polygon:after {
+				content: '区域';
+				margin-left: 30px;
+			}
+			
+			body .BMapLib_Drawing .BMapLib_polygon {
+				background-image: url('../images/area.png');
+				background-repeat: no-repeat;
+				background-position: 27px center;
+			}
+			
+			body .BMapLib_polyline:after {
+				content: '线';
+				margin-left: 10px;
+			}
+			
+			body .BMapLib_Drawing .BMapLib_polyline {
+				background-image: url('../images/line.png');
+				background-repeat: no-repeat;
+				background-position: 32px center;
+			}
+			
+			body .BMapLib_Drawing .BMapLib_polyline_hover {
+				background-color: #FFF100;
+				background-image: url('../images/line.png');
+				background-repeat: no-repeat;
+				background-position: 32px center;
+			}
+			
+			body .BMapLib_Drawing .BMapLib_polygon_hover {
+				background-color: #FFF100;
+				background-image: url('../images/area.png');
+				background-repeat: no-repeat;
+				background-position: 27px center;
+			}
+			
+			body .BMapLib_Drawing .BMapLib_polyline_hover:after {
+				content: '线';
+				margin-left: 10px;
+			}
+			
+			body .BMapLib_Drawing .BMapLib_polygon_hover:after {
+				content: '区域';
+				margin-left: 30px;
+			}
+			
+			body .BMapLib_Drawing_panel {
+				margin-left: 20px;
+			}
+			
+			.clear {
+				color: #8ABFED;
+				width: 120px;
+				height: 40px;
+				font-size: 16px;
+				text-align: center;
+				line-height: 40px;
+				border: 1px solid #8ABFED;
+				display: inline-block;
+				background: #fff;
+				cursor: pointer;
+				margin-right: 15px;
+			}
+			
+			.del {
+				color: #FEB8B2;
+				width: 120px;
+				height: 40px;
+				font-size: 16px;
+				text-align: center;
+				line-height: 40px;
+				border: 1px solid #FEB8B2;
+				display: inline-block;
+				background: #fff;
+				cursor: pointer;
+			}
+			
+			.panel {
+				margin: 0;
+			}
+			
+			.patop .warning {
+				position: absolute;
+				left: 108%;
+				top: -117%;
+				color: #1D67FD;
+				white-space: nowrap;
+				font-size: 16px;
+			}
+			
+			.btn_blue {
+				position: relative;
+				top: -35px;
+			}
+			
+			.bootbox .modal-dialog .btn-default {
+				top: 30px;
+			}
+			.content select {
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				outline: none;
+				cursor: pointer;
+				border: solid 1px #F0F0F0;
+				line-height: 28px;
+				padding: 0;
+				padding-left: 20px;
+				padding-right: 20px;
+				background-image: url('../images/drop.png');
+				background-repeat: no-repeat;
+				background-position: center right;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../css/bmap_autocomplete.css">
+	</head>
+
+	<body style="">
+		<div class="content panel over renwu">
+			<div class="panel-body">
+				<div class="col-xs-9">
+					<div class="patop">
+						<p class="warning">请在区域内绘制电子围栏</p>
+						<div class="search_box">
+							<input class="input_search form-control" id="suggestId" placeholder="定位到输入的区域" autocomplete="off" type="hidden">
+							<span class="search_over"></span>
+							<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+						</div>
+
+						<div id="result" style="top: 523px;">
+							<span class="clear" onclick="reset()">重置</span>
+							<span class="clear" onclick="remove()">删除</span>
+							<!--<span class="del" onclick="del(this)" style="display: none;">删除</span>-->
+                            <script>
+                                function reset() {
+                                    map.addOverlay(polygon);
+                                }
+                                function remove() {
+                                    map.removeOverlay(polygon);
+                                }
+                            </script>
+						</div>
+					</div>
+
+					<!--加载鼠标绘制工具-->
+					<script type="text/javascript" src="../js/DrawingManager_min.js"></script>
+					<link rel="stylesheet" href="../css/DrawingManager_min.css">
+
+					<div id="allmap" style="overflow: hidden; zoom: 1; position: relative; width: 100%; height: 723px; z-index: 0; background-color: rgb(243, 241, 236); color: rgb(0, 0, 0); text-align: left;">
+					</div>
+				</div>
+
+				<div class="col-xs-3 aside_right" style="height: 723px;">
+					<div class="title">添加电子围栏</div>
+					<p>电子围栏名称：</p>
+					<p>
+						<input type="" class="input" id="name" placeholder="请输入...">
+					</p>
+					<p>所属部门</p>
+					<p id="area">
+						<select class="input" id="department">
+                            <div th:each="d:${departments}">
+                                <option th:value="${d}" th:text="${d}"></option>
+                            </div>
+						</select>
+					</p>
+                    <p>备注信息：</p>
+                    <p>
+                        <textarea style="width: 80%;height: 60px;resize: none;" id="remark" name="remark"></textarea>
+                    </p>
+					<p>
+                        <span class="submit"  style="margin-top: 10%;margin-left: -0.5%" onclick="addFenceTrue()">确定</span>
+                    </p>
+                    <!--zlys-->
+                    <script>
+                        /*新增电子围栏*/
+                        function addFenceTrue() {
+                            /*电子围栏经纬度集合*/
+                            /*json转换*/
+                            var fencename=$("#name").val();
+                            var fencedepartment=$("#department").val();
+                            var remark=$("#remark").val();
+                            var allfence = JSON.stringify(polygon.so);
+                            jQuery.ajax({
+                                url: '/fence/addFenceTrue',
+                                data: {
+                                        allfence:allfence,
+                                        name:fencename,
+                                        department:fencedepartment,
+                                        remark:remark},
+                                type: "POST",
+                                beforeSend: function()
+                                {
+                                    if(fencename == null || fencename == "" ) {
+                                        bootbox.alert({
+                                            message: '请完善信息!',
+                                            closeButton: true,
+                                        })
+                                        abort(); //就在这停止并退出
+                                    }
+                                },
+                                success: function(obj)
+                                {
+                                    if(obj == 'success'){
+                                        bootbox.alert({
+                                            message: '添加电子围栏信息完成!',
+                                            closeButton: true,
+                                            callback: function () {
+                                                window.location.href="/fence/system_c";
+                                            }
+                                        });
+                                    }else{
+                                        bootbox.alert({
+                                            message: '录入信息错误',
+                                            closeButton: false
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    </script>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('#allmap,.aside_right').css("height", $(window).height());
+			$('#result').css('top', $(window).height() - 200);
+		</script>
+		<script type="text/javascript">
+			// 设置编辑权限
+			$(function() {
+				if(level != 0 && cookie.changeWorkTime != 'true') {
+					$("input").attr('readonly', true);
+					$("select").attr('disabled', true);
+					$("#result,.BMapLib_Drawing_panel").css('display', 'none');
+				}
+			});
+
+			var taskType = 0; //任务类型 特殊常规
+			var id = ''; //电子围栏id
+			var companyId = areaId = inspectingUserId = inspectingUserName = '';
+
+			// 添加人员类型
+			function add_roles_list() {
+				
+			}
+			add_roles_list();
+
+			// 添加任务
+			$('#add_task').click(function() {
+				var list = $('.task_lists li:first-child').clone(true);
+				list.find('.index').html($('.task_lists li[data-type=' + taskType + ']').size() + 1);
+				list.attr('data-type', taskType);
+				list.removeClass('hide').show();
+				//console.log(list);
+				$('.task_lists').append(list);
+			});
+
+			// 删除
+			function del_task(obj) {
+				$(obj).closest('li').remove();
+			}
+			// 切换特殊任务
+			// $('#special span').click(function(){
+			// 	$(this).addClass('btn_yellow').siblings().removeClass('btn_yellow');
+			// 	taskType = $(this).attr('data-type');
+			// 	$('.task_lists li').hide();
+			// 	$('.task_lists li[data-type = '+taskType+']').show();
+			// });
+
+			// 百度地图API功能
+			var map = new BMap.Map("allmap", {
+				enableMapClick: false
+			});
+			map.centerAndZoom("绵阳", 12); // 初始化地图,设置城市和地图级别。
+			map.enableScrollWheelZoom(); //启用鼠标滚动对地图放大缩小
+			//setting_style(map);//设置地图样式
+			var overlays = map.getOverlays();
+			var overlaycomplete = function(e) {
+				overlays.push(e.overlay);
+			};
+			/*电子围栏坐标*/
+			var polygon = new BMap.Polygon([
+				new BMap.Point(104.540681,31.555426),
+				new BMap.Point(104.844237,31.571179),
+				new BMap.Point(104.844237,31.362231),
+				new BMap.Point(104.521709,31.39676)
+			], {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});  //创建多边形
+			polygon.enableEditing();polygon.enableEditing();
+			// //实例化鼠标绘制工具
+			// var drawingManager = new BMapLib.DrawingManager(map, {
+			// 	isOpen: false, //是否开启绘制模式
+			// 	enableDrawingTool: true, //是否显示工具栏
+			// 	drawingToolOptions: {
+			// 		anchor: BMAP_ANCHOR_TOP_LEFT, //位置
+			// 		offset: new BMap.Size(5, 5), //偏离值
+			// 	},
+			// 	polylineOptions: styleOptions, //线的样式
+			// 	polygonOptions: styleOptions, //多边形的样式
+			// });
+			
+			
+			map.addOverlay(polygon);           //增加多边形
+			var styleOptions = {
+				strokeColor: "#feb300", //边线颜色。
+				fillColor: "#F3CD03", //填充颜色。当参数为空时，圆形将没有填充效果。
+				strokeWeight: 3, //边线的宽度，以像素为单位。
+				strokeOpacity: 0.5, //边线透明度，取值范围0 - 1。
+				fillOpacity: 0.3, //填充的透明度，取值范围0 - 1。
+				strokeStyle: 'solid' //边线的样式，solid或dashed。
+			};
+
+
+			//自定义绘制框的样式
+			$('.BMapLib_hander,.BMapLib_circle,.BMapLib_last,.BMapLib_marker').css('display', "none");
+
+			//添加鼠标绘制工具监听事件，用于获取绘制结果
+			//drawingManager.addEventListener('overlaycomplete', overlaycomplete);
+
+			function clearAll() {
+
+				for(var i = 0; i < overlays.length; i++) {
+					map.removeOverlay(overlays[i]);
+				}
+				overlays.length = 0;
+			}
+
+			//搜索框
+			function G(id) {
+				return document.getElementById(id);
+			}
+			var ac = new BMap.Autocomplete( //建立一个自动完成的对象
+				{
+					"input": "suggestId",
+					"location": map
+				});
+
+			ac.addEventListener("onhighlight", function(e) { //鼠标放在下拉列表上的事件
+				var str = "";
+				var _value = e.fromitem.value;
+				var value = "";
+				if(e.fromitem.index > -1) {
+					value = _value.province + _value.city + _value.district + _value.street + _value.business;
+				}
+				str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+				value = "";
+				if(e.toitem.index > -1) {
+					_value = e.toitem.value;
+					value = _value.province + _value.city + _value.district + _value.street + _value.business;
+				}
+				str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+				G("searchResultPanel").innerHTML = str;
+			});
+
+			var myValue;
+			ac.addEventListener("onconfirm", function(e) { //鼠标点击下拉列表后的事件
+				var _value = e.item.value;
+				myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+				G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+
+				setPlace();
+			});
+
+			function setPlace() {
+				// map.clearOverlays();    //清除地图上所有覆盖物
+				function myFun() {
+					var pp = local.getResults().getPoi(0).point; //获取第一个智能搜索的结果
+					map.centerAndZoom(pp, 18);
+					map.addOverlay(new BMap.Marker(pp)); //添加标注
+				}
+				var local = new BMap.LocalSearch(map, { //智能搜索
+					onSearchComplete: myFun
+				});
+				local.search(myValue);
+			}
+
+			var fenceType = ''; // 电子围栏类型 线 片区	
+			$('.BMapLib_polyline').click(function() {
+				fenceType = 2;
+				if(overlays.length) {
+					//console.log(overlays);
+					bootbox.confirm({
+						size: "small",
+						buttons: {
+							confirm: {
+								label: '确定',
+								className: 'btn_blue'
+							},
+							cancel: {
+								label: '取消',
+								className: 'btn-default'
+							}
+						},
+						message: '<p style="line-height:30px;margin-top:30px;">绘制新的路线<br>将清空绘制区内的所有内容</p>',
+						callback: function(result) {
+							if(result) {
+								clearAll();
+							} else {
+								drawingManager.close();
+								$('#allmap').dblclick();
+								$('.BMapLib_polyline_hover').removeClass('BMapLib_polyline_hover').addClass('BMapLib_polyline');
+							}
+						},
+					});
+				}
+
+			});
+			$('.BMapLib_polygon').click(function() {
+				fenceType = 1;
+				if(overlays.length) {
+
+					bootbox.confirm({
+						size: "small",
+						buttons: {
+							confirm: {
+								label: '确定',
+								className: 'btn_blue'
+							},
+							cancel: {
+								label: '取消',
+								className: 'btn-default'
+							}
+						},
+						message: '<p style="line-height:30px;margin-top:30px;">绘制新的路线<br>将清空绘制区内的所有内容</p>',
+						callback: function(result) {
+							if(result) {
+								clearAll();
+							} else {
+								drawingManager.close();
+								$('.BMapLib_polygon_hover').removeClass('BMapLib_polygon_hover').addClass('BMapLib_polygon');
+							}
+						},
+					});
+				}
+			});
+
+			// 提交
+			$('#submit').click(function() {
+				if(cookie.level == 0) {
+					canEdit = localStorage.getItem("canEdit");
+					if(canEdit == 'false') {
+						return bootbox.alert("无权操作");
+					}
+				}
+				if(level != 0 && cookie.changeWorkTime != 'true') {
+					bootbox.alert('此账号无权限修改电子围栏');
+					return false;
+				}
+
+				var re = false; //是否return
+				var fenceInfo = [];
+				// 常规任务
+				commonTask = [];
+				each_task(commonTask);
+				// 特殊任务
+				specialTask = [];
+				//each_task(specialTask);
+
+				function each_task(arr) {
+
+					$.each($('.task_lists li:not(:first-child)'), function(k, v) {
+
+						var unit = $(v).find('.unit option:selected').attr('data-unit');
+						//console.log("是 公里",unit);
+						var circles = kilometer = '';
+						// console.log('unit',k,v,unit);
+						if(unit != 0) {
+							circles = $(v).find('.num input').val();
+							//console.log('圈数',circles);
+						} else {
+							kilometer = $(v).find('.num input').val();
+							//console.log('公里',kilometer);
+						}
+						var roleId = $(v).find('.type option:selected').attr('data-type');
+						var roleName = $(v).find('.type option:selected').text();
+						roleId = $(v).find('.type option:selected').attr('data-type');
+						roleName = $(v).find('.type option:selected').text();
+						var st = $(v).find('.starttime option:selected').text().split(':');
+						var et = $(v).find('.endtime option:selected').text().split(':');
+						console.log(v, st, et, '---');
+						var id = $(v).attr('data-taskid') ? $(v).attr('data-taskid') : '';
+						console.log(id, parseInt(et[0] + et[1]), parseInt(st[0] + st[1]), '111');
+						if(parseInt(et[0] + et[1]) - parseInt(st[0] + st[1]) <= 0) {
+							bootbox.alert({
+								message: '任务时间应大于零',
+								size: 'small'
+							});
+							re = true;
+							return;
+						}
+						//console.log(kilometer + circles ,'sddd');
+						if((kilometer + circles) <= 0 || isNaN((kilometer + circles))) {
+							bootbox.alert({
+								message: '距离不得为空且大于零',
+								size: 'small'
+							});
+							re = true;
+							return;
+						}
+
+						arr.push({
+							"taskType": 0, // 0 常规任务，1 特殊任务
+							"id": id,
+							"timeStart": st[0] + ':' + st[1],
+							"timeEnd": et[0] + ':' + et[1],
+							"circles": circles,
+							"kilometer": kilometer,
+							"roleId": roleId, // 通过3.6.6 接口获取
+							"roleName": roleName
+						});
+						//console.log(arr);
+					});
+				}
+				if(re) {
+					return false;
+				}
+				// 处理经纬度数据
+				// console.log('overlays',overlays);
+				if(!overlays.length) {
+					bootbox.alert({
+						message: '请绘制区域',
+						size: 'small'
+					});
+					return false;
+				}
+
+				$.each(overlays, function(k, v) {
+					// console.log('每个覆盖物的经纬度',v.ia);
+					if(v.ia) {
+						$.each(v.ia, function(k, info) {
+							fenceInfo.push({
+								"longitude": info.lng,
+								"latitude": info.lat
+							});
+						});
+					}
+				});
+
+				if(!areaId) {
+					//console.log(companyId,areaId);
+					bootbox.alert({
+						message: '请选择片区',
+						size: 'small'
+					});
+					return false;
+				}
+				if(!$('#name').val()) {
+					bootbox.alert({
+						message: '请填写电子围栏名称',
+						size: 'small'
+					});
+					return false;
+				}
+				//console.log(commonTask,specialTask);
+				if(!(commonTask.length + specialTask.length)) {
+					bootbox.alert({
+						message: '请添加任务',
+						size: 'small'
+					});
+					return false;
+				}
+
+				var data = {
+					"id": '',
+					"action": "/electronic-fence/add",
+					// 			"companyId":companyId,
+					"areaId": areaId,
+					"fenceType": fenceType, //1 区域，2 线
+					"fenceName": $('#name').val(),
+					"fenceInfo": fenceInfo,
+					"inspectingUserId": inspectingUserId, // 巡检人员id
+					"inspectingFullName": inspectingUserName, // 巡检人员姓名 通过3.8.9接口获取
+					"commonTask": commonTask,
+					"specialTask": specialTask,
+				}
+
+				//提交表单
+				if(id) { //更新 
+					data = {
+						"id": id,
+						"action": "/electronic-fence/update",
+						//	 			"companyId":companyId,
+						"areaId": areaId,
+						"fenceType": fenceType, //1 区域，2 线
+						"fenceName": $('#name').val(),
+						"fenceInfo": fenceInfo,
+						"inspectingUserId": inspectingUserId, // 巡检人员id
+						"inspectingFullName": inspectingUserName, // 巡检人员姓名 通过3.8.9接口获取
+						"commonTask": commonTask,
+						"specialTask": specialTask,
+					}
+					//console.log("提交data",data);
+					
+				} else { //提交
+
+					data = {
+						"action": "/electronic-fence/add",
+						"companyId": companyId,
+						"areaId": areaId,
+						"fenceType": fenceType, //1 区域，2 线
+						"fenceName": $('#name').val(),
+						"fenceInfo": fenceInfo,
+						"inspectingUserId": inspectingUserId, // 巡检人员id
+						"inspectingFullName": inspectingUserName, // 巡检人员姓名 通过3.8.9接口获取
+						"commonTask": commonTask,
+						"specialTask": specialTask,
+					}
+					console.log('data', data);
+					
+				}
+				//console.log('时间',data);
+			});
+			//  以上为提交
+
+			// 获取组织结构
+			var organize = '';
+
+			// 添加巡检人员列表
+			function add_inspectingUser(areaId) {
+				//console.log(companyId,areaId);
+				
+			}
+
+			// 选择巡检人员
+			$('#inspecting select').change(function() {
+				inspectingUserId = $(this).find('option:selected').attr('data-inspectingUserId');
+				inspectingUserName = $(this).find('option:selected').text();
+			});
+
+			// 编辑
+
+			function add_edit() {
+				//console.log('编辑');
+				$.get('/manage/home/getData/get', {
+					"action": "/electronic-fence/detail",
+					'id': id
+				}, function(res) {
+					if(res.error) {
+						return;
+					} else {
+						//console.log('编辑返回数据',res);
+						var data = res.data;
+						companyId = data.companyId;
+						areaId = data.areaId;
+						inspectingUserId = data.inspectingUserId;
+						fenceType = fenceType;
+						$('#name').val(data.fenceName);
+						// 添加公司
+						//			    	$('#company select option[data-companyid='+data.companyId+']').attr('selected',true);
+
+						// 添加区域
+						var area_html = '';
+						console.log('areaId', areaId)
+						$.each(organize.items, function(k, v) {
+							if(areaId == v.id) {
+
+								area_html += '<option areaid=' + v.id + ' selected>' + v.oName + '</option>';
+							} else {
+								area_html += '<option areaid=' + v.id + '>' + v.oName + '</option>';
+							}
+							$('#area select').html(area_html);
+						});
+
+						// 添加巡检人员
+						add_inspectingUser(companyId);
+						//console.log('巡检人员id',inspectingUserId);
+
+						// 添加常规任务
+						add_task(0);
+						// 添加特殊任务
+						add_task(1);
+
+						var commonTask_html = '';
+
+						function add_task(type) {
+							//console.log("绘制电子围栏地图");
+							var task_lists_html = '';
+							$.each(type ? data.special : data.commonTask, function(k, v) {
+                                //console.log(k,v);
+                                var iskilometer = v.kilometer ? true : false;
+                                //console.log(v.kilometer,iskilometer);
+                                var num = v.kilometer + v.circles;
+                                var timeStart = v.timeStart;
+                                var timeEnd = v.timeEnd;
+                            });
+
+							$('.task_lists').append(task_lists_html);
+							add_roles_list();
+							//$('.task_lists li[data-type=1]').css('display',"none");
+
+							$.each($('.task_lists li:not(:first-child)'), function(k, v) {
+								var starttime = $(v).find('.starttime select').attr('data-timeStart');
+								var endtime = $(v).find('.endtime select').attr('data-timeEnd');
+								// console.log(v,starttime,endtime);
+								var index1 = parseInt(starttime.split(':')[0]) * 60 + parseInt(starttime.split(':')[1]);
+								var index2 = parseInt(endtime.split(':')[0]) * 60 + parseInt(endtime.split(':')[1]);
+								$(v).find('.endtime select option').eq(index2).attr('selected', true);
+								$(v).find('.starttime select option').eq(index1).attr('selected', true);
+							});
+
+							if(level != 0 && cookie.changeWorkTime != 'true') {
+								$("input").attr('readonly', true);
+								$("select").attr('disabled', true);
+								$("#result,.BMapLib_Drawing_panel").css('display', 'none');
+							}
+
+						}
+
+						// 绘制电子围栏
+						if(data.fenceType == 2) {
+							draw_line(data.fenceInfo);
+						} else {
+							draw_area(data.fenceInfo);
+						}
+						overlays = map.getOverlays()
+						// 地图中心点
+						if(data.fenceInfo.length) {
+							var point = new BMap.Point(data.fenceInfo[0].longitude, data.fenceInfo[0].latitude);
+							map.centerAndZoom(point, 14);
+						}
+
+						//绘制直线
+						function draw_line(arr) {
+							var line = [];
+							$.each(arr, function(k, v) {
+								line.push(new BMap.Point(v.longitude, v.latitude));
+							});
+							var polyline = new BMap.Polyline(
+								line, {
+									strokeColor: "#feb300", //边线颜色。
+									fillColor: "#F3CD03", //填充颜色。当参数为空时，圆形将没有填充效果。
+									strokeWeight: 3, //边线的宽度，以像素为单位。
+									strokeOpacity: 0.5, //边线透明度，取值范围0 - 1。
+									fillOpacity: 0.3, //填充的透明度，取值范围0 - 1。
+									strokeStyle: 'solid' //边线的样式，solid或dashed。
+								}
+							);
+							//增加折线
+							map.addOverlay(polyline);
+							polyline.enableEditing();
+						}
+
+						function draw_area(arr) {
+							var line = [];
+							// 循环经纬度 添加点
+							$.each(arr, function(k, v) {
+								line.push(new BMap.Point(v.longitude, v.latitude));
+							});
+							var polygon = new BMap.Polygon(
+								line, {
+									strokeColor: "#feb300", //边线颜色。
+									fillColor: "#F3CD03", //填充颜色。当参数为空时，圆形将没有填充效果。
+									strokeWeight: 3, //边线的宽度，以像素为单位。
+									strokeOpacity: 0.5, //边线透明度，取值范围0 - 1。
+									fillOpacity: 0.3, //填充的透明度，取值范围0 - 1。
+									strokeStyle: 'solid' //边线的样式，solid或dashed。
+
+								}
+							);
+							// 增加多边形
+							map.addOverlay(polygon);
+							polygon.enableEditing();
+						}
+					}
+				}, 'json');
+			}
+
+			//删除电子围栏
+			function del(obj) {
+
+				bootbox.confirm({
+					message: '<p>删除操作不可以恢复</br>你确认要删除内容</p>',
+					buttons: {
+						confirm: {
+							label: '确定',
+							className: 'btn_blue'
+						},
+						cancel: {
+							label: '取消',
+							className: 'btn-default'
+						}
+					},
+					size: 'small',
+					callback: function(result) {
+						if(result) {
+							
+						}
+					}
+				});
+
+			}
+		</script>
+
+		<div class="tangram-suggestion-main" id="tangram-suggestion--TANGRAM__11-main" data-guid="TANGRAM__11" style="position: absolute; display: none; left: 26px; top: 82px; width: 240px;">
+			<div id="tangram-suggestion--TANGRAM__11" class="tangram-suggestion" style="position:relative; top:0px; left:0px"></div>
+		</div>
+	</body>
+
+</html>

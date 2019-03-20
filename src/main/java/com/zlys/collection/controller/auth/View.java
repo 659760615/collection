@@ -103,16 +103,6 @@ public class View {
         return "addInform";
     }
 
-    /**
-     * @desc: 系统管理_电子围栏_围栏管理  view
-     * @param:
-     * @return:
-     * @auther: czx
-     */
-    @RequestMapping("system_c")
-    public String quyu(){
-        return "quyu";
-    }
 
     /**
      * @desc: 系统管理_电子围栏_线路管理  view

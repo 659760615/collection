@@ -2,10 +2,8 @@ package com.zlys.collection.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zlys.collection.entity.DepartmentEntity;
 import com.zlys.collection.entity.DriverEntity;
 import com.zlys.collection.entity.RoleCheck;
-import com.zlys.collection.entity.User;
 import com.zlys.collection.service.DepartmentService;
 import com.zlys.collection.service.DriverService;
 import com.zlys.collection.service.RoleCheckService;

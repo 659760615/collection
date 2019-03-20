@@ -884,7 +884,7 @@
 			<div class="content">
 				<div class="nav_t" style="left: 384px; display: block;">
 					<span class="nav_company">
-      		<span class="company_name">涪城中心片区</span> <i class="sort"></i>
+      		<span class="company_name">全部片区</span> <i class="sort"></i>
 					<div class="company alert_box  alert_box_t hidden">
 						<div class="lists scroll">
 							<ul class="menu_company menu">
@@ -893,35 +893,44 @@
 										<input class="all_area" type="checkbox">全部区域
 									</label>
 								</li>
-								<li>
-									<label onclick="check_item(this)" title="涪城区">
-									<input data-companyid="1" class="area_type" type="checkbox">涪城区</label>
+                                <!--zlys-->
+								<li th:each="d: ${departments}">
+									<label onclick="check_item(this)"  th:attr="title=${d}">
+									<input th:attr="data-companyid=${d}" class="area_type" type="checkbox" th:text="${d}"></label>
 								</li>
-								<li>
-									<label onclick="check_item(this)" title="游仙区">
-									<input data-companyid="2" class="area_type" type="checkbox">游仙区</label><ul></ul>
-								</li>
-								<li>
-									<label onclick="check_item(this)" title="高新区">
-									<input data-companyid="3" class="area_type" type="checkbox">高新区</label><ul></ul>
-								</li>
-								<li>
-									<label onclick="check_item(this)" title="经开区">
-									<input data-companyid="4" class="area_type" type="checkbox">经开区</label><ul></ul>
-								</li>
-								<li>
-									<label onclick="check_item(this)" title="科创园区">
-									<input data-companyid="5" class="area_type" type="checkbox">科创园区</label><ul></ul>
-								</li>
-								<li>
-									<label onclick="check_item(this)" title="科学城">
-									<input data-companyid="6" class="area_type" type="checkbox">科学城</label><ul></ul>
-								</li>
-								<li>
-									<label onclick="check_item(this)" title="">
-									<input data-companyid="7" class="area_type" type="checkbox">仙海区</label>
-									<ul></ul>
-								</li>
+
+
+                                <!--<li>-->
+									<!--<label onclick="check_item(this)" title="涪城区">-->
+									<!--<input data-companyid="1" class="area_type" type="checkbox">涪城区333</label>-->
+								<!--</li>-->
+								<!--<li>-->
+									<!--<label onclick="check_item(this)" title="游仙区">-->
+									<!--<input data-companyid="2" class="area_type" type="checkbox">游仙区</label><ul></ul>-->
+								<!--</li>-->
+								<!--<li>-->
+									<!--<label onclick="check_item(this)" title="高新区">-->
+									<!--<input data-companyid="3" class="area_type" type="checkbox">高新区</label><ul></ul>-->
+								<!--</li>-->
+								<!--<li>-->
+									<!--<label onclick="check_item(this)" title="经开区">-->
+									<!--<input data-companyid="4" class="area_type" type="checkbox">经开区</label><ul></ul>-->
+								<!--</li>-->
+								<!--<li>-->
+									<!--<label onclick="check_item(this)" title="科创园区">-->
+									<!--<input data-companyid="5" class="area_type" type="checkbox">科创园区</label><ul></ul>-->
+								<!--</li>-->
+								<!--<li>-->
+									<!--<label onclick="check_item(this)" title="科学城">-->
+									<!--<input data-companyid="6" class="area_type" type="checkbox">科学城</label><ul></ul>-->
+								<!--</li>-->
+								<!--<li>-->
+									<!--<label onclick="check_item(this)" title="">-->
+									<!--<input data-companyid="7" class="area_type" type="checkbox">仙海区</label>-->
+									<!--<ul></ul>-->
+								<!--</li>-->
+
+
 							</ul>
 						</div>
 					</div>
@@ -1164,10 +1173,19 @@
 						</div>
 					</div>
 				</div>
+
 				<div id="allmap" class="" style="overflow: hidden; position: relative; z-index: 0; background-color: rgb(243, 241, 236); color: rgb(0, 0, 0); text-align: left; height: 515px;">
 				</div>
+
 			</div>
-<script type="text/javascript">
+            <!--zlys-->
+            <script th:inline="javascript">
+                var departments = [[${departments}]];
+            </script>
+
+
+
+                <script type="text/javascript">
 	/*+-------------全局变量-------------------+*/
 	var $imgDir = '../images/'; //默认图片目录
 	var $yjzc_zb = "104.724504,31.465048"; //默认坐标
@@ -1344,64 +1362,122 @@
 	 * （1.未收集，2.已收集，3.异常；）
 	 * 收集点垃圾桶信息上次收集时间：trashCan.gatherTime
 	 */
-	var simulationData = [
-		
-		{yjzc_zb:'104.737466,31.469042',title:'转运车',img:'../images/iwc-placeholder-vehicle.png',
-		license:'川BTEST1',type:'vehicleOne',gather:'',branch:'涪城区',genre:'垃圾转运',size:'',quantity:'',
-		code:'001',driver:'',phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'0',mileage:'88118.84',leaveTime:'2018-11-05 12:07',
-		manager:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区剑门路东段-47号',trashCan:[],},
-		
-		{yjzc_zb:'104.726466,31.467042',title:'转运车',img:'../images/iwc-placeholder-vehicle.png',
-		license:'川BTEST2',type:'vehicleOne',gather:'',branch:'涪城区',genre:'垃圾转运',size:'',quantity:'',code:'002',
-		driver:'董师傅',phone:'17395905992',status:'1',vehicleStatus:'正常',time:'13:00-19:00',speed:'41',mileage:'1123.51',
-		leaveTime:'',manager:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区剑门路西段81号',trashCan:[],},
-		
-		{yjzc_zb:'104.717466,31.459042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
-		license:'川BTEST3',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',
-		code:'003',driver:'',phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'0',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
-		manager:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
-		
-		{yjzc_zb:'104.719466,31.469042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
-		license:'川BTEST4',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'004',driver:'李师傅',
-		phone:'18180585415',status:'1',vehicleStatus:'在线',time:'15:00-17:30',speed:'30',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
-		manager:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
-		
-		{yjzc_zb:'104.699466,31.469042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
-		license:'川BTEST5',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'005',driver:'王师傅',
-		phone:'18180585684',status:'1',vehicleStatus:'在线',time:'12:00-17:00',speed:'23',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
-		manager:'',hoard:'',usable:'',areaid:'3',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
-		
-		{yjzc_zb:'104.689466,31.464042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
-		license:'川BTEST6',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'006',driver:'王师傅',
-		phone:'18180585684',status:'1',vehicleStatus:'在线',time:'12:00-17:00',speed:'23',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
-		manager:'',hoard:'',usable:'',areaid:'3',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
-		
-		{yjzc_zb:'104.679000,31.475042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
-		license:'川BTEST7',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'007',driver:'王师傅',
-		phone:'18180585684',status:'1',vehicleStatus:'在线',time:'12:00-17:00',speed:'23',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
-		manager:'',hoard:'',usable:'',areaid:'3',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
-		
-		{yjzc_zb:'104.699466,31.489042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
-		license:'川BTEST8',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'008',driver:'',
-		phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
-		manager:'',hoard:'',usable:'',areaid:'3',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
-		
-		{yjzc_zb:'104.700466,31.459042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
-		license:'川BTEST9',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'009',driver:'',
-		phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
-		manager:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
-		
-		{yjzc_zb:'104.721466,31.463042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
-		license:'川BTEST10',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'010',driver:'',
-		phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
-		manager:'',hoard:'',usable:'',areaid:'1',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+	// var simulationData = [
+	//
+	// 	{yjzc_zb:'104.737466,31.469042',title:'转运车',img:'../images/iwc-placeholder-vehicle.png',
+	// 	license:'川BTEST1222222222222222222',type:'vehicleOne',gather:'',branch:'涪城区',genre:'垃圾转运',size:'',quantity:'',
+	// 	code:'001',driver:'',phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'0',mileage:'88118.84',leaveTime:'2018-11-05 12:07',
+	// 	manager:'',hoard:'',usable:'',areaid:'123123',locations:'四川省绵阳市涪城区剑门路东段-47号',trashCan:[],},
+	//
+	// 	{yjzc_zb:'104.726466,31.467042',title:'转运车',img:'../images/iwc-placeholder-vehicle.png',
+	// 	license:'川BTEST2',type:'vehicleOne',gather:'',branch:'涪城区',genre:'垃圾转运',size:'',quantity:'',code:'002',
+	// 	driver:'董师傅',phone:'17395905992',status:'1',vehicleStatus:'正常',time:'13:00-19:00',speed:'41',mileage:'1123.51',
+	// 	leaveTime:'',manager:'',hoard:'',usable:'',areaid:'123123',locations:'四川省绵阳市涪城区剑门路西段81号',trashCan:[],},
+	//
+	// 	{yjzc_zb:'104.717466,31.459042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+	// 	license:'川BTEST3',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',
+	// 	code:'003',driver:'',phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'0',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+	// 	manager:'',hoard:'',usable:'',areaid:'123123',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+	//
+	// 	{yjzc_zb:'104.719466,31.469042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+	// 	license:'川BTEST4',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'004',driver:'李师傅',
+	// 	phone:'18180585415',status:'1',vehicleStatus:'在线',time:'15:00-17:30',speed:'30',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+	// 	manager:'',hoard:'',usable:'',areaid:'admin111',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+	//
+	// 	{yjzc_zb:'104.699466,31.469042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+	// 	license:'川BTEST5',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'005',driver:'王师傅',
+	// 	phone:'18180585684',status:'1',vehicleStatus:'在线',time:'12:00-17:00',speed:'23',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+	// 	manager:'',hoard:'',usable:'',areaid:'hc',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+	//
+	// 	{yjzc_zb:'104.689466,31.464042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+	// 	license:'川BTEST6',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'006',driver:'王师傅',
+	// 	phone:'18180585684',status:'1',vehicleStatus:'在线',time:'12:00-17:00',speed:'23',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+	// 	manager:'',hoard:'',usable:'',areaid:'123',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+	//
+	// 	{yjzc_zb:'104.679000,31.475042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+	// 	license:'川BTEST7',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'007',driver:'王师傅',
+	// 	phone:'18180585684',status:'1',vehicleStatus:'在线',time:'12:00-17:00',speed:'23',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+	// 	manager:'',hoard:'',usable:'',areaid:'5',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+	//
+	// 	{yjzc_zb:'104.699466,31.489042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+	// 	license:'川BTEST8',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'008',driver:'',
+	// 	phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+	// 	manager:'',hoard:'',usable:'',areaid:'',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+	//
+	// 	{yjzc_zb:'104.700466,31.459042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+	// 	license:'川BTEST9',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'009',driver:'',
+	// 	phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+	// 	manager:'',hoard:'',usable:'',areaid:'2',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+	//
+	// 	{yjzc_zb:'104.721466,31.463042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+	// 	license:'川BTEST10',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'010',driver:'',
+	// 	phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+	// 	manager:'',hoard:'',usable:'',areaid:'hc',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+    //
+    //     {yjzc_zb:'104.721866,31.464042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+    //         license:'川BTEST111111110',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'010',driver:'',
+    //         phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+    //         manager:'',hoard:'',usable:'',areaid:'123123',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+	// ];
+
+    var simulationData = [
+
+        {yjzc_zb:'104.737466,31.469042',
+            license:'川B222',type:'vehicleOne',branch:'涪城区',genre:'垃圾转运',
+            code:'001',driver:'123',phone:'13608111255',vehicleStatus:'离线',time:'排班时间',speed:'100',mileage:'88118.84',leaveTime:'2018-11-05 12:07',
+            areaid:'123123',locations:'四川省绵阳市涪城区剑门路东段-47号'},
+
+        {yjzc_zb:'104.726466,31.467042',title:'转运车',img:'../images/iwc-placeholder-vehicle.png',
+            license:'川BTEST2',type:'vehicleOne',gather:'',branch:'涪城区',genre:'垃圾转运',size:'',quantity:'',code:'002',
+            driver:'董师傅',phone:'17395905992',status:'1',vehicleStatus:'正常',time:'13:00-19:00',speed:'41',mileage:'1123.51',
+            leaveTime:'',manager:'',hoard:'',usable:'',areaid:'123123',locations:'四川省绵阳市涪城区剑门路西段81号',trashCan:[],},
+
+        {yjzc_zb:'104.717466,31.459042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+            license:'川BTEST3',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',
+            code:'003',driver:'',phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'0',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+            manager:'',hoard:'',usable:'',areaid:'123123',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+
+        {yjzc_zb:'104.719466,31.469042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+            license:'川BTEST4',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'004',driver:'李师傅',
+            phone:'18180585415',status:'1',vehicleStatus:'在线',time:'15:00-17:30',speed:'30',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+            manager:'',hoard:'',usable:'',areaid:'admin111',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+
+        {yjzc_zb:'104.699466,31.469042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+            license:'川BTEST5',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'005',driver:'王师傅',
+            phone:'18180585684',status:'1',vehicleStatus:'在线',time:'12:00-17:00',speed:'23',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+            manager:'',hoard:'',usable:'',areaid:'hc',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+
+        {yjzc_zb:'104.689466,31.464042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+            license:'川BTEST6',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'006',driver:'王师傅',
+            phone:'18180585684',status:'1',vehicleStatus:'在线',time:'12:00-17:00',speed:'23',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+            manager:'',hoard:'',usable:'',areaid:'123',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+
+        {yjzc_zb:'104.679000,31.475042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+            license:'川BTEST7',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'007',driver:'王师傅',
+            phone:'18180585684',status:'1',vehicleStatus:'在线',time:'12:00-17:00',speed:'23',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+            manager:'',hoard:'',usable:'',areaid:'5',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+
+        {yjzc_zb:'104.699466,31.489042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+            license:'川BTEST8',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'008',driver:'',
+            phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+            manager:'',hoard:'',usable:'',areaid:'',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+
+        {yjzc_zb:'104.700466,31.459042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+            license:'川BTEST9',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'009',driver:'',
+            phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+            manager:'',hoard:'',usable:'',areaid:'2',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+
+        {yjzc_zb:'104.721466,31.463042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
+            license:'川BTEST10',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'010',driver:'',
+            phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
+            manager:'',hoard:'',usable:'',areaid:'hc',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
 
         {yjzc_zb:'104.721866,31.464042',title:'收运车',img:'../images/iwc-placeholder-vehicle.png',
             license:'川BTEST111111110',type:'vehicleTwo',gather:'',branch:'涪城中区',genre:'垃圾收运',size:'',quantity:'',code:'010',driver:'',
             phone:'',status:'2',vehicleStatus:'离线',time:'',speed:'',mileage:'5485.44',leaveTime:'2018-11-05 15:12',
-            manager:'',hoard:'',usable:'',areaid:'5',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
-	];
-	
+            manager:'',hoard:'',usable:'',areaid:'123123',locations:'四川省绵阳市涪城区花园南街4',trashCan:[],},
+    ];
+
 	/* 轨迹 */
 	function lookDeitl(data){
 		map.enableScrollWheelZoom(false);
@@ -1458,11 +1534,12 @@
 			}else if(sd.type === "dealWith"){
 				item.title = sd.title;
 				item.color = '4';
-			}else if(sd.type === "gather"){
+			}
+			else if(sd.type === "gather"){
 				//var trashCan = sd.trashCan,flag = false;
 				/*for(var j=0;j<trashCan.length;j++){
 					if(){
-						
+
 					}
 				}*/
 				item.title = sd.title;
@@ -1482,14 +1559,14 @@
 			//样式生成
 			if(sd.type === "vehicleOne" || sd.type === "vehicleTwo"){
 				html += '<div id="vehicle_info_box">'+
-				'<div class="vehicle_info_img_box"><img src="'+sd.img+'"/></div>'+
+				'<div class="vehicle_info_img_box"><img src="../images/iwc-placeholder-vehicle.png"/></div>'+
 				'<div class="vehicle_info_box">'+
 				'<div class="vehicle_info_min_box">'+
 				'<div class="vehicle_info_min_one"><span>部门：</span><span>'+sd.branch+'</span></div>'+
 				'<div class="vehicle_info_min_two"><span></span><span></span></div>'+
 				'</div><div class="vehicle_info_min_box">'+
 				'<div class="vehicle_info_min_one"><span>类型：</span><span>'+sd.genre+'</span></div>'+
-				'<div class="vehicle_info_min_two"><span>内部编号：</span><span>'+sd.code+'</span></div>'+
+				'<div class="vehicle_info_min_two"><span>车牌号：</span><span>'+sd.code+'</span></div>'+
 				'</div><div class="vehicle_info_min_box">'+
 				'<div class="vehicle_info_min_one"><span>当班司机：</span>'+sd.driver+'<span></span></div>'+
 				'<div class="vehicle_info_min_two"><span>电话：</span><span>'+sd.phone+'</span></div>'+
@@ -1644,9 +1721,6 @@
 		map.enableScrollWheelZoom();//启用滚轮放大缩小
 		//map.clearOverlays();  //一次移除所有的覆盖物(相当于清空所有标注点)(必须!)
 		for(var i=0;i<dataJson.data.length;i++){
-			/*if(dataList[i]==undefined || dataList[i]==null){
-				continue;
-			}*/
 			var $json = dataJson.data[i];
 			var title = $json.title, //文本
 				description = $json.detail; //描述
@@ -1655,25 +1729,6 @@
 				r_point = zuobiao.r_point; //纬度
 			var	img = '', //标注点图标
 				style = ''; //标注点样式,使用英文颜色（eg.red）或颜色值（eg.'#1296db')
-			/*if($json.color=='1'){
-				img = '3.png';
-				style = "red";
-			}else if($json.color=='2'){
-				img = '3.png';
-				style = "blue";
-			}else if($json.color=='3'){
-				img = '8_2.png';
-				style = "green";
-			}else if($json.color=='4'){
-				img = 'shouji.png';
-				style = "orange";
-			}else if($json.color=='5'){
-				img = 'zhongzhuan.png';
-				style = "green2";
-			}else if($json.color=='6'){
-				img = 'chulizhan.png';
-				style = "green2";
-			}*/
 			if($json.color=='1'){//收运车
 				img = '3.png';
 				style = "blue";
@@ -1709,6 +1764,9 @@
 		$(".anchorTL").hide();*/
 	}
 	//全部区域选则
+
+
+
 	function check_all(){
 		var $obj = $(".all_area");
 		//console.log("选中状态："+$obj.prop('checked'));
@@ -1729,39 +1787,35 @@
 			//alert("未选中状态");
 		};
 	};
-	//单个区域选则
-	function check_item(obj){
-		map.clearOverlays(); //一次移除所有的覆盖物(相当于清空所有标注点)(必须!)
-		//var $obj = $(obj),id = $obj.attr('data-id');
-		var showDataOne = [],inde=0,flag = true, $typeAll = $(".all_area");
-		$('.area_type').each(function (index,domEle){
-			//console.log($(domEle).prop("checked"));
-			var $domEle = $(domEle),id = $domEle.attr('data-companyid');
-			if($domEle.prop("checked")){
-				for(var i=0;i<simulationData.length;i++){
-					var sd = simulationData[i];
-					//data-companyid：1，涪城区；2，游仙区；3，高新区；4，经开区；5，科创园区；6，科学城；6，仙海区；
-					//areaid：1，涪城区；2，游仙区；3，高新区；4，经开区；5，科创园区；6，科学城；6，仙海区；
-					if(id == "1"){
-						if(sd.areaid === "1")showDataOne[inde++] = sd;
-					}else if(id == "2"){
-						if(sd.areaid === "2")showDataOne[inde++] = sd;
-					}else if(id == "3"){
-						if(sd.areaid === "3")showDataOne[inde++] = sd;
-					}else if(id == "4"){
-						if(sd.areaid === "4")showDataOne[inde++] = sd;
-					}else if(id == "5"){
-						if(sd.areaid === "5")showDataOne[inde++] = sd;
-					};
-				};
-			}else flag = false ;
-		});
-		if(flag) $typeAll.prop("checked",true);
-		else $typeAll.prop("checked",false);
-		//console.log(showDataOne);
-		if(showDataOne.length>0){
-			mapDataShow(showDataOne);
-		};
+
+    //单个区域选则
+    function check_item(obj){
+        map.clearOverlays(); //一次移除所有的覆盖物(相当于清空所有标注点)(必须!)
+        //var $obj = $(obj),id = $obj.attr('data-id');
+        var showDataOne = [],inde=0,flag = true, $typeAll = $(".all_area");
+        $('.area_type').each(function (index,domEle){
+            //console.log($(domEle).prop("checked"));
+            var $domEle = $(domEle),id = $domEle.attr('data-companyid');
+            if($domEle.prop("checked")){
+                for(var i=0;i<simulationData.length;i++){
+                    var sd = simulationData[i];
+                    //data-companyid：1，涪城区；2，游仙区；3，高新区；4，经开区；5，科创园区；6，科学城；6，仙海区；
+                    //areaid：1，涪城区；2，游仙区；3，高新区；4，经开区；5，科创园区；6，科学城；6，仙海区；
+                    for(var j=0;j<departments.length;j++){
+                        var dd=departments[j];
+                        if(id == dd){
+                            if(sd.areaid === dd)showDataOne[inde++] = sd;
+                        }
+                    }
+                };
+            }else flag = false ;
+        });
+        if(flag) $typeAll.prop("checked",true);
+        else $typeAll.prop("checked",false);
+        //console.log(showDataOne);
+        if(showDataOne.length>0){
+            mapDataShow(showDataOne);
+        };
 		//console.log("——————————————————————————————————————————————————————————————————————————————————————————————————————————--");
 	}
 	/*function type_check_item(obj){
@@ -1898,18 +1952,18 @@
 	};
 	
 	$(function(){
-		//mapDataShow(simulationData); //调用处理数据方法，根据json数据加载地图数据；
+		// mapDataShow(simulationData); //调用处理数据方法，根据json数据加载地图数据；
 		//时间初始化
 		function timeInitialize(){
 			$('#sel_time').val(getTime());
-			// 时间轴的逻辑处理 
+			// 时间轴的逻辑处理
 			var hour = parseInt(getTime('hour'));
 			$('.timeline').find('li').eq(hour).addClass('active').html('现在');
 			//时间初始化
 			var dateStart = getTime('year'); //'2018-02-07';
 			var dateEnd = getTime('year');
 			$('#time_num').val(dateStart + ' 至 ' + dateEnd);
-			
+
 			//高宽自动适应
 			widthAndHeight();
 			//alert(lef);
@@ -1920,19 +1974,17 @@
 		mapInitialize();
 		//
 		dataInitializ();
-		
+
 		var t1=window.setInterval(function (){
-			var $rltime= $(".this_rel_time");
-			if($rltime!=undefined){
-				$rltime.empty().append(getTime(''));
-			};
-		}, 1000);
-	    //去掉定时器的方法  
-	    //window.clearInterval(t1);   
-		
-		
+        	var $rltime= $(".this_rel_time");
+        	if($rltime!=undefined){
+        		$rltime.empty().append(getTime(''));
+        	};
+        }, 1000);
+
+	    //去掉定时器的方法
+	    //window.clearInterval(t1);
 		//$(".person_line_tool").hide();
-		
 	}); //END $(function(){});
 	
 	$(window).resize(function(){

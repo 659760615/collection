@@ -1,6 +1,5 @@
 package com.zlys.collection.controller;
 
-import com.zlys.collection.dao.DepartmentMapper;
 import com.zlys.collection.entity.DepartmentEntity;
 import com.zlys.collection.entity.User;
 import com.zlys.collection.service.DepartmentService;
