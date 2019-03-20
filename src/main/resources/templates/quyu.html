@@ -109,7 +109,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="login.html">退出</a>
+									<a href="/zlys/logout">退出</a>
 								</li>
 							</ul>
 						</div>
@@ -1960,51 +1960,51 @@
 			<div class="content over renwu">
 				<div class="content_head">
 					<span class="active m" onclick="javascript:window.location='/fence/system_c';">围栏管理</span>
-					<span class=" d" onclick="javascript:window.location='/fence/system_cc';">线路管理</span>
+					<!--<span class=" d" onclick="javascript:window.location='/fence/system_cc';">线路管理</span>-->
 				</div>
 				<div class="row content_body">
-					<div class="col-xs-2 organ">
+					<div class="col-xs-2 organ ">
 						<div class="organ_title">
 							组织架构
 						</div>
 						<ul id="menuTree" class="menuTree scroll">
 							<div class="all">
 								<span class="bloc active open" data-blocid="1" onclick="choose_organ(this)">
-									<img src="../images/close_hover.png" class="right">
-									<img src="../images/file.png"> 绵阳市
+            						<img src="../images/close_hover.png" class="right">
+            						<img src="../images/file.png">绵阳市
 								</span>
 								<div class="area" style="display: block;">
-									<span data-areaid="96" onclick="choose_organ(this)">
-										<img src="../images/file.png">涪城区
+                                    <span th:each="d: ${departments}">
+                                        <span th:attr="data-areaid=${d}" onclick="choose_organ(this)">
+            							<img src="../images/file.png" th:value="${d}" th:text="${d}">
 									</span>
-									<div class="group"></div>
-									<span data-areaid="138" onclick="choose_organ(this)">
-										<img src="../images/file.png">游仙区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="147" onclick="choose_organ(this)">
-										<img src="../images/file.png">高新区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="148" onclick="choose_organ(this)">
-										<img src="../images/file.png">经开区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="149" onclick="choose_organ(this)">
-										<img src="../images/file.png">科创园区
-									</span>
-									<div class="group"></div>
-									<span data-areaid="150" onclick="choose_organ(this)">
-										<img src="../images/file.png">科学城
-									</span>
-									<div class="group"></div>
-									<span data-areaid="151" onclick="choose_organ(this)">
-										<img src="../images/file.png">仙海区
-									</span>
+                                    </span>
 								</div>
 							</div>
 						</ul>
 					</div>
+
+					<script type="application/javascript">
+						/**  **/
+						function choose_organ(obj){
+							$("#menuTree span").removeClass('active').find('.right').attr('src','../images/close.png');
+							$(obj).addClass('active');
+							$(obj).find(".right").attr('src','../images/close_hover.png');
+							$(obj).toggleClass('open');
+							$(obj).next('div').slideToggle();
+							tree_conditions.blocId = $(obj).attr('data-blocId')?$(obj).attr('data-blocId'):'';
+							tree_conditions.companyId = $(obj).attr('data-companyId')?$(obj).attr('data-companyId'):'';
+							tree_conditions.areaId = $(obj).attr('data-areaId')?$(obj).attr('data-areaId'):'';
+							tree_conditions.groupId = $(obj).attr('data-groupId')?$(obj).attr('data-groupId'):'';
+							var that = $(obj);
+							var id = that.attr('data-areaid');
+							departmentName=id;
+							allfences.rerender();
+						};
+
+					</script>
+
+
 					<div class="col-xs-10">
 						<div class="top">
 							<div class="search_box">
@@ -2021,8 +2021,8 @@
                                 <thead>
                                 <tr>
                                     <th class="text-center">序号</th>
-                                    <th class="text-center">电子围栏名称</th>
-                                    <th class="text-center">所属部门</th>
+									<th class="text-center">所属部门</th>
+									<th class="text-center">电子围栏名称</th>
                                     <th class="text-center">备注信息</th>
                                     <th class="text-center">最后修改时间</th>
                                     <th class="text-center"></th>
@@ -2031,9 +2031,9 @@
                                 <tbody id="lists" class="text-center">
                                 <tr v-for="(object,index) in objects.list">
                                     <td>{{index+1}}</td>
-                                    <td>{{object.name}}</td>
                                     <td>{{object.department}}</td>
-                                    <td>{{object.remark}}</td>
+									<td>{{object.name}}</td>
+									<td>{{object.remark}}</td>
                                     <td>{{object.updateTime}}</td>
                                     <td>
                                         <a class="btn_default" target="_blank" :href="'/fence/edit?id='+object.id">编辑电子围栏</a>
@@ -2042,55 +2042,96 @@
                                 </tbody>
                             </table>
                             <div class="zxf_pagediv" id="zxf_pagediv"></div>
-                            <script>
-                                new Vue({
-                                    el:'#allfence',
-                                    data:{
-                                        objects:[],
-                                    },
-                                    /**/
-                                    created: function () {
-                                        var self = this;
-                                        /**/
-                                        $.ajax({
-                                            url: '/fence/allfence',
-                                            type: 'post',
-                                            data: {},
-                                            dataType: 'json'
-                                        }).then(function (res) {
-                                            for(var i=0;i<res.list.length;i++){
-                                                res.list[i].updateTime = formatDate(res.list[i].updateTime);
-                                            }
-                                            self.objects = res;
-
-                                            //翻页 null
-                                            $(".zxf_pagediv").createPage({
-                                                pageNum: res.pages,
-                                                current: 1,
-                                                backfun: function(e) {
-                                                    $.ajax({
-                                                        url: '/fence/allfence',
-                                                        type: 'post',
-                                                        data: { currentPage : e.current},
-                                                        dataType: 'json'
-                                                    }).then(function (res) {
-                                                        for(var i=0;i<res.list.length;i++){
-                                                            res.list[i].updateTime = formatDate(res.list[i].updateTime);
-                                                        }
-                                                        self.objects = res;
-                                                    }).fail(function () {
-                                                        console.log('error');
-                                                    });
-                                                }
-                                            });
-                                        }).fail(function () {
-                                            console.log('error');
-                                        });
-                                    },
-
-                                })
-                            </script>
                         </div>
+						<script>
+							var departmentName = null;
+
+							var allfences=new Vue({
+								el:'#allfence',
+								data:{
+									objects:[],
+								},
+								/**/
+								created: function () {
+									var self = this;
+									/**/
+									$.ajax({
+										url: '/fence/allfence',
+										type: 'post',
+										data: {dName:departmentName},
+										dataType: 'json'
+									}).then(function (res) {
+										for(var i=0;i<res.list.length;i++){
+											res.list[i].updateTime = formatDate(res.list[i].updateTime);
+										}
+										self.objects = res;
+
+										//翻页 null
+										$(".zxf_pagediv").createPage({
+											pageNum: res.pages,
+											current: 1,
+											backfun: function(e) {
+												$.ajax({
+													url: '/fence/allfence',
+													type: 'post',
+													data: { currentPage : e.current,dName:departmentName},
+													dataType: 'json'
+												}).then(function (res) {
+													for(var i=0;i<res.list.length;i++){
+														res.list[i].updateTime = formatDate(res.list[i].updateTime);
+													}
+													self.objects = res;
+												}).fail(function () {
+													console.log('error');
+												});
+											}
+										});
+									}).fail(function () {
+										console.log('error');
+									});
+								},
+								methods:{
+									rerender: function () {
+										var self = this;
+										/**/
+										$.ajax({
+											url: '/fence/allfence',
+											type: 'post',
+											data: {dName:departmentName},
+											dataType: 'json'
+										}).then(function (res) {
+											for(var i=0;i<res.list.length;i++){
+												res.list[i].updateTime = formatDate(res.list[i].updateTime);
+											}
+											self.objects = res;
+
+											//翻页 null
+											$(".zxf_pagediv").createPage({
+												pageNum: res.pages,
+												current: 1,
+												backfun: function(e) {
+													$.ajax({
+														url: '/fence/allfence',
+														type: 'post',
+														data: { currentPage : e.current,dName : departmentName},
+														dataType: 'json'
+													}).then(function (res) {
+														for(var i=0;i<res.list.length;i++){
+															res.list[i].updateTime = formatDate(res.list[i].updateTime);
+														}
+														self.objects = res;
+													}).fail(function () {
+														console.log('error');
+													});
+												}
+											});
+										}).fail(function () {
+											console.log('error');
+										});
+									}
+								}
+							})
+						</script>
 					</div>
 				</div>
 			</div>
@@ -2135,26 +2176,7 @@
 				}
 				getData(1);
 
-				$(function() {
-					// 公司、区域、小组筛选
-					var t = setInterval(function() {
-						console.log(1223);
-						$('#menuTree span').click(function() {
-							conditions = {
-								"companyId": '',
-								"areaId": ""
-							}
-							conditions.companyId = tree_conditions.companyId;
-							conditions.areaId = tree_conditions.areaId;
-							getData(1);
-						});
-						if($('#menuTree span').length) {
-							clearInterval(t);
-							$('#menuTree span[data-groupid]').remove();
-							$('#menuTree span[data-areaid] img:first-child').remove();
-						}
-					}, 100);
-				});
+
 
                 /*日期格式化*/
                 function formatDate(time){

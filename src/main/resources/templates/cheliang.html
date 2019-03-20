@@ -891,7 +891,6 @@
             							<img src="../images/file.png" th:value="${d}" th:text="${d}">
 									</span>
                                     </span>
-
 								</div>
 							</div>
 						</ul>
@@ -908,9 +907,9 @@
 							<thead>
 								<tr>
                                     <th class="text-center dropdown my_word_style">序号</th>
-									<th class="text-center dropdown my_word_style">所属区域</th>
 									<th class="text-center dropdown my_word_style">所属部门</th>
-									<th class="text-center dropdown my_word_style" >终端号</th>
+                                    <th class="text-center dropdown my_word_style">所属区域</th>
+                                    <th class="text-center dropdown my_word_style" >终端号</th>
 									<th class="text-center dropdown my_word_style">车辆车牌</th>
 									<th class="text-center dropdown my_word_style">
 										<div class="dropdown-toggle" type="button" data-toggle="dropdown">车辆类型</div>
@@ -924,9 +923,9 @@
 							<tbody class="text-center">
 								<tr v-for="(object,index) in objects.list">
                                     <td>{{index+1}}</td>
-                                    <td>{{object.departmentArea}}</td>
                                     <td>{{object.departmentName}}</td>
-									<td>{{object.deviceSerial}}</td>
+                                    <td>{{object.departmentArea}}</td>
+                                    <td>{{object.deviceSerial}}</td>
 									<td>{{object.plateNumber}}</td>
                                     <td v-if="object.type == 0">收运车</td>
                                     <td v-if="object.type == 1">转运车</td>

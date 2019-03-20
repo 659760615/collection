@@ -10,10 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.HttpMediaTypeException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.jws.WebParam;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,7 +45,17 @@ public class ElectronicFenceController extends BaseController{
      * @auther: czx
      */
     @RequestMapping("system_c")
-    public String quyu(){
+    public String quyu(Model model,HttpSession session){
+        String departmentName = user(session);
+        List<String> list=new LinkedList<>();
+        if(departmentName == null){
+            /*所有的部门信息*/
+            list=departmentService.queryAllName();
+        }else{
+            /*区域*/
+            list.add(departmentName);
+        }
+        model.addAttribute("departments",list);
         return "quyu";
     }
 
@@ -134,11 +147,24 @@ public class ElectronicFenceController extends BaseController{
      */
     @RequestMapping("allfence")
     @ResponseBody
-    public Object allfence(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage){
+    public Object allfence(@RequestParam(value = "currentPage", defaultValue = "1") Integer currentPage, String dName, HttpSession session){
+        String departmentName = user(session);
         PageHelper.startPage(currentPage,8);
         List<ElectronicFenceEntity> list=new LinkedList<>();
-        /*all*/
-        list=electronicFenceService.queryAll();
+        ElectronicFenceEntity electronicFenceEntity=new ElectronicFenceEntity();
+        if(departmentName == null){
+            if(dName == null){
+                /*所有公司的车辆信息*/
+                list=electronicFenceService.queryAll();
+            }else{
+                electronicFenceEntity.setDepartment(dName);
+                list=electronicFenceService.queryByCond(electronicFenceEntity);
+            }
+        }else{
+            System.out.println(departmentName);
+            electronicFenceEntity.setDepartment(departmentName);
+            list=electronicFenceService.queryByCond(electronicFenceEntity);
+        }
         PageInfo<ElectronicFenceEntity> pageInfo=new PageInfo<>(list);
         return pageInfo;
     }
