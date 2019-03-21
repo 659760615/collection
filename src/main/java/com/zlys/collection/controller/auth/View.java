@@ -27,16 +27,7 @@ public class View {
     public String check(){
         return "check";
     }
-     /**
-       * @desc: 系统管理_排班管理 view
-       * @param:
-       * @return:
-       * @auther: czx
-       */
-    @RequestMapping("system_a")
-    public String panbanG(){
-        return "paibanG";
-    }
+
      /**
        * @desc: 系统管理_预警中心 view
        * @param:

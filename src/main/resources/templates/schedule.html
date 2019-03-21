@@ -16,12 +16,12 @@
 		<script src="../js/bootstrap.min.js"></script>
 		<script src="../js/bootbox.min.js"></script>
 		<script src="../js/common.js"></script>
-		<script>
-			$(document).click(function(event) {
-2
-			});
-		</script>
 		<link rel="stylesheet" href="../css/laydate.css" id="layuicss-laydate">
+        <!--page-->
+        <link rel="stylesheet"  href="../css/zxf_page.css"/>
+        <script  src="../js/zxf_page.js"></script>
+        <!--vue-->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.js"></script>
 	</head>
 
 	<body style="">
@@ -36,7 +36,7 @@
                     <li class=""><a href="/zlys/commond">指挥中心</a></li>
                     <li class=""><a href="/common/check">考核中心</a></li>
                     <li class=""><a href="/common/unusual">预警中心</a></li>
-                    <li class="active"><a href="/common/system_a">系统管理</a></li>
+                    <li class="active"><a href="/driver/schedule">系统管理</a></li>
                     <li class=""><a href="/common/examine">监控中心</a></li>
                     <li class=""><a href="/common/tongjiindex">统计中心</a></li>
 				</ul>
@@ -1728,7 +1728,7 @@
 			<div class="btns_nav">
 				<ul style="display:inline"> 
 			        <li class="active ">
-			            <a href="/common/system_a" class=""></a>
+			            <a href="/driver/schedule" class=""></a>
 			        </li>
 			        <li class=" ">
 			            <a href="/common/system_b" class=""></a>
@@ -1752,8 +1752,8 @@
 			</div>
 			<div class="content over renwu">
 				<div class="content_head">
-					<span class="active m" onclick="javascript:window.location='/common/system_a';">排班管理</span>
-					<span class=" d" onclick="javascript:window.location='/common/system_aa';">排班表</span>
+					<span class="active m" onclick="javascript:window.location='/driver/schedule';">排班管理</span>
+					<span class=" d" onclick="javascript:window.location='/driver/schedulea';">排班表</span>
 				</div>
 				<div class="row content_body">
 					<div class="col-xs-2 organ">
@@ -1852,290 +1852,197 @@
 							<span id="export" class="btn_exporty btn_blue pull-right"> 导出</span>
 							<span id="setMany" class="btn_blue pull-right btn_setting" data-toggle="modal" data-target="#setting" style="margin-right: 20px; display: none;" onclick="setManyWork()"> 批量排班设置</span>
 						</div>
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<!--<th class="text-center form-inline">
-										<input type="checkbox" onclick="check_all(this)">
-									</th>-->
-									<th class="text-center">姓名</th>
-									<th class="text-center">所属区域</th>
-									<th class="text-center">所属部门</th>
-									<th class="text-center">起始日期</th>
-									<th class="text-center dropdown ">
-										<div class="dropdown-toggle" data-toggle="dropdown">
-											班次循环<img src="../images/fa-chevron-down.png">
-										</div>
-										<ul class="dropdown-menu" id="task_loop">
-											<li data-type=""> 全部 </li>
-											<li data-type="1"> 一天一循环 </li>
-											<li data-type="2"> 二天一循环 </li>
-											<li data-type="3"> 三天一循环 </li>
-											<li data-type="4"> 四天一循环 </li>
-											<li data-type="5"> 五天一循环 </li>
-											<li data-type="6"> 六天一循环 </li>
-											<li data-type="7"> 七天一循环 </li>
-											<li data-type="8"> 八天一循环 </li>
-											<li data-type="9"> 九天一循环 </li>
-											<li data-type="10">十天一循环 </li>
-											<li data-type="11">十一天一循环</li>
-											<li data-type="12">十二天一循环</li>
-											<li data-type="13">十三天一循环</li>
-											<li data-type="14">十四天一循环</li>
-											<li data-type="15">十五天一循环</li>
+                        <div id="schedule">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">序号</th>
+                                    <th class="text-center">所属部门</th>
+                                    <th class="text-center">姓名</th>
+                                    <th class="text-center">排班状态</th>
+                                    <th class="text-center">排班开始时间</th>
+                                    <th class="text-center">排班结束时间</th>
+                                    <th class="text-center dropdown ">最后修改时间</th>
+                                    <th class="text-center dropdown ">排班设置</th>
+                                    <th class="text-center dropdown ">
+                                        重置排班
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-center" id="lists">
+                                <tr v-for="(object,index) in objects.list">
+                                    <td>{{index+1}}</td>
+                                    <td>{{object.department}}</td>
+                                    <td>{{object.name}}</td>
+                                    <td v-if="object.startTime == null ||  object.endTime == null" style="color: red">未排班<br></td>
+                                    <td v-else>已排班</td>
+                                    <td v-if="object.startTime == null">————<br></td>
+                                    <td v-else>{{object.startTime}}</td>
+                                    <td v-if="object.endTime == null">————<br></td>
+                                    <td v-else>{{object.endTime}}</td>
+                                    <td>{{object.updateTime}}</td>
+                                    <td>
+                                        <span class="btn_default" data-id="21" data-userid="1" data-toggle="modal" data-target="#setting" onclick="eidt_setting(this)">排班设置</span>
+                                    </td>
+                                    <td>
+                                        <a href="JavaScript:" style="color: #006EFF" data-id="21" @click="reloadpaiban(object.id)">重置</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="zxf_pagediv" id="zxf_pagediv"></div>
+                        </div>
 
-										</ul>
-									</th>
-									<th class="text-center dropdown ">
-										<div class="dropdown-toggle" data-toggle="dropdown">
-											班次特征 <img src="../images/fa-chevron-down.png">
-										</div>
-										<ul class="dropdown-menu" id="task_type">
-											<li onclick="selected_task_type(this)">全部</li>
-											<li onclick="selected_task_type(this)">上二休零</li>
-											<li onclick="selected_task_type(this)">上一休零</li>
-											<li onclick="selected_task_type(this)">上五休零</li>
-											<li onclick="selected_task_type(this)">上七休零</li>
-											<li onclick="selected_task_type(this)">上六休一</li>
-											<li onclick="selected_task_type(this)">上三休零</li>
-											<li onclick="selected_task_type(this)">上零休一</li>
-											<li onclick="selected_task_type(this)">上五休二</li>
-											<li onclick="selected_task_type(this)">上十二休二</li>
-											<li onclick="selected_task_type(this)">上十四休零</li>
-											<li onclick="selected_task_type(this)">上四休零</li>
-											<li onclick="selected_task_type(this)">上八休二</li>
-											<li onclick="selected_task_type(this)">上八休四</li>
-											<li onclick="selected_task_type(this)">上零休二</li>
-											<li onclick="selected_task_type(this)">上八休一</li>
-											<li onclick="selected_task_type(this)">上一休一</li>
-										</ul>
-									</th>
-									<th class="text-center dropdown ">
-										<div class="dropdown-toggle" data-toggle="dropdown">
-											排班状态 <img src="../images/fa-chevron-down.png">
-										</div>
-										<ul class="dropdown-menu" id="task_state">
-											<li data-type="">全部</li>
-											<li data-type="0">未排满</li>
-											<li data-type="1">已排满</li>
-											<li data-type="2">未排班</li>
-										</ul>
-									</th>
+                        <script>
+                            var departmentName=null;
+                            var scheduledata = new Vue({
+                                el: '#schedule',
+                                data: {
+                                    objects: [],
+                                },
+                                created: function () {
+                                    var self = this;
+                                    $.ajax({
+                                        url: '/driver/allDriver',
+                                        type: 'post',
+                                        data: {dName:departmentName},
+                                        dataType: 'json'
+                                    }).then(function (res) {
+                                        for(var i=0;i<res.list.length;i++){
+                                            res.list[i].updateTime = formatDate(res.list[i].updateTime);
+                                        }
+                                        self.objects = res;
+                                        //翻页 null
+                                        $(".zxf_pagediv").createPage({
+                                            pageNum: res.pages,
+                                            current: 1,
+                                            backfun: function(e) {
+                                                $.ajax({
+                                                    url: '/driver/allDriver',
+                                                    type: 'post',
+                                                    data: { currentPage : e.current,dName:departmentName},
+                                                    dataType: 'json'
+                                                }).then(function (res) {
+                                                    for(var i=0;i<res.list.length;i++){
+                                                        res.list[i].updateTime = formatDate(res.list[i].updateTime);
+                                                    }
+                                                    self.objects = res;
+                                                }).fail(function () {
+                                                    console.log('error');
+                                                });
+                                            }
+                                        });
+                                    }).fail(function () {
+                                        console.log('error');
+                                    });
+                                },
+                                methods: {
+                                    /*left刷新*/
+                                    rerender: function(){
+                                        var self = this;
+                                        $.ajax({
+                                            url: '/driver/allDriver',
+                                            type: 'post',
+                                            data: {dName:departmentName},
+                                            dataType: 'json'
+                                        }).then(function (res) {
+                                            for(var i=0;i<res.list.length;i++){
+                                                res.list[i].updateTime = formatDate(res.list[i].updateTime);
+                                            }
+                                            self.objects = res;
+                                            //翻页 null
+                                            $(".zxf_pagediv").createPage({
+                                                pageNum: res.pages,
+                                                current: 1,
+                                                backfun: function(e) {
+                                                    $.ajax({
+                                                        url: '/driver/allDriver',
+                                                        type: 'post',
+                                                        data: { currentPage : e.current,dName:departmentName},
+                                                        dataType: 'json'
+                                                    }).then(function (res) {
+                                                        for(var i=0;i<res.list.length;i++){
+                                                            res.list[i].updateTime = formatDate(res.list[i].updateTime);
+                                                        }
+                                                        self.objects = res;
+                                                    }).fail(function () {
+                                                        console.log('error');
+                                                    });
+                                                }
+                                            });
+                                        }).fail(function () {
+                                            console.log('error');
+                                        });
+                                    },
+                                    /*重置排班*/
+                                    reloadpaiban:function (id) {
+                                        bootbox.confirm({
+                                            title: '重置排班设置',
+                                            message: '重置排班后，历史排班数据将被清空。<br>是否重置排班？',
+                                            buttons: {
+                                                confirm: {
+                                                    label: "确定"
+                                                },
+                                                cancel: {
+                                                    label: "取消"
+                                                }
+                                            },
+                                            callback: function(result) {
+                                                if(result) {
+                                                    jQuery.ajax({
+                                                        url: '/driver/reload',
+                                                        data: {id:id},
+                                                        type: "POST",
+                                                        success: function(obj)
+                                                        {
+                                                            if(obj == 'success'){
+                                                                bootbox.alert({
+                                                                    message: '重置排班信息成功!',
+                                                                    closeButton: true,
+                                                                    callback: function () {
+                                                                        location.reload();
+                                                                    }
+                                                                });
+                                                            }else{
+                                                                bootbox.alert({
+                                                                    message: '重置失败,请联系管理员',
+                                                                    closeButton: false
+                                                                });
+                                                            }
+                                                        }
+                                                    });
+                                                } else {
+                                                    console.log("取消");
+                                                    return;
+                                                }
 
-									<th class="text-center dropdown ">最后修改时间</th>
-									<th class="text-center dropdown ">排班设置</th>
-									<th class="text-center dropdown ">
-										重置排班
-									</th>
-								</tr>
-							</thead>
-							<tbody class="text-center" id="lists">
-								<tr>
-									<!--<td><input type="checkbox" onclick="check_some(this)" data-fullname="魏田香" data-userid="1" value="21"></td>-->
-									<td>测试人员1</td>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>2018-04-28<br></td>
-									<td></td>
-									<td></td>
-									<td>未排满</td>
-									<td>2018-10-11 09:54:27</td>
-									<td>
-										<span class="btn_default" data-id="21" data-userid="1" data-toggle="modal" data-target="#setting" onclick="eidt_setting(this)">排班设置</span>
-									</td>
-									<td>
-										<a href="JavaScript:" style="color: #006EFF" data-id="21" onclick="delShiftsGroup(this)">重置</a>
-									</td>
-								</tr>
-								<tr>
-									<!--<td><input type="checkbox" onclick="check_some(this)" data-fullname="魏田香" data-userid="1" value="21"></td>-->
-									<td>测试人员2</td>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>2018-04-27<br></td>
-									<td>2天一循环</td>
-									<td>上二休零</td>
-									<td>未排满</td>
-									<td>2018-10-12 02:23:05</td>
-									<td>
-										<span class="btn_default" data-id="21" data-userid="1" data-toggle="modal" data-target="#setting" onclick="eidt_setting(this)">排班设置</span>
-									</td>
-									<td>
-										<a href="JavaScript:" style="color: #006EFF" data-id="21" onclick="delShiftsGroup(this)">重置</a>
-									</td>
-								</tr>
-								<tr>
-									<!--<td><input type="checkbox" onclick="check_some(this)" data-fullname="魏田香" data-userid="1" value="21"></td>-->
-									<td>测试人员3</td>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>2018-10-29<br></td>
-									<td>2天一循环</td>
-									<td>上二休零</td>
-									<td>已排满</td>
-									<td>2018-10-11 12:52:34</td>
-									<td>
-										<span class="btn_default" data-id="21" data-userid="1" data-toggle="modal" data-target="#setting" onclick="eidt_setting(this)">排班设置</span>
-									</td>
-									<td>
-										<a href="JavaScript:" style="color: #006EFF" data-id="21" onclick="delShiftsGroup(this)">重置</a>
-									</td>
-								</tr>
-								<tr>
-									<!--<td><input type="checkbox" onclick="check_some(this)" data-fullname="魏田香" data-userid="1" value="21"></td>-->
-									<td>测试人员4</td>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>2018-04-28<br></td>
-									<td>2天一循环</td>
-									<td>上二休零</td>
-									<td>已排满</td>
-									<td>2018-10-11 16:23:18</td>
-									<td>
-										<span class="btn_default" data-id="21" data-userid="1" data-toggle="modal" data-target="#setting" onclick="eidt_setting(this)">排班设置</span>
-									</td>
-									<td>
-										<a href="JavaScript:" style="color: #006EFF" data-id="21" onclick="delShiftsGroup(this)">重置</a>
-									</td>
-								</tr>
-								<tr>
-									<!--<td><input type="checkbox" onclick="check_some(this)" data-fullname="魏田香" data-userid="1" value="21"></td>-->
-									<td>测试人员5</td>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>2018-04-28<br></td>
-									<td>2天一循环</td>
-									<td>上二休零</td>
-									<td>已排满</td>
-									<td>2018-10-12 15:58:27</td>
-									<td>
-										<span class="btn_default" data-id="21" data-userid="1" data-toggle="modal" data-target="#setting" onclick="eidt_setting(this)">排班设置</span>
-									</td>
-									<td>
-										<a href="JavaScript:" style="color: #006EFF" data-id="21" onclick="delShiftsGroup(this)">重置</a>
-									</td>
-								</tr>
-								<tr>
-									<!--<td><input type="checkbox" onclick="check_some(this)" data-fullname="魏田香" data-userid="1" value="21"></td>-->
-									<td>测试人员6</td>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>2018-04-29<br></td>
-									<td>2天一循环</td>
-									<td>上二休零</td>
-									<td>已排满</td>
-									<td>2018-10-15 10:02:02</td>
-									<td>
-										<span class="btn_default" data-id="21" data-userid="1" data-toggle="modal" data-target="#setting" onclick="eidt_setting(this)">排班设置</span>
-									</td>
-									<td>
-										<a href="JavaScript:" style="color: #006EFF" data-id="21" onclick="delShiftsGroup(this)">重置</a>
-									</td>
-								</tr>
-								<tr>
-									<!--<td><input type="checkbox" onclick="check_some(this)" data-fullname="魏田香" data-userid="1" value="21"></td>-->
-									<td>测试人员7</td>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>2018-04-28<br></td>
-									<td>2天一循环</td>
-									<td>上二休零</td>
-									<td>已排满</td>
-									<td>2018-10-10 09:28:05</td>
-									<td>
-										<span class="btn_default" data-id="21" data-userid="1" data-toggle="modal" data-target="#setting" onclick="eidt_setting(this)">排班设置</span>
-									</td>
-									<td>
-										<a href="JavaScript:" style="color: #006EFF" data-id="21" onclick="delShiftsGroup(this)">重置</a>
-									</td>
-								</tr>
-								<tr>
-									<!--<td><input type="checkbox" onclick="check_some(this)" data-fullname="魏田香" data-userid="1" value="21"></td>-->
-									<td>测试人员8</td>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>2018-04-28<br></td>
-									<td>2天一循环</td>
-									<td>上二休零</td>
-									<td>已排满</td>
-									<td>2018-10-12 13:34:27</td>
-									<td>
-										<span class="btn_default" data-id="21" data-userid="1" data-toggle="modal" data-target="#setting" onclick="eidt_setting(this)">排班设置</span>
-									</td>
-									<td>
-										<a href="JavaScript:" style="color: #006EFF" data-id="21" onclick="delShiftsGroup(this)">重置</a>
-									</td>
-								</tr>
-								<tr>
-									<!--<td><input type="checkbox" onclick="check_some(this)" data-fullname="魏田香" data-userid="1" value="21"></td>-->
-									<td>测试人员9</td>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>2018-04-28<br></td>
-									<td>2天一循环</td>
-									<td>上二休零</td>
-									<td>已排满</td>
-									<td>2018-10-11 19:34:03</td>
-									<td>
-										<span class="btn_default" data-id="21" data-userid="1" data-toggle="modal" data-target="#setting" onclick="eidt_setting(this)">排班设置</span>
-									</td>
-									<td>
-										<a href="JavaScript:" style="color: #006EFF" data-id="21" onclick="delShiftsGroup(this)">重置</a>
-									</td>
-								</tr>
-								<tr>
-									<!--<td><input type="checkbox" onclick="check_some(this)" data-fullname="魏田香" data-userid="1" value="21"></td>-->
-									<td>测试人员10</td>
-									<td>涪城区</td>
-									<td>涪城区收集站</td>
-									<td>2018-04-28<br></td>
-									<td>2天一循环</td>
-									<td>上二休零</td>
-									<td>已排满</td>
-									<td>2018-10-11 09:55:57</td>
-									<td>
-										<span class="btn_default" data-id="21" data-userid="1" data-toggle="modal" data-target="#setting" onclick="eidt_setting(this)">排班设置</span>
-									</td>
-									<td>
-										<a href="JavaScript:" style="color: #006EFF" data-id="21" onclick="delShiftsGroup(this)">重置</a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<!--分页-->
-						<nav aria-label="Page navigation" class="text-center">
-							<ul class="pagination">
-								<li class="active">
-									<a class="curpage">1</a>
-								</li>
-								<li>
-									<a href="javascript:getData(2)">2</a>
-								</li>
-								<li>
-									<a href="javascript:getData(3)">3</a>
-								</li>
-								<li>
-									<a href="javascript:getData(4)">4</a>
-								</li>
-								<li>
-									<a href="javascript:getData(5)">5</a>
-								</li>
-								<li>
-									<a href="javascript:getData(6)">6</a>
-								</li>
-								<li>
-									<a href="javascript:getData(7)">7</a>
-								</li>
-								<li>
-									<a href="javascript:getData(8)">8</a>
-								</li>
-								<li>
-									<a href="javascript:getData(224)">»</a>
-								</li>
-							</ul>
-						</nav>
+                                            }
+
+                                        });
+                                    }
+                                }
+                            })
+
+
+                            /*日期格式化*/
+                            function formatDate(time){
+                                var date = new Date(time);
+                                var year = date.getFullYear(),
+                                    month = date.getMonth() + 1,//月份是从0开始的
+                                    day = date.getDate(),
+                                    hour = date.getHours(),
+                                    min = date.getMinutes(),
+                                    sec = date.getSeconds();
+                                var newTime = year + '-' +
+                                    month + '-' +
+                                    day + ' ' +
+                                    hour + ':' +
+                                    min + ':' +
+                                    sec;
+                                return newTime;
+                            }
+                        </script>
 					</div>
-
 					<div class="modal fade" id="setting" tabindex="-1" role="dialog">
 						<div class="modal-dialog modal-lg" role="document">
 							<div class="modal-content">
@@ -3125,40 +3032,7 @@
 						}
 
 						// 重置 删除 排班
-						function delShiftsGroup(obj) {
-							if(cookie.level == 0) {
-								canEdit = localStorage.getItem("canEdit");
-								if(canEdit == 'false') {
-									return bootbox.alert("无权操作");
-								}
-							}
-							var id = $(obj).attr('data-id');
-							// id= 361;
-							console.log(id);
-							bootbox.confirm({
-								title: '重置排班设置',
-								message: '重置排班后，历史排班数据将被清空。<br>是否重置排班？',
-								buttons: {
-									confirm: {
-										label: "确定"
-									},
-									cancel: {
-										label: "取消"
-									}
-								},
-								callback: function(result) {
-									if(result) {
-										console.log("确定");
-										
-									} else {
-										console.log("取消");
-										return;
-									}
 
-								}
-
-							});
-						};
 						
 					</script>
 				</div>

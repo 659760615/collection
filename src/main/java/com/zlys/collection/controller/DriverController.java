@@ -206,5 +206,28 @@ public class DriverController extends BaseController{
         return "success";
     }
 
+    /**
+     * @desc: 系统管理_排班管理 view
+     * @param:
+     * @return:
+     * @auther: czx
+     */
+    @RequestMapping("schedule")
+    public String schedule(Model model,HttpSession session){
+        return "schedule";
+    }
+
+    /**
+     * @desc: 重置排班信息
+     * @param:
+     * @return:
+     * @auther: czx
+     */
+    @RequestMapping("reload")
+    @ResponseBody
+    public Object reload(Integer id){
+        driverService.updateDriverTimeById(id);
+        return "success";
+    }
 
 }

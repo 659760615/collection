@@ -1,9 +1,6 @@
 package com.zlys.collection.service.impl;
 
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.zlys.collection.dao.DriverMapper;
@@ -12,28 +9,23 @@ import com.zlys.collection.service.DriverService;
 /**
  * @Description:
  * @author czx
- * @date: 2019-03-04 10:35:06
+ * @date: 2019-03-21 09:36:31
  */
 @Service
 public class DriverServiceImpl implements DriverService {
 
-    private static Logger logger = LoggerFactory.getLogger(DriverServiceImpl.class);
-
-
-    @Autowired
+	@Autowired
 	private DriverMapper driverMapper;
 
 	@Override
 	public Integer insertDriver(DriverEntity entity) {
 	   Integer id = null;
 	   try {
-			id=driverMapper.insertSelective(entity);
-			logger.info("新增成功");
-            return 1;
+			driverMapper.insertSelective(entity);
+			id = entity.getId();
 		} catch (Exception e) {
-           logger.info("新增司机信息error");
-           return 0;
-       }
+		}
+		return id;   
 	}
 	
 	@Override
@@ -106,4 +98,9 @@ public class DriverServiceImpl implements DriverService {
 			return false;
 		}
 	}
+
+    @Override
+    public void updateDriverTimeById(Integer id) {
+        driverMapper.updateDriverTimeById(id);
+    }
 }
